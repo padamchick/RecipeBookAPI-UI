@@ -17,17 +17,17 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
     private UserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UserDetailsServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<UserDao> user = Optional.ofNullable(userRepository.findByUsername(username));
+        Optional<UserDao> user = userRepository.findByUsername(username);
         final UserDao foundUser = user.orElseThrow(() -> new UsernameNotFoundException("UserDao with username: " + username + " not found."));
         return new User(foundUser.getUsername(), foundUser.getPassword(), mapListToCollection(foundUser.getAuthorities()));
     }
@@ -36,3 +36,4 @@ public class UserService implements UserDetailsService {
         return authorities.stream().map(authority -> new SimpleGrantedAuthority(authority.getName())).collect(Collectors.toList());
     }
 }
+
