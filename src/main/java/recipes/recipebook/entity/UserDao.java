@@ -11,7 +11,7 @@ import java.util.List;
 @Getter @Setter
 @NoArgsConstructor
 @Table(name = "[user]")
-public class UserDAO {
+public class UserDao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
