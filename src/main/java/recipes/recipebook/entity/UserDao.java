@@ -1,17 +1,17 @@
 package recipes.recipebook.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Builder
 @Entity
 @Getter @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "[user]")
-public class UserDAO {
+public class UserDao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

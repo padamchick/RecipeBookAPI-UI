@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import recipes.recipebook.entity.Authority;
-import recipes.recipebook.entity.UserDAO;
+import recipes.recipebook.entity.UserDao;
 import recipes.recipebook.repository.UserRepository;
 
 import java.util.Collection;
@@ -27,8 +27,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<UserDAO> user = Optional.ofNullable(userRepository.findByUsername(username));
-        final UserDAO foundUser = user.orElseThrow(() -> new UsernameNotFoundException("UserDAO with username: " + username + " not found."));
+        Optional<UserDao> user = userRepository.findByUsername(username);
+        final UserDao foundUser = user.orElseThrow(() -> new UsernameNotFoundException("UserDao with username: " + username + " not found."));
         return new User(foundUser.getUsername(), foundUser.getPassword(), mapListToCollection(foundUser.getAuthorities()));
     }
 
@@ -36,3 +36,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return authorities.stream().map(authority -> new SimpleGrantedAuthority(authority.getName())).collect(Collectors.toList());
     }
 }
+

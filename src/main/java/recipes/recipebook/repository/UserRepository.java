@@ -2,9 +2,11 @@ package recipes.recipebook.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import recipes.recipebook.entity.UserDAO;
+import recipes.recipebook.entity.UserDao;
+
+import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserDAO, Long> {
-    UserDAO findByUsername(String username);
+public interface UserRepository extends JpaRepository<UserDao, Long> {
+    Optional<UserDao> findByUsername(String username);
 }
