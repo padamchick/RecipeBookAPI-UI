@@ -32,6 +32,13 @@ public class RegistrationServiceImpl implements RegistrationService {
                 () -> userRepository.save(createUser(userDto)));
     }
 
+    @Override
+    public void deleteUser(Long id) {
+        final Optional<UserDao> byId = userRepository.findById(id);
+        final UserDao user = byId.orElseThrow(() -> new RuntimeException("User not exists"));
+        userRepository.delete(user);
+    }
+
     private UserDao createUser(UserDto userDto) {
         UserDao newUser = new UserDao().builder()
                 .username(userDto.getUsername())
