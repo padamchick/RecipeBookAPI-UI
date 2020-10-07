@@ -5,10 +5,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@NoArgsConstructor
 @Getter @Setter
 public class RecipeBook {
     @Id
@@ -21,5 +21,13 @@ public class RecipeBook {
 
     @OneToMany(mappedBy = "recipeBook", cascade = CascadeType.ALL)
     private List<Recipe> recipes;
+
+    public RecipeBook() {
+        recipes = new ArrayList<>();
+    }
+
+    public boolean addRecipe(Recipe recipe) {
+        return recipes.add(recipe);
+    }
 
 }

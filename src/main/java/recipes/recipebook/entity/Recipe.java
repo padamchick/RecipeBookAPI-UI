@@ -1,5 +1,6 @@
 package recipes.recipebook.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,5 +27,7 @@ public class Recipe {
 
     @ManyToOne
     @JoinColumn(name = "recipe_book_id")
+    @JsonIgnore
     private RecipeBook recipeBook;
+
 }
