@@ -20,6 +20,7 @@ public class Recipe {
     private Long id;
 
     private String name;
+    @Column(length = 3000)
     private String description;
     private String image;
 
