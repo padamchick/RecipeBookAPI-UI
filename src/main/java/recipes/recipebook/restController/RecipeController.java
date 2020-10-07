@@ -2,6 +2,7 @@ package recipes.recipebook.restController;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import recipes.recipebook.dto.RecipeDto;
 import recipes.recipebook.entity.Recipe;
 import recipes.recipebook.service.RecipeService;
 
@@ -29,13 +30,13 @@ public class RecipeController {
     }
 
     @PostMapping
-    public ResponseEntity<Recipe> saveRecipe(@RequestBody Recipe recipe) {
-        return ResponseEntity.ok(recipeService.saveRecipe(recipe));
+    public ResponseEntity<Recipe> saveRecipe(@RequestBody RecipeDto dto) {
+        return ResponseEntity.ok(recipeService.saveRecipe(dto));
     }
 
     @PutMapping
-    public ResponseEntity<Recipe> updateRecipe(@RequestBody Recipe recipe) {
-        return ResponseEntity.ok(recipeService.saveRecipe(recipe));
+    public ResponseEntity<Recipe> updateRecipe(@RequestBody RecipeDto dto) {
+        return ResponseEntity.ok(recipeService.updateRecipe(dto));
     }
 
     @DeleteMapping("/{id}")

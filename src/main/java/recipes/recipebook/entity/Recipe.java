@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import recipes.recipebook.dto.RecipeDto;
 
 import javax.persistence.*;
 import java.util.List;
@@ -29,5 +30,13 @@ public class Recipe {
     @JoinColumn(name = "recipe_book_id")
     @JsonIgnore
     private RecipeBook recipeBook;
+
+    public Recipe update(RecipeDto dto) {
+        this.name = dto.getName();
+        this.description = dto.getDescription();
+        this.image = dto.getDescription();
+        this.ingredients = dto.getIngredients();
+        return this;
+    }
 
 }

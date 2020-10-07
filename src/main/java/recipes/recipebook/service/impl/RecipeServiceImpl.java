@@ -1,7 +1,9 @@
 package recipes.recipebook.service.impl;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import recipes.recipebook.dto.RecipeDto;
 import recipes.recipebook.entity.Recipe;
 import recipes.recipebook.entity.RecipeBook;
 import recipes.recipebook.entity.UserDao;
@@ -17,17 +19,28 @@ public class RecipeServiceImpl implements RecipeService {
 
     private RecipeRepository recipeRepository;
     private UserRepository userRepository;
+    private ModelMapper modelMapper;
 
-    public RecipeServiceImpl(RecipeRepository recipeRepository, UserRepository userRepository) {
+    public RecipeServiceImpl(RecipeRepository recipeRepository, UserRepository userRepository, ModelMapper modelMapper) {
         this.recipeRepository = recipeRepository;
         this.userRepository = userRepository;
+        this.modelMapper = modelMapper;
     }
 
-    public Recipe saveRecipe(Recipe recipe) {
+    public Recipe saveRecipe(RecipeDto dto) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         final Optional<UserDao> user = userRepository.findByUsername(username);
         final RecipeBook recipeBook = user.get().getRecipeBook();
+        Recipe recipe = modelMapper.map(dto, Recipe.class);
+//        Recipe recipe = RecipeMapper.MAPPER.toRecipe(dto);
         recipe.setRecipeBook(recipeBook);
+        return recipeRepository.save(recipe);
+    }
+
+    public Recipe updateRecipe(RecipeDto dto) {
+        final Optional<Recipe> recipeOptional = recipeRepository.findById(dto.getId());
+        Recipe recipe = recipeOptional.orElseThrow(() -> new RuntimeException("Recipe not exists"));
+        recipe.update(dto);
         return recipeRepository.save(recipe);
     }
 
