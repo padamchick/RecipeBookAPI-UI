@@ -1,13 +1,9 @@
-package recipes.recipebook.restController;
+package recipes.recipebook.auth;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import recipes.recipebook.dto.JwtRequest;
 import recipes.recipebook.dto.UserDto;
-import recipes.recipebook.service.JwtService;
-import recipes.recipebook.service.RegistrationService;
 
 @RestController
 public class AuthController {

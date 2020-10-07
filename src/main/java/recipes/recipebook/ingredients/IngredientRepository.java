@@ -1,4 +1,4 @@
-package recipes.recipebook.repository;
+package recipes.recipebook.ingredients;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

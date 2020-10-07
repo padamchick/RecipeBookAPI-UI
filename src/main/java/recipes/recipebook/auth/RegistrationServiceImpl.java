@@ -1,4 +1,4 @@
-package recipes.recipebook.service.impl;
+package recipes.recipebook.auth;
 
 import org.springframework.data.util.Optionals;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -6,9 +6,6 @@ import org.springframework.stereotype.Service;
 import recipes.recipebook.dto.UserDto;
 import recipes.recipebook.entity.RecipeBook;
 import recipes.recipebook.entity.UserDao;
-import recipes.recipebook.repository.AuthorityRepository;
-import recipes.recipebook.repository.UserRepository;
-import recipes.recipebook.service.RegistrationService;
 
 import java.util.Arrays;
 import java.util.Optional;

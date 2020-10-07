@@ -1,4 +1,4 @@
-package recipes.recipebook.service.impl;
+package recipes.recipebook.recipes;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -7,9 +7,7 @@ import recipes.recipebook.dto.RecipeDto;
 import recipes.recipebook.entity.Recipe;
 import recipes.recipebook.entity.RecipeBook;
 import recipes.recipebook.entity.UserDao;
-import recipes.recipebook.repository.RecipeRepository;
-import recipes.recipebook.repository.UserRepository;
-import recipes.recipebook.service.RecipeService;
+import recipes.recipebook.auth.UserRepository;
 
 import java.util.List;
 import java.util.Optional;

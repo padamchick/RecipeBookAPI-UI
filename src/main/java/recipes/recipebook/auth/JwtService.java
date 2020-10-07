@@ -1,4 +1,4 @@
-package recipes.recipebook.service;
+package recipes.recipebook.auth;
 
 import recipes.recipebook.dto.JwtRequest;
 import recipes.recipebook.dto.JwtResponse;

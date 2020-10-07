@@ -1,4 +1,4 @@
-package recipes.recipebook.service.impl;
+package recipes.recipebook.auth;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import recipes.recipebook.config.JwtTokenUtil;
 import recipes.recipebook.dto.JwtRequest;
 import recipes.recipebook.dto.JwtResponse;
-import recipes.recipebook.service.JwtService;
 
 import java.util.Collection;
 import java.util.Date;

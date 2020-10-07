@@ -1,4 +1,4 @@
-package recipes.recipebook.service;
+package recipes.recipebook.recipes;
 
 import org.springframework.stereotype.Service;
 import recipes.recipebook.dto.RecipeDto;

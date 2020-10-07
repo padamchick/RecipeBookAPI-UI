@@ -1,4 +1,4 @@
-package recipes.recipebook.mapper;
+package recipes.recipebook.ingredients;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

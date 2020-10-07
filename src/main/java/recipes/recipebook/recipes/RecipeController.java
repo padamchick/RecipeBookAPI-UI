@@ -1,10 +1,9 @@
-package recipes.recipebook.restController;
+package recipes.recipebook.recipes;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import recipes.recipebook.dto.RecipeDto;
 import recipes.recipebook.entity.Recipe;
-import recipes.recipebook.service.RecipeService;
 
 import java.util.List;
 

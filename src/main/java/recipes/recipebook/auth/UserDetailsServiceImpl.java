@@ -1,4 +1,4 @@
-package recipes.recipebook.service.impl;
+package recipes.recipebook.auth;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import recipes.recipebook.entity.Authority;
 import recipes.recipebook.entity.UserDao;
-import recipes.recipebook.repository.UserRepository;
 
 import java.util.Collection;
 import java.util.List;
