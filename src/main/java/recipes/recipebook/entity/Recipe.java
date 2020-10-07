@@ -39,4 +39,10 @@ public class Recipe {
         return this;
     }
 
+    public void updateWithReferences() {
+        ingredients.forEach(ing -> ing.setRecipe(this));
+    }
+
+
+
 }

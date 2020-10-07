@@ -1,5 +1,6 @@
 package recipes.recipebook.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,12 +16,12 @@ public class Ingredient {
     private Long id;
 
     private String name;
-    private float amount;
+    private Float amount;
     private String unit;
 
     @ManyToOne
     @JoinColumn(name = "recipe_id")
+    @JsonIgnore
     private Recipe recipe;
-
 
 }

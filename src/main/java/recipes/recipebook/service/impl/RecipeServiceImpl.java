@@ -32,7 +32,7 @@ public class RecipeServiceImpl implements RecipeService {
         final Optional<UserDao> user = userRepository.findByUsername(username);
         final RecipeBook recipeBook = user.get().getRecipeBook();
         Recipe recipe = modelMapper.map(dto, Recipe.class);
-//        Recipe recipe = RecipeMapper.MAPPER.toRecipe(dto);
+        recipe.updateWithReferences();
         recipe.setRecipeBook(recipeBook);
         return recipeRepository.save(recipe);
     }
