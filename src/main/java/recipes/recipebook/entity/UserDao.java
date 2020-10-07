@@ -24,4 +24,7 @@ public class UserDao {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "authority_id"))
     private List<Authority> authorities;
+
+    @OneToOne(mappedBy = "userDao", cascade = CascadeType.ALL)
+    private RecipeBook recipeBook;
 }

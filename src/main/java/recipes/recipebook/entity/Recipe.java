@@ -14,16 +14,17 @@ import java.util.List;
 public class Recipe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "recipe_id")
     private Long id;
 
     private String name;
     private String description;
     private String image;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name="recipes_ingredients",
-    joinColumns = @JoinColumn(name = "recipe_id"),
-    inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
     private List<Ingredient> ingredients;
+
+    @ManyToOne
+    @JoinColumn(name = "recipe_book_id")
+    private RecipeBook recipeBook;
 }
