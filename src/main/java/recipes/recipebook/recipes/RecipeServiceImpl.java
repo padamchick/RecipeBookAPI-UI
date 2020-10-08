@@ -25,6 +25,7 @@ public class RecipeServiceImpl implements RecipeService {
         this.modelMapper = modelMapper;
     }
 
+    @Override
     public Recipe saveRecipe(RecipeDto dto) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         final Optional<UserDao> user = userRepository.findByUsername(username);
@@ -35,6 +36,7 @@ public class RecipeServiceImpl implements RecipeService {
         return recipeRepository.save(recipe);
     }
 
+    @Override
     public Recipe updateRecipe(RecipeDto dto) {
         final Optional<Recipe> recipeOptional = recipeRepository.findById(dto.getId());
         Recipe recipe = recipeOptional.orElseThrow(() -> new RuntimeException("Recipe not exists"));
