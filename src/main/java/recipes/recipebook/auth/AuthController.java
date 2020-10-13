@@ -6,6 +6,7 @@ import recipes.recipebook.dto.JwtRequest;
 import recipes.recipebook.dto.UserDto;
 
 @RestController
+@CrossOrigin
 public class AuthController {
 
     private RegistrationService registrationService;

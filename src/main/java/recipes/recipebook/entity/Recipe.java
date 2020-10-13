@@ -22,7 +22,7 @@ public class Recipe {
     private String name;
     @Column(length = 3000)
     private String description;
-    private String image;
+    private String imagePath;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
     private List<Ingredient> ingredients;
@@ -35,7 +35,7 @@ public class Recipe {
     public Recipe update(RecipeDto dto) {
         this.name = dto.getName();
         this.description = dto.getDescription();
-        this.image = dto.getDescription();
+        this.imagePath = dto.getImagePath();
         this.ingredients = dto.getIngredients();
         return this;
     }

@@ -11,6 +11,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class JwtResponse {
     private final String jwttoken;
+    private final String username;
     private final Date expirationDate;
     private final Collection<? extends GrantedAuthority> authorities;
 }

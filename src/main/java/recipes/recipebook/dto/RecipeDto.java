@@ -12,6 +12,6 @@ public class RecipeDto {
     private Long id;
     private String name;
     private String description;
-    private String image;
+    private String imagePath;
     private List<Ingredient> ingredients;
 }

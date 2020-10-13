@@ -1,6 +1,7 @@
 package recipes.recipebook.recipes;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import recipes.recipebook.dto.RecipeDto;
@@ -41,6 +42,7 @@ public class RecipeServiceImpl implements RecipeService {
         final Optional<Recipe> recipeOptional = recipeRepository.findById(dto.getId());
         Recipe recipe = recipeOptional.orElseThrow(() -> new RuntimeException("Recipe not exists"));
         recipe.update(dto);
+        recipe.updateWithReferences();
         return recipeRepository.save(recipe);
     }
 
@@ -51,7 +53,14 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public List<Recipe> findAll() {
-        return recipeRepository.findAll();
+        final String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        final Optional<UserDao> user = userRepository.findByUsername(username);
+        final RecipeBook recipeBook = user.get().getRecipeBook();
+        final List<Recipe> allByRecipeBook = recipeRepository.findAllByRecipeBook(recipeBook);
+        return allByRecipeBook;
+
+
+//        return recipeRepository.findAll();
     }
 
     @Override
@@ -60,4 +69,5 @@ public class RecipeServiceImpl implements RecipeService {
         recipeRepository.delete(toDelete);
         return toDelete;
     }
+
 }

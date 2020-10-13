@@ -1,5 +1,6 @@
 package recipes.recipebook.auth;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
@@ -22,7 +23,7 @@ public class JwtServiceImpl implements JwtService {
     private JwtTokenUtil jwtTokenUtil;
     private UserDetailsService userService;
 
-    public JwtServiceImpl(AuthenticationManager authenticationManager, JwtTokenUtil jwtTokenUtil, UserDetailsService userService) {
+    public JwtServiceImpl(AuthenticationManager authenticationManager, JwtTokenUtil jwtTokenUtil, @Qualifier("userDetailsServiceImpl") UserDetailsService userService) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
         this.userService = userService;
@@ -37,7 +38,6 @@ public class JwtServiceImpl implements JwtService {
         } catch (BadCredentialsException e) {
             throw new Exception("INVALID_CREDENTIALS", e);
         }
-
     }
 
     @Override
@@ -47,10 +47,11 @@ public class JwtServiceImpl implements JwtService {
 
         final UserDetails userDetails = userService.loadUserByUsername(request.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
+        final String username = jwtTokenUtil.getUserNameFromToken(token);
         final Date expirationDate = jwtTokenUtil.getExpirationDateFromToken(token);
         final Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
 
-        return new JwtResponse(token, expirationDate, authorities);
+        return new JwtResponse(token, username, expirationDate, authorities);
 
     }
 }
