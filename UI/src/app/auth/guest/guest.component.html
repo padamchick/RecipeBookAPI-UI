@@ -1,0 +1,8 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" *ngIf="!isLoading">
+
+  <br>
+  <div>
+    <button mat-raised-button class="theme-accent-dark" type="submit" [disabled]=!f.valid>Login as a Guest</button>
+  </div>
+
+</form>

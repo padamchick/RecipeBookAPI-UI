@@ -1,0 +1,13 @@
+.list-group-item {
+  margin: 2px;
+}
+
+.list-group-item.active {
+  background-color: var(--th-accent-dark) !important;
+  border-color: var(--th-accent-dark) !important;
+}
+
+
+img {
+  margin-left: 10px;
+}

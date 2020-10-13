@@ -1,0 +1,100 @@
+.example-form {
+  min-width: 200px;
+  max-width: auto;
+  width: 100%;
+}
+
+img {
+  display: flex;
+  max-width: 100%;
+  height: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.mat-raised-button{
+  margin: 5px 5px 10px;
+  width: 120px;
+}
+
+button:focus,
+button:active:focus,
+button.active:focus {
+  outline: none !important;
+  outline-style: none !important;
+}
+
+mat-form-field {
+  display: block;
+}
+
+textarea[cdktextareaautosize].mat-input-element {
+  overflow: hidden;
+}
+
+.card {
+  padding: 10px 25px 0 10px;
+}
+
+table {
+  width: 100%;
+}
+
+
+.mat-row:nth-child(even){
+  background-color:rgb(245, 245, 245);
+  }
+
+  mat-icon {
+    margin-right: 7px;
+  }
+
+  @media all and (min-width: 600px)
+ {
+  #add-button{
+    position: relative;
+    /* top: auto; */
+    /* right: -92%; */
+    left: 3%;
+    /* top: -40px; */
+    bottom: 10%;
+    /* left: auto; */
+  }
+
+  .mat-column-name {
+    flex: 0 0 50%;
+  }
+  .mat-column-amount {
+    flex: 0 0 13%;
+  }
+  .mat-column-unit {
+    flex: 0 0 17%;
+  }
+  .mat-column-action {
+    flex: 0 0 20%;
+  }
+ }
+
+@media all and (max-width: 599px){
+  #add-button{
+    position: relative;
+    left: 80%
+  }
+
+  .mat-column-name {
+    flex: 0 0 42%;
+  }
+  .mat-column-amount {
+    flex: 0 0 10%;
+  }
+  .mat-column-unit {
+    flex: 0 0 16%;
+  }
+  .mat-column-action {
+    flex: 0 0 32%;
+  }
+}
