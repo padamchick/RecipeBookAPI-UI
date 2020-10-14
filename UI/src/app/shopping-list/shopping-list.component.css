@@ -81,5 +81,13 @@ button.active:focus {
   margin-top: 7px;
 }
 
+.space {
+  margin :15px;
+}
+
+.buttons {
+  margin-top: 15px;
+}
+
 
 

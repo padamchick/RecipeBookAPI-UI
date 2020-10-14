@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpParams } from "@angular/common/http";
-import { map, tap, take, exhaustMap } from "rxjs/operators";
+import { HttpClient} from "@angular/common/http";
+import { map, tap} from "rxjs/operators";
 
 import { Recipe } from "../recipes/recipe.model";
 import { RecipeService } from "../recipes/recipe.service";
@@ -32,7 +32,7 @@ export class DataStorageService {
       });
   }
 
-  updateRecipe(recipesIndex: number, recipe: Recipe) {
+  updateRecipe(recipe: Recipe) {
     this.http
       .put("http://localhost:8080/recipes",
       recipe
@@ -76,23 +76,63 @@ export class DataStorageService {
       );
   }
 
-  storeIngredients() {
-    const ingredients = this.shoppingService.getIngredients();
+  storeIngredients(ingredients: Ingredient[]) {
+    // const ingredients = this.shoppingService.getIngredients();
     this.http
-      .put(
-        "https://course-recipe-book-30496.firebaseio.com/ingredients.json",
+      .post(
+        "http://localhost:8080/shopping-list/from-recipe",
         ingredients
+      )
+      .pipe(
+        tap(
+          (ingredients: Ingredient[]) => {
+            this.recipeService.addIngredientsToShoppingList(ingredients);
+          }
+        )
       )
       .subscribe((response) => {
         //  console.log(response);
       });
   }
 
+  updateIngredient(ingredient: Ingredient) {
+    this.http
+      .put<Ingredient>("http://localhost:8080/shopping-list", ingredient)
+      .subscribe((response) => {
+      });
+  }
+
+  deleteIngredient(dbId: number, arrayId: number) {
+    this.http
+    .delete("http://localhost:8080/shopping-list/"+dbId)
+    .pipe(
+      tap(
+        () => {
+          this.shoppingService.deleteIngredient(arrayId);
+        }
+      )
+    )
+    .subscribe((response) => {
+    })
+  }
+
+
+  addIngredient(ingredient: Ingredient) {
+    this.http
+      .post<Ingredient>("http://localhost:8080/shopping-list", ingredient)
+      .pipe(
+        tap((ingredient: Ingredient) => {
+          this.shoppingService.addIngredient(ingredient);
+        })
+      )
+      .subscribe((response) => {})
+  }
+
   fetchIngredients() {
 
     return this.http
       .get<Ingredient[]>(
-        "https://course-recipe-book-30496.firebaseio.com/ingredients.json",
+        "http://localhost:8080/shopping-list",
       )
       .pipe(
         map((ingredients) => {

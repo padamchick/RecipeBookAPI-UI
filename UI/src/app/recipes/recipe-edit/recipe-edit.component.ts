@@ -66,7 +66,7 @@ export class RecipeEditComponent implements OnInit, CanComponentDeactivate {
 
     if (this.editMode) {
       this.recipeService.updateRecipe(this.id, this.recipe);
-      this.dataService.updateRecipe(this.id, this.recipe);
+      this.dataService.updateRecipe(this.recipe);
       this.editMode = false;
       this.router.navigate(['../'], {
         relativeTo: this.route,

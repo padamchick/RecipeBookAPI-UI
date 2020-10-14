@@ -57,6 +57,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
   color: var(--text-accent) !important;
 }
 
+.theme-accent-dark-reversed {
+  background: var(--text-accent) !important;
+  color: var(--th-accent-dark) !important;
+}
+
 .theme-accent {
   background: var(--th-accent) !important;
   color: var(--text-accent) !important;

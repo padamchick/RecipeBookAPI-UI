@@ -12,6 +12,10 @@ export class IngredientEditComponent {
   name: string;
   amount: number;
   unit: string;
+  id: number;
+  isActual: boolean;
+  priority: number;
+
 
   constructor(public dialogRef: MatDialogRef<IngredientEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: IngredientEditModel) {
@@ -19,10 +23,19 @@ export class IngredientEditComponent {
       this.name = data.name;
       this.amount = data.amount;
       this.unit = data.unit;
+      this.id = data.id;
+      this.isActual = data.isActual;
+      this.priority = data.priority;
     }
 
     onSave() {
-      this.dialogRef.close(new Ingredient(this.name, this.amount, this.unit));
+      this.dialogRef.close(new Ingredient(
+        this.name,
+        this.amount,
+        this.unit,
+        this.id,
+        this.isActual,
+        this.priority));
     }
 
     onCancel() {
@@ -32,5 +45,12 @@ export class IngredientEditComponent {
 }
 
 export class IngredientEditModel {
-  constructor(public title: string, public name: string, public amount: number, public unit: string) {}
+  constructor(
+    public title: string,
+    public name: string,
+    public amount: number,
+    public unit: string,
+    public id?: number,
+    public isActual?: boolean,
+    public priority?: number) {}
 }

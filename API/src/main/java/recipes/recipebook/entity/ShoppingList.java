@@ -1,16 +1,16 @@
 package recipes.recipebook.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter @Setter
-public class RecipeBook {
+public class ShoppingList {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,11 +19,6 @@ public class RecipeBook {
     @JoinColumn(name = "fk_user_id")
     private UserDao userDao;
 
-    @OneToMany(mappedBy = "recipeBook", cascade = CascadeType.ALL)
-    private List<Recipe> recipes;
-//
-//    public RecipeBook() {
-//        recipes = new ArrayList<>();
-//    }
-
+    @OneToMany(mappedBy = "shoppingList", cascade = CascadeType.ALL)
+    private List<ShoppingListItem> shoppingListItems;
 }
