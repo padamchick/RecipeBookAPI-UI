@@ -9,7 +9,7 @@ import recipes.recipebook.entity.Recipe;
 import java.util.List;
 
 @RestController
-@RequestMapping("/recipes")
+@RequestMapping("/api/recipes")
 public class RecipeController {
 
     private RecipeService recipeService;

@@ -28,7 +28,6 @@ export class RecipeEditComponent implements OnInit, CanComponentDeactivate {
   recipe: Recipe = new Recipe(0,'', '', '', []);
   displayedColumns: string[] = ['name', 'amount', 'unit', 'action'];
   dataSource: MatTableDataSource<Ingredient>;
-
   constructor(
     private route: ActivatedRoute,
     public recipeService: RecipeService,

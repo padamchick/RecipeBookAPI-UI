@@ -20,16 +20,17 @@ export interface AuthResponseData {
 
 @Injectable({ providedIn: "root" })
 export class AuthService {
+  private apiUrl = environment.apiUrl;
   user = new BehaviorSubject<User>(null);
   isLoading = new BehaviorSubject<boolean>(false);
   private tokenExpirationTimer: any;
 
-  constructor(private http: HttpClient, private router: Router, private recipeService : RecipeService) {}
+  constructor(private http: HttpClient, private router: Router, private recipeService: RecipeService) {}
 
   signup(username: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'http://localhost:8080/register',
+        `${this.apiUrl}/register`,
         {
           username: username,
           password: password
@@ -41,7 +42,7 @@ export class AuthService {
   login(username: string, password: string) {
     return this.http
       .post<AuthResponseData>(
-        'http://localhost:8080/authenticate',
+        `${this.apiUrl}/authenticate`,
         {
           username: username,
           password: password

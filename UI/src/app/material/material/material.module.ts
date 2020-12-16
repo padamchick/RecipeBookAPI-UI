@@ -35,7 +35,7 @@ const materialComponents = [
   MatCheckboxModule,
   MatSortModule,
   MatTooltipModule
-]
+];
 
 @NgModule({
   imports: [materialComponents],

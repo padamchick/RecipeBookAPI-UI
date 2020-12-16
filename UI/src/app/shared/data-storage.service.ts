@@ -6,6 +6,7 @@ import { Recipe } from "../recipes/recipe.model";
 import { RecipeService } from "../recipes/recipe.service";
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { Ingredient } from './ingredient.model';
+import {environment} from '../../environments/environment';
 
 @Injectable({ providedIn: "root" })
 export class DataStorageService {
@@ -14,11 +15,12 @@ export class DataStorageService {
     private recipeService: RecipeService,
     private shoppingService: ShoppingListService
   ) {}
+  private apiUrl = environment.apiUrl;
 
   saveRecipe(recipe: Recipe) {
     this.http
       .post(
-        "http://localhost:8080/recipes",
+        `${this.apiUrl}/recipes`,
         recipe
       )
       .pipe(
@@ -34,7 +36,7 @@ export class DataStorageService {
 
   updateRecipe(recipe: Recipe) {
     this.http
-      .put("http://localhost:8080/recipes",
+      .put(`${this.apiUrl}/recipes`,
       recipe
       )
       .subscribe((response) => {
@@ -45,7 +47,7 @@ export class DataStorageService {
 
   deleteRecipe(id: number) {
     this.http
-    .delete<Recipe>("http://localhost:8080/recipes/"+id)
+    .delete<Recipe>(`${this.apiUrl}:8080/recipes/` + id)
     .subscribe((response) => {
       console.log("DELETE deleteRecipe works");
         console.log(response);
@@ -57,7 +59,7 @@ export class DataStorageService {
 
     return this.http
       .get<Recipe[]>(
-        "http://localhost:8080/recipes/all",
+        `${this.apiUrl}/recipes/all`,
       )
       .pipe(
         map((recipes) => {
@@ -80,7 +82,7 @@ export class DataStorageService {
     // const ingredients = this.shoppingService.getIngredients();
     this.http
       .post(
-        "http://localhost:8080/shopping-list/from-recipe",
+        `${this.apiUrl}/shopping-list/from-recipe`,
         ingredients
       )
       .pipe(
@@ -97,14 +99,14 @@ export class DataStorageService {
 
   updateIngredient(ingredient: Ingredient) {
     this.http
-      .put<Ingredient>("http://localhost:8080/shopping-list", ingredient)
+      .put<Ingredient>(`${this.apiUrl}/shopping-list`, ingredient)
       .subscribe((response) => {
       });
   }
 
   deleteIngredient(dbId: number, arrayId: number) {
     this.http
-    .delete("http://localhost:8080/shopping-list/"+dbId)
+    .delete(`${this.apiUrl}/shopping-list/` + dbId)
     .pipe(
       tap(
         () => {
@@ -119,7 +121,7 @@ export class DataStorageService {
 
   addIngredient(ingredient: Ingredient) {
     this.http
-      .post<Ingredient>("http://localhost:8080/shopping-list", ingredient)
+      .post<Ingredient>(`${this.apiUrl}/shopping-list`, ingredient)
       .pipe(
         tap((ingredient: Ingredient) => {
           this.shoppingService.addIngredient(ingredient);
@@ -132,14 +134,14 @@ export class DataStorageService {
 
     return this.http
       .get<Ingredient[]>(
-        "http://localhost:8080/shopping-list",
+        `${this.apiUrl}/shopping-list`,
       )
       .pipe(
         map((ingredients) => {
           if (!ingredients) {
             return [];
           } else {
-            return ingredients
+            return ingredients;
           }
         }),
         tap((ingredients) => {

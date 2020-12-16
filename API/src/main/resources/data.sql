@@ -1,4 +1,4 @@
-INSERT INTO user (username, password) VALUES ('piotrek', '$2y$12$8m7dBgFuGkPYZnn9rknIBuQcs9rpoHzCS0V5xTWN3SuY5HQlgCjzy')
+INSERT INTO user (username, password) VALUES ('piotrek', '$2y$12$g9Jm1i0Gd0yo2bx53ppRs.OqA9owuD7Gjecum5PsGDViM6NQ1Oniu')
 
 INSERT INTO authority (name) VALUES ('USER')
 INSERT INTO authority (name) VALUES ('ADMIN')

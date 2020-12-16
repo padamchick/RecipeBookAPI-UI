@@ -8,7 +8,7 @@ import recipes.recipebook.entity.ShoppingListItem;
 import java.util.List;
 
 @RestController
-@RequestMapping("/shopping-list")
+@RequestMapping("/api/shopping-list")
 public class ShoppingListController {
 
     private ShoppingListService shoppingService;
