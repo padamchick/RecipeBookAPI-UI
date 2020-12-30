@@ -1,24 +1,24 @@
 <div class="col-xs-12 col-xl-10 offset-xl-1">
   <table mat-table [dataSource]="dataSource" matSort>
     <!-- Checkbox Column -->
-    <ng-container matColumnDef="select">
-      <mat-header-cell *matHeaderCellDef>
-        <mat-checkbox
-        (change)="masterToggle()"
-        [checked]="selection.hasValue() && isAllSelected()"
-        [indeterminate]="selection.hasValue() && !isAllSelected()"
-        class="dark-blue-checkbox">
-        </mat-checkbox>
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row; let i=index">
-        <mat-checkbox
+<!--    <ng-container matColumnDef="select">-->
+<!--      <mat-header-cell *matHeaderCellDef>-->
+<!--        <mat-checkbox-->
+<!--        (change)="masterToggle()"-->
+<!--        [checked]="selection.hasValue() && isAllSelected()"-->
+<!--        [indeterminate]="selection.hasValue() && !isAllSelected()"-->
+<!--        class="dark-blue-checkbox">-->
+<!--        </mat-checkbox>-->
+<!--      </mat-header-cell>-->
+<!--      <mat-cell *matCellDef="let row; let i=index">-->
+<!--        <mat-checkbox-->
 
-          (click)="$event.stopPropagation()"
-          (change)="selection.toggle(row); onToggle(i)"
-          [checked]="isCompleted(i)">
-        </mat-checkbox>
-      </mat-cell>
-    </ng-container>
+<!--          (click)="$event.stopPropagation()"-->
+<!--          (change)="selection.toggle(row); onToggle(i)"-->
+<!--          [checked]="isCompleted(i)">-->
+<!--        </mat-checkbox>-->
+<!--      </mat-cell>-->
+<!--    </ng-container>-->
 
     <!-- Name Column -->
     <ng-container matColumnDef="name">
@@ -58,7 +58,7 @@
     <mat-row *matRowDef="let row; let i=index; columns: displayedColumns;"
       [ngClass]="{hovered: row.hovered && row.isCompleted, highlighted: row.isCompleted}"
       (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"
-      (click)="selection.toggle(row); onToggle(i)"></mat-row>
+      (click)="selection.toggle(row)"></mat-row>
   </table>
   <div class="buttons">
     <button mat-stroked-button class="theme-accent-dark" (click)="addIngredient()">

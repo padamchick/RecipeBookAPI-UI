@@ -1,20 +1,22 @@
-import { Injectable } from "@angular/core";
-import { HttpClient} from "@angular/common/http";
-import { map, tap} from "rxjs/operators";
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {map, tap} from 'rxjs/operators';
 
-import { Recipe } from "../recipes/recipe.model";
-import { RecipeService } from "../recipes/recipe.service";
-import { ShoppingListService } from '../shopping-list/shopping-list.service';
-import { Ingredient } from './ingredient.model';
+import {Recipe} from '../recipes/recipe.model';
+import {RecipeService} from '../recipes/recipe.service';
+import {ShoppingListService} from '../shopping-list/shopping-list.service';
+import {Ingredient} from './ingredient.model';
 import {environment} from '../../environments/environment';
 
-@Injectable({ providedIn: "root" })
+@Injectable({providedIn: 'root'})
 export class DataStorageService {
   constructor(
     private http: HttpClient,
     private recipeService: RecipeService,
     private shoppingService: ShoppingListService
-  ) {}
+  ) {
+  }
+
   private apiUrl = environment.apiUrl;
 
   saveRecipe(recipe: Recipe) {
@@ -29,7 +31,7 @@ export class DataStorageService {
         })
       )
       .subscribe((response) => {
-        console.log("POST saveRecipe works");
+        console.log('POST saveRecipe works');
         console.log(response);
       });
   }
@@ -37,21 +39,21 @@ export class DataStorageService {
   updateRecipe(recipe: Recipe) {
     this.http
       .put(`${this.apiUrl}/recipes`,
-      recipe
+        recipe
       )
       .subscribe((response) => {
-        console.log("PUT updateRecipe works");
+        console.log('PUT updateRecipe works');
         console.log(response);
-      })
+      });
   }
 
   deleteRecipe(id: number) {
     this.http
-    .delete<Recipe>(`${this.apiUrl}:8080/recipes/` + id)
-    .subscribe((response) => {
-      console.log("DELETE deleteRecipe works");
+      .delete<Recipe>(`${this.apiUrl}/recipes/` + id)
+      .subscribe((response) => {
+        console.log('DELETE deleteRecipe works');
         console.log(response);
-    })
+      });
 
   }
 
@@ -106,16 +108,16 @@ export class DataStorageService {
 
   deleteIngredient(dbId: number, arrayId: number) {
     this.http
-    .delete(`${this.apiUrl}/shopping-list/` + dbId)
-    .pipe(
-      tap(
-        () => {
-          this.shoppingService.deleteIngredient(arrayId);
-        }
+      .delete(`${this.apiUrl}/shopping-list/` + dbId)
+      .pipe(
+        tap(
+          () => {
+            this.shoppingService.deleteIngredient(arrayId);
+          }
+        )
       )
-    )
-    .subscribe((response) => {
-    })
+      .subscribe((response) => {
+      });
   }
 
 
@@ -127,7 +129,8 @@ export class DataStorageService {
           this.shoppingService.addIngredient(ingredient);
         })
       )
-      .subscribe((response) => {})
+      .subscribe((response) => {
+      });
   }
 
   fetchIngredients() {

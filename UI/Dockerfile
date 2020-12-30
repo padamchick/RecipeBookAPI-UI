@@ -12,4 +12,4 @@ RUN npm run build -- --outputPath=./dist/out --configuration $configuration
 
 FROM nginx
 COPY --from=build /app/dist/out/ /usr/share/nginx/html
-COPY /nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf

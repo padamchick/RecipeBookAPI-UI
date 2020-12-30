@@ -7,7 +7,7 @@ services:
         environment:
             MYSQL_ROOT_PASSWORD: 'Password@123'
             MYSQL_USER: 'root'
-            MYSQL_DATABASE: 'cook_book'
+            MYSQL_DATABASE: 'recipe_book'
         ports: 
         - 3306:3306
     api:
@@ -17,17 +17,17 @@ services:
             MYSQL_HOST: 'db'
             MYSQL_USER: 'root'
             MYSQL_PASSWORD: 'Password@123'
-            MYSQL_DATABASE: 'cook_book'
+            MYSQL_DATABASE: 'recipe_book'
         expose:
         - "8080"
         ports:
         - 8080:8080
         depends_on:
         - db
- #   ui:
- #       build: ./UI
- #       container_name: ui
- #       ports:
- #       - 4200:4200
- #       depends_on:
- #       - api
+    ui:
+        build: ./UI
+        container_name: ui
+        ports:
+        - 80:4200
+        depends_on:
+        - api
