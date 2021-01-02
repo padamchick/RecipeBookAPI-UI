@@ -12,6 +12,8 @@ import {StoreModule} from '@ngrx/store';
 import * as fromApp from './store/app.reducer';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
+import {EffectsModule} from '@ngrx/effects';
+import {RecipeEffects} from './recipes/store/recipe.effects';
 
 
 @NgModule({
@@ -27,6 +29,7 @@ import {environment} from '../environments/environment';
     BrowserAnimationsModule,
     NgbModule,
     StoreModule.forRoot(fromApp.appReducer),
+    EffectsModule.forRoot([RecipeEffects]),
     StoreDevtoolsModule.instrument({ logOnly: environment.production }),
   ],
   providers: [{

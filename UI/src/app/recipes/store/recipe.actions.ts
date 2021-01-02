@@ -28,5 +28,8 @@ export const fetchRecipes = createAction(
 );
 
 export const setRecipes = createAction(
-  '[Recipe] Set Recipes'
+  '[Recipe] Set Recipes',
+  props<{
+    recipes: Recipe[]
+  }>()
 )

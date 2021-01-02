@@ -39,6 +39,13 @@ const _recipeReducer = createReducer(
     })
   ),
 
+  on(
+    RecipesActions.setRecipes,
+    (state, action) => ({
+      ...state,
+      recipes: [...action.recipes]
+    })
+  )
 
 );
 
