@@ -7,7 +7,7 @@ import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-guest',
   templateUrl: './guest.component.html',
-  styleUrls: ['./guest.component.css']
+  styleUrls: ['./guest.component.less']
 })
 export class GuestComponent{
 

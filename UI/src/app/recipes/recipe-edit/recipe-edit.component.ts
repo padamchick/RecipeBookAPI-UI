@@ -19,7 +19,7 @@ import { filter } from 'rxjs/operators';
 @Component({
   selector: 'app-recipe-edit',
   templateUrl: './recipe-edit.component.html',
-  styleUrls: ['./recipe-edit.component.css'],
+  styleUrls: ['./recipe-edit.component.less'],
 })
 export class RecipeEditComponent implements OnInit, CanComponentDeactivate {
   id: number;

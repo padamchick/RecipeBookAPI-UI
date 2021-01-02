@@ -10,7 +10,7 @@ import { RecipeService } from '../recipes/recipe.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
+  styleUrls: ['./header.component.less'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   private userSub: Subscription;

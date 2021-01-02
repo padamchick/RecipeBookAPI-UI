@@ -6,7 +6,7 @@ import { AuthService } from '../auth/auth.service';
 @Component({
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
-  styleUrls: ['./recipes.component.css']
+  styleUrls: ['./recipes.component.less']
 })
 export class RecipesComponent{
   isWelcomePage=false;

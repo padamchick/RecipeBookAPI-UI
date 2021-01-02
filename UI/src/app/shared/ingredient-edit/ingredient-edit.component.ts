@@ -5,7 +5,7 @@ import { Ingredient } from '../ingredient.model';
 @Component({
   selector: 'app-ingredient-edit',
   templateUrl: './ingredient-edit.component.html',
-  styleUrls: ['./ingredient-edit.component.css']
+  styleUrls: ['./ingredient-edit.component.less']
 })
 export class IngredientEditComponent {
   title: string;
