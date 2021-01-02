@@ -15,6 +15,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { IngredientEditModel, IngredientEditComponent } from 'src/app/shared/ingredient-edit/ingredient-edit.component';
 import { filter } from 'rxjs/operators';
+import {Store} from '@ngrx/store';
+import * as fromApp from '../../store/app.reducer';
+import * as RecipesActions from '../store/recipe.actions'
 
 @Component({
   selector: 'app-recipe-edit',
@@ -33,7 +36,8 @@ export class RecipeEditComponent implements OnInit, CanComponentDeactivate {
     public recipeService: RecipeService,
     private router: Router,
     private dataService: DataStorageService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private store: Store<fromApp.AppState>
   ) {}
 
   ngOnInit(): void {
@@ -76,7 +80,9 @@ export class RecipeEditComponent implements OnInit, CanComponentDeactivate {
 
     } else {
       // this.recipeService.addRecipe(this.recipe);
-      this.dataService.saveRecipe(this.recipe);
+      // this.dataService.saveRecipe(this.recipe);
+      this.store.dispatch(RecipesActions.addRecipe({recipe: this.recipe}));
+
       let newIndex = this.recipeService.getIndexOfLastRecipe();
       this.editMode = false;
       this.router.navigate(['../', newIndex], {

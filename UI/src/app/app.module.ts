@@ -9,7 +9,9 @@ import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {StoreModule} from '@ngrx/store';
-import {shoppingListReducer} from './shopping-list/shopping-list.reducer';
+import * as fromApp from './store/app.reducer';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {environment} from '../environments/environment';
 
 
 @NgModule({
@@ -24,7 +26,8 @@ import {shoppingListReducer} from './shopping-list/shopping-list.reducer';
     SharedModule,
     BrowserAnimationsModule,
     NgbModule,
-    StoreModule.forRoot({shoppingList: shoppingListReducer})
+    StoreModule.forRoot(fromApp.appReducer),
+    StoreDevtoolsModule.instrument({ logOnly: environment.production }),
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

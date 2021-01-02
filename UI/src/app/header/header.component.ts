@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private userSub: Subscription;
   isAuthenticated = false;
   isAdminMode = false;
+  isCompleted = false;
 
   routes = [
     { name: 'Authentication', route: '/auth', needAuthentication: false },
