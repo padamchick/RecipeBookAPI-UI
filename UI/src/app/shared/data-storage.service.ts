@@ -37,6 +37,7 @@ export class DataStorageService {
   }
 
   updateRecipe(recipe: Recipe) {
+    console.log('Recipe', recipe);
     this.http
       .put(`${this.apiUrl}/recipes`,
         recipe

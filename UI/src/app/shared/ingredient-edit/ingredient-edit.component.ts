@@ -24,8 +24,6 @@ export class IngredientEditComponent {
       this.amount = data.amount;
       this.unit = data.unit;
       this.id = data.id;
-      this.isActual = data.isActual;
-      this.priority = data.priority;
     }
 
     onSave() {
@@ -33,9 +31,7 @@ export class IngredientEditComponent {
         this.name,
         this.amount,
         this.unit,
-        this.id,
-        this.isActual,
-        this.priority));
+        this.id));
     }
 
     onCancel() {
@@ -50,7 +46,5 @@ export class IngredientEditModel {
     public name: string,
     public amount: number,
     public unit: string,
-    public id?: number,
-    public isActual?: boolean,
-    public priority?: number) {}
+    public id?: number) {}
 }

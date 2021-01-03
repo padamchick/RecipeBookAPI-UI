@@ -14,7 +14,7 @@ const initialState: State = {
 const _recipeReducer = createReducer(
   initialState,
   on(
-    RecipesActions.addRecipe,
+    RecipesActions.addRecipeSuccess,
     (state, action) => ({
       ...state,
       recipes: [...state.recipes, action.recipe]
@@ -22,25 +22,25 @@ const _recipeReducer = createReducer(
   ),
 
   on(
-    RecipesActions.updateRecipe,
+    RecipesActions.updateRecipeSuccess,
     (state, action) => ({
       ...state,
       recipes: state.recipes.map(
-        (recipe, index) => index === action.index ? {...action.recipe} : recipe
+        (recipe) => recipe.id === action.recipe.id ? {...action.recipe} : recipe
       )
     })
   ),
 
   on(
-    RecipesActions.deleteRecipe,
+    RecipesActions.deleteRecipeSuccess,
     (state, action) => ({
       ...state,
-      recipes: state.recipes.filter((recipe, index) => index !== action.index)
+      recipes: state.recipes.filter((recipe) => recipe.id !== action.index)
     })
   ),
 
   on(
-    RecipesActions.setRecipes,
+    RecipesActions.fetchRecipesSuccess,
     (state, action) => ({
       ...state,
       recipes: [...action.recipes]

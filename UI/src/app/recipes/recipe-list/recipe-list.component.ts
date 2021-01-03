@@ -4,7 +4,9 @@ import { RecipeService } from '../recipe.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
-import { filter } from 'rxjs/operators';
+import {filter, map} from 'rxjs/operators';
+import * as fromApp from '../../store/app.reducer';
+import {Store} from '@ngrx/store';
 
 @Component({
   selector: 'app-recipe-list',
@@ -13,23 +15,21 @@ import { filter } from 'rxjs/operators';
 })
 export class RecipeListComponent implements OnInit, OnDestroy {
 
-  recipes: Recipe[];
-  recipeChangeSubscription: Subscription;
+  recipes: Recipe[] = [];
+  recipeSub: Subscription;
   isAdminMode: boolean;
 
-  constructor(private recipeService: RecipeService,
-              private router: Router,
+  constructor(private router: Router,
               private route: ActivatedRoute,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private store: Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
-// zaladuj przepisy i uaktualnij, kiedy dojdzie do zmiany
-    this.recipes = this.recipeService.getRecipes();
-    this.recipeChangeSubscription = this.recipeService.recipesChanged.subscribe(
-      (recipes: Recipe[]) => {
-        this.recipes = recipes;
-      }
-    )
+
+  this.recipeSub = this.store.select('recipes').pipe(
+    map(recipesState => recipesState.recipes)
+  ).subscribe(recipes => this.recipes = recipes);
+
 // sprawdzenie czy wlaczony tryb admina
     this.authService.user.pipe(
       filter(user => !!user && !!user.username)
@@ -46,7 +46,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.recipeChangeSubscription.unsubscribe();
+    this.recipeSub.unsubscribe();
   }
 
 }

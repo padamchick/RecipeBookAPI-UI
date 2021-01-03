@@ -1,18 +1,20 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../recipe.model';
-import { RecipeService } from '../recipe.service';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { Ingredient } from 'src/app/shared/ingredient.model';
 import { DataStorageService } from 'src/app/shared/data-storage.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Subscription } from 'rxjs';
-import { map, tap, take, filter } from 'rxjs/operators';
+import { map, filter, switchMap } from 'rxjs/operators';
 import {
   ConfirmationDialogModel,
   ConfirmationDialogComponent,
 } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import {Store} from '@ngrx/store';
+import * as fromApp from '../../store/app.reducer';
+import * as RecipesActions from '../store/recipe.actions'
 
 @Component({
   selector: 'app-recipe-detail',
@@ -28,19 +30,30 @@ export class RecipeDetailComponent implements OnInit {
   adminModeSub: Subscription;
 
   constructor(
-    private recipeService: RecipeService,
     private route: ActivatedRoute,
     private router: Router,
     private dataService: DataStorageService,
     private authService: AuthService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private store: Store<fromApp.AppState>
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params: Params) => {
-      this.id = +params['id'];
-      this.recipe = this.recipeService.getRecipe(this.id);
-      this.dataSource = new MatTableDataSource(this.recipe.ingredients);
+
+    this.route.params.pipe(
+      map(params => +params['id']),
+      switchMap(id => {
+        this.id = id;
+        return this.store.select('recipes');
+      }),
+      map(recipeState => recipeState.recipes.find(recipe => {
+        return recipe.id === this.id;
+      })),
+    ).subscribe((recipe: Recipe) => {
+      if(recipe) {
+        this.recipe = recipe;
+        this.dataSource = new MatTableDataSource(this.recipe.ingredients);
+      }
     });
 
     // sprawdzenie czy wlaczony tryb admina
@@ -72,11 +85,9 @@ export class RecipeDetailComponent implements OnInit {
 
     dialogRef
       .afterClosed()
-      .pipe(filter((result) => result === true))
-      .subscribe((dialogResult) => {
-        this.recipeService.deleteRecipe(this.id);
-        this.dataService.deleteRecipe(this.recipe.id);
-        this.router.navigate(['../'], { relativeTo: this.route });
+      .pipe(filter(result => result === true))
+      .subscribe(() => {
+        this.store.dispatch(RecipesActions.deleteRecipe({index: this.recipe.id}));
       });
   }
 }

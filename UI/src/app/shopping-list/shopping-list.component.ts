@@ -135,9 +135,7 @@ export class ShoppingListComponent
       el.name,
       el.amount,
       el.unit,
-      el.id,
-      el.isCompleted,
-      el.priority
+      el.id
     );
     const dialogRef = this.dialog.open(IngredientEditComponent, {
       maxWidth: '400px',
@@ -164,9 +162,7 @@ export class ShoppingListComponent
       '',
       null,
       '',
-      null,
-      false,
-      1
+      null
     );
     const dialogRef = this.dialog.open(IngredientEditComponent, {
       maxWidth: '400px',

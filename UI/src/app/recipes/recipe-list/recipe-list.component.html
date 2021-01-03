@@ -10,7 +10,7 @@
   <mat-divider style="margin: 10px"></mat-divider>
   <div class="col-xs-12">
     <div class="list-group">
-      <app-recipe-item *ngFor="let recipeEl of recipes; let i = index" [index]="i" [recipe]="recipeEl">
+      <app-recipe-item *ngFor="let recipeEl of recipes" [recipe]="recipeEl">
       </app-recipe-item>
     </div>
   </div>
