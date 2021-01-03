@@ -1,7 +1,14 @@
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="large"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+</ngx-spinner>
+
 <div class="row">
   <div class="col-xs-8 offset-xs-2 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-
-    <div *ngIf="!isLoading">
+    <div>
       <div class="row">
         <div fxFlex fxLayout="column" fxLayoutAlign="center center">
           <img src="https://i.imgur.com/e8KLaym.png" alt="recipe-book" class="img-fluid">
@@ -18,12 +25,6 @@
             <app-register></app-register>
           </mat-tab>
         </mat-tab-group>
-      </div>
-    </div>
-
-    <div *ngIf="isLoading" class="overlay">
-      <div class="center">
-        <mat-spinner diameter="200"></mat-spinner>
       </div>
     </div>
   </div>

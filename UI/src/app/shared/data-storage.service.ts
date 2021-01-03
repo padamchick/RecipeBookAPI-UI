@@ -19,68 +19,6 @@ export class DataStorageService {
 
   private apiUrl = environment.apiUrl;
 
-  saveRecipe(recipe: Recipe) {
-    this.http
-      .post(
-        `${this.apiUrl}/recipes`,
-        recipe
-      )
-      .pipe(
-        tap((recipe: Recipe) => {
-          this.recipeService.addRecipe(recipe);
-        })
-      )
-      .subscribe((response) => {
-        console.log('POST saveRecipe works');
-        console.log(response);
-      });
-  }
-
-  updateRecipe(recipe: Recipe) {
-    console.log('Recipe', recipe);
-    this.http
-      .put(`${this.apiUrl}/recipes`,
-        recipe
-      )
-      .subscribe((response) => {
-        console.log('PUT updateRecipe works');
-        console.log(response);
-      });
-  }
-
-  deleteRecipe(id: number) {
-    this.http
-      .delete<Recipe>(`${this.apiUrl}/recipes/` + id)
-      .subscribe((response) => {
-        console.log('DELETE deleteRecipe works');
-        console.log(response);
-      });
-
-  }
-
-  fetchData() {
-
-    return this.http
-      .get<Recipe[]>(
-        `${this.apiUrl}/recipes/all`,
-      )
-      .pipe(
-        map((recipes) => {
-          return recipes.map((recipe) => {
-            return {
-              // pobierz wszystkie wlasciwosci recipe
-              ...recipe,
-              ingredients: recipe.ingredients ? recipe.ingredients : [],
-            };
-          });
-        }),
-        tap((recipes) => {
-          console.log(recipes);
-          this.recipeService.setRecipes(recipes);
-        })
-      );
-  }
-
   storeIngredients(ingredients: Ingredient[]) {
     // const ingredients = this.shoppingService.getIngredients();
     this.http

@@ -1,6 +1,7 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { AuthService } from './auth.service';
+import {Component, Input, OnInit, OnDestroy} from '@angular/core';
+import {Subscription} from 'rxjs';
+import {AuthService} from './auth.service';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-auth',
@@ -12,11 +13,17 @@ export class AuthComponent implements OnInit, OnDestroy {
   isLoading = false;
   loadingSub: Subscription;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,
+              private spinner: NgxSpinnerService) {
+  }
 
   ngOnInit() {
-    this.loadingSub = this.authService.isLoading.subscribe((isLoading) => {
-      this.isLoading = isLoading;
+    this.loadingSub = this.authService.isLoading.subscribe(isLoading => {
+      if(isLoading) {
+        this.spinner.show();
+      } else {
+        this.spinner.hide();
+      }
     });
   }
 

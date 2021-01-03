@@ -13,8 +13,6 @@ export class IngredientEditComponent {
   amount: number;
   unit: string;
   id: number;
-  isActual: boolean;
-  priority: number;
 
 
   constructor(public dialogRef: MatDialogRef<IngredientEditComponent>,

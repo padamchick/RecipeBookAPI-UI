@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { LoginComponent } from './login/login.component';
 import { GuestComponent } from './guest/guest.component';
 import { RegisterComponent } from './register/register.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 
@@ -17,10 +18,11 @@ import { RegisterComponent } from './register/register.component';
     GuestComponent,
     RegisterComponent
   ],
-  imports: [
-    FormsModule,
-    RouterModule.forChild([{ path: '', component: AuthComponent }]),
-    SharedModule
-  ]
+    imports: [
+        FormsModule,
+        RouterModule.forChild([{path: '', component: AuthComponent}]),
+        SharedModule,
+        NgxSpinnerModule
+    ]
 })
 export class AuthModule { }
