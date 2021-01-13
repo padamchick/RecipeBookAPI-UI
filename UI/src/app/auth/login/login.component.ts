@@ -1,19 +1,22 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
+import {Component, Output, EventEmitter, ViewEncapsulation} from '@angular/core';
+import {NgForm} from '@angular/forms';
+import {Router} from '@angular/router';
+import {AuthService} from '../auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.less']
+
 })
-export class LoginComponent{
+export class LoginComponent {
 
   error: string = null;
+  hide = true;
 
   constructor(private authService: AuthService,
-    private router: Router) {}
+              private router: Router) {
+  }
 
 
   onSubmit(form: NgForm) {
@@ -30,18 +33,20 @@ export class LoginComponent{
     this.authService.login(username, password).subscribe(
       (responsedata) => {
         // console.log(responsedata);
+        console.log('Navigate');
+        form.reset();
         this.router.navigate(['./recipes']);
-      // this.authService.isLoading.next(false) => in recipes.component.ts
+        // this.authService.isLoading.next(false) => in recipes.component.ts
       },
       errorMessage => {
         // console.log(errorMessage);
-        // console.log('Handle error');
+        console.log('Handle error', errorMessage);
         this.error = errorMessage;
+        form.reset();
         this.authService.isLoading.next(false);
       }
     );
 
-    form.reset();
   }
 
   onHandleError() {

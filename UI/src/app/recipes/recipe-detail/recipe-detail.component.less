@@ -25,8 +25,16 @@ table {
   width: 100%;
 }
 
-mat-icon {
+mat-card .mat-card-header .mat-card-title .mat-icon {
   margin-right: 7px;
+}
+
+.mat-option.mat-active {
+  background: rgba(0,0,0,0);
+}
+.mat-option:hover {
+  background: #b5d9ff;
+  color: black;
 }
 
 img {
@@ -34,11 +42,6 @@ img {
   margin-bottom: 15px;
 }
 
-.dropdown-item.active,
-.dropdown-item:active {
-  color: #fff;
-  background-color: rgb(5, 64, 119);
-}
 
 .mat-row:nth-child(even){
   background-color: rgb(245, 245, 245);

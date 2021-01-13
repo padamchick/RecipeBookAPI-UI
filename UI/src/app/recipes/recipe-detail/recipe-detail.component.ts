@@ -1,20 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { Recipe } from '../recipe.model';
-import { ActivatedRoute, Router } from '@angular/router';
-import { MatTableDataSource } from '@angular/material/table';
-import { Ingredient } from 'src/app/shared/ingredient.model';
-import { DataStorageService } from 'src/app/shared/data-storage.service';
-import { AuthService } from 'src/app/auth/auth.service';
-import { Subscription } from 'rxjs';
-import { map, filter, switchMap } from 'rxjs/operators';
+import {Component, OnInit} from '@angular/core';
+import {Recipe} from '../recipe.model';
+import {ActivatedRoute, Router} from '@angular/router';
+import {MatTableDataSource} from '@angular/material/table';
+import {Ingredient} from 'src/app/shared/ingredient.model';
+import {DataStorageService} from 'src/app/shared/data-storage.service';
+import {AuthService} from 'src/app/auth/auth.service';
+import {Subscription} from 'rxjs';
+import {map, filter, switchMap} from 'rxjs/operators';
 import {
   ConfirmationDialogModel,
   ConfirmationDialogComponent,
 } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
-import { MatDialog } from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 import {Store} from '@ngrx/store';
 import * as fromApp from '../../store/app.reducer';
-import * as RecipesActions from '../store/recipe.actions'
+import * as RecipesActions from '../store/recipe.actions';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -22,7 +22,7 @@ import * as RecipesActions from '../store/recipe.actions'
   styleUrls: ['./recipe-detail.component.less'],
 })
 export class RecipeDetailComponent implements OnInit {
-  recipe: Recipe = new Recipe(0,'', '', '', []);
+  recipe: Recipe = new Recipe(0, '', '', '', []);
   id: number;
   displayedColumns: string[] = ['name', 'amount', 'unit'];
   dataSource: MatTableDataSource<Ingredient>;
@@ -36,7 +36,8 @@ export class RecipeDetailComponent implements OnInit {
     private authService: AuthService,
     public dialog: MatDialog,
     private store: Store<fromApp.AppState>
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
 
@@ -50,7 +51,7 @@ export class RecipeDetailComponent implements OnInit {
         return recipe.id === this.id;
       })),
     ).subscribe((recipe: Recipe) => {
-      if(recipe) {
+      if (recipe) {
         this.recipe = recipe;
         this.dataSource = new MatTableDataSource(this.recipe.ingredients);
       }
@@ -71,7 +72,7 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   onEditRecipe() {
-    this.router.navigate(['edit'], { relativeTo: this.route });
+    this.router.navigate(['edit'], {relativeTo: this.route});
   }
 
   onDeleteRecipe() {
