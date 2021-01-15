@@ -8,33 +8,28 @@ import {
 import { Observable } from "rxjs";
 import { AuthService } from "./auth.service";
 import { take, exhaustMap } from "rxjs/operators";
+import {Store} from '@ngrx/store';
+import {AppState} from '../store/app.reducer';
+import * as authActions from '../auth/store/auth.actions'
 
 @Injectable()
 export class AuthInterceptorService implements HttpInterceptor {
-  constructor(private authService: AuthService) {}
+  constructor(private store: Store<AppState>) {}
 
-  intercept(
-    req: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<import("@angular/common/http").HttpEvent<any>> {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<import("@angular/common/http").HttpEvent<any>> {
 
-    // tylko dla BehaviorSubject, mozemy uzyc pipe(take(1)) dzieki czemu pobierze nam tylko raz i od razu odsubscribuje
-    // exhaustMap sprawia, ze po pobraniu nam usera i zasubskrybowaniu go, przelacza automatycznie na drugi observable
-    return this.authService.user.pipe(
+    return this.store.select('auth').pipe(
       take(1),
-      exhaustMap((user) => {
+      exhaustMap((authState) => {
 
-        if(!user) {
+        if(!authState.user) {
           return next.handle(req);
         }
 
         const modifiedReq = req.clone({
 
           setHeaders: {
-            Authorization: user.token,
-            // 'Cache-Control':  'no-cache, no-store, must-revalidate, post-check=0, pre-check=0',
-            // 'Pragma': 'no-cache',
-            // 'Expires': '0'
+            Authorization: 'Bearer ' + authState.user.token
           }
 
         })

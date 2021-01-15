@@ -13,6 +13,8 @@ button {
 
 //   ANGULAR MATERIAL STYLING   //
 
+//   NON-ERROR   //
+
 ::ng-deep .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
   background-color: @primary;
 }
@@ -30,7 +32,29 @@ button {
   background-color: #FFFFFF;
 }
 
+::ng-deep .mat-form-field.mat-focused:not(.mat-form-field-invalid)  {
+  .mat-placeholder-required.mat-form-field-required-marker {
+    color: @primary !important;
+  }
 
+  .mat-form-field-prefix .mat-icon {
+    color: @primary !important;
+  }
+}
+
+::ng-deep .mat-form-field-outline-thick {
+  color: @primary !important;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+  color: @primary !important;
+}
+
+//   ERROR   //
+
+mat-error i {
+  margin-right: 5px;
+}
 
 ::ng-deep .mat-form-field-invalid  {
   .mat-form-field-label {
@@ -61,17 +85,9 @@ button {
   }
 }
 
-::ng-deep .mat-form-field-outline-thick {
-  color: @primary !important;
-}
 
-::ng-deep .mat-focused .mat-form-field-label {
-  color: @primary !important;
-}
 
-::ng-deep .mat-placeholder-required.mat-form-field-required-marker {
-  color: @primary !important;
-}
+
 
 
 

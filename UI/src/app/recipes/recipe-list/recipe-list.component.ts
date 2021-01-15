@@ -17,7 +17,6 @@ export class RecipeListComponent implements OnInit, OnDestroy {
 
   recipes: Recipe[] = [];
   recipeSub: Subscription;
-  isAdminMode: boolean;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -26,18 +25,12 @@ export class RecipeListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
+
+
   this.recipeSub = this.store.select('recipes').pipe(
     map(recipesState => recipesState.recipes)
   ).subscribe(recipes => this.recipes = recipes);
 
-// sprawdzenie czy wlaczony tryb admina
-    this.authService.user.pipe(
-      filter(user => !!user && !!user.username)
-    ).subscribe(user => {
-      user.username === 'guest'
-          ? (this.isAdminMode = false)
-          : (this.isAdminMode = true);
-    })
 
   }
 

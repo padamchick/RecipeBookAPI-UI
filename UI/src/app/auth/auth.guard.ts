@@ -4,30 +4,26 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   UrlTree,
-} from "@angular/router";
-import { Injectable } from "@angular/core";
-import { AuthService } from "./auth.service";
-import { map, take } from "rxjs/operators";
+} from '@angular/router';
+import {Injectable} from '@angular/core';
+import {map, take} from 'rxjs/operators';
+import {Observable} from 'rxjs';
+import {Store} from '@ngrx/store';
+import {AppState} from '../store/app.reducer';
 
-@Injectable({ providedIn: "root" })
+@Injectable({providedIn: 'root'})
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ):
-    | boolean
-    | import("@angular/router").UrlTree
-    | import("rxjs").Observable<boolean | UrlTree>
-    | Promise<boolean | UrlTree> {
-    return this.authService.user.pipe(
-      // pobierz wartosc tylko raz i od razu odsubscribuj
+  constructor(private router: Router,
+              private store: Store<AppState>) {
+  }
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+
+    return this.store.select('auth').pipe(
       take(1),
-      map((user) => {
-        // jesli istnieje user to isAuth = true
-        const isAuth = !!user;
-        if (isAuth) {
+      map((authState) => {
+        if(authState.user != null) {
           return true;
         }
         return this.router.createUrlTree(['/auth']);

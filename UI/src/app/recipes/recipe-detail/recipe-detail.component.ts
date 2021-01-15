@@ -26,7 +26,6 @@ export class RecipeDetailComponent implements OnInit {
   id: number;
   displayedColumns: string[] = ['name', 'amount', 'unit'];
   dataSource: MatTableDataSource<Ingredient>;
-  isAdminMode: boolean;
   adminModeSub: Subscription;
 
   constructor(
@@ -58,13 +57,13 @@ export class RecipeDetailComponent implements OnInit {
     });
 
     // sprawdzenie czy wlaczony tryb admina
-    this.authService.user
-      .pipe(filter((user) => !!user && !!user.username))
-      .subscribe((user) => {
-        user.username === 'guest'
-          ? (this.isAdminMode = false)
-          : (this.isAdminMode = true);
-      });
+    // this.authService.user
+    //   .pipe(filter((user) => !!user && !!user.username))
+    //   .subscribe((user) => {
+    //     user.username === 'guest'
+    //       ? (this.isAdminMode = false)
+    //       : (this.isAdminMode = true);
+    //   });
   }
 
   onAddToShoppingList() {

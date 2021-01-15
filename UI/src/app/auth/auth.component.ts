@@ -10,21 +10,14 @@ import {NgxSpinnerService} from 'ngx-spinner';
 })
 export class AuthComponent implements OnInit, OnDestroy {
   loginMode = true;
-  isLoading = false;
-  loadingSub: Subscription;
+  // isLoading = false;
+  // loadingSub: Subscription;
 
   constructor(private authService: AuthService,
               private spinner: NgxSpinnerService) {
   }
 
   ngOnInit() {
-    this.loadingSub = this.authService.isLoading.subscribe(isLoading => {
-      if(isLoading) {
-        this.spinner.show();
-      } else {
-        this.spinner.hide();
-      }
-    });
   }
 
   onChangeMode(event) {
@@ -36,6 +29,6 @@ export class AuthComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.loadingSub.unsubscribe();
+    // this.loadingSub.unsubscribe();
   }
 }
