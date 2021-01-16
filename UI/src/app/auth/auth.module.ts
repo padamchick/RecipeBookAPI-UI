@@ -6,12 +6,14 @@ import { SharedModule } from '../shared/shared.module';
 import { LoginComponent } from './login/login.component';
 import { GuestComponent } from './guest/guest.component';
 import { RegisterComponent } from './register/register.component';
+import {LoginGuard} from './login.guard';
 
 
 const routes: Routes = [
   {
     path: '',
     component: AuthComponent,
+    canActivate: [LoginGuard],
     children: [
       { path: '', component: LoginComponent },
       { path: 'register', component: RegisterComponent }
