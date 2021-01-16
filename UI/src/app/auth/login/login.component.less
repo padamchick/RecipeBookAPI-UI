@@ -1,5 +1,3 @@
-@primary: var(--th-accent-dark);
-@error: #b31111;
 
 
 .container {
@@ -32,7 +30,7 @@
     margin: 10px 0;
   }
 
-  #login-button {
+  #submit-button {
     margin: 20px 0;
     width: 100%;
     button {
@@ -41,7 +39,7 @@
   }
 
   .registration {
-    margin: 15px;
+    //margin: 15px;
     align-items: center;
     text-decoration: none;
   }
@@ -49,86 +47,7 @@
 
 
 
-//   ANGULAR MATERIAL STYLING   //
 
-//   NON-ERROR   //
-
-::ng-deep .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
-  background-color: @primary;
-}
-
-.mat-form-field {
-  width: 100%;
-}
-
-::ng-deep .mat-form-field-prefix {
-  margin-right: 10px;
-}
-
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-  color: rgba(0, 0, 0, .32);
-  background-color: #FFFFFF;
-}
-
-::ng-deep .mat-form-field.mat-focused:not(.mat-form-field-invalid)  {
-  .mat-placeholder-required.mat-form-field-required-marker {
-    color: @primary !important;
-  }
-
-  .mat-form-field-prefix .mat-icon {
-    color: @primary !important;
-  }
-}
-
-::ng-deep .mat-form-field-outline-thick {
-  color: @primary !important;
-}
-
-::ng-deep .mat-focused .mat-form-field-label {
-  color: @primary !important;
-}
-
-::ng-deep .mat-checkbox-frame {
-  border-width: 1px !important;
-  background-color: #FFFFFF !important;
-  border-color: rgba(0,0,0,0.32);
-}
-
-
-//   ERROR   //
-
-mat-error i {
-  margin-right: 5px;
-}
-
-::ng-deep .mat-form-field-invalid  {
-  .mat-form-field-label {
-    color: @error !important;
-  }
-  .mat-form-field-required-marker {
-    color: @error !important;
-  }
-  .mat-placeholder-required.mat-form-field-required-marker {
-    color: @error !important;
-  }
-  .mat-form-field-prefix .mat-icon {
-    color: @error !important;
-  }
-  .mat-error {
-    color: @error !important;
-  }
-  .mat-form-field-outline-thick {
-    color: @error !important;
-  }
-  &.mat-focused {
-    .mat-form-field-label mat-label {
-      color: @error !important;
-    }
-  }
-  input {
-    color: @error !important;
-  }
-}
 
 
 

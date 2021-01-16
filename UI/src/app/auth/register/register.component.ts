@@ -15,14 +15,15 @@ import * as authActions from '../store/auth.actions';
 })
 export class RegisterComponent{
 
-  isLoading = false;
   error: string = null;
+  hide = true;
+  rememberMe: boolean = false;
 
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    private store: Store<fromApp.AppState>,
-    private spinner: NgxSpinnerService) {}
+  constructor(private authService: AuthService,
+              private router: Router,
+              private store: Store<fromApp.AppState>,
+              private spinner: NgxSpinnerService) {
+  }
 
 
   onSubmit(form: NgForm) {
@@ -39,6 +40,7 @@ export class RegisterComponent{
     setTimeout(() => {
       form.reset();
     }, 1000);
+
   }
 
   onHandleError() {
