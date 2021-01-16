@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  firebaseAPIKey: 'AIzaSyAFClAhhAiNn5mOmlhFvBOgGThxjai93S0'
+  apiUrl: 'http://localhost:8080/api'
 };
 
 /*

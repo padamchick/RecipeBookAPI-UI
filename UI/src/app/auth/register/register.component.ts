@@ -3,56 +3,44 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import {Store} from '@ngrx/store';
+import * as fromApp from '../../store/app.reducer';
+import {NgxSpinnerService} from 'ngx-spinner';
+import * as authActions from '../store/auth.actions';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.less']
 })
 export class RegisterComponent{
 
-  isLoading = false;
-  // isLoginMode = true;
   error: string = null;
+  hide = true;
+  rememberMe: boolean = false;
 
   constructor(private authService: AuthService,
-    private router: Router) {}
+              private router: Router,
+              private store: Store<fromApp.AppState>,
+              private spinner: NgxSpinnerService) {
+  }
 
-  // onSwitchMode() {
-  //   this.isLoginMode = !this.isLoginMode;
-  // }
 
   onSubmit(form: NgForm) {
-    this.authService.isLoading.next(true);
-    // opcjonalnie, ekstra zabezpieczenie, bo mamy i tak wylaczony przycisk jesli formularz invalid
     if (!form.valid) {
-      this.authService.isLoading.next(false);
       return;
     }
+
     const username = form.value.username;
     const password = form.value.password;
 
+    this.spinner.show()
+    this.store.dispatch(authActions.signUp({username: username, password: password}))
 
-    this.authService.signup(username, password).subscribe(
-      (responsedata) => {
-        // console.log(responsedata);
-        console.log('Handle success');
-        this.isLoading=false;
-        this.authService.isLoading.next(false);
-        console.log('Handle success 2');
+    setTimeout(() => {
+      form.reset();
+    }, 1000);
 
-        this.router.navigate(['./recipes'])
-      },
-      errorMessage => {
-        // console.log(errorMessage);
-        console.log('Handle error');
-        this.isLoading=false;
-        this.authService.isLoading.next(false);
-        this.error = errorMessage;
-      }
-    );
-
-    form.reset();
   }
 
   onHandleError() {

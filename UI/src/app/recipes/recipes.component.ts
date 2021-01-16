@@ -6,7 +6,7 @@ import { AuthService } from '../auth/auth.service';
 @Component({
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
-  styleUrls: ['./recipes.component.css']
+  styleUrls: ['./recipes.component.less']
 })
 export class RecipesComponent{
   isWelcomePage=false;
@@ -19,7 +19,7 @@ export class RecipesComponent{
 
   // zabawa routingiem, sprawdz czy welcome page i jesli tak, to wyswietl liste skladnikow pod welcome message
   ngOnInit(): void {
-    this.authService.isLoading.next(false);
+    // this.authService.isLoading.next(false);
     if(this.router.url === '/recipes') this.isWelcomePage=true;
     this.router.events
     .pipe(filter(event=>event instanceof NavigationEnd))

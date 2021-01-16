@@ -7,7 +7,7 @@ import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-guest',
   templateUrl: './guest.component.html',
-  styleUrls: ['./guest.component.css']
+  styleUrls: ['./guest.component.less']
 })
 export class GuestComponent{
 
@@ -20,10 +20,10 @@ export class GuestComponent{
 
 
   onSubmit(form: NgForm) {
-    this.authService.isLoading.next(true);
+    // this.authService.isLoading.next(true);
     // opcjonalnie, ekstra zabezpieczenie, bo mamy i tak wylaczony przycisk jesli formularz invalid
     if (!form.valid) {
-      this.authService.isLoading.next(false);
+      // this.authService.isLoading.next(false);
       return;
     }
     const email = 'guest@gmail.com';
@@ -32,14 +32,14 @@ export class GuestComponent{
     this.authService.login(email, password).subscribe(
       (responsedata) => {
         // console.log(responsedata);
-      this.authService.isLoading.next(false);
+      // this.authService.isLoading.next(false);
       this.router.navigate(['./recipes'])
       },
       errorMessage => {
         // console.log(errorMessage);
         // console.log('Handle error');
         this.error = errorMessage;
-        this.authService.isLoading.next(false);
+        // this.authService.isLoading.next(false);
       }
     );
 

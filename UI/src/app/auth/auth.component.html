@@ -1,30 +1,15 @@
-<div class="row">
-  <div class="col-xs-8 offset-xs-2 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="large"
+  color="#fff"
+  type="ball-scale-multiple"
+>
+</ngx-spinner>
 
-    <div *ngIf="!isLoading">
-      <div class="row">
-        <div fxFlex fxLayout="column" fxLayoutAlign="center center">
-          <img src="https://i.imgur.com/e8KLaym.png" alt="recipe-book" class="img-fluid">
-          <p class="display-4">Login</p>
-          <!-- <p class="display-4">{{ loginMode ? 'Login' : 'Login' }}</p> -->
-        </div>
-      </div>
-      <div class="mat-tap-fix">
-        <mat-tab-group mat-stretch-tabs (selectedTabChange)="onChangeMode($event)">
-          <mat-tab label="Log In">
-            <app-login></app-login>
-          </mat-tab>
-          <mat-tab label="Register">
-            <app-register></app-register>
-          </mat-tab>
-        </mat-tab-group>
-      </div>
-    </div>
-
-    <div *ngIf="isLoading" class="overlay">
-      <div class="center">
-        <mat-spinner diameter="200"></mat-spinner>
-      </div>
+<div class="container">
+  <div class="col-xs-8 offset-xs-2 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3">
+    <div class="form">
+        <router-outlet></router-outlet>
     </div>
   </div>
 </div>

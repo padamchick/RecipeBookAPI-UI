@@ -27,4 +27,7 @@ public class UserDao {
 
     @OneToOne(mappedBy = "userDao", cascade = CascadeType.ALL)
     private RecipeBook recipeBook;
+
+    @OneToOne(mappedBy = "userDao", cascade = CascadeType.ALL)
+    private ShoppingList shoppingList;
 }

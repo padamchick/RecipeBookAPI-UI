@@ -1,51 +1,49 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from '../auth.service';
+import {Component, Output, EventEmitter, ViewEncapsulation} from '@angular/core';
+import {NgForm} from '@angular/forms';
+import {Router} from '@angular/router';
+import {AuthService} from '../auth.service';
+import {Store} from '@ngrx/store';
+import * as fromApp from '../../store/app.reducer'
+import * as authActions from '../store/auth.actions'
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.less']
+
 })
-export class LoginComponent{
+export class LoginComponent {
 
   error: string = null;
+  hide = true;
+  rememberMe: boolean = false;
 
   constructor(private authService: AuthService,
-    private router: Router) {}
+              private router: Router,
+              private store: Store<fromApp.AppState>,
+              private spinner: NgxSpinnerService) {
+  }
 
 
   onSubmit(form: NgForm) {
-    this.authService.isLoading.next(true);
-    // opcjonalnie, ekstra zabezpieczenie, bo mamy i tak wylaczony przycisk jesli formularz invalid
     if (!form.valid) {
-      this.authService.isLoading.next(false);
       return;
     }
+
     const username = form.value.username;
     const password = form.value.password;
 
+    this.spinner.show()
+    this.store.dispatch(authActions.logIn({username: username, password: password, toRemember: this.rememberMe}))
 
-    this.authService.login(username, password).subscribe(
-      (responsedata) => {
-        // console.log(responsedata);
-        this.router.navigate(['./recipes']);
-      // this.authService.isLoading.next(false) => in recipes.component.ts
-      },
-      errorMessage => {
-        // console.log(errorMessage);
-        // console.log('Handle error');
-        this.error = errorMessage;
-        this.authService.isLoading.next(false);
-      }
-    );
+    setTimeout(() => {
+      form.reset();
+    }, 1000);
 
-    form.reset();
   }
 
   onHandleError() {
     this.error = null;
   }
-
 }

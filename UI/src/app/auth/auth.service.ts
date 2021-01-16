@@ -1,142 +1,101 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import { catchError, tap } from "rxjs/operators";
-import { throwError, BehaviorSubject } from "rxjs";
-import { User } from "./user.model";
-import { Router } from "@angular/router";
-import { environment } from 'src/environments/environment';
-import { Token } from '@angular/compiler/src/ml_parser/lexer';
-import { RecipeService } from '../recipes/recipe.service';
-import { Recipe } from '../recipes/recipe.model';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {catchError, tap} from 'rxjs/operators';
+import {BehaviorSubject, throwError} from 'rxjs';
+import {Router} from '@angular/router';
+import {environment} from 'src/environments/environment';
+import {RecipeService} from '../recipes/recipe.service';
+import {AuthResponseData, User} from './auth.model';
+import * as fromApp from '../store/app.reducer'
+import * as authActions from '../auth/store/auth.actions'
+import {Store} from '@ngrx/store';
 
-
-
-export interface AuthResponseData {
-  jwttoken: string;
-  username: string;
-  expirationDate: string;
-  // authorities: string[];
-}
 
 @Injectable({ providedIn: "root" })
 export class AuthService {
-  user = new BehaviorSubject<User>(null);
-  isLoading = new BehaviorSubject<boolean>(false);
+  private apiUrl = environment.apiUrl;
   private tokenExpirationTimer: any;
 
-  constructor(private http: HttpClient, private router: Router, private recipeService : RecipeService) {}
+  private readonly USER_DATA_KEY = 'user_data';
 
-  signup(username: string, password: string) {
-    return this.http
-      .post<AuthResponseData>(
-        'http://localhost:8080/register',
-        {
-          username: username,
-          password: password
-        }
-      )
-      .pipe(catchError(this.handleError));
+  constructor(private http: HttpClient,
+              private router: Router,
+              private recipeService: RecipeService,
+              private store: Store<fromApp.AppState>) {}
+
+  signUp(username: string, password: string) {
+    return this.http.post(`${this.apiUrl}/register`, {username: username, password: password});
   }
 
   login(username: string, password: string) {
-    return this.http
-      .post<AuthResponseData>(
-        'http://localhost:8080/authenticate',
-        {
-          username: username,
-          password: password
-        }
-      )
-      .pipe(
-        catchError(this.handleError),
-        // tap(this.handleAuthentication)
-        tap((resData) => {
-          console.log(resData);
-          this.handleAuthentication(
-            resData.jwttoken,
-            resData.username,
-            resData.expirationDate
-
-            // resData.expirationDate
-          );
-        })
-      );
+    return this.http.post<AuthResponseData>(`${this.apiUrl}/authenticate`, {username: username, password: password})
   }
 
-  private handleAuthentication(
-    token: string,
-    username: string,
-    expDate: string
-  ) {
-    // aktualna data (w ms) + expiresIn * 1000 (aby tez w ms)
-    const expirationDate = new Date(expDate);
-    let tokenId = "Bearer " + token;
-    const user = new User(username, tokenId, expirationDate);
-    this.user.next(user);
-    const expirationTime = expirationDate.getTime() - new Date().getTime();
-    this.autoLogout(expirationTime);
-    localStorage.setItem("userData", JSON.stringify(user));
-  }
 
-  autoLogin() {
-    const userData: {
-      username: string;
-      _token: string;
-      _tokenExpirationDate: string;
-    } = JSON.parse(localStorage.getItem("userData"));
-    if (!userData) {
-      return;
-    }
-    const loadedUser = new User(
-      userData.username,
-      userData._token,
-      new Date(userData._tokenExpirationDate)
-    );
 
-    if (loadedUser.token) {
-      this.user.next(loadedUser);
-      const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
-      this.autoLogout(expirationDuration);
-    }
-  }
-
-  autoLogout(expirationDuration: number) {
-    // console.log(`Token expires in: ${expirationDuration/1000} s`);
+  setLogoutTimer(expirationDuration: number) {
     this.tokenExpirationTimer = setTimeout(() => {
-      this.logout();
+      this.store.dispatch(authActions.logOut());
     }, expirationDuration);
   }
 
-  logout() {
-    this.user.next(null);
-    localStorage.removeItem("userData");
-    this.router.navigate(["/auth"]);
+  clearLogoutTimer() {
     if (this.tokenExpirationTimer) {
       clearTimeout(this.tokenExpirationTimer);
     }
     this.tokenExpirationTimer = null;
-    this.recipeService.setRecipes([]);
   }
 
 
 
-  private handleError(errorResponse: HttpErrorResponse) {
-    let errorMessage = "An unknown error occurred!";
-    if (!errorResponse.error || !errorResponse.error.error) {
-      return throwError(errorMessage);
+  storeUserData(user: User) {
+    localStorage.setItem(this.USER_DATA_KEY, JSON.stringify(user));
+  }
+
+  storeUserDataInSessionStorage(user: User) {
+    sessionStorage.setItem(this.USER_DATA_KEY, JSON.stringify(user));
+  }
+
+  getUserData(): User {
+    const userData = JSON.parse(localStorage.getItem(this.USER_DATA_KEY));
+    if(userData) {
+      return {username: userData.userData, token: userData.token, expirationDate: new Date(userData.expirationDate)}
     }
-    errorMessage = errorResponse.error.error.message;
-    switch (errorResponse.error.error.message) {
-      case "EMAIL_EXISTS":
-        errorMessage = "This email exists already";
-        break;
-      case "EMAIL_NOT_FOUND":
-        errorMessage = "This email does not exist";
-        break;
-      case "INVALID_PASSWORD":
-        errorMessage = "This password is not correct";
-        break;
+    return null;
+  }
+
+  getUserDataFromSessionStorage(): User {
+    const userData = JSON.parse(sessionStorage.getItem(this.USER_DATA_KEY));
+    if(userData) {
+      return {username: userData.userData, token: userData.token, expirationDate: new Date(userData.expirationDate)}
     }
-    return throwError(errorMessage);
+    return null;
+  }
+
+  removeUserData() {
+    localStorage.removeItem(this.USER_DATA_KEY);
+  }
+
+  removeUserDataFromSessionStorage() {
+    sessionStorage.removeItem(this.USER_DATA_KEY);
+  }
+
+  isSignedIn() {
+    let user: User = this.getUserData();
+    if(!user) {
+      user = this.getUserDataFromSessionStorage();
+      return user != null;
+    }
+    return true;
+  }
+
+  getToken() {
+    let user = this.getUserData();
+    if(!user) {
+      user = this.getUserDataFromSessionStorage();
+      return user != null ? user.token : null;
+    }
+    return user.token;
+
   }
 }

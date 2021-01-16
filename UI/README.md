@@ -21,7 +21,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Technologies
 * Angular 9 & Material
-* Firebase
 * Bootstrap 4
 
 ## Features

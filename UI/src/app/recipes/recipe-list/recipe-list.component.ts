@@ -4,40 +4,33 @@ import { RecipeService } from '../recipe.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
-import { filter } from 'rxjs/operators';
+import {filter, map} from 'rxjs/operators';
+import * as fromApp from '../../store/app.reducer';
+import {Store} from '@ngrx/store';
 
 @Component({
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html',
-  styleUrls: ['./recipe-list.component.css']
+  styleUrls: ['./recipe-list.component.less']
 })
 export class RecipeListComponent implements OnInit, OnDestroy {
 
-  recipes: Recipe[];
-  recipeChangeSubscription: Subscription;
-  isAdminMode: boolean;
+  recipes: Recipe[] = [];
+  recipeSub: Subscription;
 
-  constructor(private recipeService: RecipeService,
-              private router: Router,
+  constructor(private router: Router,
               private route: ActivatedRoute,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private store: Store<fromApp.AppState>) { }
 
   ngOnInit(): void {
-// zaladuj przepisy i uaktualnij, kiedy dojdzie do zmiany
-    this.recipes = this.recipeService.getRecipes();
-    this.recipeChangeSubscription = this.recipeService.recipesChanged.subscribe(
-      (recipes: Recipe[]) => {
-        this.recipes = recipes;
-      }
-    )
-// sprawdzenie czy wlaczony tryb admina
-    this.authService.user.pipe(
-      filter(user => !!user && !!user.username)
-    ).subscribe(user => {
-      user.username === 'guest'
-          ? (this.isAdminMode = false)
-          : (this.isAdminMode = true);
-    })
+
+
+
+  this.recipeSub = this.store.select('recipes').pipe(
+    map(recipesState => recipesState.recipes)
+  ).subscribe(recipes => this.recipes = recipes);
+
 
   }
 
@@ -46,7 +39,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.recipeChangeSubscription.unsubscribe();
+    this.recipeSub.unsubscribe();
   }
 
 }

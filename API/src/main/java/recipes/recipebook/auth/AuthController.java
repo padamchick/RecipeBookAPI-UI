@@ -8,6 +8,7 @@ import recipes.recipebook.dto.UserDto;
 
 @RestController
 @CrossOrigin
+@RequestMapping("/api")
 public class AuthController {
 
     private RegistrationService registrationService;

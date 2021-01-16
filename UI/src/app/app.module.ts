@@ -8,6 +8,13 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {StoreModule} from '@ngrx/store';
+import * as fromApp from './store/app.reducer';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {environment} from '../environments/environment';
+import {EffectsModule} from '@ngrx/effects';
+import {RecipeEffects} from './recipes/store/recipe.effects';
+import {AuthEffects} from './auth/store/auth.effects';
 
 
 @NgModule({
@@ -21,7 +28,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     SharedModule,
     BrowserAnimationsModule,
-    NgbModule
+    NgbModule,
+    StoreModule.forRoot(fromApp.appReducer),
+    EffectsModule.forRoot([RecipeEffects, AuthEffects]),
+    StoreDevtoolsModule.instrument({ logOnly: environment.production }),
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

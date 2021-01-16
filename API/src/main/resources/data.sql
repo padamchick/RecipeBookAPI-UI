@@ -1,4 +1,4 @@
-INSERT INTO user (username, password) VALUES ('piotrek', '$2y$12$8m7dBgFuGkPYZnn9rknIBuQcs9rpoHzCS0V5xTWN3SuY5HQlgCjzy')
+INSERT INTO user (username, password) VALUES ('piotrek', '$2y$12$g9Jm1i0Gd0yo2bx53ppRs.OqA9owuD7Gjecum5PsGDViM6NQ1Oniu')
 
 INSERT INTO authority (name) VALUES ('USER')
 INSERT INTO authority (name) VALUES ('ADMIN')
@@ -57,6 +57,8 @@ Jeśli gotowa zupa jest za gęsta, wlać bulion w całości lub tylko część. 
 Porady:
 
 Bulion można też (i naprawdę warto) ugotować samemu na kolbach kukurydzy, dzięki temu zupa ma dużo więcej smaku i różnych, kukurydzianych aromatów.','https://www.jadlonomia.com/wp-content/uploads/2014/07/MG_85571-592x460.jpg',1)
+
+INSERT INTO recipe (description, image_path, name, recipe_book_id) VALUES ('Składniki wymieszać. Z podanej ilości wyjdzie około 4 szt małych naleśników.', 'https://4.bp.blogspot.com/-nP0vlmdvWvU/WrS3xZxo9rI/AAAAAAAALsI/YzSyp2rEcmArysxpJIPMITeRY2hqJad8wCLcBGAs/s1600/DSC_0102.JPG', 'Naleśniki owsiane', 1)
 
 INSERT INTO ingredient (amount, name, unit, recipe_id) VALUES (1, 'pomidory w puszce', 'szt', 1)
 INSERT INTO ingredient (amount, name, unit, recipe_id) VALUES (5, 'jajka', 'szt', 1)
@@ -165,6 +167,10 @@ INSERT INTO ingredient (amount, name, unit, recipe_id) VALUES(1,'bulion warzywny
 INSERT INTO ingredient (amount, name, unit, recipe_id) VALUES(1,'gałka muszkatałowa','spora szczypta', 9)
 INSERT INTO ingredient (amount, name, unit, recipe_id) VALUES(1,'sól','szczypta', 9)
 INSERT INTO ingredient (amount, name, unit, recipe_id) VALUES(1,'czarny pieprz','szczypta', 9)
+
+INSERT INTO recipe_book.ingredient (amount, name, unit, recipe_id) VALUES (50, 'mąka owsiana', 'g', 10)
+INSERT INTO recipe_book.ingredient (amount, name, unit, recipe_id) VALUES (1, 'jajko', 'szt', 10)
+INSERT INTO recipe_book.ingredient (amount, name, unit, recipe_id) VALUES (100, 'mleko', 'ml', 10)
 
 
 

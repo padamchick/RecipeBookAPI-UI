@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="col-xs-12" *ngIf="isAdminMode">
+  <div class="col-xs-12">
     <button mat-raised-button class="mat-yellow" (click)="onNewRecipe()">
       <div fxLayout fxLayoutAlign="center center" fxLayoutGap="5px">
         <mat-icon>add_circle_outline</mat-icon>
@@ -10,7 +10,7 @@
   <mat-divider style="margin: 10px"></mat-divider>
   <div class="col-xs-12">
     <div class="list-group">
-      <app-recipe-item *ngFor="let recipeEl of recipes; let i = index" [index]="i" [recipe]="recipeEl">
+      <app-recipe-item *ngFor="let recipeEl of recipes" [recipe]="recipeEl">
       </app-recipe-item>
     </div>
   </div>

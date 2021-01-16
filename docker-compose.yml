@@ -1,0 +1,33 @@
+version: "3.7"
+
+services:
+    db: 
+        image: mysql
+        container_name: db
+        environment:
+            MYSQL_ROOT_PASSWORD: 'Password@123'
+            MYSQL_USER: 'root'
+            MYSQL_DATABASE: 'recipe_book'
+        ports: 
+        - 3306:3306
+    api:
+        build: ./API
+        container_name: api
+        environment: 
+            MYSQL_HOST: 'db'
+            MYSQL_USER: 'root'
+            MYSQL_PASSWORD: 'Password@123'
+            MYSQL_DATABASE: 'recipe_book'
+        expose:
+        - "8080"
+        ports:
+        - 8080:8080
+        depends_on:
+        - db
+    ui:
+        build: ./UI
+        container_name: ui
+        ports:
+        - 80:4200
+        depends_on:
+        - api

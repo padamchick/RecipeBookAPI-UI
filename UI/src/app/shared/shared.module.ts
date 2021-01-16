@@ -1,6 +1,4 @@
 import { NgModule } from '@angular/core';
-import { AlertComponent } from './alert/alert.component';
-import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { DropdownDirective } from './dropdown.directive';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material/material.module';
@@ -9,12 +7,11 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { IngredientEditComponent } from './ingredient-edit/ingredient-edit.component';
 import { FormsModule } from '@angular/forms';
+import {NgxSpinnerModule} from 'ngx-spinner';
 
 
 @NgModule({
   declarations: [
-    AlertComponent,
-    LoadingSpinnerComponent,
     DropdownDirective,
     ConfirmationDialogComponent,
     IngredientEditComponent
@@ -24,16 +21,16 @@ import { FormsModule } from '@angular/forms';
     MaterialModule,
     FlexLayoutModule,
     LayoutModule,
-    FormsModule
+    FormsModule,
+    NgxSpinnerModule
   ],
   exports: [
-    AlertComponent,
-    LoadingSpinnerComponent,
     DropdownDirective,
     CommonModule,
     MaterialModule,
     FlexLayoutModule,
-    LayoutModule
+    LayoutModule,
+    NgxSpinnerModule
   ]
 })
 export class SharedModule {}

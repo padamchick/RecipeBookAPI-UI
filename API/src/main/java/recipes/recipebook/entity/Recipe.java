@@ -32,12 +32,11 @@ public class Recipe {
     @JsonIgnore
     private RecipeBook recipeBook;
 
-    public Recipe update(RecipeDto dto) {
+    public void update(RecipeDto dto) {
         this.name = dto.getName();
         this.description = dto.getDescription();
         this.imagePath = dto.getImagePath();
         this.ingredients = dto.getIngredients();
-        return this;
     }
 
     public void updateWithReferences() {

@@ -4,12 +4,13 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import recipes.recipebook.dto.RecipeDto;
+import recipes.recipebook.entity.Ingredient;
 import recipes.recipebook.entity.Recipe;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/recipes")
+@RequestMapping("/api/recipes")
 public class RecipeController {
 
     private RecipeService recipeService;
@@ -47,4 +48,11 @@ public class RecipeController {
     public ResponseEntity<Recipe> deleteRecipe(@PathVariable Long id) {
         return ResponseEntity.ok(recipeService.delete(id));
     }
+
+    @ApiOperation(value = "Delete ingredient")
+    @DeleteMapping("/ingredients/{id}")
+    public ResponseEntity<Ingredient> deleteIngredient(@PathVariable Long id) {
+        return ResponseEntity.ok(recipeService.deleteIngredient(id));
+    }
+
 }
