@@ -1,15 +1,53 @@
 @primary: var(--th-accent-dark);
 @error: #b31111;
 
+
 .container {
-  .form {
+
+  display: flex;
+  flex-direction: column;
+  //align-content: center;
+  //justify-content: center;
+  //justify-items: center;
+  align-items: center;
+
+
+
+  .title {
+    font-size: 40px;
+    font-weight: 400;
+    color: rgba(0,0,0,0.7);
+    //letter-spacing: 2px;
+  }
+
+  .subtitle {
+    font-size: 24px;
+    font-weight: 400;
+    color: rgba(0,0,0,0.7);
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+  }
+
+  #rememberMe {
+    margin: 10px 0;
+  }
+
+  #login-button {
     margin: 20px 0;
+    width: 100%;
+    button {
+      width: 100%;
+    }
+  }
+
+  .registration {
+    margin: 15px;
+    align-items: center;
+    text-decoration: none;
   }
 }
 
-button {
-  width: 100%;
-}
+
 
 //   ANGULAR MATERIAL STYLING   //
 
@@ -49,6 +87,13 @@ button {
 ::ng-deep .mat-focused .mat-form-field-label {
   color: @primary !important;
 }
+
+::ng-deep .mat-checkbox-frame {
+  border-width: 1px !important;
+  background-color: #FFFFFF !important;
+  border-color: rgba(0,0,0,0.32);
+}
+
 
 //   ERROR   //
 

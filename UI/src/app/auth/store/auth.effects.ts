@@ -13,7 +13,6 @@ import {NgxSpinnerService} from 'ngx-spinner';
 @Injectable()
 export class AuthEffects {
 
-  TODO
   signUp$ = createEffect(() =>
     this.actions$.pipe(
       ofType(authActions.signUp),
@@ -51,11 +50,11 @@ export class AuthEffects {
   logIn$ = createEffect(() =>
     this.actions$.pipe(
       ofType(authActions.logIn),
-      tap(() => console.log('LOG IN')),
-      switchMap((form: LoginForm) => {
-        return this.authService.login(form.username, form.password).pipe(
+      switchMap(({username, password, toRemember}) => {
+        return this.authService.login(username, password).pipe(
           map((res: AuthResponseData) => {
-            return authActions.logInSuccess({username: res.username, token: res.jwttoken, expirationDate: new Date(res.expirationDate), redirect: true});
+            console.log('Before logInSuccess')
+            return authActions.logInSuccess({username: res.username, token: res.jwttoken, expirationDate: new Date(res.expirationDate), redirect: true, toRemember: toRemember});
           }),
           catchError(err => of(authActions.logInFail()))
         );
@@ -66,7 +65,6 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(authActions.logInSuccess),
       tap(({redirect}) =>  {
-        console.log('Redirect', redirect);
         this.spinner.hide()
         if(redirect) {
           this.router.navigate(['/'])
@@ -78,12 +76,25 @@ export class AuthEffects {
   saveToLocalStorage$ = createEffect(() =>
     this.actions$.pipe(
       ofType(authActions.logInSuccess),
-      tap(({username, token, expirationDate}) => {
-        const user:User = { username, token, expirationDate };
-        this.authService.storeUserData(user);
+      tap(({username, token, expirationDate, toRemember}) => {
+        if(toRemember) {
+          const user:User = { username, token, expirationDate };
+          this.authService.storeUserData(user);
+        }
       })
     ), { dispatch: false }
   )
+
+  saveToSessionStorage$ = createEffect(() =>
+  this.actions$.pipe(
+    ofType(authActions.logInSuccess),
+    tap(({username, token, expirationDate, toRemember}) => {
+      if(!toRemember) {
+        const user:User = { username, token, expirationDate };
+        this.authService.storeUserDataInSessionStorage(user);
+      }
+    })
+  ), { dispatch: false })
 
   setAutoLogout$ = createEffect(() =>
     this.actions$.pipe(
@@ -95,16 +106,21 @@ export class AuthEffects {
     ), { dispatch: false }
   )
 
-
-
   autoLogin$ = createEffect(() =>
   this.actions$.pipe(
     ofType(authActions.autoLogIn),
     map(() => {
       const user = this.authService.getUserData();
+      console.log(user)
       if (user != null && new Date() < user.expirationDate) {
-        return authActions.logInSuccess({username: user.username, token: user.token, expirationDate: user.expirationDate, redirect: false})
+        return authActions.logInSuccess({username: user.username, token: user.token, expirationDate: user.expirationDate, redirect: false, toRemember: true})
       } else {
+        const userFromSS = this.authService.getUserDataFromSessionStorage();
+        console.log(userFromSS)
+        if (userFromSS != null && new Date() < userFromSS.expirationDate) {
+          console.log(userFromSS != null && new Date() < userFromSS.expirationDate)
+          return authActions.logInSuccess({username: userFromSS.username, token: userFromSS.token, expirationDate: userFromSS.expirationDate, redirect: false, toRemember: false})
+        }
         return {type: '[Auth] AutoLogin Failed'}
       }
     })
@@ -115,6 +131,7 @@ export class AuthEffects {
       ofType(authActions.logOut),
       tap(() => {
         this.authService.removeUserData();
+        this.authService.removeUserDataFromSessionStorage();
         this.router.navigate(["/auth"]);
         this.authService.clearLogoutTimer();
       })

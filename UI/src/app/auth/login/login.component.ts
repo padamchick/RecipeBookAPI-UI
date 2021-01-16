@@ -17,6 +17,7 @@ export class LoginComponent {
 
   error: string = null;
   hide = true;
+  rememberMe: boolean = false;
 
   constructor(private authService: AuthService,
               private router: Router,
@@ -34,7 +35,7 @@ export class LoginComponent {
     const password = form.value.password;
 
     this.spinner.show()
-    this.store.dispatch(authActions.logIn({username: username, password: password}))
+    this.store.dispatch(authActions.logIn({username: username, password: password, toRemember: this.rememberMe}))
 
     setTimeout(() => {
       form.reset();
@@ -45,5 +46,4 @@ export class LoginComponent {
   onHandleError() {
     this.error = null;
   }
-
 }

@@ -6,26 +6,10 @@
 >
 </ngx-spinner>
 
-<div class="row">
+<div class="container">
   <div class="col-xs-8 offset-xs-2 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3">
-    <div>
-      <div class="row">
-        <div fxFlex fxLayout="column" fxLayoutAlign="center center">
-          <img src="https://i.imgur.com/e8KLaym.png" alt="recipe-book" class="img-fluid">
-          <p class="display-4">Login</p>
-          <!-- <p class="display-4">{{ loginMode ? 'Login' : 'Login' }}</p> -->
-        </div>
-      </div>
-      <div class="mat-tap-fix">
-        <mat-tab-group mat-stretch-tabs (selectedTabChange)="onChangeMode($event)">
-          <mat-tab label="Log In">
-            <app-login></app-login>
-          </mat-tab>
-          <mat-tab label="Register">
-            <app-register></app-register>
-          </mat-tab>
-        </mat-tab-group>
-      </div>
+    <div class="form">
+        <router-outlet></router-outlet>
     </div>
   </div>
 </div>

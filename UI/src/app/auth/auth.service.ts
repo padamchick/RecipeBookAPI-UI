@@ -52,8 +52,20 @@ export class AuthService {
     localStorage.setItem(this.USER_DATA_KEY, JSON.stringify(user));
   }
 
+  storeUserDataInSessionStorage(user: User) {
+    sessionStorage.setItem(this.USER_DATA_KEY, JSON.stringify(user));
+  }
+
   getUserData(): User {
     const userData = JSON.parse(localStorage.getItem(this.USER_DATA_KEY));
+    if(userData) {
+      return {username: userData.userData, token: userData.token, expirationDate: new Date(userData.expirationDate)}
+    }
+    return null;
+  }
+
+  getUserDataFromSessionStorage(): User {
+    const userData = JSON.parse(sessionStorage.getItem(this.USER_DATA_KEY));
     if(userData) {
       return {username: userData.userData, token: userData.token, expirationDate: new Date(userData.expirationDate)}
     }
@@ -64,13 +76,26 @@ export class AuthService {
     localStorage.removeItem(this.USER_DATA_KEY);
   }
 
+  removeUserDataFromSessionStorage() {
+    sessionStorage.removeItem(this.USER_DATA_KEY);
+  }
+
   isSignedIn() {
     let user: User = this.getUserData();
-    return user != null;
+    if(!user) {
+      user = this.getUserDataFromSessionStorage();
+      return user != null;
+    }
+    return true;
   }
 
   getToken() {
-    const user = this.getUserData();
-    return user != null ? user.token : null;
+    let user = this.getUserData();
+    if(!user) {
+      user = this.getUserDataFromSessionStorage();
+      return user != null ? user.token : null;
+    }
+    return user.token;
+
   }
 }
