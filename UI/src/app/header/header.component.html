@@ -1,27 +1,28 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" [ngClass]="{hidden: !(isHandset$ | async)}"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+               [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <mat-toolbar class="theme-accent-dark">Menu</mat-toolbar>
     <mat-nav-list role="navigation">
-<!--      SIDENAV Login Link -->
+      <!--      SIDENAV Login Link -->
       <a mat-list-item *ngIf="!isAuthenticated" routerLinkActive="active" routerLink="/auth" (click)="drawer.toggle()">
         <mat-icon>lock</mat-icon>
         <span class="nav-caption">Login</span>
 
       </a>
-<!--      SIDENAV Recipes Link -->
-      <a mat-list-item *ngIf="isAuthenticated" routerLinkActive="active" routerLink="/recipes" (click)="drawer.toggle()">
+      <!--      SIDENAV Recipes Link -->
+      <a mat-list-item *ngIf="isAuthenticated" routerLinkActive="active" routerLink="/recipes"
+         (click)="drawer.toggle()">
         <mat-icon class="icon">menu_book</mat-icon>
         <span class="nav-caption">Recipes</span>
 
       </a>
-<!--      SIDENAV Shopping List Link -->
+      <!--      SIDENAV Shopping List Link -->
       <a mat-list-item *ngIf="isAuthenticated && false" routerLinkActive="active"
-        routerLink="/shopping-list" (click)="drawer.toggle()">
+         routerLink="/shopping-list" (click)="drawer.toggle()">
         <mat-icon class="icon">shopping_cart</mat-icon>
         <span class="nav-caption">Shopping List</span>
       </a>
-<!--      SIDENAV Logout Link -->
+      <!--      SIDENAV Logout Link -->
       <a mat-list-item *ngIf="isAuthenticated" (click)="onLogout(); drawer.toggle()">
         <mat-icon class="icon">input</mat-icon>
         <span class="nav-caption">Logout</span>
@@ -31,25 +32,25 @@
   <mat-sidenav-content>
     <mat-toolbar class="theme-accent-dark">
       <mat-toolbar-row>
-<!--          sidenav menu button (tylko jeśli rozmiar okna xs) -->
+        <!--          sidenav menu button (tylko jeśli rozmiar okna xs) -->
         <button mat-icon-button (click)="drawer.toggle()" fxHide.gt-xs>
           <mat-icon>menu</mat-icon>
         </button>
-<!--          NAGŁÓWEK RECIPE BOOK -->
-<!--        <a class="toolbar-header" routerLink="/">RECIPE BOOK</a>-->
+        <!--          NAGŁÓWEK RECIPE BOOK -->
+        <!--        <a class="toolbar-header" routerLink="/">RECIPE BOOK</a>-->
         <a class="toolbar-header" routerLink="/">RECIPE BOOK</a>
 
         <div fxFlex fxLayout fxHide.lt-sm>
-<!--          zakładka Recipes -->
-          <a mat-button *ngIf="isAuthenticated" routerLinkActive="active" routerLink="/recipes" >
+          <!--          zakładka Recipes -->
+          <a mat-button *ngIf="isAuthenticated" routerLinkActive="active" routerLink="/recipes">
             <!-- <div class="d-flex justify-content-around align-items-center"> -->
             <mat-icon class="icon">menu_book</mat-icon>
             <span class="label">Recipes</span>
-          <!-- </div> -->
+            <!-- </div> -->
           </a>
 
 
-<!--          zakładka Shopping List -->
+          <!--          zakładka Shopping List -->
           <a mat-button *ngIf="isAuthenticated && false" routerLinkActive="active" routerLink="/shopping-list">
             <mat-icon class="icon">shopping_cart</mat-icon>
             <span class="label">Shopping List</span>
@@ -57,41 +58,27 @@
 
           <span class="spacer"></span>
 
-<!--          zmiana języka -->
+          <!--          zmiana języka -->
 
           <a mat-button
              matTooltip="Select your language"
              [matMenuTriggerFor]="languageMenu">
-<!--            (click)="select.open()"-->
-
             <mat-icon class="icon">language</mat-icon>
           </a>
-            <mat-menu  #languageMenu="matMenu" xPosition="before" yPosition="below" >
-              <div fxLayout="column" style="padding: 5px 10px" (click)="$event.stopPropagation()">
-                <mat-radio-group fxLayout="column" aria-label="Select an option" (change)="onToggle($event)">
-                  <mat-radio-button *ngFor="let lang of translate.getLangs()"
-                                    [value]="lang"
-                                    [checked]="lang === translate.currentLang">
-                    {{ lang | translate }}
-                  </mat-radio-button>
-                </mat-radio-group>
-              </div>
-            </mat-menu>
+          <mat-menu #languageMenu="matMenu" xPosition="before" yPosition="below">
+            <div class="menu" fxLayout="column" (click)="$event.stopPropagation()">
+              <mat-radio-group fxLayout="column" aria-label="Select an option" (change)="onToggle($event)">
+                <mat-radio-button *ngFor="let lang of translate.getLangs()"
+                                  [value]="lang"
+                                  [checked]="lang === translate.currentLang">
+                  {{ lang | translate }}
+                </mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </mat-menu>
 
-<!--          <mat-select-->
-<!--            #select-->
-<!--            style="visibility:hidden;width: 0">-->
-<!--            <mat-option>To Shopping List</mat-option>-->
-<!--            <mat-option>Edit Recipe</mat-option>-->
-<!--            <mat-option>Delete Recipe</mat-option>-->
-<!--          </mat-select>-->
 
-<!--          zakładka Login -->
-          <a mat-button *ngIf="!isAuthenticated" routerLinkActive="active" routerLink="/auth">
-            <mat-icon class="icon">lock</mat-icon>
-            <span class="label">Login</span>
-          </a>
-<!--          zakładka Logout -->
+          <!--          zakładka Logout -->
           <a mat-button *ngIf="isAuthenticated" (click)="onLogout()">
             <mat-icon class="icon">input</mat-icon>
             <span class="label">Logout</span>
@@ -100,7 +87,7 @@
         </div>
       </mat-toolbar-row>
     </mat-toolbar>
-<!--          tutaj wchodzi router-outlet -->
+    <!--          tutaj wchodzi router-outlet -->
     <ng-content></ng-content>
 
   </mat-sidenav-content>
