@@ -29,8 +29,6 @@
               "src/styles.less"
             ],
             "scripts": [
-              "./node_modules/jquery/dist/jquery.min.js",
-              "./node_modules/popper.js/dist/umd/popper.min.js",
               "./node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },
@@ -45,7 +43,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -131,7 +128,7 @@
   "defaultProject": "recipe-book",
   "schematics": {
     "@schematics/angular:component": {
-      "styleext": "less"
+      "style": "less"
     }
   }
 }
