@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
+import {HttpClientModule, HTTP_INTERCEPTORS, HttpClient} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -15,6 +15,8 @@ import {environment} from '../environments/environment';
 import {EffectsModule} from '@ngrx/effects';
 import {RecipeEffects} from './recipes/store/recipe.effects';
 import {AuthEffects} from './auth/store/auth.effects';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 
 @NgModule({
@@ -32,6 +34,13 @@ import {AuthEffects} from './auth/store/auth.effects';
     StoreModule.forRoot(fromApp.appReducer),
     EffectsModule.forRoot([RecipeEffects, AuthEffects]),
     StoreDevtoolsModule.instrument({ logOnly: environment.production }),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
@@ -41,3 +50,7 @@ import {AuthEffects} from './auth/store/auth.effects';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

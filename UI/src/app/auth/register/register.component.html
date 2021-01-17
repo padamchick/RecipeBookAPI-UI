@@ -1,14 +1,14 @@
 <div class="container">
   <div class="title">
-    Sign Up
+    {{'[SignUp]SignUp' | translate}}
   </div>
 
   <form #f="ngForm" (ngSubmit)="onSubmit(f)">
     <mat-form-field appearance="outline">
-      <mat-label>Login</mat-label>
-      <input matInput name="username" type="text" required #username="ngModel" ngModel placeholder="Enter your login">
-      <mat-error *ngIf="!username.valid && username.touched"><i class="fas fa-exclamation-circle"></i>This field is
-        required!
+      <mat-label>{{'[SignUp]Login' | translate}}</mat-label>
+      <input matInput name="username" type="text" required #username="ngModel" ngModel placeholder="{{'[SignUp]LoginPlaceholder' | translate}}">
+      <mat-error *ngIf="!username.valid && username.touched"><i class="fas fa-exclamation-circle"></i>
+        {{'[SignUp]LoginError' | translate}}
       </mat-error>
       <button type="button" disabled="disabled" mat-icon-button matPrefix>
         <mat-icon>account_box</mat-icon>
@@ -16,11 +16,11 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>Password</mat-label>
+      <mat-label>{{'[SignUp]Password' | translate}}</mat-label>
       <input matInput name="password" [type]="hide ? 'password' : 'text'" required #password="ngModel" ngModel
-             placeholder="Enter your password">
-      <mat-error *ngIf="!password.valid && password.touched"><i class="fas fa-exclamation-circle"></i>This field is
-        required!
+             placeholder="{{'[SignUp]PasswordPlaceholder' | translate}}">
+      <mat-error *ngIf="!password.valid && password.touched"><i class="fas fa-exclamation-circle"></i>
+        {{'[SignUp]PasswordError' | translate}}
       </mat-error>
       <button type="button" disabled="disabled" mat-icon-button matPrefix>
         <mat-icon>lock</mat-icon>
@@ -31,11 +31,11 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>Confirm Password</mat-label>
+      <mat-label>{{'[SignUp]ConfirmPassword' | translate}}</mat-label>
       <input matInput name="confirmPassword" [type]="hide ? 'password' : 'text'" required #confirmPassword="ngModel" ngModel
-             placeholder="Confirm your password">
-      <mat-error *ngIf="!confirmPassword.valid && confirmPassword.touched"><i class="fas fa-exclamation-circle"></i>This field is
-        required!
+             placeholder="{{'[SignUp]ConfirmPasswordPlaceholder' | translate}}">
+      <mat-error *ngIf="!confirmPassword.valid && confirmPassword.touched"><i class="fas fa-exclamation-circle"></i>
+        {{'[SignUp]ConfirmPasswordError' | translate}}
       </mat-error>
       <button type="button" disabled="disabled" mat-icon-button matPrefix>
         <mat-icon>lock</mat-icon>
@@ -46,12 +46,12 @@
     </mat-form-field>
 
     <div id="submit-button">
-      <button mat-raised-button class="theme-accent-dark" type="submit" [disabled]=!f.valid>Sign Up</button>
+      <button mat-raised-button class="theme-accent-dark" type="submit" [disabled]=!f.valid>{{'[SignUp]SignUpButton' | translate}}</button>
     </div>
   </form>
 
   <div class="registration">
-    <a [routerLink]="['../']">Back to login page.</a>
+    <a [routerLink]="['../']">{{'[SignUp]BackToLoginPage' | translate}}</a>
   </div>
 
 </div>

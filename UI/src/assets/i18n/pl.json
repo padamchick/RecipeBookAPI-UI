@@ -1,0 +1,28 @@
+{
+  "en": "Angielski",
+  "pl": "Polski",
+  "[SignIn]Title": "Zaloguj się",
+  "[SignIn]Subtitle": "do Recipe Book!",
+  "[SignIn]Login": "Login",
+  "[SignIn]LoginPlaceholder": "Wprowadź swój login",
+  "[SignIn]LoginError": "Login jest wymagany!",
+  "[SignIn]Password": "Hasło",
+  "[SignIn]PasswordPlaceholder": "Wprowadź swoje hasło",
+  "[SignIn]PasswordError": "Hasło jest wymagane!",
+  "[SignIn]RememberMe": "Zapamiętaj Mnie!",
+  "[SignIn]LoginButton": "Zaloguj",
+  "[SignIn]RegistrationLink": "Nie masz jeszcze konta? Zarejestruj się teraz!",
+
+  "[SignUp]SignUp": "Rejestracja",
+  "[SignUp]Login": "Login",
+  "[SignUp]LoginPlaceholder": "Wprowadź swój login",
+  "[SignUp]LoginError": "Login jest wymagany!",
+  "[SignUp]Password": "Hasło",
+  "[SignUp]PasswordPlaceholder": "Wprowadź swoje hasło",
+  "[SignUp]PasswordError": "Hasło jest wymagane!",
+  "[SignUp]ConfirmPassword": "Potwierdzenie hasła",
+  "[SignUp]ConfirmPasswordPlaceholder": "Potwierdź swoje hasło",
+  "[SignUp]ConfirmPasswordError": "Potwierdzenie hasła jest konieczne!",
+  "[SignUp]SignUpButton": "Zarejestruj",
+  "[SignUp]BackToLoginPage": "Powrót do strony logowania."
+}

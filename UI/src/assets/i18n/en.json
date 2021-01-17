@@ -1,0 +1,28 @@
+{
+  "en": "English",
+  "pl": "Polish",
+  "[SignIn]Title": "Sign In",
+  "[SignIn]Subtitle": "to Recipe Book!",
+  "[SignIn]Login": "Login",
+  "[SignIn]LoginPlaceholder": "Enter your login",
+  "[SignIn]LoginError": "Login is required!",
+  "[SignIn]Password": "Password",
+  "[SignIn]PasswordPlaceholder": "Enter your password",
+  "[SignIn]PasswordError": "Password is required",
+  "[SignIn]RememberMe": "Remember Me!",
+  "[SignIn]LoginButton": "Login",
+  "[SignIn]RegistrationLink": "Don't have an account yet? Sign up now!",
+
+  "[SignUp]SignUp": "Sign Up",
+  "[SignUp]Login": "Login",
+  "[SignUp]LoginPlaceholder": "Enter your login",
+  "[SignUp]LoginError": "Login is required!",
+  "[SignUp]Password": "Password",
+  "[SignUp]PasswordPlaceholder": "Enter your password",
+  "[SignUp]PasswordError": "Password is required!",
+  "[SignUp]ConfirmPassword": "Confirm Password",
+  "[SignUp]ConfirmPasswordPlaceholder": "Confirm your password",
+  "[SignUp]ConfirmPasswordError": "Confirming password is required",
+  "[SignUp]SignUpButton": "Sign Up",
+  "[SignUp]BackToLoginPage": "Back to login page."
+}

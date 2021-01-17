@@ -9,6 +9,7 @@ import {RecipeService} from '../recipes/recipe.service';
 import {Store} from '@ngrx/store';
 import {AppState} from '../store/app.reducer';
 import * as authActions from '../auth/store/auth.actions';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -18,16 +19,18 @@ import * as authActions from '../auth/store/auth.actions';
 export class HeaderComponent implements OnInit, OnDestroy {
   private userSub: Subscription;
   isAuthenticated = false;
+  currentLang: string;
 
-  routes = [
-    {name: 'Authentication', route: '/auth', needAuthentication: false},
-    {name: 'Recipes', route: '/recipes', needAuthentication: true},
-    {
-      name: 'Shopping List',
-      route: '/shopping-list',
-      needAuthentication: true,
-    },
-  ];
+
+  // routes = [
+  //   {name: 'Authentication', route: '/auth', needAuthentication: false},
+  //   {name: 'Recipes', route: '/recipes', needAuthentication: true},
+  //   {
+  //     name: 'Shopping List',
+  //     route: '/shopping-list',
+  //     needAuthentication: true,
+  //   },
+  // ];
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(
@@ -40,7 +43,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private breakpointObserver: BreakpointObserver,
     public recipeService: RecipeService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    public translate: TranslateService,
   ) {
   }
 
@@ -54,6 +58,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.isAuthenticated = false;
       }
     });
+    this.translate.use('en')
+    this.currentLang = this.translate.currentLang;
   }
 
 
@@ -63,5 +69,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.userSub.unsubscribe();
+  }
+
+  onToggle(e) {
+    this.switchLang(e.value);
+  }
+
+  switchLang(lang: string) {
+    this.translate.use(lang);
   }
 }

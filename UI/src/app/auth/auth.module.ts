@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { GuestComponent } from './guest/guest.component';
 import { RegisterComponent } from './register/register.component';
 import {LoginGuard} from './login.guard';
+import {TranslateModule} from '@ngx-translate/core';
 
 
 const routes: Routes = [
@@ -29,11 +30,12 @@ const routes: Routes = [
     GuestComponent,
     RegisterComponent
   ],
-    imports: [
-        FormsModule,
-        RouterModule.forChild(routes),
-        SharedModule,
+  imports: [
+    FormsModule,
+    RouterModule.forChild(routes),
+    SharedModule,
+    TranslateModule,
 
-    ]
+  ]
 })
 export class AuthModule { }

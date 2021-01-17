@@ -57,6 +57,35 @@
 
           <span class="spacer"></span>
 
+<!--          zmiana języka -->
+
+          <a mat-button
+             matTooltip="Select your language"
+             [matMenuTriggerFor]="languageMenu">
+<!--            (click)="select.open()"-->
+
+            <mat-icon class="icon">language</mat-icon>
+          </a>
+            <mat-menu  #languageMenu="matMenu" xPosition="before" yPosition="below" >
+              <div fxLayout="column" style="padding: 5px 10px" (click)="$event.stopPropagation()">
+                <mat-radio-group fxLayout="column" aria-label="Select an option" (change)="onToggle($event)">
+                  <mat-radio-button *ngFor="let lang of translate.getLangs()"
+                                    [value]="lang"
+                                    [checked]="lang === translate.currentLang">
+                    {{ lang | translate }}
+                  </mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </mat-menu>
+
+<!--          <mat-select-->
+<!--            #select-->
+<!--            style="visibility:hidden;width: 0">-->
+<!--            <mat-option>To Shopping List</mat-option>-->
+<!--            <mat-option>Edit Recipe</mat-option>-->
+<!--            <mat-option>Delete Recipe</mat-option>-->
+<!--          </mat-select>-->
+
 <!--          zakładka Login -->
           <a mat-button *ngIf="!isAuthenticated" routerLinkActive="active" routerLink="/auth">
             <mat-icon class="icon">lock</mat-icon>
