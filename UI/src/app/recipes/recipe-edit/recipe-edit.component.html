@@ -4,14 +4,14 @@
 
       <div class="col-xs-12">
         <mat-form-field class="full-width">
-          <mat-label>Name</mat-label>
+          <mat-label>{{'[Recipes]FormName' | translate}}</mat-label>
           <input matInput type="text" id="name" name="name" [(ngModel)]="recipe.name" #name="ngModel">
         </mat-form-field>
       </div>
 
       <div class="col-xs-12">
         <mat-form-field class="full-width">
-          <mat-label>Image URL</mat-label>
+          <mat-label>{{'[Recipes]FormImageURL' | translate}}</mat-label>
           <input matInput type="text" id="imagePath" name="imagePath" [(ngModel)]="recipe.imagePath"
             #imagePath="ngModel">
         </mat-form-field>
@@ -23,7 +23,7 @@
 
       <div class="col-xs-12">
         <mat-form-field class="full-width">
-          <mat-label>Description</mat-label>
+          <mat-label>{{'[Recipes]FormDescription' | translate}}</mat-label>
           <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" id="description" name="description"
             [(ngModel)]="recipe.description"></textarea>
         </mat-form-field>
@@ -36,7 +36,7 @@
           <mat-card-header>
             <mat-card-title class="d-flex align-items-center">
               <mat-icon>shopping_cart</mat-icon>
-              Ingredients
+              {{'[Recipes]FormIng' | translate}}
             </mat-card-title>
           </mat-card-header>
               <mat-card-content *ngIf="this.recipe.ingredients.length>0">
@@ -45,31 +45,31 @@
 
               <!-- Name Column -->
               <ng-container matColumnDef="name">
-                <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef> {{'[Recipes]IngTableName' | translate}} </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.name | lowercase}} </mat-cell>
               </ng-container>
 
               <!-- Amount Column -->
               <ng-container matColumnDef="amount">
-                <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef> {{'[Recipes]IngTableAmount' | translate}} </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
               </ng-container>
 
               <!-- Unit Column -->
               <ng-container matColumnDef="unit">
-                <mat-header-cell *matHeaderCellDef> Unit </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef> {{'[Recipes]IngTableUnit' | translate}} </mat-header-cell>
                 <mat-cell *matCellDef="let element"> {{element.unit}} </mat-cell>
               </ng-container>
 
               <!-- Action Column -->
               <ng-container matColumnDef="action">
-                <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef> {{'[Recipes]IngTableActions' | translate}} </mat-header-cell>
                 <mat-cell *matCellDef="let element; let i=index" (click)="$event.stopPropagation()">
                   <div fxLayout>
-                    <button type="button" mat-icon-button matTooltip="Edit ingredient" matTooltipPosition="above" (click)="editIngredient(element, i)">
+                    <button type="button" mat-icon-button matTooltip="{{'[Recipes]IngTableActionsEditTooltip' | translate}}" matTooltipPosition="above" (click)="editIngredient(element, i)">
                       <mat-icon>edit</mat-icon>
                     </button>
-                    <button type="button" mat-icon-button matTooltip="Delete ingredient" matTooltipPosition="above" class="mat-red-icon" (click)="deleteIngredient(element, i)">
+                    <button type="button" mat-icon-button matTooltip="{{'[Recipes]IngTableActionsDeleteTooltip' | translate}}" matTooltipPosition="above" class="mat-red-icon" (click)="deleteIngredient(element, i)">
                       <mat-icon>delete</mat-icon>
                     </button>
                   </div>
@@ -82,7 +82,7 @@
             </table>
             </mat-card-content>
 
-            <button type="button" mat-mini-fab class="theme-accent-dark sticky" id="add-button" matTooltip="Add new ingredient" matTooltipPosition="above" (click)="addIngredient()"><i class="material-icons" >add_shopping_cart</i></button>
+            <button type="button" mat-mini-fab class="theme-accent-dark sticky" id="add-button" matTooltip="{{'[Recipes]FormIngTooltip' | translate}}" matTooltipPosition="above" (click)="addIngredient()"><i class="material-icons" >add_shopping_cart</i></button>
           </mat-card>
           </div>
           <br>
@@ -90,13 +90,13 @@
             <button type="button" mat-raised-button class="theme-accent-dark" type="submit">
               <div fxLayout fxLayoutAlign="center center" fxLayoutGap="5px">
                 <mat-icon>save</mat-icon>
-                <span>Save</span>
+                <span>{{'[Recipes]FormSaveBtn' | translate}}</span>
               </div>
             </button>
             <button type="button" mat-raised-button class="mat-warn" type="button" (click)="onCancel()">
               <div fxLayout fxLayoutAlign="center center" fxLayoutGap="5px">
                 <mat-icon>clear</mat-icon>
-                <span>Cancel</span>
+                <span>{{'[Recipes]FormCancelBtn' | translate}}</span>
               </div>
             </button>
           </div>

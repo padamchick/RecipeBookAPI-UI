@@ -13,7 +13,7 @@
       <a mat-list-item *ngIf="isAuthenticated" routerLinkActive="active" routerLink="/recipes"
          (click)="drawer.toggle()">
         <mat-icon class="icon">menu_book</mat-icon>
-        <span class="nav-caption">Recipes</span>
+        <span class="nav-caption">{{'[Toolbar]Recipes' | translate}}</span>
 
       </a>
       <!--      SIDENAV Shopping List Link -->
@@ -25,7 +25,7 @@
       <!--      SIDENAV Logout Link -->
       <a mat-list-item *ngIf="isAuthenticated" (click)="onLogout(); drawer.toggle()">
         <mat-icon class="icon">input</mat-icon>
-        <span class="nav-caption">Logout</span>
+        <span class="nav-caption">{{'[Toolbar]Logout' | translate}}</span>
       </a>
     </mat-nav-list>
   </mat-sidenav>
@@ -45,7 +45,7 @@
           <a mat-button *ngIf="isAuthenticated" routerLinkActive="active" routerLink="/recipes">
             <!-- <div class="d-flex justify-content-around align-items-center"> -->
             <mat-icon class="icon">menu_book</mat-icon>
-            <span class="label">Recipes</span>
+            <span class="label">{{'[Toolbar]Recipes' | translate}}</span>
             <!-- </div> -->
           </a>
 
@@ -61,18 +61,20 @@
           <!--          zmiana języka -->
 
           <a mat-button
-             matTooltip="Select your language"
+             matTooltip="{{'[Toolbar]LanguagesTooltip' | translate}}"
              [matMenuTriggerFor]="languageMenu">
             <mat-icon class="icon">language</mat-icon>
           </a>
           <mat-menu #languageMenu="matMenu" xPosition="before" yPosition="below">
             <div class="menu" fxLayout="column" (click)="$event.stopPropagation()">
               <mat-radio-group fxLayout="column" aria-label="Select an option" (change)="onToggle($event)">
-                <mat-radio-button *ngFor="let lang of translate.getLangs()"
-                                  [value]="lang"
-                                  [checked]="lang === translate.currentLang">
-                  {{ lang | translate }}
-                </mat-radio-button>
+                  <mat-radio-button  *ngFor="let lang of translate.getLangs()"
+                                     [value]="lang"
+                                     [checked]="lang === translate.currentLang">
+                    <img [src]="['/assets/images/'+lang+'.png']" />
+                    {{ lang | translate | uppercase }}
+
+                  </mat-radio-button>
               </mat-radio-group>
             </div>
           </mat-menu>
@@ -81,7 +83,7 @@
           <!--          zakładka Logout -->
           <a mat-button *ngIf="isAuthenticated" (click)="onLogout()">
             <mat-icon class="icon">input</mat-icon>
-            <span class="label">Logout</span>
+            <span class="label">{{'[Toolbar]Logout' | translate}}</span>
           </a>
 
         </div>

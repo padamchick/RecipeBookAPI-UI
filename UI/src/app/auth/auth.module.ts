@@ -6,8 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { LoginComponent } from './login/login.component';
 import { GuestComponent } from './guest/guest.component';
 import { RegisterComponent } from './register/register.component';
-import {LoginGuard} from './login.guard';
-import {TranslateModule} from '@ngx-translate/core';
+import { LoginGuard } from './login.guard';
 
 
 const routes: Routes = [
@@ -33,8 +32,7 @@ const routes: Routes = [
   imports: [
     FormsModule,
     RouterModule.forChild(routes),
-    SharedModule,
-    TranslateModule,
+    SharedModule
 
   ]
 })

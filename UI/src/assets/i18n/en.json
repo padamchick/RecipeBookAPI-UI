@@ -24,5 +24,37 @@
   "[SignUp]ConfirmPasswordPlaceholder": "Confirm your password",
   "[SignUp]ConfirmPasswordError": "Confirming password is required",
   "[SignUp]SignUpButton": "Sign Up",
-  "[SignUp]BackToLoginPage": "Back to login page."
+  "[SignUp]BackToLoginPage": "Back to login page.",
+
+  "[Toolbar]Recipes": "Recipes",
+  "[Toolbar]Logout": "Logout",
+  "[Toolbar]LanguagesTooltip": "Select your language",
+
+  "[Recipes]NewRecipe": "New Recipe",
+  "[Recipes]WelcomeTitle": "Welcome in my Recipe Book",
+  "[Recipes]WelcomeSubtitle": "Please, select recipe!",
+  "[Recipes]ManageRecipe": "Manage Recipe",
+  "[Recipes]EditRecipe": "Edit Recipe",
+  "[Recipes]DeleteRecipe": "Delete Recipe",
+  "[Recipes]Description": "Description",
+  "[Recipes]Ingredients": "Ingredients",
+  "[Recipes]IngTableName": "Name",
+  "[Recipes]IngTableAmount": "Amount",
+  "[Recipes]IngTableUnit": "Unit",
+  "[Recipes]IngTableActions": "Actions",
+  "[Recipes]IngTableActionsEditTooltip": "Edit ingredient",
+  "[Recipes]IngTableActionsDeleteTooltip": "Delete ingredient",
+  "[Recipes]FormName": "Name",
+  "[Recipes]FormImageURL": "Image URL",
+  "[Recipes]FormDescription": "Description",
+  "[Recipes]FormIng": "Ingredients",
+  "[Recipes]FormIngTooltip": "Add new ingredient",
+  "[Recipes]FormSaveBtn": "Save",
+  "[Recipes]FormCancelBtn": "Cancel",
+  "[Recipes]AddIngredientTitle": "Add Ingredient",
+  "[Recipes]DiscardDialogTitle": "Confirm Exit",
+  "[Recipes]DiscardDialogText": "Are you sure you want to discard all changes?",
+  "[Recipes]DiscardDialogDiscardBtn": "Discard",
+  "[Recipes]DiscardDialogBackBtn": "Back"
+
 }

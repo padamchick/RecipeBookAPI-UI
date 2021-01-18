@@ -63,10 +63,6 @@ mat-toolbar {
   height: 25px;
 }
 
-.menu {
-  padding: 7px 30px;
-}
-
 
 button:focus,
 button:active:focus,
@@ -105,8 +101,40 @@ img {
 }
 
 ::ng-deep .mat-radio-container {
-  margin-right: 10px;
+  margin-right: 15px;
 }
+
+::ng-deep .mat-radio-label-content {
+  letter-spacing: 2px;
+}
+
+//   MENU   //
+
+.mat-radio-button {
+  padding: 10px 30px;
+  font-size: 18px;
+  &.mat-radio-checked {
+    background-color: #dfecff;
+  }
+  &:not(.mat-radio-checked) {
+    background-color: white;
+  }
+  img {
+    height: 22px;
+    margin-right: 10px;
+  }
+}
+
+.menu {
+  padding: 0;
+}
+
+::ng-deep .mat-menu-content {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  width: 250px;
+}
+
 
 
 

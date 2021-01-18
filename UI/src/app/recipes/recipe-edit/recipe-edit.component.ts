@@ -18,6 +18,7 @@ import * as fromApp from '../../store/app.reducer';
 import * as RecipesActions from '../store/recipe.actions';
 import * as lodash from 'lodash';
 import {Actions, ofType} from '@ngrx/effects';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -38,7 +39,8 @@ export class RecipeEditComponent implements OnInit, CanComponentDeactivate {
     private dataService: DataStorageService,
     public dialog: MatDialog,
     private store: Store<fromApp.AppState>,
-    private actions$: Actions
+    private actions$: Actions,
+    private translate: TranslateService
   ) {
   }
 
@@ -154,11 +156,12 @@ export class RecipeEditComponent implements OnInit, CanComponentDeactivate {
     } else {
       // jesli nastapila zmiana w formularzu:
       return new Observable((observer: Observer<boolean>) => {
-        const message = 'Are you sure you want to discard all changes?';
+        // const message = 'Are you sure you want to discard all changes?';
+        const message = this.translate.instant("[Recipes]DiscardDialogText");
         const dialogData = new ConfirmationDialogModel(
-          'Confirm Exit',
+          this.translate.instant("[Recipes]DiscardDialogTitle"),
           message,
-          'Discard'
+          this.translate.instant("[Recipes]DiscardDialogDiscardBtn")
         );
         const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
           maxWidth: '400px',

@@ -12,15 +12,14 @@
         mat-raised-button
         class="theme-accent-dark"
       (click)="select.open()">
-        Manage Recipe
+        {{'[Recipes]ManageRecipe' | translate}}
         <mat-icon>arrow_drop_down</mat-icon>
       </button><br>
       <mat-select
         #select
         style="visibility:hidden;width: 0">
-        <mat-option (click)="onAddToShoppingList()" style="cursor: pointer;">To Shopping List</mat-option>
-        <mat-option (click)="onEditRecipe()" style="cursor: pointer;">Edit Recipe</mat-option>
-        <mat-option (click)="onDeleteRecipe()" style="cursor: pointer;">Delete Recipe</mat-option>
+        <mat-option (click)="onEditRecipe()" style="cursor: pointer;">{{'[Recipes]EditRecipe' | translate}}</mat-option>
+        <mat-option (click)="onDeleteRecipe()" style="cursor: pointer;">{{'[Recipes]DeleteRecipe' | translate}}</mat-option>
       </mat-select>
 
     </div>
@@ -32,7 +31,7 @@
 
       <mat-card-title class="d-flex align-items-center justify-content-between">
         <mat-icon>description</mat-icon>
-        Description</mat-card-title>
+        {{'[Recipes]Description' | translate}}</mat-card-title>
 
     </mat-card-header>
     <mat-card-content><p style="padding: 10px; white-space: pre-wrap;">{{ recipe.description }}</p></mat-card-content>
@@ -45,7 +44,7 @@
     <mat-card-header>
       <mat-card-title class="d-flex align-items-center">
         <mat-icon>shopping_cart</mat-icon>
-        Ingredients
+        {{'[Recipes]Ingredients' | translate}}
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
@@ -54,19 +53,19 @@
 
         <!-- Name Column -->
         <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef> {{'[Recipes]IngTableName' | translate}} </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
         </ng-container>
 
         <!-- Weight Column -->
         <ng-container matColumnDef="amount">
-          <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef> {{'[Recipes]IngTableAmount' | translate}} </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
         </ng-container>
 
         <!-- Symbol Column -->
         <ng-container matColumnDef="unit">
-          <mat-header-cell *matHeaderCellDef> Unit </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef> {{'[Recipes]IngTableUnit' | translate}} </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.unit}} </mat-cell>
         </ng-container>
 
