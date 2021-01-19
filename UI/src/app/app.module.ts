@@ -17,6 +17,7 @@ import {RecipeEffects} from './recipes/store/recipe.effects';
 import {AuthEffects} from './auth/store/auth.effects';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {ToastrModule} from 'ngx-toastr';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
     HttpClientModule,
     SharedModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     NgbModule,
     StoreModule.forRoot(fromApp.appReducer),
     EffectsModule.forRoot([RecipeEffects, AuthEffects]),

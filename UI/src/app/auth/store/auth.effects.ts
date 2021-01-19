@@ -2,12 +2,13 @@ import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import * as authActions from '../store/auth.actions';
 import {catchError, map, switchMap, tap} from 'rxjs/operators';
-import {AuthResponseData, LoginForm, RegisterForm, User} from '../auth.model';
+import {AuthResponseData,  User} from '../auth.model';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../auth.service';
 import {of} from 'rxjs';
 import {Router} from '@angular/router';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {NotifyService} from '../../shared/services/notify.service';
 
 
 @Injectable()
@@ -19,7 +20,7 @@ export class AuthEffects {
       switchMap(({username, password} ) => {
          return this.authService.signUp(username, password).pipe(
            map(res => authActions.signUpSuccess()),
-           catchError(err => of(authActions.signUpFail()))
+           catchError(err => of(authActions.signUpFail({error: err})))
          );
       })
     ));
@@ -53,13 +54,27 @@ export class AuthEffects {
       switchMap(({username, password, toRemember}) => {
         return this.authService.login(username, password).pipe(
           map((res: AuthResponseData) => {
-            console.log('Before logInSuccess')
             return authActions.logInSuccess({username: res.username, token: res.jwttoken, expirationDate: new Date(res.expirationDate), redirect: true, toRemember: toRemember});
           }),
-          catchError(err => of(authActions.logInFail()))
+          catchError(err => of(authActions.logInFail({error: err})))
         );
       })
     ));
+
+  handleAuthError = createEffect(() =>
+  this.actions$.pipe(
+    ofType(authActions.logInFail),
+    tap(({error}) => {
+      this.spinner.hide();
+      if(error && error.error) {
+        if(error.error.message === 'INVALID_CREDENTIALS') {
+          this.notify.badCredentialsError();
+        } else {
+          this.notify.loginFailError();
+        }
+      }
+    })
+  ), {dispatch: false})
 
   authRedirect$ = createEffect(() =>
     this.actions$.pipe(
@@ -144,6 +159,7 @@ export class AuthEffects {
     private http: HttpClient,
     private authService: AuthService,
     private router: Router,
-    private spinner: NgxSpinnerService) {}
+    private spinner: NgxSpinnerService,
+    private notify: NotifyService) {}
 
 }

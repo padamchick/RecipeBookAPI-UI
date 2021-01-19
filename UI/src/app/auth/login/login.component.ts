@@ -1,4 +1,4 @@
-import {Component, Output, EventEmitter, ViewEncapsulation} from '@angular/core';
+import {Component, Output, EventEmitter, ViewEncapsulation, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../auth.service';
@@ -37,11 +37,17 @@ export class LoginComponent {
     this.spinner.show()
     this.store.dispatch(authActions.logIn({username: username, password: password, toRemember: this.rememberMe}))
 
+
+
     setTimeout(() => {
       form.reset();
     }, 1000);
 
   }
+
+  // resetForm() {
+  //   this.form.reset();
+  // }
 
   onHandleError() {
     this.error = null;

@@ -7,8 +7,9 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { IngredientEditComponent } from './ingredient-edit/ingredient-edit.component';
 import { FormsModule } from '@angular/forms';
-import {NgxSpinnerModule} from 'ngx-spinner';
-import {TranslateModule} from '@ngx-translate/core';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { TranslateModule } from '@ngx-translate/core';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {TranslateModule} from '@ngx-translate/core';
     LayoutModule,
     FormsModule,
     NgxSpinnerModule,
-    TranslateModule
+    TranslateModule,
+    ToastrModule
   ],
   exports: [
     DropdownDirective,
@@ -33,7 +35,8 @@ import {TranslateModule} from '@ngx-translate/core';
     FlexLayoutModule,
     LayoutModule,
     NgxSpinnerModule,
-    TranslateModule
+    TranslateModule,
+    ToastrModule
   ]
 })
 export class SharedModule {}
