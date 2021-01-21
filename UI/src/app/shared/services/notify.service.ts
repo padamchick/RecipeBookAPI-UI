@@ -6,22 +6,22 @@ export class NotifyService {
   constructor(public notify: ToastrService) {}
 
   public badCredentialsError() {
-    this.showErrorMessage('Bad credentials', 'Login failed', { timeOut: 3000 })
+    this.showErrorMessage('Bad credentials', 'Login failed')
   }
   public loginFailError() {
-    this.showErrorMessage('Try again', 'Login failed', { timeOut: 3000 })
+    this.showErrorMessage('Try again', 'Login failed')
   }
 
-  private showErrorMessage(message: string = '', title: string = '', options: any = {}) {
-    this.notify.error(message, title, options)
+  private showErrorMessage(message: string = '', title: string = '') {
+    this.notify.error(message, title, { timeOut: 3000 })
   }
-  private showSuccessMessage(message: string = '', title: string = '', options: any = {}) {
-    this.notify.success(message, title, options)
+  private showSuccessMessage(message: string = '', title: string = '') {
+    this.notify.success(message, title, { timeOut: 3000 })
   }
-  private showWarningMessage(message: string = '', title: string = '', options: any = {}) {
-    this.notify.warning(message, title, options)
+  private showWarningMessage(message: string = '', title: string = '') {
+    this.notify.warning(message, title, { timeOut: 3000 })
   }
-  private showInfoMessage(message: string = '', title: string = '', options: any = {}) {
-    this.notify.info(message, title, options)
+  private showInfoMessage(message: string = '', title: string = '') {
+    this.notify.info(message, title, { timeOut: 3000 })
   }
 }
