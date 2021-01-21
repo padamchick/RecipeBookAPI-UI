@@ -22,6 +22,12 @@
         <mat-icon class="icon">shopping_cart</mat-icon>
         <span class="nav-caption">Shopping List</span>
       </a>
+      <!--      SIDENAV New Recipes Link -->
+      <a mat-list-item *ngIf="isAuthenticated" routerLinkActive="active"
+         routerLink="/new-recipes" (click)="drawer.toggle()">
+        <mat-icon class="icon"><i class="fas fa-utensils"></i></mat-icon>
+        <span class="nav-caption">New recipes</span>
+      </a>
       <!--      SIDENAV Logout Link -->
       <a mat-list-item *ngIf="isAuthenticated" (click)="onLogout(); drawer.toggle()">
         <mat-icon class="icon">input</mat-icon>
@@ -55,6 +61,13 @@
             <mat-icon class="icon">shopping_cart</mat-icon>
             <span class="label">Shopping List</span>
           </a>
+
+          <!--          zakładka New Recipes -->
+          <a mat-button *ngIf="isAuthenticated" routerLinkActive="active" routerLink="/new-recipes">
+            <mat-icon class="icon"><i class="fas fa-utensils"></i></mat-icon>
+            <span class="label">New recipes</span>
+          </a>
+
 
           <span class="spacer"></span>
 
