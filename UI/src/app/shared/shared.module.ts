@@ -29,8 +29,8 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule
   ],
   exports: [
-    DropdownDirective,
     CommonModule,
+    FormsModule,
     MaterialModule,
     FlexLayoutModule,
     LayoutModule,

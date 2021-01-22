@@ -1,0 +1,34 @@
+:host {
+  width: 54px;
+  min-width: 54px;
+  border-right: 1px solid #dadada;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow:hidden;  //code added to prevent scroll
+}
+
+@primary: var(--th-accent-dark);
+
+nav {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  mat-icon {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    color: rgba(0,0,0,0.6);
+    //cursor: pointer;
+
+    &:first-child {
+      padding-top: 1.2rem;
+    }
+  }
+}
+
+.active {
+  & i, & mat-icon {
+    color: @primary;
+  }
+}

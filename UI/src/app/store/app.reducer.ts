@@ -1,5 +1,5 @@
-import * as fromRecipes from '../recipes/store/recipe.reducer';
-import * as fromAuth from '../auth/store/auth.reducer';
+import * as fromRecipes from '../main-project-container/project-container/recipes/store/recipe.reducer';
+import * as fromAuth from '../main-project-container/project-container/auth/store/auth.reducer';
 import {ActionReducerMap} from '@ngrx/store';
 
 export interface AppState {

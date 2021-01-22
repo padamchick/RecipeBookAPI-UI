@@ -2,9 +2,9 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map, tap} from 'rxjs/operators';
 
-import {Recipe} from '../recipes/recipe.model';
-import {RecipeService} from '../recipes/recipe.service';
-import {ShoppingListService} from '../shopping-list/shopping-list.service';
+import {Recipe} from '../main-project-container/project-container/recipes/recipe.model';
+import {RecipeService} from '../main-project-container/project-container/recipes/recipe.service';
+import {ShoppingListService} from '../main-project-container/project-container/shopping-list/shopping-list.service';
 import {Ingredient} from './ingredient.model';
 import {environment} from '../../environments/environment';
 
