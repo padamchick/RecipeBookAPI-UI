@@ -1,8 +1,10 @@
 <nav class="top">
-<a routerLink="/recipes" routerLinkActive="active">
-  <mat-icon class="icon">menu_book</mat-icon>
+<a routerLink="/recipes" routerLinkActive="active" #tooltip="matTooltip" matTooltip="Recipes" matTooltipPosition="after">
+  <mat-icon class="icon"
+
+  >menu_book</mat-icon>
 </a>
-  <a routerLink="/new-recipes" routerLinkActive="active">
+  <a routerLink="/new-recipes" routerLinkActive="active" #tooltip="matTooltip" matTooltip="New Recipes" matTooltipPosition="right">
     <mat-icon class="icon"><i class="fas fa-utensils"></i></mat-icon>
   </a>
 </nav>

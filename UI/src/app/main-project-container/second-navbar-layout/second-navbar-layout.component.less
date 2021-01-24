@@ -6,6 +6,9 @@
   height: 100%;
 }
 
+@accent: var(--th-accent);
+@accent_light: var(--th-accent-light);
+
 .top-segment {
   display: flex;
   justify-content: space-between;
@@ -22,5 +25,23 @@
     width: 36px;
     height: 36px;
     line-height: 0 !important;
+  }
+}
+
+.bottom-segment {
+  ::ng-deep mat-list {
+    padding-top: 0;
+  }
+  ::ng-deep mat-list-item {
+    height: 45px;
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: 400;
+  }
+  ::ng-deep mat-list-item:hover {
+    background-color: @accent_light;
+    mat-icon {
+      color: @accent;
+    }
+    cursor: pointer;
   }
 }

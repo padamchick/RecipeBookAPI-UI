@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ProjectContainerComponent implements OnInit {
 
   secondNavBarVisible = true;
+  topBarVisible = true;
 
   constructor() { }
 

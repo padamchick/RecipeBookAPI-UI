@@ -16,7 +16,7 @@ import { filter, map } from 'rxjs/operators';
 import {Store} from '@ngrx/store';
 import * as fromApp from '../../../../store/app.reducer';
 import * as RecipesActions from '../store/recipe.actions';
-import * as lodash from 'lodash';
+import * as _ from 'lodash';
 import {Actions, ofType} from '@ngrx/effects';
 import {TranslateService} from '@ngx-translate/core';
 
@@ -63,7 +63,7 @@ export class RecipeEditComponent implements OnInit, CanComponentDeactivate {
     if (this.editMode) {
       this.store.select('recipes').pipe(
         map(recipesState => recipesState.recipes.find(recipe => recipe.id === this.id)),
-      ).subscribe(recipe => this.recipe = lodash.cloneDeep(recipe));
+      ).subscribe(recipe => this.recipe = _.cloneDeep(recipe));
     }
   }
 
@@ -151,7 +151,7 @@ export class RecipeEditComponent implements OnInit, CanComponentDeactivate {
       return true;
     }
 
-    if (lodash.isEqual(this.originalRecipe, this.recipe)) {
+    if (_.isEqual(this.originalRecipe, this.recipe)) {
       return true;
     } else {
       // jesli nastapila zmiana w formularzu:

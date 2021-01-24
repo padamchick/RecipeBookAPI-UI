@@ -1,23 +1,25 @@
-import { NgModule } from '@angular/core';
-import { SharedModule } from '../../../shared/shared.module';
-import { RouterModule, Routes } from '@angular/router';
-import { NewRecipesComponent } from './new-recipes.component';
-import { SecondNavbarNewRecipesComponent } from './second-navbar-new-recipes/second-navbar-new-recipes.component';
+import {NgModule} from '@angular/core';
+import {SharedModule} from '../../../shared/shared.module';
+import {RouterModule, Routes} from '@angular/router';
+import {NewRecipesComponent} from './new-recipes.component';
+import {SecondNavbarNewRecipesComponent} from './second-navbar-new-recipes/second-navbar-new-recipes.component';
+import { TopBarComponent } from './top-bar/top-bar.component';
 
 const routes: Routes = [
   {
-    path: '',  children: [
-      { path: '', component: SecondNavbarNewRecipesComponent, outlet: 'second-nav-bar' },
-      { path: '', component: NewRecipesComponent }
+    path: '', children: [
+      {path: '', component: SecondNavbarNewRecipesComponent, outlet: 'second-nav-bar'},
+      {path: '', component: NewRecipesComponent}
     ]
   }
 ];
 
 @NgModule({
-    declarations: [
-        NewRecipesComponent,
-        SecondNavbarNewRecipesComponent
-    ],
+  declarations: [
+    NewRecipesComponent,
+    SecondNavbarNewRecipesComponent,
+    TopBarComponent
+  ],
   imports: [
     RouterModule.forChild(routes),
     SharedModule
@@ -25,4 +27,5 @@ const routes: Routes = [
 })
 
 
-export class NewRecipesModule { }
+export class NewRecipesModule {
+}

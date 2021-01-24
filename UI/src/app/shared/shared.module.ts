@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { TranslateModule } from '@ngx-translate/core';
 import { ToastrModule } from 'ngx-toastr';
-import {SecondNavbarLayoutComponent} from '../main-project-container/second-navbar-layout/second-navbar-layout.component';
+import { SecondNavbarLayoutComponent } from '../main-project-container/second-navbar-layout/second-navbar-layout.component';
 
 
 @NgModule({
@@ -18,7 +18,7 @@ import {SecondNavbarLayoutComponent} from '../main-project-container/second-navb
     DropdownDirective,
     ConfirmationDialogComponent,
     IngredientEditComponent,
-    SecondNavbarLayoutComponent
+    SecondNavbarLayoutComponent,
   ],
   imports: [
     CommonModule,
