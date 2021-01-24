@@ -1,0 +1,21 @@
+<mat-card [style.width]="width + 'px'">
+  <mat-card-header *ngIf="displayHeader">
+    <div mat-card-avatar>
+      <ng-content select="[avatar]"></ng-content>
+    </div>
+    <mat-card-title>
+      <ng-content select="[title]"></ng-content>
+    </mat-card-title>
+    <mat-card-subtitle>
+      <ng-content select="[subtitle]"></ng-content>
+    </mat-card-subtitle>
+    <ng-content select="[nextToSubtitle]"></ng-content>
+  </mat-card-header>
+  <ng-content select="[image]"></ng-content>
+  <mat-card-content>
+    <ng-content select="[content]"></ng-content>
+  </mat-card-content>
+  <mat-card-footer>
+    <ng-content select="[footer]"></ng-content>
+  </mat-card-footer>
+</mat-card>

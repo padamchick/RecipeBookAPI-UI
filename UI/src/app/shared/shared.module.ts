@@ -11,6 +11,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { TranslateModule } from '@ngx-translate/core';
 import { ToastrModule } from 'ngx-toastr';
 import { SecondNavbarLayoutComponent } from '../main-project-container/second-navbar-layout/second-navbar-layout.component';
+import { CardTemplateComponent } from './card-template/card-template.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { SecondNavbarLayoutComponent } from '../main-project-container/second-na
     ConfirmationDialogComponent,
     IngredientEditComponent,
     SecondNavbarLayoutComponent,
+    CardTemplateComponent,
   ],
   imports: [
     CommonModule,
@@ -39,7 +41,8 @@ import { SecondNavbarLayoutComponent } from '../main-project-container/second-na
     NgxSpinnerModule,
     TranslateModule,
     ToastrModule,
-    SecondNavbarLayoutComponent
+    SecondNavbarLayoutComponent,
+    CardTemplateComponent
   ]
 })
 export class SharedModule {}

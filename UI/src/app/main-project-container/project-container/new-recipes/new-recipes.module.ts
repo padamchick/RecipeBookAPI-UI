@@ -4,6 +4,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {NewRecipesComponent} from './new-recipes.component';
 import {SecondNavbarNewRecipesComponent} from './second-navbar-new-recipes/second-navbar-new-recipes.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
+import { RecipeCardComponent } from './recipe-card/recipe-card.component';
 
 const routes: Routes = [
   {
@@ -18,7 +19,8 @@ const routes: Routes = [
   declarations: [
     NewRecipesComponent,
     SecondNavbarNewRecipesComponent,
-    TopBarComponent
+    TopBarComponent,
+    RecipeCardComponent
   ],
   imports: [
     RouterModule.forChild(routes),
