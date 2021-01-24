@@ -10,13 +10,15 @@ import { FormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { TranslateModule } from '@ngx-translate/core';
 import { ToastrModule } from 'ngx-toastr';
+import {SecondNavbarLayoutComponent} from '../main-project-container/second-navbar-layout/second-navbar-layout.component';
 
 
 @NgModule({
   declarations: [
     DropdownDirective,
     ConfirmationDialogComponent,
-    IngredientEditComponent
+    IngredientEditComponent,
+    SecondNavbarLayoutComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +38,8 @@ import { ToastrModule } from 'ngx-toastr';
     LayoutModule,
     NgxSpinnerModule,
     TranslateModule,
-    ToastrModule
+    ToastrModule,
+    SecondNavbarLayoutComponent
   ]
 })
 export class SharedModule {}
