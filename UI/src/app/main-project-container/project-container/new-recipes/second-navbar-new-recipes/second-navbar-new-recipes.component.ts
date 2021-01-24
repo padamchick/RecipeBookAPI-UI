@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {NewRecipeService} from '../new-recipe.service';
+import {Category} from '../models/category.model';
 
 @Component({
   selector: 'app-second-navbar-new-recipes',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SecondNavbarNewRecipesComponent implements OnInit {
 
-  constructor() { }
+  categories: Category[];
+
+  constructor(private recipeService: NewRecipeService) { }
 
   ngOnInit(): void {
+    this.recipeService.getCategories().subscribe(categories => this.categories = categories);
   }
 
 }

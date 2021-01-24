@@ -8,6 +8,7 @@ import recipes.recipebook.entity.Ingredient;
 import recipes.recipebook.entity.Recipe;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/recipes")
@@ -54,5 +55,15 @@ public class RecipeController {
     public ResponseEntity<Ingredient> deleteIngredient(@PathVariable Long id) {
         return ResponseEntity.ok(recipeService.deleteIngredient(id));
     }
+
+    @GetMapping("/categories")
+    public Set<String> getCategories() {
+        return recipeService.getCategories();
+    }
+
+//    @GetMapping("/categories")
+//    public List<String> getAllCategories() {
+//        return recipeService.getAllCategories();
+//    }
 
 }

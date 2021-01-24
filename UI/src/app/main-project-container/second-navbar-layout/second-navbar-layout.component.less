@@ -4,5 +4,23 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  overflow: hidden;
+}
+
+.top-segment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px 0 15px;
+  border-bottom: 1px solid #dadada;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 14px;
+  letter-spacing: 0.7px;
+  font-weight: 700;
+  height: 47px;
+
+  ::ng-deep .mat-icon-button {
+    width: 36px;
+    height: 36px;
+    line-height: 0 !important;
+  }
 }

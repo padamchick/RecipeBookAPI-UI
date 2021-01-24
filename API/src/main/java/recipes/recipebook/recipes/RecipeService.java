@@ -6,6 +6,7 @@ import recipes.recipebook.entity.Ingredient;
 import recipes.recipebook.entity.Recipe;
 
 import java.util.List;
+import java.util.Set;
 
 public interface RecipeService {
 
@@ -16,4 +17,6 @@ public interface RecipeService {
     Recipe delete(Long id);
     Ingredient deleteIngredient(Long id);
 
+    Set<String> getCategories();
+//    List<String> getAllCategories();
 }

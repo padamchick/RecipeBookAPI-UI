@@ -16,6 +16,7 @@ import recipes.recipebook.ingredients.IngredientRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @AllArgsConstructor
 @Service
@@ -76,5 +77,19 @@ public class RecipeServiceImpl implements RecipeService {
         ingredientRepository.delete(toDelete);
         return toDelete;
     }
+
+    @Override
+    public Set<String> getCategories() {
+        final String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        final Optional<UserDao> user = userRepository.findByUsername(username);
+        final RecipeBook recipeBook = user.get().getRecipeBook();
+        Set<String> categories = recipeRepository.findRecipeBookCategories(recipeBook);
+        return categories;
+    }
+//
+//    @Override
+//    public List<String> getAllCategories() {
+//        return null;
+//    }
 
 }

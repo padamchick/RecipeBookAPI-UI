@@ -1,10 +1,19 @@
 <app-second-navbar-layout>
   <ng-container top>
-    <div>SETTINGS</div>
+    <div>CATEGORIES</div>
 
   </ng-container>
-  <div class="container">
+  <div class="content">
+    <mat-list *ngFor="let category of categories">
+      <a>
+        <mat-list-item>
+          <mat-icon matListIcon>{{category.iconName}}</mat-icon>
+          {{category.name}}
+        </mat-list-item>
+      </a>
+      <mat-divider></mat-divider>
 
+    </mat-list>
   </div>
 
 </app-second-navbar-layout>

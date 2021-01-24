@@ -23,6 +23,7 @@ public class Recipe {
     @Column(length = 3000)
     private String description;
     private String imagePath;
+    private String category;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
     private List<Ingredient> ingredients;
