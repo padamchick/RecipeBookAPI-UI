@@ -21,8 +21,8 @@ export class RecipesResolverService implements Resolve<{ recipes: Recipe[] }> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.store.select('recipes').pipe(
       first(),
-      map(recipesState => recipesState.recipes),
-      switchMap(recipes => {
+      // map(recipesState => recipesState.recipes),
+      switchMap(({recipes}) => {
         if(recipes.length === 0) {
           this.store.dispatch(RecipesActions.fetchRecipes());
           return this.actions$.pipe(

@@ -23,7 +23,6 @@ public class Recipe {
     @Column(length = 3000)
     private String description;
     private String imagePath;
-    private String category;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
     private List<Ingredient> ingredients;
@@ -32,6 +31,10 @@ public class Recipe {
     @JoinColumn(name = "recipe_book_id")
     @JsonIgnore
     private RecipeBook recipeBook;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     public void update(RecipeDto dto) {
         this.name = dto.getName();

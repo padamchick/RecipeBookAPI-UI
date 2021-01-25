@@ -1,3 +1,11 @@
 <app-card-template>
-
+<ng-container title>
+  {{recipe.name}}
+</ng-container>
+  <ng-container image>
+    <img mat-card-image [src]="recipe.imagePath">
+  </ng-container>
+  <ng-container content>
+    {{recipe.description}}
+  </ng-container>
 </app-card-template>

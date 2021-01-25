@@ -2,6 +2,7 @@ package recipes.recipebook.recipes;
 
 import org.springframework.stereotype.Service;
 import recipes.recipebook.dto.RecipeDto;
+import recipes.recipebook.entity.Category;
 import recipes.recipebook.entity.Ingredient;
 import recipes.recipebook.entity.Recipe;
 
@@ -18,5 +19,6 @@ public interface RecipeService {
     Ingredient deleteIngredient(Long id);
 
     Set<String> getCategories();
+    Category findCategoryByName(String name);
 //    List<String> getAllCategories();
 }
