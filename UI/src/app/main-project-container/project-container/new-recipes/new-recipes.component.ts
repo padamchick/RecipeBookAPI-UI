@@ -4,6 +4,9 @@ import {Store} from '@ngrx/store';
 import {Recipe} from '../recipes/recipe.model';
 import {NgxMasonryAnimations, NgxMasonryOptions} from 'ngx-masonry';
 import {animate, style} from '@angular/animations';
+import {ActivatedRoute, Params} from '@angular/router';
+import {combineLatest} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-new-recipes',
@@ -25,23 +28,29 @@ export class NewRecipesComponent implements OnInit {
   }
   public masonryOptions: NgxMasonryOptions = {
     itemSelector: '.masonry-item',
-    // horizontalOrder: true,
-    // originLeft: true,
+    horizontalOrder: true,
+    originLeft: true,
     gutter: 6,
     animations: this.animations,
-    //  transitionDuration: '0.1s' Too fast sorting switching fix
   };
 
   updateMasonryLayout;
 
-  constructor(private store: Store<fromApp.AppState>,) { }
+  constructor(private store: Store<fromApp.AppState>,
+              private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    // this.store.dispatch(RecipesActions.fetchRecipes());
-    this.store.select('recipes').subscribe(({recipes}) => {
-      this.recipes = recipes;
-      console.log('Recipes', recipes);
-    });
+    combineLatest([
+      this.route.queryParams,
+      this.store.select('recipes').pipe(map(({recipes})=> recipes))
+    ]).subscribe((data: [Params, Recipe[]]) => {
+      const category = data[0]['category'];
+      if(category==='All' || category==null || category ==='') {
+        this.recipes = data[1];
+      } else {
+        this.recipes = data[1].filter(recipe => recipe.category.name === category);
+      }
+    })
   }
 
 }
