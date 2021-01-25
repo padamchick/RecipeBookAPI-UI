@@ -12,6 +12,6 @@
     </div>
   </ng-container>
   <ng-container content>
-    {{_recipe.description}}
+    {{_recipe.description | truncate:200}}
   </ng-container>
 </app-card-template>

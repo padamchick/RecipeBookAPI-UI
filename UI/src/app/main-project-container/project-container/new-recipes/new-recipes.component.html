@@ -1,7 +1,5 @@
 <app-top-bar></app-top-bar>
 <main>
-<app-recipe-card
-[recipe]="recipes[0]">
-
+<app-recipe-card *ngFor="let recipe of recipes" [recipe]="recipe">
 </app-recipe-card>
 </main>

@@ -12,6 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ToastrModule } from 'ngx-toastr';
 import { SecondNavbarLayoutComponent } from '../main-project-container/second-navbar-layout/second-navbar-layout.component';
 import { CardTemplateComponent } from './card-template/card-template.component';
+import { TruncatePipePipe } from './truncate-pipe.pipe';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { CardTemplateComponent } from './card-template/card-template.component';
     IngredientEditComponent,
     SecondNavbarLayoutComponent,
     CardTemplateComponent,
+    TruncatePipePipe,
   ],
   imports: [
     CommonModule,
@@ -42,7 +44,8 @@ import { CardTemplateComponent } from './card-template/card-template.component';
     TranslateModule,
     ToastrModule,
     SecondNavbarLayoutComponent,
-    CardTemplateComponent
+    CardTemplateComponent,
+    TruncatePipePipe
   ]
 })
 export class SharedModule {}
