@@ -76,11 +76,11 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public Set<String> getCategories() {
+    public Set<Category> getCategories() {
         final String username = SecurityContextHolder.getContext().getAuthentication().getName();
         final Optional<UserDao> user = userRepository.findByUsername(username);
         final RecipeBook recipeBook = user.get().getRecipeBook();
-        Set<String> categories = recipeRepository.findRecipeBookCategories(recipeBook);
+        Set<Category> categories = recipeRepository.findRecipeBookCategories(recipeBook);
         return categories;
     }
 

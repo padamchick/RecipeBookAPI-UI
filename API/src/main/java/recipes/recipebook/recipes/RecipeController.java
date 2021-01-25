@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import recipes.recipebook.dto.RecipeDto;
+import recipes.recipebook.entity.Category;
 import recipes.recipebook.entity.Ingredient;
 import recipes.recipebook.entity.Recipe;
 
@@ -57,7 +58,7 @@ public class RecipeController {
     }
 
     @GetMapping("/categories")
-    public Set<String> getCategories() {
+    public Set<Category> getCategories() {
         return recipeService.getCategories();
     }
 

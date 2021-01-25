@@ -19,7 +19,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
     @Query("SELECT r.category FROM Recipe r " +
             "WHERE r.recipeBook = :recipeBook")
-    Set<String> findRecipeBookCategories(@Param("recipeBook") RecipeBook recipeBook);
+    Set<Category> findRecipeBookCategories(@Param("recipeBook") RecipeBook recipeBook);
 
     @Query("SELECT c FROM Category c " +
             "WHERE c.name =: categoryName")

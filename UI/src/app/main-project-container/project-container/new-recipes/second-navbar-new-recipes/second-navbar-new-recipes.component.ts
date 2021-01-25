@@ -14,7 +14,10 @@ export class SecondNavbarNewRecipesComponent implements OnInit {
   constructor(private recipeService: NewRecipeService) { }
 
   ngOnInit(): void {
-    this.recipeService.getCategories().subscribe(categories => this.categories = categories);
+    this.recipeService.getCategories().subscribe(categories => {
+      this.categories = categories
+      console.log('Categories', categories)
+    });
   }
 
 }

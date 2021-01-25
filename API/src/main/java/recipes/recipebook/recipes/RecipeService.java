@@ -18,7 +18,7 @@ public interface RecipeService {
     Recipe delete(Long id);
     Ingredient deleteIngredient(Long id);
 
-    Set<String> getCategories();
+    Set<Category> getCategories();
     Category findCategoryByName(String name);
 //    List<String> getAllCategories();
 }
