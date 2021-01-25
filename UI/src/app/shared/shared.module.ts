@@ -13,6 +13,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { SecondNavbarLayoutComponent } from '../main-project-container/second-navbar-layout/second-navbar-layout.component';
 import { CardTemplateComponent } from './card-template/card-template.component';
 import { TruncatePipePipe } from './truncate-pipe.pipe';
+import {NgxMasonryModule} from 'ngx-masonry';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { TruncatePipePipe } from './truncate-pipe.pipe';
     FormsModule,
     NgxSpinnerModule,
     TranslateModule,
-    ToastrModule
+    ToastrModule,
+    NgxMasonryModule
   ],
   exports: [
     CommonModule,
@@ -45,7 +47,8 @@ import { TruncatePipePipe } from './truncate-pipe.pipe';
     ToastrModule,
     SecondNavbarLayoutComponent,
     CardTemplateComponent,
-    TruncatePipePipe
+    TruncatePipePipe,
+    NgxMasonryModule
   ]
 })
 export class SharedModule {}

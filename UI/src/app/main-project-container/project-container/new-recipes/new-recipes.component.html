@@ -1,5 +1,12 @@
 <app-top-bar></app-top-bar>
-<main>
-<app-recipe-card *ngFor="let recipe of recipes" [recipe]="recipe">
-</app-recipe-card>
-</main>
+<!--<main>-->
+<!--<app-recipe-card *ngFor="let recipe of recipes" [recipe]="recipe">-->
+<!--</app-recipe-card>-->
+<!--</main>-->
+
+<ngx-masonry [options]="masonryOptions" [updateLayout]="updateMasonryLayout">
+  <div ngxMasonryItem class="masonry-item" *ngFor="let recipe of recipes" #masonryItems>
+    <app-recipe-card  [recipe]="recipe">
+    </app-recipe-card>
+  </div>
+</ngx-masonry>
