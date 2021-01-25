@@ -7,7 +7,10 @@ import {Recipe} from '../../recipes/recipe.model';
   styleUrls: ['./recipe-card.component.less']
 })
 export class RecipeCardComponent implements OnInit {
-  @Input() recipe: Recipe
+  @Input() set recipe(recipe) { this._recipe = recipe }
+
+  _recipe: Recipe;
+
 
   constructor() { }
 

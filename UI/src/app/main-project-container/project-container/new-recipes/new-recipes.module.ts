@@ -5,12 +5,13 @@ import {NewRecipesComponent} from './new-recipes.component';
 import {SecondNavbarNewRecipesComponent} from './second-navbar-new-recipes/second-navbar-new-recipes.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { RecipeCardComponent } from './recipe-card/recipe-card.component';
+import {NewRecipesResolverService} from './new-recipes-resolver.service';
 
 const routes: Routes = [
   {
     path: '', children: [
       {path: '', component: SecondNavbarNewRecipesComponent, outlet: 'second-nav-bar'},
-      {path: '', component: NewRecipesComponent}
+      {path: '', component: NewRecipesComponent, resolve: [NewRecipesResolverService]}
     ]
   }
 ];

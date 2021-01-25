@@ -16,8 +16,11 @@ export class NewRecipesComponent implements OnInit {
   constructor(private store: Store<fromApp.AppState>,) { }
 
   ngOnInit(): void {
-    this.store.dispatch(RecipesActions.fetchRecipes());
-    this.store.select('recipes').subscribe(({recipes}) => this.recipes = recipes);
+    // this.store.dispatch(RecipesActions.fetchRecipes());
+    this.store.select('recipes').subscribe(({recipes}) => {
+      this.recipes = recipes;
+      console.log('Recipes', recipes);
+    });
   }
 
 }

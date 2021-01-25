@@ -1,11 +1,17 @@
 <app-card-template>
+  <mat-icon avatar class="material-icons-outlined">{{_recipe.category.iconName}}</mat-icon>
 <ng-container title>
-  {{recipe.name}}
+  {{_recipe.name}}
 </ng-container>
+  <ng-container subtitle>
+    {{_recipe.category.name}}
+  </ng-container>
   <ng-container image>
-    <img mat-card-image [src]="recipe.imagePath">
+    <div mat-card-image style="display: flex"  image>
+      <img [src]="_recipe.imagePath" class="w-100">
+    </div>
   </ng-container>
   <ng-container content>
-    {{recipe.description}}
+    {{_recipe.description}}
   </ng-container>
 </app-card-template>
