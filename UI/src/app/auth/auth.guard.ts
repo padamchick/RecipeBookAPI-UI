@@ -3,20 +3,19 @@ import {
   Router,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
-  UrlTree, ActivatedRoute,
+  UrlTree,
 } from '@angular/router';
 import {Injectable} from '@angular/core';
 import {map, take} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {Store} from '@ngrx/store';
-import {AppState} from '../../../store/app.reducer';
+import {AppState} from '../store/app.reducer';
 
 @Injectable({providedIn: 'root'})
-export class LoginGuard implements CanActivate {
+export class AuthGuard implements CanActivate {
 
   constructor(private router: Router,
-              private store: Store<AppState>,
-              private route: ActivatedRoute) {
+              private store: Store<AppState>) {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
@@ -25,9 +24,9 @@ export class LoginGuard implements CanActivate {
       take(1),
       map((authState) => {
         if(authState.user != null) {
-          return this.router.createUrlTree(['./']);
+          return true;
         }
-        return true;
+        return this.router.createUrlTree(['/auth']);
       })
     );
   }

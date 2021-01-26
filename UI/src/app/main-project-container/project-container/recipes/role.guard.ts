@@ -7,7 +7,7 @@ import {
 } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { map, take } from 'rxjs/operators';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../../../auth/auth.service';
 import {Observable} from 'rxjs';
 import {AppState} from '../../../store/app.reducer';
 import {Store} from '@ngrx/store';

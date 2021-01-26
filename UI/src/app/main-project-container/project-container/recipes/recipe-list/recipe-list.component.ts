@@ -3,7 +3,7 @@ import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/main-project-container/project-container/auth/auth.service';
+import { AuthService } from 'src/app/auth/auth.service';
 import {filter, map} from 'rxjs/operators';
 import * as fromApp from '../../../../store/app.reducer';
 import {Store} from '@ngrx/store';

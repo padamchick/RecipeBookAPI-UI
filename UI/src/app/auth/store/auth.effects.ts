@@ -8,7 +8,7 @@ import {AuthService} from '../auth.service';
 import {of} from 'rxjs';
 import {Router} from '@angular/router';
 import {NgxSpinnerService} from 'ngx-spinner';
-import {NotifyService} from '../../../../shared/services/notify.service';
+import {NotifyService} from '../../shared/services/notify.service';
 
 
 @Injectable()

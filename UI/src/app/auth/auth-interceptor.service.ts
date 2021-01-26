@@ -9,7 +9,7 @@ import { Observable } from "rxjs";
 import { AuthService } from "./auth.service";
 import { take, exhaustMap } from "rxjs/operators";
 import {Store} from '@ngrx/store';
-import {AppState} from '../../../store/app.reducer';
+import {AppState} from '../store/app.reducer';
 import * as authActions from './store/auth.actions'
 
 @Injectable()

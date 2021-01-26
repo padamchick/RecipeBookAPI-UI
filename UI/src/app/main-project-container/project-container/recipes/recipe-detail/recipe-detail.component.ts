@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
 import {Ingredient} from 'src/app/shared/ingredient.model';
 import {DataStorageService} from 'src/app/shared/data-storage.service';
-import {AuthService} from 'src/app/main-project-container/project-container/auth/auth.service';
+import {AuthService} from 'src/app/auth/auth.service';
 import {Subscription} from 'rxjs';
 import {map, filter, switchMap} from 'rxjs/operators';
 import {

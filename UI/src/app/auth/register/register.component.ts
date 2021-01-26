@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import {Store} from '@ngrx/store';
-import * as fromApp from '../../../../store/app.reducer';
+import * as fromApp from '../../store/app.reducer';
 import {NgxSpinnerService} from 'ngx-spinner';
 import * as authActions from '../store/auth.actions';
 
