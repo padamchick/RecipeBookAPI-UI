@@ -4,7 +4,7 @@
 <!--</app-recipe-card>-->
 <!--</main>-->
 
-<ngx-masonry [options]="masonryOptions" [updateLayout]="updateMasonryLayout">
+<ngx-masonry [options]="masonryOptions">
   <div ngxMasonryItem class="masonry-item" *ngFor="let recipe of recipes" #masonryItems>
     <app-recipe-card  [recipe]="recipe">
     </app-recipe-card>

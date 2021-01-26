@@ -6,13 +6,13 @@
   <ng-container bottom>
 
     <mat-list>
-      <a [routerLink]="['/new-recipes']" [queryParams]="{category: 'All'}" routerLinkActive="active">
+      <a [routerLink]="['/new-recipes', 'All']" routerLinkActive="active">
         <mat-list-item>
           <mat-icon matListIcon>menu_book</mat-icon>
           All
         </mat-list-item>
       </a>
-      <a *ngFor="let category of categories" [routerLink]="['/new-recipes']" [queryParams]="{category: category.name}" routerLinkActive="active">
+      <a *ngFor="let category of categories" [routerLink]="['/new-recipes', category.name]"  routerLinkActive="active">
         <mat-list-item>
           <mat-icon matListIcon>{{category.iconName}}</mat-icon>
           {{category.name}}

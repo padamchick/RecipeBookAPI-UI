@@ -1,19 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import * as fromApp from '../../../store/app.reducer'
 import {Store} from '@ngrx/store';
 import {Recipe} from '../recipes/recipe.model';
 import {NgxMasonryAnimations, NgxMasonryOptions} from 'ngx-masonry';
 import {animate, style} from '@angular/animations';
 import {ActivatedRoute, Params} from '@angular/router';
-import {combineLatest} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {combineLatest, Subject} from 'rxjs';
+import {map, takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-new-recipes',
   templateUrl: './new-recipes.component.html',
   styleUrls: ['./new-recipes.component.less']
 })
-export class NewRecipesComponent implements OnInit {
+export class NewRecipesComponent implements OnInit, OnDestroy {
 
   recipes: Recipe[] = [];
   animations: NgxMasonryAnimations = {
@@ -26,7 +26,7 @@ export class NewRecipesComponent implements OnInit {
       animate('500ms ease-in', style({opacity: 0})),
     ]
   }
-  public masonryOptions: NgxMasonryOptions = {
+  masonryOptions: NgxMasonryOptions = {
     itemSelector: '.masonry-item',
     horizontalOrder: true,
     originLeft: true,
@@ -34,15 +34,15 @@ export class NewRecipesComponent implements OnInit {
     animations: this.animations,
   };
 
-  updateMasonryLayout;
+  ngDestroyed$ = new Subject();
 
   constructor(private store: Store<fromApp.AppState>,
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     combineLatest([
-      this.route.queryParams,
-      this.store.select('recipes').pipe(map(({recipes})=> recipes))
+      this.route.params,
+      this.store.select('recipes').pipe(takeUntil(this.ngDestroyed$),map(({recipes})=> recipes))
     ]).subscribe((data: [Params, Recipe[]]) => {
       const category = data[0]['category'];
       if(category==='All' || category==null || category ==='') {
@@ -51,6 +51,11 @@ export class NewRecipesComponent implements OnInit {
         this.recipes = data[1].filter(recipe => recipe.category.name === category);
       }
     })
+  }
+
+  ngOnDestroy(): void {
+    this.ngDestroyed$.next();
+    this.ngDestroyed$.complete();
   }
 
 }
