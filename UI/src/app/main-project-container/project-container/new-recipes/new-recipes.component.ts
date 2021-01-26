@@ -45,10 +45,10 @@ export class NewRecipesComponent implements OnInit, OnDestroy {
       this.store.select('recipes').pipe(takeUntil(this.ngDestroyed$),map(({recipes})=> recipes))
     ]).subscribe((data: [Params, Recipe[]]) => {
       const category = data[0]['category'];
-      if(category==='All' || category==null || category ==='') {
+      if(category==='all' || category==null || category ==='') {
         this.recipes = data[1];
       } else {
-        this.recipes = data[1].filter(recipe => recipe.category.name === category);
+        this.recipes = data[1].filter(recipe => recipe.category.urlSuffix === category);
       }
     })
   }

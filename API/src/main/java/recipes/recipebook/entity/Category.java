@@ -19,6 +19,7 @@ public class Category {
     private String name;
     private String iconName;
     private Integer sortIndex;
+    private String urlSuffix;
 
     @OneToMany(mappedBy = "category")
     @JsonIgnore
