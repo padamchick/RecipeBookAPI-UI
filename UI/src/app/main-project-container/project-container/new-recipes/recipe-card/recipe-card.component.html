@@ -1,14 +1,21 @@
 <app-card-template>
   <mat-icon avatar class="material-icons-outlined">{{_recipe.category.iconName}}</mat-icon>
-<ng-container title>
-  {{_recipe.name}}
-</ng-container>
+  <ng-container title>
+    {{_recipe.name}}
+  </ng-container>
   <ng-container subtitle>
     {{_recipe.category.name}}
   </ng-container>
   <ng-container image>
-    <div mat-card-image style="display: flex"  image>
-      <img [src]="_recipe.imagePath" class="w-100">
+    <div mat-card-image image>
+        <img [src]="_recipe.imagePath" class="w-100">
+        <div class="floating-button">
+          <button mat-fab #tooltip
+                  matTooltip="Preview"
+                  matTooltipPosition="below">
+            <mat-icon>visibility</mat-icon>
+          </button>
+        </div>
     </div>
   </ng-container>
   <ng-container content>

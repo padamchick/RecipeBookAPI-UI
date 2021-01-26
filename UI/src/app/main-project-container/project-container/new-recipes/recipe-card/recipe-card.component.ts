@@ -17,4 +17,7 @@ export class RecipeCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onClick(e: MouseEvent) {
+    e.stopPropagation();
+  }
 }

@@ -7,7 +7,8 @@
 }
 
 @accent: var(--th-accent);
-@accent_light: var(--th-accent-light);
+@grey_hover: var(--grey-hover);
+@grey_active: var(--grey-active);
 
 .top-segment {
   display: flex;
@@ -38,13 +39,12 @@
     font-weight: 400;
   }
   ::ng-deep mat-list-item:hover {
-    background-color: @accent_light;
-    mat-icon {
-      color: @accent;
-    }
-    cursor: pointer;
+    background-color: @grey_hover;
   }
   ::ng-deep .active {
+    mat-list-item:not(:hover) {
+      //background-color: @grey_active;
+    }
     mat-icon {
       color: @accent;
     }

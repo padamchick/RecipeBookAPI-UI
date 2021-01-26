@@ -1,27 +1,61 @@
-[mat-card-image] {
-  display: flex;
-  position: relative;
+app-card-template {
+
+  .material-icons-outlined {
+    padding: 7px 3px 3px 7px;
+  }
+
+  mat-card-title {
+    font-size: 17px !important;
+    font-weight: 500;
+    line-height: 1.3;
+    color: rgba(0, 0, 0, 0.87);
+  }
+
+  mat-card-subtitle {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  [mat-card-image] {
+    display: flex;
+    position: relative;
+
+    .floating-button {
+      position: absolute;
+      display: none;
+      bottom: 15px;
+      right: 15px;
+
+      button:focus {
+        outline: none;
+        border: 0;
+      }
+
+      .mat-fab {
+        width: 40px;
+        height: 40px;
+        background-color: rgba(0, 0, 0, 0.4);
+
+        ::ng-deep & .mat-button-wrapper {
+          padding: 0 !important;
+        }
+      }
+    }
+  }
+
+  div[footer] {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.38);
+    padding: 0 0 1rem 1rem;
+    font-weight: 300 !important;
+  }
+
+  &:hover {
+    [mat-card-image] .floating-button {
+      display: flex;
+    }
+  }
+
+
 }
 
-mat-card-title {
-  font-size: 17px !important;
-  font-weight: 500;
-  line-height: 1.3;
-  color: rgba(0, 0, 0, 0.87);
-}
-
-mat-card-subtitle {
-  font-size: 14px;
-  color: rgba(0, 0, 0, 0.6);
-}
-
-div[footer] {
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.38);
-  padding: 0 0 1rem 1rem;
-  font-weight: 300 !important;
-}
-
-.material-icons-outlined {
-  padding: 7px 3px 3px 7px;
-}
