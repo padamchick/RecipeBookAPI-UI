@@ -12,7 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ToastrModule } from 'ngx-toastr';
 import { SecondNavbarLayoutComponent } from '../main-project-container/second-navbar-layout/second-navbar-layout.component';
 import { CardTemplateComponent } from './card-template/card-template.component';
-import { TruncatePipePipe } from './truncate-pipe.pipe';
+import { TruncatePipe } from './truncate.pipe';
 import {NgxMasonryModule} from 'ngx-masonry';
 
 
@@ -23,7 +23,7 @@ import {NgxMasonryModule} from 'ngx-masonry';
     IngredientEditComponent,
     SecondNavbarLayoutComponent,
     CardTemplateComponent,
-    TruncatePipePipe,
+    TruncatePipe,
   ],
   imports: [
     CommonModule,
@@ -47,7 +47,7 @@ import {NgxMasonryModule} from 'ngx-masonry';
     ToastrModule,
     SecondNavbarLayoutComponent,
     CardTemplateComponent,
-    TruncatePipePipe,
+    TruncatePipe,
     NgxMasonryModule
   ]
 })
