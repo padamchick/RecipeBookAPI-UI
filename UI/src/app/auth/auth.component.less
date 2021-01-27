@@ -1,15 +1,18 @@
 
 .container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-items: center;
-  padding-top: 50px;
-  .form {
-    padding: 30px 30px 50px 30px;
-    border: 1px solid rgba(0,0,0,0.2);
-    border-radius: 15px;
+  //padding-top: 50px;
+  height: calc(100% - 64px);
+  .wrapper {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    .form {
+      padding: 30px 30px 50px 30px;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 15px;
+    }
   }
+
 }
 
 //   ANGULAR MATERIAL STYLING   //
@@ -37,7 +40,7 @@
   background-color: #FFFFFF;
 }
 
-::ng-deep .mat-form-field.mat-focused:not(.mat-form-field-invalid)  {
+::ng-deep .mat-form-field.mat-focused:not(.mat-form-field-invalid) {
   .mat-placeholder-required.mat-form-field-required-marker {
     color: @primary !important;
   }
@@ -58,7 +61,7 @@
 ::ng-deep .mat-checkbox-frame {
   border-width: 1px !important;
   background-color: #FFFFFF !important;
-  border-color: rgba(0,0,0,0.32);
+  border-color: rgba(0, 0, 0, 0.32);
 }
 
 
@@ -68,30 +71,37 @@
   margin-right: 5px;
 }
 
-::ng-deep .mat-form-field-invalid  {
+::ng-deep .mat-form-field-invalid {
   .mat-form-field-label {
     color: @error !important;
   }
+
   .mat-form-field-required-marker {
     color: @error !important;
   }
+
   .mat-placeholder-required.mat-form-field-required-marker {
     color: @error !important;
   }
+
   .mat-form-field-prefix .mat-icon {
     color: @error !important;
   }
+
   .mat-error {
     color: @error !important;
   }
+
   .mat-form-field-outline-thick {
     color: @error !important;
   }
+
   &.mat-focused {
     .mat-form-field-label mat-label {
       color: @error !important;
     }
   }
+
   input {
     color: @error !important;
   }

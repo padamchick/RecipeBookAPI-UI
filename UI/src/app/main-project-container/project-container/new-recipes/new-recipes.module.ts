@@ -6,6 +6,7 @@ import {SecondNavbarNewRecipesComponent} from './second-navbar-new-recipes/secon
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { RecipeCardComponent } from './recipe-card/recipe-card.component';
 import {NewRecipesResolverService} from './new-recipes-resolver.service';
+import { CardsContainerComponent } from './cards-container/cards-container.component';
 
 const routes: Routes = [
   {
@@ -22,7 +23,8 @@ const routes: Routes = [
     NewRecipesComponent,
     SecondNavbarNewRecipesComponent,
     TopBarComponent,
-    RecipeCardComponent
+    RecipeCardComponent,
+    CardsContainerComponent
   ],
   imports: [
     RouterModule.forChild(routes),

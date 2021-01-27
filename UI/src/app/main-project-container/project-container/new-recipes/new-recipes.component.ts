@@ -13,49 +13,9 @@ import {map, takeUntil} from 'rxjs/operators';
   templateUrl: './new-recipes.component.html',
   styleUrls: ['./new-recipes.component.less']
 })
-export class NewRecipesComponent implements OnInit, OnDestroy {
-
-  recipes: Recipe[] = [];
-  animations: NgxMasonryAnimations = {
-    show: [
-      style({opacity: 0}),
-      animate('500ms ease-in', style({opacity: 1})),
-    ],
-    hide: [
-      style({opacity: '*'}),
-      animate('500ms ease-in', style({opacity: 0})),
-    ]
-  }
-  masonryOptions: NgxMasonryOptions = {
-    itemSelector: '.masonry-item',
-    horizontalOrder: true,
-    originLeft: true,
-    gutter: 6,
-    animations: this.animations,
-  };
-
-  ngDestroyed$ = new Subject();
-
-  constructor(private store: Store<fromApp.AppState>,
-              private route: ActivatedRoute) { }
+export class NewRecipesComponent implements OnInit {
 
   ngOnInit(): void {
-    combineLatest([
-      this.route.params,
-      this.store.select('recipes').pipe(takeUntil(this.ngDestroyed$),map(({recipes})=> recipes))
-    ]).subscribe((data: [Params, Recipe[]]) => {
-      const category = data[0]['category'];
-      if(category==='all' || category==null || category ==='') {
-        this.recipes = data[1];
-      } else {
-        this.recipes = data[1].filter(recipe => recipe.category.urlSuffix === category);
-      }
-    })
-  }
-
-  ngOnDestroy(): void {
-    this.ngDestroyed$.next();
-    this.ngDestroyed$.complete();
   }
 
 }

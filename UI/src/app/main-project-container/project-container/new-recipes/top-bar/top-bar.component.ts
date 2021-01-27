@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-top-bar',
   templateUrl: './top-bar.component.html',
   styleUrls: ['./top-bar.component.less']
 })
-export class TopBarComponent implements OnInit {
+export class TopBarComponent {
+  @Output() searchCriteria = new EventEmitter<string>();
+
+  searchWord: string;
 
   constructor() { }
 
-  ngOnInit(): void {
+  searchThis() {
+    this.searchCriteria.emit(this.searchWord)
   }
-
 }

@@ -1,12 +1,7 @@
-<app-top-bar></app-top-bar>
+<app-top-bar (searchCriteria)=cardContainer.filter($event)></app-top-bar>
 <!--<main>-->
 <!--<app-recipe-card *ngFor="let recipe of recipes" [recipe]="recipe">-->
 <!--</app-recipe-card>-->
 <!--</main>-->
 
-<ngx-masonry [options]="masonryOptions">
-  <div ngxMasonryItem class="masonry-item" *ngFor="let recipe of recipes" #masonryItems>
-    <app-recipe-card  [recipe]="recipe">
-    </app-recipe-card>
-  </div>
-</ngx-masonry>
+<app-cards-container #cardContainer></app-cards-container>

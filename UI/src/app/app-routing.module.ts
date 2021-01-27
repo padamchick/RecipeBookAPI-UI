@@ -6,7 +6,7 @@ import {MainProjectContainerComponent} from './main-project-container/main-proje
 const appRoutes: Routes = [
 
   { path: '', component: MainProjectContainerComponent, children: [
-      { path: '', redirectTo: '/recipes', pathMatch: 'full' },
+      { path: '', redirectTo: '/new-recipes/all', pathMatch: 'full' },
       { path: 'recipes', loadChildren: () => import('./main-project-container/project-container/recipes/recipes.module').then(module => module.RecipesModule) },
       { path: 'new-recipes', loadChildren: () => import('./main-project-container/project-container/new-recipes/new-recipes.module').then(m => m.NewRecipesModule) },
       { path: 'shopping-list', loadChildren: () => import('./main-project-container/project-container/shopping-list/shopping-list.module').then(m => m.ShoppingListModule) },

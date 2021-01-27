@@ -1,0 +1,6 @@
+<ngx-masonry [options]="masonryOptions">
+  <div ngxMasonryItem class="masonry-item" *ngFor="let recipe of recipes" #masonryItems>
+    <app-recipe-card  [recipe]="recipe">
+    </app-recipe-card>
+  </div>
+</ngx-masonry>
