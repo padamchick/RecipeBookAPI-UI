@@ -1,1 +1,25 @@
-<input matInput type="text" [(ngModel)]="searchWord" (input)="searchThis()">
+
+
+<form #f="ngForm">
+<mat-form-field appearance="outline">
+  <input matInput
+         [(ngModel)]="searchWord"
+         (input)="searchThis()"
+         [matAutocomplete]="auto"
+         placeholder="Search"
+          name="name"
+         #name="ngModel"
+        (ngModelChange)="doFilter()">
+<!--  <button type="button" disabled="true" mat-icon-button matPrefix>-->
+<!--    <mat-icon>search</mat-icon>-->
+<!--  </button>-->
+</mat-form-field>
+  <mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let recipe of recipes | async" [value]="recipe.name">
+      {{recipe.name}}
+    </mat-option>
+  </mat-autocomplete>
+</form>
+<button type="button" disabled="true" mat-icon-button matPrefix>
+  <mat-icon>search</mat-icon>
+</button>

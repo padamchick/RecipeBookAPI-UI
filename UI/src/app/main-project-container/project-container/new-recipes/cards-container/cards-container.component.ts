@@ -16,6 +16,7 @@ import {map, takeUntil} from 'rxjs/operators';
 export class CardsContainerComponent implements OnInit, OnDestroy {
 
   recipes: Recipe[] = [];
+
   animations: NgxMasonryAnimations = {
     show: [
       style({opacity: 0}),

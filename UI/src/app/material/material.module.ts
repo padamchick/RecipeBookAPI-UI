@@ -18,6 +18,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 const materialComponents = [
   MatCardModule,
@@ -38,7 +39,8 @@ const materialComponents = [
   MatSortModule,
   MatTooltipModule,
   MatMenuModule,
-  MatRadioModule
+  MatRadioModule,
+  MatAutocompleteModule
 ];
 
 @NgModule({
