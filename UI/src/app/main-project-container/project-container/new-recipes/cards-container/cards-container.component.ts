@@ -61,9 +61,9 @@ export class CardsContainerComponent implements OnInit, OnDestroy {
     ]).subscribe((data: [Params, Recipe[]]) => {
       const category = data[0]['category'];
       if (category === 'all') {
-        this.recipes = data[1].filter(recipe => recipe.name.includes(criteriaWord));
+        this.recipes = data[1].filter(recipe => recipe.name.toLowerCase().includes(criteriaWord.toLowerCase()));
       } else {
-        this.recipes = data[1].filter(recipe => recipe.name.includes(criteriaWord) && recipe.category.urlSuffix === category);
+        this.recipes = data[1].filter(recipe => recipe.name.toLowerCase().includes(criteriaWord.toLowerCase()) && recipe.category.urlSuffix === category);
       }
     });
   }
