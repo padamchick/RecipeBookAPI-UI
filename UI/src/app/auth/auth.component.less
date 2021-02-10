@@ -1,4 +1,4 @@
-
+@primary-light: var(--th-accent);
 .container {
   //padding-top: 50px;
   height: calc(100% - 64px);
@@ -12,7 +12,12 @@
       border-radius: 15px;
     }
   }
-
+  ::ng-deep a {
+    color: @primary-light;
+    &:hover {
+      color: @primary;
+    }
+  }
 }
 
 //   ANGULAR MATERIAL STYLING   //

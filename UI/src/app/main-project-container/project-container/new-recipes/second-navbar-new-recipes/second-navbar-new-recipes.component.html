@@ -8,7 +8,7 @@
     <mat-list>
       <a [routerLink]="['/new-recipes', 'all']" routerLinkActive="active">
         <mat-list-item>
-          <mat-icon matListIcon>menu_book</mat-icon>
+          <i class="icofont-culinary"></i>
           All
         </mat-list-item>
       </a>
@@ -19,6 +19,7 @@
             <mat-icon matListIcon>{{category.iconName}}</mat-icon>
             {{category.name}}
           </mat-list-item>
+
         </a>
         <mat-divider></mat-divider>
       </div>

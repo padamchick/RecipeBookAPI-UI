@@ -7,13 +7,17 @@ import { TopBarComponent } from './top-bar/top-bar.component';
 import { RecipeCardComponent } from './recipe-card/recipe-card.component';
 import {NewRecipesResolverService} from './new-recipes-resolver.service';
 import { CardsContainerComponent } from './cards-container/cards-container.component';
+import {AuthGuard} from '../../../auth/auth.guard';
 
 const routes: Routes = [
   {
     path: '', children: [
       {path: '', component: SecondNavbarNewRecipesComponent, outlet: 'second-nav-bar'},
       {path: '', pathMatch: 'full', redirectTo: '/new-recipes/all'},
-      {path: ':category', component: NewRecipesComponent, resolve: [NewRecipesResolverService]}
+      {path: ':category',
+        component: NewRecipesComponent,
+        resolve: [NewRecipesResolverService],
+        canActivate: [AuthGuard]}
     ]
   }
 ];
