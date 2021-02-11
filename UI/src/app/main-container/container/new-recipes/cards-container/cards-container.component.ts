@@ -59,12 +59,12 @@ export class CardsContainerComponent implements OnInit, OnDestroy {
     combineLatest([
       this.route.params,
       this.store.select('recipes').pipe(takeUntil(this.ngDestroyed$), map(({recipes}) => recipes))
-    ]).subscribe((data: [Params, Recipe[]]) => {
-      const category = data[0]['category'];
+    ]).subscribe(([params, recipes]: [Params, Recipe[]]) => {
+      const category = params['category'];
       if (category === 'all') {
-        this.recipes = data[1].filter(recipe => recipe.name.toLowerCase().includes(criteriaWord.toLowerCase()));
+        this.recipes = recipes.filter(recipe => recipe.name.toLowerCase().includes(criteriaWord.toLowerCase()));
       } else {
-        this.recipes = data[1].filter(recipe => recipe.name.toLowerCase().includes(criteriaWord.toLowerCase()) && recipe.category.urlSuffix === category);
+        this.recipes = recipes.filter(recipe => recipe.name.toLowerCase().includes(criteriaWord.toLowerCase()) && recipe.category.urlSuffix === category);
       }
     });
   }

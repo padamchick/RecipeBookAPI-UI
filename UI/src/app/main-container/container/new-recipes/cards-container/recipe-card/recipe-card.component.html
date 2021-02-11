@@ -9,12 +9,16 @@
   <ng-container image>
     <div mat-card-image image>
         <img [src]="_recipe.imagePath" class="w-100">
+
         <div class="floating-button">
-          <button mat-fab #tooltip
+          <a mat-fab #tooltip
                   matTooltip="Preview"
-                  matTooltipPosition="below">
+                  matTooltipPosition="below"
+             [routerLink]="['/new-recipes', category, _recipe.id]"
+             (click)="log()"
+          >
             <mat-icon>visibility</mat-icon>
-          </button>
+          </a>
         </div>
     </div>
   </ng-container>

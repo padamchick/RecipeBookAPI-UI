@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './main-project-container/header/header.component';
+import { HeaderComponent } from './main-container/header/header.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,15 +13,15 @@ import * as fromApp from './store/app.reducer';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import {EffectsModule} from '@ngrx/effects';
-import {RecipeEffects} from './main-project-container/project-container/recipes/store/recipe.effects';
+import {RecipeEffects} from './main-container/container/recipes/store/recipe.effects';
 import {AuthEffects} from './auth/store/auth.effects';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {ToastrModule} from 'ngx-toastr';
-import {MainLeftNavbarComponent} from './main-project-container/main-left-navbar/main-left-navbar.component';
-import {NewRecipesModule} from './main-project-container/project-container/new-recipes/new-recipes.module';
-import {ProjectContainerComponent} from './main-project-container/project-container/project-container.component';
-import { MainProjectContainerComponent } from './main-project-container/main-project-container.component';
+import {MainLeftNavbarComponent} from './main-container/main-left-navbar/main-left-navbar.component';
+import {NewRecipesModule} from './main-container/container/new-recipes/new-recipes.module';
+import {ProjectContainerComponent} from './main-container/container/project-container.component';
+import { MainContainerComponent } from './main-container/main-container.component';
 
 
 @NgModule({
@@ -30,7 +30,7 @@ import { MainProjectContainerComponent } from './main-project-container/main-pro
     HeaderComponent,
     MainLeftNavbarComponent,
     ProjectContainerComponent,
-    MainProjectContainerComponent,
+    MainContainerComponent,
 
   ],
   imports: [

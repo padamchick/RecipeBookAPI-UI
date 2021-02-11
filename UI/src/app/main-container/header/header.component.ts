@@ -5,7 +5,7 @@ import {AuthService} from '../../auth/auth.service';
 import {Subscription, Observable} from 'rxjs';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {map, shareReplay, tap} from 'rxjs/operators';
-import {RecipeService} from '../project-container/recipes/recipe.service';
+import {RecipeService} from '../container/recipes/recipe.service';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../store/app.reducer';
 import * as authActions from '../../auth/store/auth.actions';

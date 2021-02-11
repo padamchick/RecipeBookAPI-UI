@@ -4,7 +4,7 @@ import {catchError, tap} from 'rxjs/operators';
 import {BehaviorSubject, throwError} from 'rxjs';
 import {Router} from '@angular/router';
 import {environment} from 'src/environments/environment';
-import {RecipeService} from '../main-project-container/project-container/recipes/recipe.service';
+import {RecipeService} from '../main-container/container/recipes/recipe.service';
 import {AuthResponseData, User} from './auth.model';
 import * as fromApp from '../store/app.reducer'
 import * as authActions from './store/auth.actions'
