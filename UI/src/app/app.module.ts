@@ -13,13 +13,13 @@ import * as fromApp from './store/app.reducer';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import {EffectsModule} from '@ngrx/effects';
-import {RecipeEffects} from './main-container/container/recipes/store/recipe.effects';
+import {RecipeEffects} from './main-container/container/old-recipes/store/recipe.effects';
 import {AuthEffects} from './auth/store/auth.effects';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {ToastrModule} from 'ngx-toastr';
 import {MainLeftNavbarComponent} from './main-container/main-left-navbar/main-left-navbar.component';
-import {NewRecipesModule} from './main-container/container/new-recipes/new-recipes.module';
+import {RecipesModule} from './main-container/container/recipes/recipes.module';
 import {ProjectContainerComponent} from './main-container/container/project-container.component';
 import { MainContainerComponent } from './main-container/main-container.component';
 
@@ -51,7 +51,7 @@ import { MainContainerComponent } from './main-container/main-container.componen
         deps: [HttpClient]
       }
     }),
-    NewRecipesModule
+    RecipesModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

@@ -4,7 +4,7 @@ import {catchError, tap} from 'rxjs/operators';
 import {BehaviorSubject, throwError} from 'rxjs';
 import {Router} from '@angular/router';
 import {environment} from 'src/environments/environment';
-import {RecipeService} from '../main-container/container/recipes/recipe.service';
+import {OldRecipeService} from '../main-container/container/old-recipes/old-recipe.service';
 import {AuthResponseData, User} from './auth.model';
 import * as fromApp from '../store/app.reducer'
 import * as authActions from './store/auth.actions'
@@ -20,7 +20,7 @@ export class AuthService {
 
   constructor(private http: HttpClient,
               private router: Router,
-              private recipeService: RecipeService,
+              private recipeService: OldRecipeService,
               private store: Store<fromApp.AppState>) {}
 
   signUp(username: string, password: string) {

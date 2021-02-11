@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map, tap} from 'rxjs/operators';
 
-import {Recipe} from '../main-container/container/recipes/recipe.model';
-import {RecipeService} from '../main-container/container/recipes/recipe.service';
+import {Recipe} from '../main-container/container/old-recipes/old-recipe.model';
+import {OldRecipeService} from '../main-container/container/old-recipes/old-recipe.service';
 import {ShoppingListService} from '../main-container/container/shopping-list/shopping-list.service';
 import {Ingredient} from './ingredient.model';
 import {environment} from '../../environments/environment';
@@ -12,7 +12,7 @@ import {environment} from '../../environments/environment';
 export class DataStorageService {
   constructor(
     private http: HttpClient,
-    private recipeService: RecipeService,
+    private recipeService: OldRecipeService,
     private shoppingService: ShoppingListService
   ) {
   }

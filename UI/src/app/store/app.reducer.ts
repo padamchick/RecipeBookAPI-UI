@@ -1,4 +1,4 @@
-import * as fromRecipes from '../main-container/container/recipes/store/recipe.reducer';
+import * as fromRecipes from '../main-container/container/old-recipes/store/recipe.reducer';
 import * as fromAuth from '../auth/store/auth.reducer';
 import {ActionReducerMap} from '@ngrx/store';
 

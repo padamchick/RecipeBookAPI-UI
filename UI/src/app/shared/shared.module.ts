@@ -15,6 +15,7 @@ import { CardTemplateComponent } from './card-template/card-template.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import {NgxMasonryModule} from 'ngx-masonry';
 import {TopBarComponent} from '../main-container/top-bar/top-bar.component';
+import {NgScrollbarModule} from 'ngx-scrollbar';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import {TopBarComponent} from '../main-container/top-bar/top-bar.component';
     NgxSpinnerModule,
     TranslateModule,
     ToastrModule,
-    NgxMasonryModule
+    NgxMasonryModule,
+    NgScrollbarModule
   ],
   exports: [
     CommonModule,
@@ -51,7 +53,8 @@ import {TopBarComponent} from '../main-container/top-bar/top-bar.component';
     TopBarComponent,
     CardTemplateComponent,
     TruncatePipe,
-    NgxMasonryModule
+    NgxMasonryModule,
+    NgScrollbarModule
   ]
 })
 export class SharedModule {}

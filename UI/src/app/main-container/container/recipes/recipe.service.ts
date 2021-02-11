@@ -1,49 +1,69 @@
-import { Injectable} from '@angular/core';
-import { Recipe } from './recipe.model';
-import { Ingredient } from '../../../shared/ingredient.model';
-import { ShoppingListService } from '../shopping-list/shopping-list.service';
-import { Subject } from 'rxjs';
+import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../../environments/environment';
+import {map} from 'rxjs/operators';
+import {Category} from './models/category.model';
+import {Observable} from 'rxjs';
+import * as _ from 'lodash';
 
-@Injectable({providedIn: 'root'})
+@Injectable({
+  providedIn: 'root'
+})
 export class RecipeService {
-  recipesChanged = new Subject<Recipe[]>();
 
-  private recipes: Recipe[] = [];
+  private apiUrl = environment.apiUrl;
+  categories = [];
 
-  constructor(private shoppingListService: ShoppingListService){}
+  constructor(private http: HttpClient) { }
 
-  getRecipes() {
-    // dzieki .slice() dostajemy kopie tablicy, nie mozemy jej modyfikowac z zewnatrz
-    return this.recipes.slice();
+  getCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>(`${this.apiUrl}/recipes/categories`).pipe(
+      map ((res: Category[]) => _.sortBy(res, 'sortIndex'))
+    )
   }
 
-  setRecipes(recipes: Recipe[]) {
-    console.log(recipes);
-    this.recipes = recipes;
-    this.recipesChanged.next(this.recipes.slice());
-  }
+  // private convertToCategories(res: string[]): Category[] {
+  //   let categories = res.map(category => {
+  //     return this.categoryMap[category];
+  //   });
+  //   return _.sortBy(categories, 'sortIndex');
+  // }
 
-  addIngredientsToShoppingList(ingredients: Ingredient[]) {
-    this.shoppingListService.addIngredients(ingredients);
-  }
-
-  addRecipe(recipe: Recipe) {
-    this.recipes.push(recipe);
-    this.recipesChanged.next(this.recipes.slice());
-  }
-
-  updateRecipe(index: number, recipe: Recipe) {
-    this.recipes[index] = recipe;
-    this.recipesChanged.next(this.recipes.slice());
-  }
-
-  deleteRecipe(index: number) {
-    this.recipes.splice(index,1);
-    this.recipesChanged.next(this.recipes.slice());
-  }
-
-  getIndexOfLastRecipe() : number {
-    return this.recipes.length-1;
-  }
-
+  // private categoryMap: { [name: string]: Category } = {
+  //   'all': {
+  //     name: 'All',
+  //     iconName: 'menu_book',
+  //     sortIndex: 1
+  //   },
+  //   'main': {
+  //     name: 'Main Dishes',
+  //     iconName: 'fastfood',
+  //     sortIndex: 2
+  //   },
+  //   'small': {
+  //     name: 'Small Dishes',
+  //     iconName: 'tapas',
+  //     sortIndex: 3
+  //   },
+  //   'soups': {
+  //     name: 'Soups',
+  //     iconName: 'local_cafe',
+  //     sortIndex: 4
+  //   },
+  //   'desserts': {
+  //     name: 'Desserts',
+  //     iconName: 'cake',
+  //     sortIndex: 5
+  //   },
+  //   'drinks': {
+  //     name: 'Drinks',
+  //     iconName: 'local_bar',
+  //     sortIndex: 6
+  //   },
+  //   'liqueurs': {
+  //     name: 'Liqueurs',
+  //     iconName: 'wine_bar',
+  //     sortIndex: 7
+  //   }
+  // }
 }
