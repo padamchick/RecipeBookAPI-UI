@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Recipe} from '../../recipes/recipe.model';
+import {Recipe} from '../../../recipes/recipe.model';
 import {NgxMasonryAnimations, NgxMasonryOptions} from 'ngx-masonry';
 import {animate, style} from '@angular/animations';
 import {combineLatest, Subject} from 'rxjs';
 import {Store} from '@ngrx/store';
-import * as fromApp from '../../../../store/app.reducer';
+import * as fromApp from '../../../../../store/app.reducer';
 import {ActivatedRoute, Params} from '@angular/router';
 import {map, takeUntil} from 'rxjs/operators';
 

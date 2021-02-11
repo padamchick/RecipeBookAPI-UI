@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Recipe} from '../../../recipes/recipe.model';
+import {Recipe} from '../../../../recipes/recipe.model';
 import {ActivatedRoute, ActivatedRouteSnapshot} from '@angular/router';
 
 @Component({

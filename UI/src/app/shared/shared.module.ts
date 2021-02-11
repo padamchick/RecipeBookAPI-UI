@@ -10,10 +10,11 @@ import { FormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { TranslateModule } from '@ngx-translate/core';
 import { ToastrModule } from 'ngx-toastr';
-import { SecondNavbarLayoutComponent } from '../main-project-container/second-navbar-layout/second-navbar-layout.component';
+import { SecondNavbarLayoutComponent } from '../main-container/second-navbar-layout/second-navbar-layout.component';
 import { CardTemplateComponent } from './card-template/card-template.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import {NgxMasonryModule} from 'ngx-masonry';
+import {TopBarComponent} from '../main-container/top-bar/top-bar.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import {NgxMasonryModule} from 'ngx-masonry';
     ConfirmationDialogComponent,
     IngredientEditComponent,
     SecondNavbarLayoutComponent,
+    TopBarComponent,
     CardTemplateComponent,
     TruncatePipe
   ],
@@ -46,6 +48,7 @@ import {NgxMasonryModule} from 'ngx-masonry';
     TranslateModule,
     ToastrModule,
     SecondNavbarLayoutComponent,
+    TopBarComponent,
     CardTemplateComponent,
     TruncatePipe,
     NgxMasonryModule

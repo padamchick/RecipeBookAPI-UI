@@ -1,16 +1,16 @@
 import {Component, ElementRef, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
-import * as fromApp from '../../../../store/app.reducer';
+import * as fromApp from '../../../../../store/app.reducer';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import {Recipe} from '../../recipes/recipe.model';
+import {Recipe} from '../../../recipes/recipe.model';
 
 @Component({
-  selector: 'app-top-bar',
-  templateUrl: './top-bar.component.html',
-  styleUrls: ['./top-bar.component.less']
+  selector: 'app-top-bar-new-recipes',
+  templateUrl: './top-bar-new-recipes.component.html',
+  styleUrls: ['./top-bar-new-recipes.component.less']
 })
-export class TopBarComponent implements OnInit{
+export class TopBarNewRecipesComponent implements OnInit{
   @Output() searchCriteria = new EventEmitter<string>();
   @ViewChild('input') searchInput: ElementRef;
 

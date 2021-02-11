@@ -1,0 +1,24 @@
+  <app-top-bar>
+    <div id="searchPanel">
+      <mat-form-field appearance="outline" style="width: 100%">
+        <input matInput
+               [(ngModel)]="searchWord"
+               (input)="searchThis()"
+               [matAutocomplete]="auto"
+               placeholder="Find the recipe"
+               name="name"
+               #name="ngModel"
+               (ngModelChange)="doFilter()">
+        <button type="button" disabled="true" mat-icon-button matSuffix>
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let recipe of recipes | async" [value]="recipe.name">
+          {{recipe.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </div>
+  </app-top-bar>
+
+
