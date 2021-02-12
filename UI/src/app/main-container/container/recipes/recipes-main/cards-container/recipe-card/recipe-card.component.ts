@@ -25,7 +25,7 @@ export class RecipeCardComponent implements OnInit {
   }
 
   log() {
-    console.log(this.category)
+    console.log('Recipe', this._recipe)
   }
 
   onClick(e: MouseEvent) {
