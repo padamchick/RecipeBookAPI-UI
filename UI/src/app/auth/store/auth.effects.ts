@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import * as authActions from './auth.actions';
 import {catchError, map, switchMap, tap} from 'rxjs/operators';
-import {AuthResponseData,  User} from '../auth.model';
+import {AuthResponseData, User} from '../auth.model';
 import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../auth.service';
 import {of} from 'rxjs';
@@ -17,11 +17,11 @@ export class AuthEffects {
   signUp$ = createEffect(() =>
     this.actions$.pipe(
       ofType(authActions.signUp),
-      switchMap(({username, password} ) => {
-         return this.authService.signUp(username, password).pipe(
-           map(res => authActions.signUpSuccess()),
-           catchError(err => of(authActions.signUpFail({error: err})))
-         );
+      switchMap(({username, password}) => {
+        return this.authService.signUp(username, password).pipe(
+          map(res => authActions.signUpSuccess()),
+          catchError(err => of(authActions.signUpFail({error: err})))
+        );
       })
     ));
 
@@ -29,10 +29,10 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(authActions.signUpSuccess),
       tap(() => {
-        console.warn("SIGN UP SUCCEEDED");
+        console.warn('SIGN UP SUCCEEDED');
         // TODO
         // wyswietl toasta
-        this.spinner.hide()
+        this.spinner.hide();
       })
     ), {dispatch: false});
 
@@ -40,7 +40,7 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(authActions.signUpFail),
       tap(() => {
-        console.warn("SIGN UP FAILED");
+        console.warn('SIGN UP FAILED');
         // TODO
         // wyswietl toasta
         // zatrzymaj ladowanie
@@ -54,7 +54,13 @@ export class AuthEffects {
       switchMap(({username, password, toRemember}) => {
         return this.authService.login(username, password).pipe(
           map((res: AuthResponseData) => {
-            return authActions.logInSuccess({username: res.username, token: res.jwttoken, expirationDate: new Date(res.expirationDate), redirect: true, toRemember: toRemember});
+            return authActions.logInSuccess({
+              username: res.username,
+              token: res.jwttoken,
+              expirationDate: new Date(res.expirationDate),
+              redirect: true,
+              toRemember: toRemember
+            });
           }),
           catchError(err => of(authActions.logInFail({error: err})))
         );
@@ -62,84 +68,95 @@ export class AuthEffects {
     ));
 
   handleAuthError = createEffect(() =>
-  this.actions$.pipe(
-    ofType(authActions.logInFail),
-    tap(({error}) => {
-      this.spinner.hide();
-      if(error && error.error) {
-        if(error.error.message === 'INVALID_CREDENTIALS') {
-          this.notify.badCredentialsError();
-        } else {
-          this.notify.loginFailError();
+    this.actions$.pipe(
+      ofType(authActions.logInFail),
+      tap(({error}) => {
+        this.spinner.hide();
+        if (error && error.error) {
+          if (error.error.message === 'INVALID_CREDENTIALS') {
+            this.notify.badCredentialsError();
+          } else {
+            this.notify.loginFailError();
+          }
         }
-      }
-    })
-  ), {dispatch: false})
+      })
+    ), {dispatch: false});
 
   authRedirect$ = createEffect(() =>
     this.actions$.pipe(
       ofType(authActions.logInSuccess),
-      tap(({redirect}) =>  {
-        this.spinner.hide()
-        if(redirect) {
-          this.router.navigate(['/'])
+      tap(({redirect}) => {
+        this.spinner.hide();
+        if (redirect) {
+          this.router.navigate(['/']);
         }
       })
-    ), { dispatch: false }
+    ), {dispatch: false}
   );
 
   saveToLocalStorage$ = createEffect(() =>
     this.actions$.pipe(
       ofType(authActions.logInSuccess),
       tap(({username, token, expirationDate, toRemember}) => {
-        if(toRemember) {
-          const user:User = { username, token, expirationDate };
+        if (toRemember) {
+          const user: User = {username, token, expirationDate};
           this.authService.storeUserData(user);
         }
       })
-    ), { dispatch: false }
-  )
+    ), {dispatch: false}
+  );
 
   saveToSessionStorage$ = createEffect(() =>
-  this.actions$.pipe(
-    ofType(authActions.logInSuccess),
-    tap(({username, token, expirationDate, toRemember}) => {
-      if(!toRemember) {
-        const user:User = { username, token, expirationDate };
-        this.authService.storeUserDataInSessionStorage(user);
-      }
-    })
-  ), { dispatch: false })
+    this.actions$.pipe(
+      ofType(authActions.logInSuccess),
+      tap(({username, token, expirationDate, toRemember}) => {
+        if (!toRemember) {
+          const user: User = {username, token, expirationDate};
+          this.authService.storeUserDataInSessionStorage(user);
+        }
+      })
+    ), {dispatch: false});
 
   setAutoLogout$ = createEffect(() =>
     this.actions$.pipe(
       ofType(authActions.logInSuccess),
       tap(user => {
-        const expirationTime = user.expirationDate.getTime() - new Date().getTime();
-        this.authService.setLogoutTimer(expirationTime);
+        if(!user.toRemember) {
+          const expirationTime = user.expirationDate.getTime() - new Date().getTime();
+          this.authService.setLogoutTimer(expirationTime);
+        }
       })
-    ), { dispatch: false }
-  )
+    ), {dispatch: false}
+  );
 
   autoLogin$ = createEffect(() =>
-  this.actions$.pipe(
-    ofType(authActions.autoLogIn),
-    map(() => {
-      const user = this.authService.getUserData();
-      console.log(user)
-      if (user != null && new Date() < user.expirationDate) {
-        return authActions.logInSuccess({username: user.username, token: user.token, expirationDate: user.expirationDate, redirect: false, toRemember: true})
-      } else {
-        const userFromSS = this.authService.getUserDataFromSessionStorage();
-        console.log(userFromSS)
-        if (userFromSS != null && new Date() < userFromSS.expirationDate) {
-          console.log(userFromSS != null && new Date() < userFromSS.expirationDate)
-          return authActions.logInSuccess({username: userFromSS.username, token: userFromSS.token, expirationDate: userFromSS.expirationDate, redirect: false, toRemember: false})
+    this.actions$.pipe(
+      ofType(authActions.autoLogIn),
+      map(() => {
+        const user = this.authService.getUserData();
+        if (user != null && new Date() < user.expirationDate) {
+          return authActions.logInSuccess({
+            username: user.username,
+            token: user.token,
+            expirationDate: user.expirationDate,
+            redirect: false,
+            toRemember: true
+          });
         }
-        return {type: '[Auth] AutoLogin Failed'}
-      }
-    })
-  ))
+        const userFromSS = this.authService.getUserDataFromSessionStorage();
+        if (userFromSS != null && new Date() < userFromSS.expirationDate) {
+          return authActions.logInSuccess({
+            username: userFromSS.username,
+            token: userFromSS.token,
+            expirationDate: userFromSS.expirationDate,
+            redirect: false,
+            toRemember: false
+          });
+        }
+        return {type: '[Auth] AutoLogin Failed'};
+      })
+    )
+  );
 
   logout$ = createEffect(() =>
     this.actions$.pipe(
@@ -147,11 +164,10 @@ export class AuthEffects {
       tap(() => {
         this.authService.removeUserData();
         this.authService.removeUserDataFromSessionStorage();
-        this.router.navigate(["/auth"]);
+        this.router.navigate(['/auth']);
         this.authService.clearLogoutTimer();
       })
-    ), { dispatch: false })
-
+    ), {dispatch: false});
 
 
   constructor(
@@ -160,6 +176,7 @@ export class AuthEffects {
     private authService: AuthService,
     private router: Router,
     private spinner: NgxSpinnerService,
-    private notify: NotifyService) {}
+    private notify: NotifyService) {
+  }
 
 }
