@@ -1,5 +1,8 @@
 :host {
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  height: 100%;
   .container {
     display: flex;
     flex-direction: column;
@@ -27,7 +30,70 @@
       justify-content: center;
       font-size: 45px;
       letter-spacing: 2.5px;
+      user-select: none;
     }
   }
+  .icons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 40px 0 40px 0;
+    width: 100%;
+    .icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 50px 0 50px;
+      i {
+        color: rgba(0,0,0,0.7);
+        font-size: 60px;
+        height: 60px;
+        width: 60px;
+      }
+      .icon-header {
+        color: rgba(0,0,0,0.7);
+        font-size: 18px;
+        font-weight: 600;
+      }
+      .icon-value {
+        color: rgba(0,0,0,0.7);
+        font-size: 16px;
+        font-weight: 500;
+      }
+    }
+  }
+  .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    margin: 0 0 40px 0;
+    .ingredients {
+      display: flex;
+      flex-direction: column;
+      width: 40%;
+      margin-left: 5%;
+      height: 400px;
+      background-color: rgba(0,0,0,0.1);
 
+    }
+    .description {
+      display: flex;
+      flex-direction: column;
+      width: 40%;
+      margin-left: 10%;
+      height: 400px;
+    }
+    .sectionTitle {
+      font-size: 38px;
+      letter-spacing: 2px;
+      font-weight: 500;
+      color: rgba(0,0,0,0.7);
+      text-align: center;
+    }
+  }
 }
+
+
+

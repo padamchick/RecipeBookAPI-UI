@@ -37,7 +37,7 @@ const routes: Routes = [
     RecipeCardComponent,
     CardsContainerComponent,
     RecipeDetailComponent,
-    TopBarRecipeDetailComponent
+    TopBarRecipeDetailComponent,
   ],
   imports: [
     RouterModule.forChild(routes),

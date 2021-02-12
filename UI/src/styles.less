@@ -3,27 +3,8 @@
 
 @import 'assets/fonts/_fonts.less';
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; overflow: hidden;
-}
-html {
-  --scrollbarBG: #CFD8DC;
-  --thumbBG: #90A4AE;
-}
-body::-webkit-scrollbar {
-  width: 11px;
-}
-body {
-  scrollbar-width: thin;
-  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
-}
-body::-webkit-scrollbar-track {
-  background: var(--scrollbarBG);
-}
-body::-webkit-scrollbar-thumb {
-  background-color: var(--thumbBG) ;
-  border-radius: 6px;
-  border: 3px solid var(--scrollbarBG);
+html, body { height: 100%}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; overflow: hidden
 }
 
 
@@ -50,6 +31,11 @@ body::-webkit-scrollbar-thumb {
   --grey-border: #dadada;
   --grey-active: #f6f6f6;
   --grey-hover: #f6faff;
+
+  //ng-scrollbar {
+  //  --scrollbar-size: 8px;
+  //  --scrollbar-hover-size: var(--scrollbar-size);
+  //}
 }
 
 .color-bg {
@@ -165,3 +151,5 @@ body::-webkit-scrollbar-thumb {
   /*change color of underline when focused*/
   background-color: var(--th-accent-dark) !important;
 }
+
+

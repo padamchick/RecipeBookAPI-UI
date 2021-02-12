@@ -8,12 +8,12 @@ INSERT INTO users_authorities (user_id, authority_id) VALUES (1, 1)
 INSERT INTO recipe_book (fk_user_id) VALUES (1)
 
 INSERT INTO category (name, icon_name, sort_index, url_suffix) VALUES ('All', 'menu_book', 1, 'all')
-INSERT INTO category (name, icon_name, sort_index, url_suffix) VALUES ('Main Dish', 'fastfood', 2, 'main-dishes')
-INSERT INTO category (name, icon_name, sort_index, url_suffix) VALUES ('Small Dish', 'tapas', 3, 'small-dishes')
-INSERT INTO category (name, icon_name, sort_index, url_suffix) VALUES ('Soup', 'local_cafe', 4, 'soups')
-INSERT INTO category (name, icon_name, sort_index, url_suffix) VALUES ('Dessert', 'cake', 5, 'desserts')
-INSERT INTO category (name, icon_name, sort_index, url_suffix) VALUES ('Drink', 'local_bar', 6, 'drinks')
-INSERT INTO category (name, icon_name, sort_index, url_suffix) VALUES ('Liqueur', 'wine_bar', 7, 'liqueurs')
+INSERT INTO category (name, icon_name, sort_index, url_suffix) VALUES ('Main Dish', 'icofont-culinary', 2, 'main-dishes')
+INSERT INTO category (name, icon_name, sort_index, url_suffix) VALUES ('Small Dish', 'icofont-fast-food', 3, 'small-dishes')
+INSERT INTO category (name, icon_name, sort_index, url_suffix) VALUES ('Soup', 'icofont-soup-bowl', 4, 'soups')
+INSERT INTO category (name, icon_name, sort_index, url_suffix) VALUES ('Dessert', 'icofont-cup-cake', 5, 'desserts')
+INSERT INTO category (name, icon_name, sort_index, url_suffix) VALUES ('Drink', 'icofont-cocktail', 6, 'drinks')
+INSERT INTO category (name, icon_name, sort_index, url_suffix) VALUES ('Liqueur', 'icofont-glass', 7, 'liqueurs')
 
 INSERT INTO recipe (name, description, image_path, recipe_book_id, category_id) VALUES ('Shakshuka','Chorizo pokroić na 4, podsmażyć. Dodać pomidory, przyprawić. Wbić jajka i smażyć pod przykryciem około 5-7 minut na dużej mocy kuchenki. Podać z pokrojoną fetą i szczypiorkiem.','https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2018/12/Shakshuka-19.jpg',1, 3)
 

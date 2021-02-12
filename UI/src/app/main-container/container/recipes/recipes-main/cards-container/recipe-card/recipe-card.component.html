@@ -1,5 +1,6 @@
 <app-card-template>
-  <mat-icon avatar class="material-icons-outlined">{{_recipe.category.iconName}}</mat-icon>
+<!--  <mat-icon avatar class="material-icons-outlined">{{_recipe.category.iconName}}</mat-icon>-->
+  <mat-icon avatar><i [class]="[_recipe.category.iconName]"></i></mat-icon>
   <ng-container title>
     {{_recipe.name}}
   </ng-container>

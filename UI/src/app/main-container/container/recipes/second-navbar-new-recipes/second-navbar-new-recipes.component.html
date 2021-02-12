@@ -8,7 +8,7 @@
     <mat-list>
       <a [routerLink]="['/new-recipes', 'all']" routerLinkActive="active">
         <mat-list-item>
-          <i class="icofont-culinary"></i>
+          <i class="icofont-restaurant-menu"></i>
           All
         </mat-list-item>
       </a>
@@ -16,7 +16,8 @@
       <div *ngFor="let category of categories">
         <a [routerLink]="['/new-recipes', category.urlSuffix]"  routerLinkActive="active">
           <mat-list-item>
-            <mat-icon matListIcon>{{category.iconName}}</mat-icon>
+<!--            <mat-icon matListIcon>{{category.iconName}}</mat-icon>-->
+            <i [class]="category.iconName"></i>
             {{category.name}}
           </mat-list-item>
 

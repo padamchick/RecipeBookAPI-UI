@@ -1,12 +1,43 @@
 <app-top-bar-recipe-detail></app-top-bar-recipe-detail>
-<div class="container">
-  <div class="photo">
-    <img [src]="recipe.imagePath">
-    <div class="title">
-      {{recipe.name | uppercase}}
+<ng-scrollbar>
+  <div class="container">
+    <div class="photo">
+      <img [src]="recipe.imagePath">
+      <div class="title">
+        {{recipe.name | uppercase}}
+      </div>
     </div>
+    <div class="icons">
+      <div class="icon">
+        <i class="icofont-restaurant"></i>
+        <span class="icon-header">Servings</span>
+        <span class="icon-value">4</span>
+      </div>
+      <div class="icon">
+        <i class="icofont-clock-time"></i>
+        <span class="icon-header">Preparing time</span>
+        <span class="icon-value">45 - 60min</span>
+      </div>
+      <div class="icon">
+        <i class="icofont-food-basket"></i>
+        <span class="icon-header">Ingredients</span>
+        <span class="icon-value">{{recipe.ingredients.length}}</span>
+      </div>
+    </div>
+    <div class="content">
+      <div class="ingredients">
+        <span class="sectionTitle">INGREDIENTS</span>
+      </div>
+      <div class="description">
+        <span class="sectionTitle">DESCRIPTION</span>
+        {{recipe.description}}
+      </div>
+    </div>
+
+
   </div>
 
+</ng-scrollbar>
 
 
-</div>
+

@@ -10,6 +10,7 @@ import {Category} from '../models/category.model';
 export class SecondNavbarNewRecipesComponent implements OnInit {
 
   categories: Category[];
+  font_class = 'icofont-coffee-alt';
 
   constructor(private recipeService: RecipeService) { }
 
