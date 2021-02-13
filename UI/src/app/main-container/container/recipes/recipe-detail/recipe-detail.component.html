@@ -26,7 +26,40 @@
     </div>
     <div class="content">
       <div class="ingredients">
-        <span class="sectionTitle">INGREDIENTS</span>
+        <mat-card>
+<!--          <mat-card-header>-->
+<!--            <mat-card-title class="d-flex align-items-center">-->
+<!--              <mat-icon>shopping_cart</mat-icon>-->
+<!--              {{'[Recipes]Ingredients' | translate}}-->
+<!--            </mat-card-title>-->
+<!--          </mat-card-header>-->
+          <mat-card-content>
+            <table mat-table [dataSource]="dataSource">
+              <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let element"> <i class="fas fa-angle-right"></i> </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef> INGREDIENTS </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.name}}: {{element.amount}} {{element.unit}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="amount">
+                <mat-header-cell *matHeaderCellDef> {{'[Recipes]IngTableAmount' | translate}} </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="unit">
+                <mat-header-cell *matHeaderCellDef> {{'[Recipes]IngTableUnit' | translate}} </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.unit}} </mat-cell>
+              </ng-container>
+
+<!--                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>-->
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </table>
+          </mat-card-content>
+        </mat-card>
       </div>
       <div class="description">
         <span class="sectionTitle">DESCRIPTION</span>

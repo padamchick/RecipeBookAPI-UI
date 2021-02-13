@@ -4,6 +4,8 @@ import {Store} from '@ngrx/store';
 import {AppState} from '../../../../store/app.reducer';
 import {ActivatedRoute} from '@angular/router';
 import {map, switchMap} from 'rxjs/operators';
+import {MatTableDataSource} from '@angular/material/table';
+import {Ingredient} from '../../../../shared/ingredient.model';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -11,8 +13,11 @@ import {map, switchMap} from 'rxjs/operators';
   styleUrls: ['./recipe-detail.component.less']
 })
 export class RecipeDetailComponent implements OnInit {
-  recipe: Recipe;
+  // recipe: Recipe;
   id: number;
+  recipe: Recipe = new Recipe(0, '', '', '', [], null);
+  displayedColumns: string[] = ['id', 'name'];
+  dataSource: MatTableDataSource<Ingredient>;
 
   constructor(private store: Store<AppState>,
               private route: ActivatedRoute) { }
@@ -28,6 +33,7 @@ export class RecipeDetailComponent implements OnInit {
     )
       .subscribe(recipe => {
       this.recipe = recipe;
+        this.dataSource = new MatTableDataSource(this.recipe.ingredients);
     })
   }
 
