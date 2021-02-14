@@ -1,8 +1,9 @@
 :host {
   #searchPanel {
-    width: 100%;
+    width: 60%;
     display: flex;
     align-items: center;
+    margin-right: 40%;
     #back {
       margin-right: 40px;
       a {
@@ -38,6 +39,7 @@
   .icons {
     display: flex;
     align-items: center;
+    color: rgba(0,0,0,0.7);
     mat-icon {
       margin: 0 10px;
       cursor: pointer;
@@ -70,6 +72,10 @@
 
   ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
     //width: 40%;
+  }
+
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: #dadada;
   }
 
   ::ng-deep .mat-form-field-infix {
