@@ -1,8 +1,55 @@
 :host {
-
   #searchPanel {
     width: 100%;
+    display: flex;
+    align-items: center;
+    #back {
+      margin-right: 40px;
+      a {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        text-decoration: none;
+
+        mat-icon {
+          font-size: 30px;
+          height: 30px;
+          width: 30px;
+          color: rgba(0, 0, 0, 0.7);
+        }
+
+        h5 {
+          margin: 0 5px 0 5px;
+          color: rgba(0, 0, 0, 0.7);
+          font-size: 14px;
+          letter-spacing: 0.7px;
+          font-weight: 700;
+        }
+
+        &:hover {
+          mat-icon, h5 {
+            color: @primary;
+          }
+        }
+      }
+    }
   }
+
+  .icons {
+    display: flex;
+    align-items: center;
+    mat-icon {
+      margin: 0 10px;
+      cursor: pointer;
+      //font-size: 27px;
+    }
+    i {
+      margin: 0 10px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+  }
+
 
   //   SEARCHING   //
 
@@ -22,8 +69,7 @@
   }
 
   ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex {
-    width: 40%;
-    margin-left: 60%;
+    //width: 40%;
   }
 
   ::ng-deep .mat-form-field-infix {

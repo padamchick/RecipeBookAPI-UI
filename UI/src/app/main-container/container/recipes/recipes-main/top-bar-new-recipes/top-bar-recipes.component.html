@@ -1,5 +1,11 @@
   <app-top-bar>
-    <div id="searchPanel">
+    <div id="searchPanel" *ngIf="searchMode">
+      <div id="back" (click)="switchSearchMode()">
+        <a [routerLink]="['../']">
+          <mat-icon>keyboard_backspace</mat-icon>
+          <h5>BACK</h5>
+        </a>
+      </div>
       <mat-form-field appearance="outline" style="width: 100%">
         <input matInput
                [(ngModel)]="searchWord"
@@ -18,6 +24,11 @@
           {{recipe.name}}
         </mat-option>
       </mat-autocomplete>
+    </div>
+    <div class="icons" *ngIf="!searchMode">
+<!--      <mat-icon >search</mat-icon>-->
+      <i class="fas fa-search" matTooltip="Search"  (click)="switchSearchMode()"></i>
+      <i class="fas fa-plus-circle" matTooltip="Add New Recipe"></i>
     </div>
   </app-top-bar>
 

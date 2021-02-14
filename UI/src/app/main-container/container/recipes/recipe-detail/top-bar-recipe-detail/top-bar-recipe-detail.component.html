@@ -1,9 +1,16 @@
 <app-top-bar>
-  <div id="back">
-    <a [routerLink]="['../']">
-      <mat-icon>keyboard_backspace
-      </mat-icon>
-      <h5>BACK</h5>
-    </a>
+  <div class="wrapper">
+    <div id="back">
+      <a [routerLink]="['../']">
+        <mat-icon>keyboard_backspace</mat-icon>
+        <h5>BACK</h5>
+      </a>
+    </div>
+    <div id="icons">
+      <i class="fas fa-plus-circle" matTooltip="Add"></i>
+      <i class="fas fa-edit" matTooltip="Edit"></i>
+      <i class="fas fa-trash-alt" matTooltip="Delete"></i>
+    </div>
   </div>
+
 </app-top-bar>

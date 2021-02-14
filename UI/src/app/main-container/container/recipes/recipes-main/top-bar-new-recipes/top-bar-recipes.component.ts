@@ -16,6 +16,7 @@ export class TopBarRecipesComponent implements OnInit{
 
   searchWord: string;
   recipes;
+  searchMode: boolean = false;
 
   constructor(private store: Store<fromApp.AppState>) { }
 
@@ -56,5 +57,9 @@ export class TopBarRecipesComponent implements OnInit{
 
   searchThis() {
     this.searchCriteria.emit(this.searchWord)
+  }
+
+  switchSearchMode() {
+    this.searchMode = !this.searchMode;
   }
 }
