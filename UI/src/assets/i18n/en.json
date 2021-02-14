@@ -22,7 +22,7 @@
   "[SignUp]PasswordError": "Password is required!",
   "[SignUp]ConfirmPassword": "Confirm Password",
   "[SignUp]ConfirmPasswordPlaceholder": "Confirm your password",
-  "[SignUp]ConfirmPasswordError": "Confirming password is required",
+  "[SignUp]ConfirmPasswordError": "Password confirmation is required",
   "[SignUp]SignUpButton": "Sign Up",
   "[SignUp]BackToLoginPage": "Back to login page.",
 

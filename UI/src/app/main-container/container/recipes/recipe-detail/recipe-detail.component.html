@@ -1,6 +1,6 @@
 <app-top-bar-recipe-detail></app-top-bar-recipe-detail>
 <ng-scrollbar>
-  <div class="container">
+  <div class="wrapper">
     <div class="photo">
       <img [src]="recipe.imagePath">
       <div class="title">
@@ -12,6 +12,11 @@
         <i class="icofont-restaurant"></i>
         <span class="icon-header">Servings</span>
         <span class="icon-value">4</span>
+      </div>
+      <div class="icon" *ngIf="recipe.name">
+        <i class="icofont-feedburner"></i>
+        <span class="icon-header">Kcal</span>
+        <span class="icon-value">400 / porcja</span>
       </div>
       <div class="icon">
         <i class="icofont-clock-time"></i>
@@ -25,45 +30,26 @@
       </div>
     </div>
     <div class="content">
-      <div class="ingredients">
-        <mat-card>
-<!--          <mat-card-header>-->
-<!--            <mat-card-title class="d-flex align-items-center">-->
-<!--              <mat-icon>shopping_cart</mat-icon>-->
-<!--              {{'[Recipes]Ingredients' | translate}}-->
-<!--            </mat-card-title>-->
-<!--          </mat-card-header>-->
-          <mat-card-content>
-            <table mat-table [dataSource]="dataSource">
-              <ng-container matColumnDef="id">
-                <mat-header-cell *matHeaderCellDef></mat-header-cell>
-                <mat-cell *matCellDef="let element"> <i class="fas fa-angle-right"></i> </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="name">
-                <mat-header-cell *matHeaderCellDef> INGREDIENTS </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.name}}: {{element.amount}} {{element.unit}} </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="amount">
-                <mat-header-cell *matHeaderCellDef> {{'[Recipes]IngTableAmount' | translate}} </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
-              </ng-container>
-
-              <ng-container matColumnDef="unit">
-                <mat-header-cell *matHeaderCellDef> {{'[Recipes]IngTableUnit' | translate}} </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.unit}} </mat-cell>
-              </ng-container>
-
-<!--                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>-->
-              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-            </table>
-          </mat-card-content>
-        </mat-card>
+      <div id="ingredients">
+            <div class="sectionHeader">
+              <i class="fas fa-shopping-basket"></i>
+              <span>INGREDIENTS</span>
+            </div>
+            <div class="ingredientsTable" *ngFor="let ingredient of recipe.ingredients, let i=index">
+              <div class="ingredientsItem" [style.background-color]="i%2 === 1 ? '#f4f4f4':'white'">
+                <i class="fas fa-chevron-right"></i>
+                {{ingredient.name}}: {{ingredient.amount}} {{ingredient.unit}}</div>
+            </div>
       </div>
-      <div class="description">
-        <span class="sectionTitle">DESCRIPTION</span>
-        {{recipe.description}}
+
+      <div id="description">
+        <div class="sectionHeader">
+          <i class="fas fa-file-alt"></i>
+          <span>DESCRIPTION</span>
+        </div>
+          <div class="sectionContent" [innerHTML]="recipe.description" style="white-space: pre-wrap;">
+
+          </div>
       </div>
     </div>
 

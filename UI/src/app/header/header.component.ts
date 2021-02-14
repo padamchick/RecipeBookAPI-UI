@@ -1,14 +1,14 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 
-import {DataStorageService} from '../../shared/data-storage.service';
-import {AuthService} from '../../auth/auth.service';
+import {DataStorageService} from '../shared/data-storage.service';
+import {AuthService} from '../auth/auth.service';
 import {Subscription, Observable} from 'rxjs';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {map, shareReplay, tap} from 'rxjs/operators';
-import {OldRecipeService} from '../container/old-recipes/old-recipe.service';
+import {OldRecipeService} from '../main-container/container/old-recipes/old-recipe.service';
 import {Store} from '@ngrx/store';
-import {AppState} from '../../store/app.reducer';
-import * as authActions from '../../auth/store/auth.actions';
+import {AppState} from '../store/app.reducer';
+import * as authActions from '../auth/store/auth.actions';
 import {TranslateService} from '@ngx-translate/core';
 
 @Component({
