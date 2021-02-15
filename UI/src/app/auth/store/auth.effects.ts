@@ -9,6 +9,7 @@ import {of} from 'rxjs';
 import {Router} from '@angular/router';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {NotifyService} from '../../shared/services/notify.service';
+import {LoginService} from '../../shared/services/login.service';
 
 
 @Injectable()
@@ -72,6 +73,7 @@ export class AuthEffects {
       ofType(authActions.logInFail),
       tap(({error}) => {
         this.spinner.hide();
+        this.loginService.redirectSubject.next(true);
         if (error && error.error) {
           if (error.error.message === 'INVALID_CREDENTIALS') {
             this.notify.badCredentialsError();
@@ -89,6 +91,7 @@ export class AuthEffects {
         this.spinner.hide();
         if (redirect) {
           this.router.navigate(['/']);
+          // this.loginService.redirectSubject.next(true);
         }
       })
     ), {dispatch: false}
@@ -176,7 +179,8 @@ export class AuthEffects {
     private authService: AuthService,
     private router: Router,
     private spinner: NgxSpinnerService,
-    private notify: NotifyService) {
+    private notify: NotifyService,
+    private loginService: LoginService) {
   }
 
 }

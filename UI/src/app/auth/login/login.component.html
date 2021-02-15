@@ -6,7 +6,7 @@
     {{'[SignIn]Subtitle' | translate}}
   </div>
 
-  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <form #f="ngForm" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="outline">
       <mat-label>{{'[SignIn]Login' | translate}}</mat-label>
       <input matInput name="username" type="text" required #username="ngModel" ngModel placeholder="{{'[SignIn]LoginPlaceholder' | translate }}">

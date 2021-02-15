@@ -4,6 +4,7 @@ import {SecondNavbarNewRecipesComponent} from './second-navbar-new-recipes/secon
 import {RecipesComponent} from './recipes-main/recipes.component';
 import {RecipesResolverService} from './recipes-resolver.service';
 import {RecipeDetailComponent} from './recipe-detail/recipe-detail.component';
+import {RecipeEditComponent} from './recipe-edit/recipe-edit.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,10 @@ const routes: Routes = [
       {path: ':category/:id',
         component: RecipeDetailComponent,
         resolve: [RecipesResolverService]
-      }
+      },
+      {path: ':category/:id/edit',
+        component: RecipeEditComponent
+      },
     ]
   }
 ];

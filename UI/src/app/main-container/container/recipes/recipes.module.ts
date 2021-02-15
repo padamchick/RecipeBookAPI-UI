@@ -10,6 +10,7 @@ import {RecipeDetailComponent} from './recipe-detail/recipe-detail.component';
 import { TopBarRecipeDetailComponent } from './recipe-detail/top-bar-recipe-detail/top-bar-recipe-detail.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import {RecipesRoutingModule} from './recipes-routing.module';
+import { TopBarRecipeEditComponent } from './recipe-edit/top-bar-recipe-edit/top-bar-recipe-edit.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {RecipesRoutingModule} from './recipes-routing.module';
     RecipeDetailComponent,
     TopBarRecipeDetailComponent,
     RecipeEditComponent,
+    TopBarRecipeEditComponent,
   ],
   imports: [
     RouterModule,
