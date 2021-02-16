@@ -16,8 +16,6 @@ export class RecipeDetailComponent implements OnInit {
   // recipe: Recipe;
   id: number;
   recipe: Recipe = new Recipe(0, '', '', '', [], null);
-  displayedColumns: string[] = ['id', 'name'];
-  dataSource: MatTableDataSource<Ingredient>;
 
   constructor(private store: Store<AppState>,
               private route: ActivatedRoute) { }
@@ -33,7 +31,6 @@ export class RecipeDetailComponent implements OnInit {
     )
       .subscribe(recipe => {
       this.recipe = recipe;
-        this.dataSource = new MatTableDataSource(this.recipe.ingredients);
     })
   }
 

@@ -1,7 +1,90 @@
 <app-top-bar-recipe-edit></app-top-bar-recipe-edit>
-<div id="form">
-  <mat-form-field appearance="outline">
-    <mat-label>URL</mat-label>
-    <input matInput name="url" placeholder="Enter image URL">
-  </mat-form-field>
-</div>
+<ng-scrollbar>
+  <div class="wrapper">
+    <div class="header">
+      <h2>EDIT RECIPE</h2>
+      <mat-divider></mat-divider>
+    </div>
+    <form #f="ngForm" (ngSubmit)="onSubmit()">
+      <div class="columns">
+        <div class="form-left">
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput name="name" placeholder="Enter recipe name" [ngModel]="recipe.name">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Servings</mat-label>
+            <input matInput name="servings" placeholder="Enter servings number" type="number">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Kcal</mat-label>
+            <input matInput name="kcal" placeholder="Enter amount of calories per serving" type="number">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Preparation time</mat-label>
+            <input matInput name="preparation" placeholder="Enter preparation time">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Creation date</mat-label>
+            <input matInput name="createdAt" placeholder="Enter creation date" [matDatepicker]="datepicker">
+            <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker>
+              <mat-datepicker-actions>
+                <button mat-button matDatepickerCancel>Cancel</button>
+                <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+              </mat-datepicker-actions>
+            </mat-datepicker>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Category</mat-label>
+            <mat-select [ngModel]="recipe.category.name" name="food">
+              <mat-option *ngFor="let category of categories" [value]="category.name">
+                {{category.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" name="description"
+                      placeholder="Enter servings number" [ngModel]="recipe.description"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div class="form-right">
+          <mat-form-field appearance="outline">
+            <mat-label>Image URL</mat-label>
+            <input matInput name="imagePath" placeholder="Enter image URL" [(ngModel)]="recipe.imagePath" >
+          </mat-form-field>
+          <img *ngIf="recipe.imagePath!==''; else imagePlaceholder" [src]="recipe.imagePath" class="preview">
+          <ng-template #imagePlaceholder>
+            <img src="assets/images/placeholder-image.png" class="preview">
+          </ng-template>
+        </div>
+      </div>
+      <div class="header">
+        <h2>INGREDIENTS</h2>
+      </div>
+      <div>
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Amount</th>
+            <th scope="col">Unit</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let ingredient of recipe.ingredients; let i=index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{ingredient.name}}</td>
+            <td>{{ingredient.amount}}</td>
+            <td>{{ingredient.unit}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </form>
+  </div>
+
+</ng-scrollbar>

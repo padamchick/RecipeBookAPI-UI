@@ -19,6 +19,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 const materialComponents = [
   MatCardModule,
@@ -40,7 +43,9 @@ const materialComponents = [
   MatTooltipModule,
   MatMenuModule,
   MatRadioModule,
-  MatAutocompleteModule
+  MatAutocompleteModule,
+  MatDatepickerModule,
+  MatNativeDateModule
 ];
 
 @NgModule({
