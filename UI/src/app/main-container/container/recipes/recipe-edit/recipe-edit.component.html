@@ -53,7 +53,7 @@
         <div class="form-right">
           <mat-form-field appearance="outline">
             <mat-label>Image URL</mat-label>
-            <input matInput name="imagePath" placeholder="Enter image URL" [(ngModel)]="recipe.imagePath" >
+            <input matInput name="imagePath" placeholder="Enter image URL" [(ngModel)]="recipe.imagePath">
           </mat-form-field>
           <img *ngIf="recipe.imagePath!==''; else imagePlaceholder" [src]="recipe.imagePath" class="preview">
           <ng-template #imagePlaceholder>
@@ -64,27 +64,87 @@
       <div class="header">
         <h2>INGREDIENTS</h2>
       </div>
-      <div>
-        <table class="table table-bordered">
-          <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Amount</th>
-            <th scope="col">Unit</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let ingredient of recipe.ingredients; let i=index">
-            <th scope="row">{{i+1}}</th>
-            <td>{{ingredient.name}}</td>
-            <td>{{ingredient.amount}}</td>
-            <td>{{ingredient.unit}}</td>
-          </tr>
-          </tbody>
-        </table>
+      <div *ngIf="recipe.ingredients.length > 0; else noDataPlaceholder" class="ingredients">
+        <mat-card>
+          <table mat-table [dataSource]="dataSource">
+
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <mat-header-cell *matHeaderCellDef> {{'[Recipes]IngTableName' | translate}} </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.name | lowercase}} </mat-cell>
+            </ng-container>
+
+            <!-- Amount Column -->
+            <ng-container matColumnDef="amount">
+              <mat-header-cell *matHeaderCellDef> {{'[Recipes]IngTableAmount' | translate}} </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
+            </ng-container>
+
+            <!-- Unit Column -->
+            <ng-container matColumnDef="unit">
+              <mat-header-cell *matHeaderCellDef> {{'[Recipes]IngTableUnit' | translate}} </mat-header-cell>
+              <mat-cell *matCellDef="let element"> {{element.unit}} </mat-cell>
+            </ng-container>
+
+            <!-- Action Column -->
+            <ng-container matColumnDef="action">
+              <mat-header-cell *matHeaderCellDef> {{'[Recipes]IngTableActions' | translate}} </mat-header-cell>
+              <mat-cell *matCellDef="let element; let i=index" (click)="$event.stopPropagation()">
+                <div fxLayout>
+                  <!--                <button type="button" mat-icon-button matTooltip="{{'[Recipes]IngTableActionsEditTooltip' | translate}}" matTooltipPosition="above" (click)="editIngredient(element, i)">-->
+                  <button type="button" mat-icon-button
+                          matTooltip="{{'[Recipes]IngTableActionsEditTooltip' | translate}}" matTooltipPosition="above"
+                          (click)="editIngredient(element)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button type="button" mat-icon-button
+                          matTooltip="{{'[Recipes]IngTableActionsDeleteTooltip' | translate}}"
+                          matTooltipPosition="above" class="mat-red-icon">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; let i=index; columns: displayedColumns;"></mat-row>
+          </table>
+          <div class="floating-button">
+            <button mat-mini-fab
+                    class="theme-accent-dark"
+                    matTooltip="Add New Recipe"
+                    matTooltipPosition="above"
+                    (click)="addIngredient()"
+            >
+              <i class="material-icons" >add_shopping_cart</i>
+            </button>
+          </div>
+        </mat-card>
       </div>
+      <ng-template #noDataPlaceholder>
+        <div id="noData">
+          <img src="assets/images/placeholder-no-data.png">
+        </div>
+      </ng-template>
     </form>
   </div>
 
 </ng-scrollbar>
+
+<!--<p-dialog [(visible)]="editIngredientDialog.visible" [showHeader]="false" [modal]="true" [focusOnShow]="false" [closeOnEscape]="true">-->
+<!--  <app-ingredient-dialog #editIngredientDialog-->
+<!--                         [width]="250"-->
+<!--                         [title]="'Edit ingredient'"-->
+<!--                         [button1Class]="'theme-accent-danger'"-->
+<!--                         [buttonWidth]="100"-->
+<!--                         (onEdit)="updateIngredient($event)"-->
+<!--                         (onAdd)="addIngredient($event)"-->
+<!--  >-->
+<!--  </app-ingredient-dialog>-->
+<!--</p-dialog>-->
+
+
+
+

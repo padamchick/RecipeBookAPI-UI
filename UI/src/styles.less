@@ -10,9 +10,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; overflow: h
 
 
 :root {
-  --th-primary-dark: #192E5B;
-  --th-primary: #1D65A6;
-  --th-primary-light: #72A2C0;
+  //--th-primary-dark: #192E5B;
+  //--th-primary: #1D65A6;
+  //--th-primary-light: #72A2C0;
   //--th-accent-dark: rgb(5, 64, 119);
   //--th-accent-dark: rgb(5, 64, 119);
   //--th-accent: #029aff;
@@ -20,11 +20,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; overflow: h
   --th-accent-dark: #03353e;
   --th-accent: #0294a5;
   --th-accent-light: #eeeeee;
-  --th-fancy: #892828;
+  --th-accent-danger: #ff3535;
   --th-disabled: #20222380;
   --th-background: linear-gradient(to bottom, #FFFFFF 192px, #ECE9E6) fixed;
   --text-primary: white;
   --text-accent: white;
+  --dark-red: #892828;
   --green: rgb(25, 192, 53);
   --yellow: #FFA902;
   --red: rgb(255, 0, 0);
@@ -74,6 +75,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; overflow: h
 .theme-accent-dark-reversed {
   background: var(--text-accent) !important;
   color: var(--th-accent-dark) !important;
+}
+
+.theme-accent-danger {
+  background: var(--th-accent-danger) !important;
+  color: var(--text-accent) !important;
 }
 
 .theme-accent {

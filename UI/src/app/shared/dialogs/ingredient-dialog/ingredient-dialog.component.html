@@ -1,0 +1,26 @@
+<app-dialog
+  [width]="width"
+  [title]="title"
+  [button1Label]="button1Label"
+  [button2Label]="button2Label"
+  [button1Class]="button1Class"
+  [button2Class]="button2Class"
+  [buttonWidth]="buttonWidth"
+  (button1Callback)="button1Callback()"
+  (button2Callback)="button2Callback()"
+  (closeButtonCallback)="closeButtonCallback()"
+>
+  <div>
+    <mat-form-field>
+      <input matInput name="name" [(ngModel)]="name" placeholder="Name">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="number" step="0.1" name="amount" [(ngModel)]="amount" placeholder="Amount">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput name="unit" [(ngModel)]="unit" placeholder="Unit">
+    </mat-form-field>
+  </div>
+
+
+</app-dialog>

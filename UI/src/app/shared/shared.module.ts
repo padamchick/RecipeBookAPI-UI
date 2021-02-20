@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { DropdownDirective } from './dropdown.directive';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from '../material/material.module';
+import { MaterialModule } from './material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
@@ -16,6 +16,10 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 import {NgxMasonryModule} from 'ngx-masonry';
 import {TopBarComponent} from '../main-container/top-bar/top-bar.component';
 import {NgScrollbarModule} from 'ngx-scrollbar';
+import {DialogComponent} from './dialog-template/dialog.component';
+import { IngredientDialogComponent } from './dialogs/ingredient-dialog/ingredient-dialog.component';
+import {PrimeNgModule} from './primeng/primeng.module';
+import {DialogService} from 'primeng/dynamicdialog';
 
 
 @NgModule({
@@ -26,11 +30,14 @@ import {NgScrollbarModule} from 'ngx-scrollbar';
     SecondNavbarLayoutComponent,
     TopBarComponent,
     CardTemplateComponent,
-    TruncatePipe
+    TruncatePipe,
+    DialogComponent,
+    IngredientDialogComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
+    PrimeNgModule,
     FlexLayoutModule,
     LayoutModule,
     FormsModule,
@@ -44,6 +51,7 @@ import {NgScrollbarModule} from 'ngx-scrollbar';
     CommonModule,
     FormsModule,
     MaterialModule,
+    PrimeNgModule,
     FlexLayoutModule,
     LayoutModule,
     NgxSpinnerModule,
@@ -54,7 +62,9 @@ import {NgScrollbarModule} from 'ngx-scrollbar';
     CardTemplateComponent,
     TruncatePipe,
     NgxMasonryModule,
-    NgScrollbarModule
-  ]
+    NgScrollbarModule,
+    DialogComponent,
+    IngredientDialogComponent
+  ],
 })
 export class SharedModule {}

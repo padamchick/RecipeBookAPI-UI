@@ -1,0 +1,16 @@
+<div [style.width]="width + 'px'">
+  <span class="close" (click)="closeButtonClick()">
+    <i class="fas fa-times fa-1x" matTooltip="Close"></i>
+  </span>
+  <h1 mat-dialog-title>
+    {{title}}
+  </h1>
+  <div mat-dialog-content>
+    <ng-content></ng-content>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-raised-button class="{{button1Class}}" type="button" (click)="button1Click()" [style.width]="buttonWidth + 'px'">{{button1Label}}</button>
+    <button mat-raised-button class="{{button2Class}}" type="submit" (click)="button2Click()" [style.width]="buttonWidth + 'px'">{{button2Label}}</button>
+  </div>
+</div>

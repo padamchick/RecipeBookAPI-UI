@@ -19,7 +19,6 @@
     h2 {
       font-weight: 500;
       letter-spacing: 1px;
-
     }
   }
 
@@ -36,7 +35,7 @@
       display: flex;
       flex-direction: column;
       width: 45%;
-      margin-left: calc(10% - 40px);
+      margin-left: calc(10% - 30px);
       mat-form-field {
         width: 100%;
       }
@@ -48,9 +47,61 @@
     }
 
   }
-  table {
-    border-radius: 20px;
+  .ingredients {
+    mat-card {
+      width: calc(100% - 30px);
+      padding: 10px 0 10px 0;
+      box-shadow: none;
+      border: 1px solid #dadada;
+      border-radius: 5px;
+      position: relative;
+      table {
+        width: 100%;
+        padding: 0 !important;
+      }
+      .mat-column-name {
+        flex: 0 0 50%;
+      }
+      .mat-column-amount {
+        flex: 0 0 13%;
+      }
+      .mat-column-unit {
+        flex: 0 0 17%;
+      }
+      .mat-column-action {
+        flex: 0 0 20%;
+      }
+      .floating-button {
+        position: absolute;
+        display: flex;
+        bottom: 15px;
+        right: 15px;
+
+        button:focus, button:active:focus {
+          outline: none;
+          border: 0;
+        }
+
+        .mat-fab {
+          width: 40px;
+          height: 40px;
+          //background-color: rgba(0, 0, 0, 0.4);
+
+          ::ng-deep & .mat-button-wrapper {
+            padding: 0 !important;
+          }
+        } }
   }
+
+
+  }
+  #noData {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+
 
 
 }

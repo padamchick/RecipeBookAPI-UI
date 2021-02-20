@@ -11,6 +11,8 @@ import { TopBarRecipeDetailComponent } from './recipe-detail/top-bar-recipe-deta
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import {RecipesRoutingModule} from './recipes-routing.module';
 import { TopBarRecipeEditComponent } from './recipe-edit/top-bar-recipe-edit/top-bar-recipe-edit.component';
+import {DialogService} from 'primeng/dynamicdialog';
+import {IngredientDialogComponent} from '../../../shared/dialogs/ingredient-dialog/ingredient-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,9 @@ import { TopBarRecipeEditComponent } from './recipe-edit/top-bar-recipe-edit/top
     RouterModule,
     RecipesRoutingModule,
     SharedModule
+  ],
+  providers: [DialogService],
+  entryComponents: [IngredientDialogComponent
   ]
 })
 

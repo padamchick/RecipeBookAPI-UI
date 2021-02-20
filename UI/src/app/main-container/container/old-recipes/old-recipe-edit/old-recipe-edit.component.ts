@@ -4,7 +4,7 @@ import {Recipe} from '../old-recipe.model';
 import {Ingredient} from 'src/app/shared/ingredient.model';
 import {DataStorageService} from 'src/app/shared/data-storage.service';
 import {CanComponentDeactivate} from '../../../../shared/can-deactivate.guard';
-import {Observable, Observer} from 'rxjs';
+import {Observable, Observer, of} from 'rxjs';
 import {
   ConfirmationDialogModel,
   ConfirmationDialogComponent,
@@ -36,7 +36,6 @@ export class OldRecipeEditComponent implements OnInit, CanComponentDeactivate {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private dataService: DataStorageService,
     public dialog: MatDialog,
     private store: Store<fromApp.AppState>,
     private actions$: Actions,
@@ -123,6 +122,7 @@ export class OldRecipeEditComponent implements OnInit, CanComponentDeactivate {
   editIngredient(el: Ingredient, i: number) {
     const dialogData: IngredientEditModel = { title: 'Edit Ingredient', name: el.name, amount: el.amount, unit: el.unit };
     const dialogRef = this.dialog.open(IngredientEditComponent, {
+
       maxWidth: '400px',
       data: dialogData,
     });
@@ -155,7 +155,7 @@ export class OldRecipeEditComponent implements OnInit, CanComponentDeactivate {
       return true;
     } else {
       // jesli nastapila zmiana w formularzu:
-      return new Observable((observer: Observer<boolean>) => {
+      // return new Observable((observer: Observer<boolean>) => {
         // const message = 'Are you sure you want to discard all changes?';
         const message = this.translate.instant("[Recipes]DiscardDialogText");
         const dialogData = new ConfirmationDialogModel(
@@ -169,15 +169,17 @@ export class OldRecipeEditComponent implements OnInit, CanComponentDeactivate {
         });
 
         dialogRef.afterClosed().subscribe((result: boolean) => {
-            observer.next(result);
-            observer.complete();
+          return of(result);
+            // observer.next(result);
+            // observer.complete();
           },
           () => {
-            observer.next(false);
-            observer.complete();
+          return of(false);
+            // observer.next(false);
+            // observer.complete();
           }
         );
-      });
+      // });
     }
   }
 }

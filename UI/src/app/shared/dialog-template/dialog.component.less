@@ -1,0 +1,39 @@
+:host {
+  padding: 20px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  .close {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+  }
+  [mat-dialog-title] {
+    text-align: center;
+    width: 100%;
+  }
+  [mat-dialog-content] {
+    margin: 15px 0;
+  }
+  [mat-dialog-actions] {
+    display: flex;
+    //flex-direction: row;
+    justify-content: space-around;
+    button {
+      margin-left: 10px;
+    }
+
+  }
+}
+
+//.dialog-buttons {
+//  display: flex;
+//  justify-content: flex-end;
+//  padding-top: 24px;
+//  button {
+//    margin-right: 0.5rem;
+//  }
+//}
+
