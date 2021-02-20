@@ -11,6 +11,7 @@ const routes: Routes = [
     path: '', children: [
       {path: '', component: SecondNavbarNewRecipesComponent, outlet: 'second-nav-bar'},
       {path: '', pathMatch: 'full', redirectTo: '/new-recipes/all'},
+      {path: 'new', component: RecipeEditComponent},
       {path: ':category',
         component: RecipesComponent,
         resolve: [RecipesResolverService]

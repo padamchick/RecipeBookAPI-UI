@@ -27,8 +27,8 @@
     </div>
     <div class="icons" *ngIf="!searchMode">
 <!--      <mat-icon >search</mat-icon>-->
-      <i class="fas fa-search" matTooltip="Search"  (click)="switchSearchMode()"></i>
-      <i class="fas fa-plus-circle" matTooltip="Add New Recipe"></i>
+      <i class="fas fa-search" matTooltip="Search" (click)="switchSearchMode()"></i>
+      <i class="fas fa-plus-circle" matTooltip="Add New Recipe" [routerLink]="['../', 'new']"></i>
     </div>
   </app-top-bar>
 

@@ -22,13 +22,12 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
   id: number;
   recipe: Recipe = new Recipe(0, '', '', '', [], {name: '', iconName: '', urlSuffix: '', sortIndex: null});
   categories: Category[] = [];
-  selectedValue: string;
+  editMode: boolean;
 
   displayedColumns: string[] = ['name', 'amount', 'unit', 'action'];
   dataSource: MatTableDataSource<Ingredient>;
 
   ngUnsubscribe = new Subject();
-  display: boolean = false;
 
   constructor(private store: Store<AppState>,
               private route: ActivatedRoute,
@@ -42,13 +41,16 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
         map(params => +params['id']),
         switchMap(id => {
           this.id = id;
+          this.editMode = !!id;
           return this.store.select('recipes');
         }),
         map(state => state.recipes.find(recipe => recipe.id === this.id))),
       this.recipeService.getCategories()
     ]).pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(([recipe, categories]: [Recipe, Category[]]) => {
-        this.recipe = cloneDeep(recipe);
+        if(this.editMode) {
+          this.recipe = cloneDeep(recipe);
+        }
         this.categories = categories;
         this.dataSource = new MatTableDataSource(this.recipe.ingredients);
       });
