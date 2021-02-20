@@ -1,1 +1,14 @@
-<app-top-bar></app-top-bar>
+<app-top-bar>
+  <div class="wrapper">
+    <div id="back">
+      <a [routerLink]="['../']">
+        <mat-icon>keyboard_backspace</mat-icon>
+        <h5>BACK</h5>
+      </a>
+    </div>
+    <div id="icons">
+      <i class="fas fa-save" matTooltip="Save"></i>
+      <i class="fas fa-ban" matTooltip="Discard"></i>
+    </div>
+  </div>
+</app-top-bar>

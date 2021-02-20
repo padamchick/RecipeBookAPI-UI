@@ -2,7 +2,7 @@
 <ng-scrollbar>
   <div class="wrapper">
     <div class="header">
-      <h2>EDIT RECIPE</h2>
+      <h2>{{editMode ? 'EDIT RECIPE' : 'NEW RECIPE'}}</h2>
       <mat-divider></mat-divider>
     </div>
     <form #f="ngForm" (ngSubmit)="onSubmit()">
@@ -113,8 +113,8 @@
           </table>
           <div class="floating-button">
             <button mat-mini-fab
-                    class="theme-accent-dark"
-                    matTooltip="Add New Recipe"
+                    class="theme-accent"
+                    matTooltip="Add Ingredient"
                     matTooltipPosition="above"
                     (click)="addIngredient()"
             >
