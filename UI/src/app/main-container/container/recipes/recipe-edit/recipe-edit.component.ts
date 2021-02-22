@@ -21,11 +21,12 @@ import {cloneDeep} from 'lodash';
 export class RecipeEditComponent implements OnInit, OnDestroy {
   id: number;
   recipe: Recipe = new Recipe(0, '', '', '', [], {name: '', iconName: '', urlSuffix: '', sortIndex: null});
+  originalRecipe: Recipe;
   categories: Category[] = [];
   editMode: boolean;
 
   displayedColumns: string[] = ['name', 'amount', 'unit', 'action'];
-  dataSource: MatTableDataSource<Ingredient>;
+  dataSource: MatTableDataSource<Ingredient> = new MatTableDataSource<Ingredient>();
 
   ngUnsubscribe = new Subject();
 
@@ -59,10 +60,10 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
       .subscribe(([recipe, categories]: [Recipe, Category[]]) => {
         if(this.editMode) {
           this.recipe = cloneDeep(recipe);
+          this.originalRecipe = recipe;
         }
         this.categories = categories;
         this.dataSource = new MatTableDataSource(this.recipe.ingredients);
-
       });
   }
 
@@ -106,12 +107,18 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
       })
   }
 
-  // deleteIngredient(element, i) {
-  //
-  // }
-
-
-  onSubmit() {
+  deleteIngredient(i: number) {
+    this.recipe.ingredients.splice(i, 1);
+    this.dataSource = new MatTableDataSource(this.recipe.ingredients);
   }
 
+
+  onDiscard() {
+    this.recipe = cloneDeep(this.originalRecipe);
+    this.dataSource = new MatTableDataSource<Ingredient>(this.recipe.ingredients);
+  }
+
+  onSave() {
+
+  }
 }

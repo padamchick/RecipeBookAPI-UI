@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {NavigationService} from '../../../../../shared/services/navigation.service';
 import {ActivatedRoute, Router} from '@angular/router';
 
@@ -9,6 +9,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class TopBarRecipeEditComponent implements OnInit {
   @Input() editMode: boolean;
+
+  @Output('onDiscard') onDiscardFn: EventEmitter<any> = new EventEmitter();
+  @Output('onSave') onSaveFn: EventEmitter<any> = new EventEmitter();
 
   constructor(private navigationService: NavigationService,
               private router: Router,
@@ -24,5 +27,13 @@ export class TopBarRecipeEditComponent implements OnInit {
     } else {
       this.router.navigateByUrl(this.navigationService.prevUrl);
     }
+  }
+
+  onDiscard() {
+    this.onDiscardFn.emit()
+  }
+
+  onSave() {
+    this.onSaveFn.emit()
   }
 }
