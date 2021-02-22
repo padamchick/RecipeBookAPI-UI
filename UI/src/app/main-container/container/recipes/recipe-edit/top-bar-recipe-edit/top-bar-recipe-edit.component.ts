@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {NavigationService} from '../../../../../shared/services/navigation.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-top-bar-recipe-edit',
@@ -7,14 +8,21 @@ import {NavigationService} from '../../../../../shared/services/navigation.servi
   styleUrls: ['./top-bar-recipe-edit.component.less']
 })
 export class TopBarRecipeEditComponent implements OnInit {
+  @Input() editMode: boolean;
 
-  constructor( private navigationService: NavigationService ) { }
+  constructor(private navigationService: NavigationService,
+              private router: Router,
+              private route: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
   }
 
   back() {
-    this.navigationService.back();
+    if (this.editMode || !this.navigationService.prevUrl) {
+      this.router.navigate(['../'], {relativeTo: this.route});
+    } else {
+      this.router.navigateByUrl(this.navigationService.prevUrl);
+    }
   }
-
 }

@@ -4,7 +4,8 @@ import {Location} from '@angular/common';
 
 @Injectable({providedIn: 'root'})
 export class NavigationService {
-  private history: string[] = []
+  currentUrl: string;
+  prevUrl: string;
 
   constructor(
     private router: Router,
@@ -13,17 +14,11 @@ export class NavigationService {
   ) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.history.push(event.urlAfterRedirects)
+        if(this.currentUrl) {
+          this.prevUrl = this.currentUrl
+        }
+        this.currentUrl = event.urlAfterRedirects;
       }
     })
-  }
-
-  back(): void {
-    this.history.pop()
-    if (this.history.length > 0) {
-      this.location.back()
-    } else {
-      this.router.navigate(['../'], {relativeTo: this.route})
-    }
   }
 }
