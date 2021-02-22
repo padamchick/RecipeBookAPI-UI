@@ -8,20 +8,20 @@
       </div>
     </div>
     <div class="icons">
-      <div class="icon">
+      <div class="icon" *ngIf="recipe.servings">
         <i class="icofont-restaurant"></i>
         <span class="icon-header">Servings</span>
-        <span class="icon-value">4</span>
+        <span class="icon-value">{{recipe.servings}}</span>
       </div>
-      <div class="icon" *ngIf="recipe.name">
+      <div class="icon" *ngIf="recipe.kcal">
         <i class="icofont-feedburner"></i>
         <span class="icon-header">Kcal</span>
-        <span class="icon-value">400 / porcja</span>
+        <span class="icon-value">{{recipe.kcal}} / porcja</span>
       </div>
-      <div class="icon">
+      <div class="icon" *ngIf="recipe.preparationTime">
         <i class="icofont-clock-time"></i>
-        <span class="icon-header">Preparing time</span>
-        <span class="icon-value">45 - 60min</span>
+        <span class="icon-header">Preparation time</span>
+        <span class="icon-value">{{recipe.preparationTime}}</span>
       </div>
       <div class="icon">
         <i class="icofont-food-basket"></i>

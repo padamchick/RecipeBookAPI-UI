@@ -20,7 +20,7 @@ import {cloneDeep} from 'lodash';
 })
 export class RecipeEditComponent implements OnInit, OnDestroy {
   id: number;
-  recipe: Recipe = new Recipe(0, '', '', '', [], {name: '', iconName: '', urlSuffix: '', sortIndex: null});
+  recipe: Recipe = new Recipe(0, '', '', '', [], {name: '', iconName: '', urlSuffix: '', sortIndex: null}, null, null, '', null);
   originalRecipe: Recipe;
   categories: Category[] = [];
   editMode: boolean;

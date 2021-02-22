@@ -7,6 +7,10 @@ export class Recipe {
               public description: string,
               public imagePath:string,
               public ingredients: Ingredient[],
-              public category: Category) {
+              public category: Category,
+              public servings: number,
+              public kcal: number,
+              public preparationTime: string,
+              public creationDate: Date) {
   }
 }

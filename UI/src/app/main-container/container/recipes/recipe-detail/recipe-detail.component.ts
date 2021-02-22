@@ -15,7 +15,7 @@ import {Ingredient} from '../../../../shared/ingredient.model';
 export class RecipeDetailComponent implements OnInit {
   // recipe: Recipe;
   id: number;
-  recipe: Recipe = new Recipe(0, '', '', '', [], null);
+  recipe: Recipe = new Recipe(0, '', '', '', [], null, null, null, '', null);
 
   constructor(private store: Store<AppState>,
               private route: ActivatedRoute) { }

@@ -22,7 +22,7 @@ import * as RecipesActions from '../store/recipe.actions';
   styleUrls: ['./old-recipe-detail.component.less'],
 })
 export class OldRecipeDetailComponent implements OnInit {
-  recipe: Recipe = new Recipe(0, '', '', '', [], null);
+  recipe: Recipe = new Recipe(0, '', '', '', [], null, null,null,null,null);
   id: number;
   displayedColumns: string[] = ['name', 'amount', 'unit'];
   dataSource: MatTableDataSource<Ingredient>;

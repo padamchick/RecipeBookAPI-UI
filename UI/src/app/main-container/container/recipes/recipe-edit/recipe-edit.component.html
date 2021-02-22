@@ -10,7 +10,7 @@
       <h2>{{editMode ? 'EDIT RECIPE' : 'NEW RECIPE'}}</h2>
       <mat-divider></mat-divider>
     </div>
-    <form #f="ngForm" (ngSubmit)="onSubmit()">
+    <form #f="ngForm" (ngSubmit)="onSave()">
       <div class="columns">
         <div class="form-left">
           <mat-form-field appearance="outline">
@@ -19,19 +19,19 @@
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Servings</mat-label>
-            <input matInput name="servings" placeholder="Enter servings number" type="number">
+            <input matInput name="servings" placeholder="Enter servings number" type="number" [ngModel]="recipe.servings">
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Kcal</mat-label>
-            <input matInput name="kcal" placeholder="Enter amount of calories per serving" type="number">
+            <input matInput name="kcal" placeholder="Enter amount of calories per serving" type="number" [ngModel]="recipe.kcal">
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Preparation time</mat-label>
-            <input matInput name="preparation" placeholder="Enter preparation time">
+            <input matInput name="preparation" placeholder="Enter preparation time" [ngModel]="recipe.preparationTime">
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Creation date</mat-label>
-            <input matInput name="createdAt" placeholder="Enter creation date" [matDatepicker]="datepicker">
+            <input matInput name="createdAt" placeholder="Enter creation date" [matDatepicker]="datepicker" [ngModel]="recipe.creationDate">
             <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
             <mat-datepicker #datepicker>
               <mat-datepicker-actions>

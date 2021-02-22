@@ -7,6 +7,7 @@ import lombok.Setter;
 import recipes.recipebook.dto.RecipeDto;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -23,6 +24,10 @@ public class Recipe {
     @Column(length = 3000)
     private String description;
     private String imagePath;
+    private Integer servings;
+    private Integer kcal;
+    private String preparationTime;
+    private Date creationDate;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
     private List<Ingredient> ingredients;

@@ -15,16 +15,16 @@ public abstract class RecipeMapper {
 
     private RecipeService recipeService;
 
-    @Mappings({
-            @Mapping(ignore = true, target = "category")
-    })
+//    @Mappings({
+//            @Mapping(ignore = true, target = "category")
+//    })
     protected abstract Recipe toRecipe(RecipeDto dto);
 
-    @AfterMapping
-    protected void setCategory(RecipeDto from, @MappingTarget Recipe recipe) {
-        Category category = this.recipeService.findCategoryByName(from.getCategory());
-        recipe.setCategory(category);
-    }
+//    @AfterMapping
+//    protected void setCategory(RecipeDto from, @MappingTarget Recipe recipe) {
+//        Category category = this.recipeService.findCategoryByName(from.getCategory());
+//        recipe.setCategory(category);
+//    }
 
 //    @Mappings({
 //            @Mapping(ignore = true, target = "category")

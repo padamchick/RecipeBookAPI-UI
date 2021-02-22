@@ -25,4 +25,7 @@
   <ng-container content>
     {{_recipe.description | truncate:200}}
   </ng-container>
+  <ng-container footer>
+    Created: {{_recipe.creationDate | date: 'dd.MM.yyyy' }}
+  </ng-container>
 </app-card-template>

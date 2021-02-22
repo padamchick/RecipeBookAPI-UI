@@ -28,7 +28,7 @@ import {TranslateService} from '@ngx-translate/core';
 export class OldRecipeEditComponent implements OnInit, CanComponentDeactivate {
   id: number;
   editMode = false;
-  recipe: Recipe = {id: 0, name: '', description: '', imagePath: '', ingredients: [], category: null};
+  recipe: Recipe = {id: 0, name: '', description: '', imagePath: '', ingredients: [], category: null, creationDate: null, kcal: null, preparationTime: '', servings: null};
   originalRecipe: Recipe;
   displayedColumns: string[] = ['name', 'amount', 'unit', 'action'];
   dataSource: MatTableDataSource<Ingredient>;
