@@ -20,13 +20,8 @@ export class RecipeCardComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.category = params['category'];
     })
-
-
   }
 
-  log() {
-    console.log('Recipe', this._recipe)
-  }
 
   onClick(e: MouseEvent) {
     e.stopPropagation();

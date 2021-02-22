@@ -14,6 +14,7 @@ export class DialogComponent implements OnInit {
   @Input() button1Class: string;
   @Input() button2Class: string;
   @Input() buttonWidth: number;
+  @Input() valid: boolean;
 
   @Output() button1Callback: EventEmitter<any> = new EventEmitter();
   @Output() button2Callback: EventEmitter<any> = new EventEmitter();
@@ -22,7 +23,6 @@ export class DialogComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log("hello")
   }
 
   button1Click() {

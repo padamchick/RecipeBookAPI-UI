@@ -11,6 +11,6 @@
 
   <div mat-dialog-actions>
     <button mat-raised-button class="{{button1Class}}" type="button" (click)="button1Click()" [style.width]="buttonWidth + 'px'">{{button1Label}}</button>
-    <button mat-raised-button class="{{button2Class}}" type="submit" (click)="button2Click()" [style.width]="buttonWidth + 'px'">{{button2Label}}</button>
+    <button mat-raised-button class="{{button2Class}}" type="submit" (click)="button2Click()" [style.width]="buttonWidth + 'px'" [disabled]="!valid">{{button2Label}}</button>
   </div>
 </div>

@@ -3,10 +3,15 @@
 
 @import 'assets/fonts/_fonts.less';
 
-html, body { height: 100%}
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; overflow: hidden
+html, body {
+  height: 100%
 }
 
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  overflow: hidden
+}
 
 
 :root {
@@ -48,6 +53,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; overflow: h
   background: var(--th-fancy) !important;
   color: var(--text-primary) !important;
 }
+
 .theme-fancy-icon {
   color: var(--th-fancy) !important;
 }
@@ -137,7 +143,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; overflow: h
   background: var(--th-accent-dark) !important;
 }
 
-.mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+.mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
   background-color: var(--th-accent-dark) !important;
 }
 
@@ -157,5 +163,26 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; overflow: h
   /*change color of underline when focused*/
   background-color: var(--th-accent-dark) !important;
 }
+
+// DATEPICKER
+.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
+  background-color: var(--th-accent);
+}
+
+.mat-calendar-body-selected {
+  background-color: var(--th-accent);
+}
+
+.mat-datepicker-toggle-active {
+  color: var(--th-accent);
+}
+
+button:focus,
+button:active:focus{
+  outline: none !important;
+}
+
+
+
 
 

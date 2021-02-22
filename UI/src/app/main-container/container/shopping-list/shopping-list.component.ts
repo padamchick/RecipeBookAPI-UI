@@ -56,7 +56,6 @@ export class ShoppingListComponent
     this.ingredients$.pipe(
       map(data => data.ingredients)
     ).subscribe(ingredients => {
-      console.log('Ingredients', ingredients);
       this.dataSource = new MatTableDataSource(ingredients);
     });
 
@@ -224,7 +223,6 @@ export class ShoppingListComponent
       .afterClosed()
       // .pipe(filter((result) => result))
       .subscribe((result) => {
-        console.log(result);
         this.dataService.deleteIngredient(el.id, i);
       });
   }

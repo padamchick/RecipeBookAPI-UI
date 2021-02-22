@@ -1,4 +1,5 @@
 @primary: var(--th-accent);
+@primary-dark: var(--th-accent-dark);
 
 :host {
   width: 100%;
@@ -103,59 +104,59 @@
     margin-bottom: 15px;
   }
 
-
-
-}
-
-//   ANGULAR MATERIAL   //
-::ng-deep .mat-form-field-infix {
-  border-top: .65em solid transparent;
-}
-
-::ng-deep .mat-form-field-appearance-outline {
-  .mat-form-field-infix {
-    padding: 0.5em 0 0.5em 0;
+  //   ANGULAR MATERIAL   //
+  ::ng-deep .mat-form-field-infix {
+    border-top: .65em solid transparent;
   }
-  .mat-form-field-outline {
-    color: #dadada;
+
+  ::ng-deep .mat-form-field-appearance-outline {
+    .mat-form-field-infix {
+      padding: 0.5em 0 0.5em 0;
+    }
+    .mat-form-field-outline {
+      color: #dadada;
+    }
+    .mat-form-field-label {
+      top: 1.84375em;
+      margin-top: -0.4em;
+    }
   }
-  .mat-form-field-label {
-    top: 1.84375em;
-    margin-top: -0.4em;
+  ::ng-deep .mat-input-element {
+    margin: 0 0 5px 0 !important;
   }
-}
-::ng-deep .mat-input-element {
-  margin: 0 0 5px 0 !important;
-}
-::ng-deep .mat-form-field {
-  line-height: 1.2;
-}
-::ng-deep .mat-form-field-outline-thick {
-  color: @primary !important;
-}
-::ng-deep .mat-focused .mat-form-field-label {
-  color: @primary !important;
-}
-::ng-deep .mat-form-field-wrapper {
-  padding-bottom: 0.4em;
+  ::ng-deep .mat-form-field {
+    //line-height: inherit;
+    line-height: 1.25;
+  }
+  ::ng-deep .mat-form-field-outline-thick {
+    color: @primary !important;
+  }
+  ::ng-deep .mat-focused .mat-form-field-label {
+    color: @primary !important;
+  }
+  ::ng-deep .mat-form-field-wrapper {
+    padding-bottom: 0.4em;
+  }
+
+  span:focus {
+    outline: none;
+    border: 0;
+  }
+
+  ::ng-deep *:focus {
+    outline: none !important;
+    border: 0 !important;
+  }
+
+  // SELECT
+  ::ng-deep .mat-select-arrow-wrapper {
+    padding: 10px 0 0 0;
+  }
+
+  ::ng-deep .mat-select-value {
+    padding: 0 0 5px 0;
+  }
+
 }
 
-span:focus {
-  outline: none;
-  border: 0;
-}
-
-::ng-deep *:focus {
-  outline: none !important;
-  border: 0 !important;
-}
-
-// SELECT
-::ng-deep .mat-select-arrow-wrapper {
-  padding: 10px 0 0 0;
-}
-
-::ng-deep .mat-select-value {
-  padding: 0 0 5px 0;
-}
 

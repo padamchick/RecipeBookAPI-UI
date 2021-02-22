@@ -34,7 +34,6 @@ export class DataStorageService {
         )
       )
       .subscribe((response) => {
-        //  console.log(response);
       });
   }
 

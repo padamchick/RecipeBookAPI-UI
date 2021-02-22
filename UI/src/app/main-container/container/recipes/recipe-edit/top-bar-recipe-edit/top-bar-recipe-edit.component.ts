@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NavigationService} from '../../../../../shared/services/navigation.service';
 
 @Component({
   selector: 'app-top-bar-recipe-edit',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopBarRecipeEditComponent implements OnInit {
 
-  constructor() { }
+  constructor( private navigationService: NavigationService ) { }
 
   ngOnInit(): void {
+  }
+
+  back() {
+    this.navigationService.back();
   }
 
 }

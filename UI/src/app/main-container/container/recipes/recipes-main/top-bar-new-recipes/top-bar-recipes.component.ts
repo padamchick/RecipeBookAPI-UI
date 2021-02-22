@@ -42,7 +42,6 @@ export class TopBarRecipesComponent implements OnInit{
   }
 
   filter(values) {
-    console.log('Values', values);
     return values.filter(recipe =>
       recipe.name.toLowerCase().includes(this.searchWord))
   }

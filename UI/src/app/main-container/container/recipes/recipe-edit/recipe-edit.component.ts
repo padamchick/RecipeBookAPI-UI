@@ -3,7 +3,7 @@ import {filter, map, switchMap, takeUntil} from 'rxjs/operators';
 import {MatTableDataSource} from '@angular/material/table';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../../../store/app.reducer';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {Recipe} from '../../old-recipes/old-recipe.model';
 import {combineLatest, Subject} from 'rxjs';
 import {RecipeService} from '../recipe.service';
@@ -31,8 +31,17 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
 
   constructor(private store: Store<AppState>,
               private route: ActivatedRoute,
+              private router: Router,
               private recipeService: RecipeService,
               public dialog: MatDialog) {
+    router.events
+      .pipe(
+        filter(event => event instanceof NavigationEnd),
+        takeUntil(this.ngUnsubscribe)
+      )
+      .subscribe((event: NavigationEnd) => {
+        console.log('prev:', event.url);
+      });
   }
 
   ngOnInit(): void {
@@ -53,6 +62,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
         }
         this.categories = categories;
         this.dataSource = new MatTableDataSource(this.recipe.ingredients);
+
       });
   }
 
@@ -83,7 +93,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
   addIngredient() {
     const dialogRef = this.dialog.open(IngredientDialogComponent, {
       data: {
-        width: 300, title: 'Edit ingredient', button1Label: 'Cancel', button2Label: 'Submit', button1Class: 'theme-accent-danger',
+        width: 300, title: 'Add ingredient', button1Label: 'Cancel', button2Label: 'Submit', button1Class: 'theme-accent-danger',
         name: '', amount: null, unit: ''
       }
     });
@@ -96,21 +106,12 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
       })
   }
 
-
-
   // deleteIngredient(element, i) {
   //
   // }
 
 
   onSubmit() {
-
   }
 
-  updateIngredient(e: any) {
-    console.log('upd', e);
-    this.recipe.ingredients[e.id] = e.ingredient;
-    // this.recipe.ingredients = this.recipe.ingredients.map(ing => ing.id === ingredient.id ? ingredient : ing);
-    this.dataSource = new MatTableDataSource(this.recipe.ingredients);
-  }
 }
