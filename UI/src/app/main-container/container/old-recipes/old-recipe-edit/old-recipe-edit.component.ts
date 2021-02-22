@@ -73,7 +73,7 @@ export class OldRecipeEditComponent implements OnInit, CanComponentDeactivate {
         .filter(id => !this.recipe.ingredients.map(ing => ing.id).includes(id));
 
       if (toDelete.length > 0) {
-        this.store.dispatch(RecipesActions.updateRecipe({recipe: this.recipe, toDelete: toDelete}));
+        // this.store.dispatch(RecipesActions.updateRecipe({recipe: this.recipe, toDelete: toDelete}));
       } else {
         this.store.dispatch(RecipesActions.updateRecipe({recipe: this.recipe}));
       }

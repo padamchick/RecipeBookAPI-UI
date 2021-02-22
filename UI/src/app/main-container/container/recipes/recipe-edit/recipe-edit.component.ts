@@ -12,6 +12,9 @@ import {Ingredient} from '../../../../shared/ingredient.model';
 import {MatDialog} from '@angular/material/dialog';
 import {IngredientDialogComponent} from '../../../../shared/dialogs/ingredient-dialog/ingredient-dialog.component';
 import {cloneDeep} from 'lodash';
+import * as recipesActions from '../../old-recipes/store/recipe.actions'
+import {Actions, ofType} from '@ngrx/effects';
+import * as RecipesActions from '../../old-recipes/store/recipe.actions';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -34,7 +37,8 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
               private route: ActivatedRoute,
               private router: Router,
               private recipeService: RecipeService,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private actions$: Actions) {
     router.events
       .pipe(
         filter(event => event instanceof NavigationEnd),
@@ -119,6 +123,30 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
   }
 
   onSave() {
+    if(this.editMode) {
+      let idsToDelete = this.originalRecipe.ingredients.map(ing => ing.id)
+        .filter(id => !this.recipe.ingredients.map(ing => ing.id).includes(id));
 
+      if(idsToDelete.length > 0) {
+        this.store.dispatch(recipesActions.bulkDeleteIngredients({ids: idsToDelete}))
+      }
+      this.store.dispatch(recipesActions.updateRecipe({recipe: this.recipe}))
+
+      this.actions$.pipe(
+        ofType(RecipesActions.updateRecipeSuccess)
+      ).subscribe(() => {
+        this.editMode = false;
+        this.router.navigate(['../'], {relativeTo: this.route});
+      });
+    } else {
+      this.store.dispatch(recipesActions.addRecipe({recipe: this.recipe}));
+
+      this.actions$.pipe(
+        ofType(RecipesActions.addRecipeSuccess)
+      ).subscribe((recipe) => {
+        this.editMode = false;
+        this.router.navigate(['../', recipe.recipe.id], {relativeTo: this.route});
+      });
+    }
   }
 }

@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import recipes.recipebook.dto.RecipeDto;
 import recipes.recipebook.entity.*;
 import recipes.recipebook.auth.UserRepository;
@@ -87,8 +88,9 @@ public class RecipeService {
         return recipeRepository.findCategoryByName(name);
     }
 
-    public Void bulkDeleteIngredients(List<Integer> ids) {
-       return this.ingredientRepository.deleteByIdIn(ids);
+    @Transactional
+    public void bulkDeleteIngredients(List<Long> ids) {
+       this.ingredientRepository.deleteByIdIn(ids);
     }
 //
 //    @Override

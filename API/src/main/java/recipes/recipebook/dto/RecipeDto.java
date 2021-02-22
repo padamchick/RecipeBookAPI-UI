@@ -16,7 +16,7 @@ public class RecipeDto {
     private String name;
     private String description;
     private String imagePath;
-    private Category category;
+    private CategoryDto category;
     private Integer servings;
     private Integer kcal;
     private String preparationTime;

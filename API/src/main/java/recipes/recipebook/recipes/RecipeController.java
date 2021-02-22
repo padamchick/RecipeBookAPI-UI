@@ -59,8 +59,8 @@ public class RecipeController {
 
     @ApiOperation(value = "Bulk delete ingredients")
     @PostMapping("/ingredients/bulkDelete")
-    public ResponseEntity<Void> bulkDeleteIngredients(@RequestBody List<Integer> ids) {
-        return ResponseEntity.ok(recipeService.bulkDeleteIngredients(ids));
+    public void bulkDeleteIngredients(@RequestBody List<Long> ids) {
+        recipeService.bulkDeleteIngredients(ids);
     }
 
     @GetMapping("/categories")
