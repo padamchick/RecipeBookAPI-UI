@@ -45,6 +45,7 @@ public class RecipeService {
         final Optional<Recipe> recipeOptional = recipeRepository.findById(dto.getId());
         Recipe recipe = recipeOptional.orElseThrow(() -> new RuntimeException("Recipe not exists"));
         recipe.update(dto);
+        recipe.setCategory(findCategoryByName(dto.getCategory().getName()));
         recipe.updateWithReferences();
         return recipeRepository.save(recipe);
     }

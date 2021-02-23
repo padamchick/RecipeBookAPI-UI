@@ -1,31 +1,24 @@
-<app-card-template>
-<!--  <mat-icon avatar class="material-icons-outlined">{{_recipe.category.iconName}}</mat-icon>-->
-  <mat-icon avatar><i [class]="[_recipe.category.iconName]"></i></mat-icon>
-  <ng-container title>
-    {{_recipe.name}}
-  </ng-container>
-  <ng-container subtitle>
-    {{_recipe.category.name}}
-  </ng-container>
-  <ng-container image>
-    <div mat-card-image image>
+<a [routerLink]="['/new-recipes', category, _recipe.id]">
+  <app-card-template>
+    <!--  <mat-icon avatar class="material-icons-outlined">{{_recipe.category.iconName}}</mat-icon>-->
+    <mat-icon avatar><i [class]="[_recipe.category.iconName]"></i></mat-icon>
+    <ng-container title>
+      {{_recipe.name}}
+    </ng-container>
+    <ng-container subtitle>
+      {{_recipe.category.name}}
+    </ng-container>
+    <ng-container image>
+      <div mat-card-image image>
         <img [src]="_recipe.imagePath" class="w-100">
+      </div>
+    </ng-container>
+    <ng-container content>
+      {{_recipe.description | truncate:200}}
+    </ng-container>
+    <ng-container footer>
+      Created: {{_recipe.creationDate | date: 'dd.MM.yyyy' }}
+    </ng-container>
+  </app-card-template>
+</a>
 
-        <div class="floating-button">
-          <a mat-fab #tooltip
-                  matTooltip="Preview"
-                  matTooltipPosition="below"
-             [routerLink]="['/new-recipes', category, _recipe.id]"
-          >
-            <mat-icon>visibility</mat-icon>
-          </a>
-        </div>
-    </div>
-  </ng-container>
-  <ng-container content>
-    {{_recipe.description | truncate:200}}
-  </ng-container>
-  <ng-container footer>
-    Created: {{_recipe.creationDate | date: 'dd.MM.yyyy' }}
-  </ng-container>
-</app-card-template>

@@ -1,8 +1,9 @@
+a {
+  text-decoration: none;
+}
+
 app-card-template {
 
-  //.material-icons-outlined {
-  //  padding: 7px 3px 3px 7px;
-  //}
 
   i {
     font-size: 30px;
@@ -22,36 +23,35 @@ app-card-template {
 
   [mat-card-image] {
     display: flex;
-    position: relative;
-
-    .floating-button {
-      position: absolute;
-      display: none;
-      bottom: 15px;
-      right: 15px;
-
-      button:focus {
-        outline: none;
-        border: 0;
-      }
-
-      .mat-fab {
-        width: 40px;
-        height: 40px;
-        background-color: rgba(0, 0, 0, 0.4);
-
-        ::ng-deep & .mat-button-wrapper {
-          padding: 0 !important;
-        }
-      }
-    }
+    //
+    //.floating-button {
+    //  position: absolute;
+    //  display: none;
+    //  bottom: 15px;
+    //  right: 15px;
+    //
+    //  button:focus {
+    //    outline: none;
+    //    border: 0;
+    //  }
+    //
+    //  .mat-fab {
+    //    width: 40px;
+    //    height: 40px;
+    //    background-color: rgba(0, 0, 0, 0.4);
+    //
+    //    ::ng-deep & .mat-button-wrapper {
+    //      padding: 0 !important;
+    //    }
+    //  }
+    //}
   }
 
-  &:hover {
-    [mat-card-image] .floating-button {
-      display: flex;
-    }
-  }
+  //&:hover {
+  //  [mat-card-image] .floating-button {
+  //    display: flex;
+  //  }
+  //}
 
 
 }

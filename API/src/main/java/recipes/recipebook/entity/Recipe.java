@@ -46,6 +46,10 @@ public class Recipe {
         this.description = dto.getDescription();
         this.imagePath = dto.getImagePath();
         this.ingredients = dto.getIngredients();
+        this.creationDate = dto.getCreationDate();
+        this.kcal = dto.getKcal();
+        this.servings = dto.getServings();
+        this.preparationTime = dto.getPreparationTime();
     }
 
     public void updateWithReferences() {
