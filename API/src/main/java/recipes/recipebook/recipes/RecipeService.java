@@ -25,13 +25,13 @@ public class RecipeService {
     private IngredientRepository ingredientRepository;
     private UserRepository userRepository;
     private RecipeMapper recipeMapper;
-    private ModelMapper modelMapper;
+//    private ModelMapper modelMapper;
 
     public Recipe saveRecipe(RecipeDto dto) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         final Optional<UserDao> user = userRepository.findByUsername(username);
         final RecipeBook recipeBook = user.get().getRecipeBook();
-        Recipe recipe = recipeMapper.toRecipe(dto);
+        Recipe recipe = recipeMapper.toRecipe(dto, this);
 //        Recipe recipe = modelMapper.map(dto, Recipe.class);
         recipe.updateWithReferences();
         recipe.setRecipeBook(recipeBook);

@@ -21,7 +21,7 @@ public class Category {
     private Integer sortIndex;
     private String urlSuffix;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Recipe> recipe;
 }

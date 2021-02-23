@@ -1,10 +1,13 @@
 package recipes.recipebook.recipes;
 
-import lombok.AllArgsConstructor;
 import org.mapstruct.*;
 import org.mapstruct.factory.Mappers;
+import org.springframework.beans.factory.annotation.Autowired;
+import recipes.recipebook.dto.CategoryDto;
+import recipes.recipebook.dto.IngredientDto;
 import recipes.recipebook.dto.RecipeDto;
 import recipes.recipebook.entity.Category;
+import recipes.recipebook.entity.Ingredient;
 import recipes.recipebook.entity.Recipe;
 import recipes.recipebook.ingredients.IngredientMapper;
 
@@ -13,18 +16,16 @@ import java.util.List;
 @Mapper(uses = IngredientMapper.class, componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public abstract class RecipeMapper {
 
-    private RecipeService recipeService;
+    @Mappings({
+            @Mapping(ignore = true, target = "category")
+    })
+    protected abstract Recipe toRecipe(RecipeDto dto, @Context RecipeService recipeService);
 
-//    @Mappings({
-//            @Mapping(ignore = true, target = "category")
-//    })
-    protected abstract Recipe toRecipe(RecipeDto dto);
-
-//    @AfterMapping
-//    protected void setCategory(RecipeDto from, @MappingTarget Recipe recipe) {
-//        Category category = this.recipeService.findCategoryByName(from.getCategory());
-//        recipe.setCategory(category);
-//    }
+    @AfterMapping
+    protected void setCategory(RecipeDto from, @MappingTarget Recipe recipe, @Context RecipeService recipeService) {
+        Category category = recipeService.findCategoryByName(from.getCategory().getName());
+        recipe.setCategory(category);
+    }
 
 //    @Mappings({
 //            @Mapping(ignore = true, target = "category")
@@ -38,7 +39,13 @@ public abstract class RecipeMapper {
 
     protected abstract List<Recipe> toRecipeList(List<RecipeDto> dtos);
 //    protected abstract List<RecipeDto> toRecipeDtoList(List<Recipe> recipes);
+}
 
+@Mapper
+interface CategoryMapper {
+    CategoryMapper MAPPER = Mappers.getMapper(CategoryMapper.class);
 
+    Category toCategory(CategoryDto dto);
+    CategoryDto toDto(Category category);
 
 }

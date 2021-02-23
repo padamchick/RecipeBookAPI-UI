@@ -23,7 +23,7 @@ import * as RecipesActions from '../../old-recipes/store/recipe.actions';
 })
 export class RecipeEditComponent implements OnInit, OnDestroy {
   id: number;
-  recipe: Recipe = new Recipe(0, '', '', '', [], {name: '', iconName: '', urlSuffix: '', sortIndex: null}, null, null, '', null);
+  recipe: Recipe = new Recipe(null, '', '', '', [], {name: '', iconName: '', urlSuffix: '', sortIndex: null}, null, null, '', null);
   originalRecipe: Recipe;
   categories: Category[] = [];
   editMode: boolean;
@@ -145,7 +145,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
         ofType(RecipesActions.addRecipeSuccess)
       ).subscribe((recipe) => {
         this.editMode = false;
-        this.router.navigate(['../', recipe.recipe.id], {relativeTo: this.route});
+        this.router.navigate(['../all', recipe.recipe.id], {relativeTo: this.route});
       });
     }
   }

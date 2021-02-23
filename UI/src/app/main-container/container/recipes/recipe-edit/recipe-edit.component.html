@@ -15,23 +15,23 @@
         <div class="form-left">
           <mat-form-field appearance="outline">
             <mat-label>Name</mat-label>
-            <input matInput name="name" placeholder="Enter recipe name" [ngModel]="recipe.name">
+            <input matInput name="name" placeholder="Enter recipe name" [(ngModel)]="recipe.name">
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Servings</mat-label>
-            <input matInput name="servings" placeholder="Enter servings number" type="number" [ngModel]="recipe.servings">
+            <input matInput name="servings" placeholder="Enter servings number" type="number" [(ngModel)]="recipe.servings">
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Kcal</mat-label>
-            <input matInput name="kcal" placeholder="Enter amount of calories per serving" type="number" [ngModel]="recipe.kcal">
+            <input matInput name="kcal" placeholder="Enter amount of calories per serving" type="number" [(ngModel)]="recipe.kcal">
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Preparation time</mat-label>
-            <input matInput name="preparation" placeholder="Enter preparation time" [ngModel]="recipe.preparationTime">
+            <input matInput name="preparation" placeholder="Enter preparation time" [(ngModel)]="recipe.preparationTime">
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Creation date</mat-label>
-            <input matInput name="createdAt" placeholder="Enter creation date" [matDatepicker]="datepicker" [ngModel]="recipe.creationDate">
+            <input matInput name="createdAt" placeholder="Enter creation date" [matDatepicker]="datepicker" [(ngModel)]="recipe.creationDate">
             <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
             <mat-datepicker #datepicker>
               <mat-datepicker-actions>
@@ -42,7 +42,7 @@
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Category</mat-label>
-            <mat-select [ngModel]="recipe.category.name" name="food">
+            <mat-select [(ngModel)]="recipe.category.name" name="food">
               <mat-option *ngFor="let category of categories" [value]="category.name">
                 {{category.name}}
               </mat-option>
@@ -51,7 +51,7 @@
           <mat-form-field appearance="outline">
             <mat-label>Description</mat-label>
             <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" name="description"
-                      placeholder="Enter servings number" [ngModel]="recipe.description"></textarea>
+                      placeholder="Enter servings number" [(ngModel)]="recipe.description"></textarea>
           </mat-form-field>
         </div>
 
