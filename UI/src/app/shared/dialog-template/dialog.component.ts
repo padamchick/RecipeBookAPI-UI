@@ -14,7 +14,7 @@ export class DialogComponent implements OnInit {
   @Input() button1Class: string;
   @Input() button2Class: string;
   @Input() buttonWidth: number;
-  @Input() valid: boolean;
+  @Input() valid: boolean = true;
 
   @Output() button1Callback: EventEmitter<any> = new EventEmitter();
   @Output() button2Callback: EventEmitter<any> = new EventEmitter();

@@ -3,10 +3,11 @@
   flex-direction: column;
   align-items: center;
   width: 100%;
+  position: relative;
   .close {
-    position: fixed;
-    top: 20px;
-    right: 20px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
     cursor: pointer;
   }
   [mat-dialog-title] {
@@ -18,7 +19,7 @@
   }
   [mat-dialog-actions] {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     button {
       margin-left: 10px;
     }

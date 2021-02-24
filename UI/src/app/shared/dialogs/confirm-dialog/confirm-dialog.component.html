@@ -1,0 +1,16 @@
+<app-dialog
+  [width]="width"
+  [title]="title"
+  [button1Label]="button1Label"
+  [button2Label]="button2Label"
+  [button1Class]="button1Class"
+  [button2Class]="button2Class"
+  [buttonWidth]="buttonWidth"
+
+  (button1Callback)="button1Callback()"
+  (button2Callback)="button2Callback()"
+  (closeButtonCallback)="closeButtonCallback()">
+  <div class="message">
+    {{message}}
+  </div>
+</app-dialog>

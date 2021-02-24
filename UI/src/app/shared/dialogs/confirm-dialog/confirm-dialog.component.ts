@@ -1,16 +1,12 @@
-import {Component, Inject, Input, OnInit, Output, ViewChild, EventEmitter} from '@angular/core';
-import {Ingredient} from '../../ingredient.model';
-import {NgForm} from '@angular/forms';
-import {Dialog} from 'primeng/dialog';
-import {DialogService} from 'primeng/dynamicdialog';
+import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-ingredient-dialog',
-  templateUrl: './ingredient-dialog.component.html',
-  styleUrls: ['./ingredient-dialog.component.less']
+  selector: 'app-confirm-dialog',
+  templateUrl: './confirm-dialog.component.html',
+  styleUrls: ['./confirm-dialog.component.less']
 })
-export class IngredientDialogComponent {
+export class ConfirmDialogComponent {
 
   width: number = 300;
   title: string;
@@ -20,12 +16,9 @@ export class IngredientDialogComponent {
   button2Class = 'theme-accent-dark';
   buttonWidth: number = 120;
 
-  name: string;
-  amount: number;
-  unit: string;
-  id: number;
+  message: string;
 
-  constructor(public dialog: MatDialogRef<IngredientDialogComponent>,
+  constructor(public dialog: MatDialogRef<ConfirmDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data) {
     data.title ? this.title = data.title : this.title;
     data.width ? this.width = data.width : this.width;
@@ -34,10 +27,8 @@ export class IngredientDialogComponent {
     data.button1Class ? this.button1Class = data.button1Class : this.button1Class;
     data.button2Class ? this.button2Class = data.button2Class : this.button2Class;
     data.buttonWidth ? this.buttonWidth = data.buttonWidth : this.buttonWidth;
+    data.message ? this.message = data.message : ''
 
-    this.name = data.name;
-    this.amount = data.amount;
-    this.unit = data.unit;
   }
 
   button1Callback() {
@@ -45,11 +36,7 @@ export class IngredientDialogComponent {
   }
 
   button2Callback() {
-    this.dialog.close({
-      name: this.name,
-      amount: this.amount,
-      unit: this.unit
-    })
+    this.dialog.close(true)
   }
 
   closeButtonCallback() {
@@ -57,7 +44,6 @@ export class IngredientDialogComponent {
   }
 
   hideDialog() {
-    this.dialog.close();
+    this.dialog.close(false);
   }
-
 }

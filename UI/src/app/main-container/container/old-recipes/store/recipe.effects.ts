@@ -59,7 +59,7 @@ export class RecipeEffects {
       switchMap(action => {
         return this.httpClient.delete<Recipe>(`${this.apiUrl}/recipes/${action.index}`)
       }),
-      tap(() => this.router.navigate(['/recipes'])),
+      tap(() => this.router.navigate(['/new-recipes/all'])),
       map(recipe => recipesActions.deleteRecipeSuccess({index: recipe.id}))
   ));
 

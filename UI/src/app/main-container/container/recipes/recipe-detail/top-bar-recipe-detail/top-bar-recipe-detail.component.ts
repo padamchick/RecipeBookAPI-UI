@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
@@ -8,6 +8,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class TopBarRecipeDetailComponent implements OnInit {
 
+  @Output('onEdit') onEditFn = new EventEmitter();
+  @Output('onDelete') onDeleteFn = new EventEmitter();
+
   constructor(private router: Router,
               private route: ActivatedRoute) { }
 
@@ -15,6 +18,10 @@ export class TopBarRecipeDetailComponent implements OnInit {
   }
 
   onEdit() {
-      this.router.navigate(['edit'], {relativeTo: this.route});
+    this.onEditFn.emit();
+  }
+
+  onDelete() {
+    this.onDeleteFn.emit()
   }
 }

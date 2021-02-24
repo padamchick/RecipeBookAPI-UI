@@ -20,6 +20,7 @@ import {DialogComponent} from './dialog-template/dialog.component';
 import { IngredientDialogComponent } from './dialogs/ingredient-dialog/ingredient-dialog.component';
 import {PrimeNgModule} from './primeng/primeng.module';
 import {DialogService} from 'primeng/dynamicdialog';
+import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {DialogService} from 'primeng/dynamicdialog';
     CardTemplateComponent,
     TruncatePipe,
     DialogComponent,
-    IngredientDialogComponent
+    IngredientDialogComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     CommonModule,
@@ -64,7 +66,8 @@ import {DialogService} from 'primeng/dynamicdialog';
     NgxMasonryModule,
     NgScrollbarModule,
     DialogComponent,
-    IngredientDialogComponent
+    IngredientDialogComponent,
+    ConfirmDialogComponent
   ],
 })
 export class SharedModule {}
