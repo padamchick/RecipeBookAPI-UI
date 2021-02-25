@@ -148,7 +148,7 @@
     border: 0 !important;
   }
 
-  // SELECT
+  // MAT-SELECT
   ::ng-deep .mat-select-arrow-wrapper {
     padding: 10px 0 0 0;
   }
@@ -156,7 +156,14 @@
   ::ng-deep .mat-select-value {
     padding: 0 0 5px 0;
   }
+}
 
+::ng-deep .mat-select-panel .mat-option.mat-selected:not(.mat-option-multiple) {
+  background: rgba(2,148,165,0.2) !important;
+}
+
+::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: #000 !important;
 }
 
 

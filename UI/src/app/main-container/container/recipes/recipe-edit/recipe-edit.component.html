@@ -43,7 +43,7 @@
           <mat-form-field appearance="outline">
             <mat-label>Category</mat-label>
             <mat-select [(ngModel)]="recipe.category.name" name="food">
-              <mat-option *ngFor="let category of categories" [value]="category.name">
+              <mat-option *ngFor="let category of categories" [value]="category">
                 {{category.name}}
               </mat-option>
             </mat-select>
