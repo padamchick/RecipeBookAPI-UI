@@ -2,11 +2,11 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-dialog',
-  templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.less']
+  selector: 'app-dialog-template',
+  templateUrl: './dialog-template.component.html',
+  styleUrls: ['./dialog-template.component.less']
 })
-export class DialogComponent implements OnInit {
+export class DialogTemplateComponent implements OnInit {
   @Input() width: number;
   @Input() title: string;
   @Input() button1Label: string;

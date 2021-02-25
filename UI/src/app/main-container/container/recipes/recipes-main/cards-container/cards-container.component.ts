@@ -35,7 +35,7 @@ export class CardsContainerComponent implements OnInit, OnDestroy {
     animations: this.animations,
   };
 
-  ngDestroyed$ = new Subject();
+  ngUnsubscribe = new Subject();
 
   constructor(private store: Store<fromApp.AppState>,
               private route: ActivatedRoute) {
@@ -44,7 +44,7 @@ export class CardsContainerComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     combineLatest([
       this.route.params,
-      this.store.select('recipes').pipe(takeUntil(this.ngDestroyed$), map(({recipes}) => recipes))
+      this.store.select('recipes').pipe(takeUntil(this.ngUnsubscribe), map(({recipes}) => recipes))
     ]).subscribe((data: [Params, Recipe[]]) => {
       const category = data[0]['category'];
       if (category === 'all' || category == null || category === '') {
@@ -58,7 +58,7 @@ export class CardsContainerComponent implements OnInit, OnDestroy {
   filter(criteriaWord: string) {
     combineLatest([
       this.route.params,
-      this.store.select('recipes').pipe(takeUntil(this.ngDestroyed$), map(({recipes}) => recipes))
+      this.store.select('recipes').pipe(takeUntil(this.ngUnsubscribe), map(({recipes}) => recipes))
     ]).subscribe(([params, recipes]: [Params, Recipe[]]) => {
       const category = params['category'];
       if (category === 'all') {
@@ -73,7 +73,7 @@ export class CardsContainerComponent implements OnInit, OnDestroy {
   // }
 
   ngOnDestroy(): void {
-    this.ngDestroyed$.next();
-    this.ngDestroyed$.complete();
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }

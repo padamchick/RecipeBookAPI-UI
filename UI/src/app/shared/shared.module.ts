@@ -16,7 +16,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
 import {NgxMasonryModule} from 'ngx-masonry';
 import {TopBarComponent} from '../main-container/top-bar/top-bar.component';
 import {NgScrollbarModule} from 'ngx-scrollbar';
-import {DialogComponent} from './dialog-template/dialog.component';
+import {DialogTemplateComponent} from './dialog-template/dialog-template.component';
 import { IngredientDialogComponent } from './dialogs/ingredient-dialog/ingredient-dialog.component';
 import {PrimeNgModule} from './primeng/primeng.module';
 import {DialogService} from 'primeng/dynamicdialog';
@@ -32,7 +32,7 @@ import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.
     TopBarComponent,
     CardTemplateComponent,
     TruncatePipe,
-    DialogComponent,
+    DialogTemplateComponent,
     IngredientDialogComponent,
     ConfirmDialogComponent
   ],
@@ -65,7 +65,7 @@ import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.
     TruncatePipe,
     NgxMasonryModule,
     NgScrollbarModule,
-    DialogComponent,
+    DialogTemplateComponent,
     IngredientDialogComponent,
     ConfirmDialogComponent
   ],
