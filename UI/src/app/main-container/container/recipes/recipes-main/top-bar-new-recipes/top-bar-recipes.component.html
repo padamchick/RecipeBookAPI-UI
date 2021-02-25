@@ -36,7 +36,7 @@
       </div>
     </div>
       <div class="icons" *ngIf="selectionMode">
-        <i class="fas fa-trash-alt" matTooltip="Delete selected"></i>
+        <i class="fas fa-trash-alt" matTooltip="Delete selected" (click)="deleteSelected()"></i>
       </div>
 
     <div id="default" *ngIf="!searchMode && !selectionMode">

@@ -15,5 +15,7 @@ export const selectRecipe = createAction('[Recipe] Select Recipe', props<{id: nu
 export const unselectRecipe = createAction('[Recipe] Unselect Recipe', props<{id: number}>())
 export const selectAllRecipes = createAction('[Recipe] Select All Recipes', props<{category: string}>())
 export const unselectAllRecipes = createAction('[Recipe] Unselect All Recipes')
+export const bulkDeleteRecipes = createAction('[Recipe] Bulk Delete Recipes', props<{ ids: number[] }>())
+export const bulkDeleteRecipesSuccess = createAction('[Recipe] Bulk Delete Recipes Success', props<{ ids: number[] }>())
 
 

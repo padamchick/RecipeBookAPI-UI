@@ -1,6 +1,7 @@
 package recipes.recipebook.recipes;
 
 import io.swagger.annotations.ApiOperation;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import recipes.recipebook.dto.RecipeDto;
@@ -59,8 +60,16 @@ public class RecipeController {
 
     @ApiOperation(value = "Bulk delete ingredients")
     @PostMapping("/ingredients/bulkDelete")
-    public void bulkDeleteIngredients(@RequestBody List<Long> ids) {
+    public ResponseEntity<?> bulkDeleteIngredients(@RequestBody List<Long> ids) {
         recipeService.bulkDeleteIngredients(ids);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "Bulk delete recipes")
+    @PostMapping("/bulkDelete")
+    public ResponseEntity<?> bulkDeleteRecipes(@RequestBody List<Long> ids) {
+        recipeService.bulkDeleteRecipes(ids);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/categories")

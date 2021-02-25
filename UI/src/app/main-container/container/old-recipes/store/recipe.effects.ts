@@ -73,6 +73,16 @@ export class RecipeEffects {
     })
   ))
 
+  bulkDeleteRecipes$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(recipesActions.bulkDeleteRecipes),
+      switchMap(({ids})=> {
+        return this.httpClient.post(`${this.apiUrl}/recipes/bulkDelete`, ids).pipe(
+          map(() => recipesActions.bulkDeleteRecipesSuccess({ids}))
+        )
+      })
+    ))
+
   constructor(
     private actions$: Actions,
     private httpClient: HttpClient,

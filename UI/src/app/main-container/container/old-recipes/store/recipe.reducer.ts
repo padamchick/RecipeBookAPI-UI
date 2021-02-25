@@ -63,16 +63,17 @@ const _recipeReducer = createReducer(
         ...state,
         selected: filteredRecipes.map(recipe => recipe.id)
       }
-    }
-
-
-    }),
+    }}),
   on(recipesActions.unselectAllRecipes,
     (state) => ({
       ...state,
       selected: []
     })),
-
+  on(recipesActions.bulkDeleteRecipesSuccess,
+    (state, {ids}) => ({
+      ...state,
+      recipes: state.recipes.filter(recipe => ids.indexOf(recipe.id) === -1 )
+    })),
 );
 
 export function recipeReducer(state: State, action: Action) {

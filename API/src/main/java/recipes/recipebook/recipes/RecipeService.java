@@ -93,6 +93,11 @@ public class RecipeService {
     public void bulkDeleteIngredients(List<Long> ids) {
        this.ingredientRepository.deleteByIdIn(ids);
     }
+
+    @Transactional
+    public void bulkDeleteRecipes(List<Long> ids) {
+        this.recipeRepository.deleteByIdIn(ids);
+    }
 //
 //    @Override
 //    public List<String> getAllCategories() {

@@ -3,7 +3,7 @@ import * as fromApp from '../../../../../store/app.reducer';
 import * as recipesActions from '../../../old-recipes/store/recipe.actions'
 import {Store} from '@ngrx/store';
 import {combineLatest, Observable} from 'rxjs';
-import {map, filter, startWith, takeUntil} from 'rxjs/operators';
+import {map, filter, startWith, takeUntil, first} from 'rxjs/operators';
 import {Recipe} from '../../../old-recipes/old-recipe.model';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 
@@ -21,7 +21,7 @@ export class TopBarRecipesComponent implements OnInit, OnDestroy {
   recipes;
   category;
   searchMode: boolean = false;
-  selectionMode: boolean = true;
+  selectionMode: boolean = false;
 
   constructor(private store: Store<fromApp.AppState>,
               private router: Router,
@@ -32,7 +32,9 @@ export class TopBarRecipesComponent implements OnInit, OnDestroy {
         takeUntil(this.ngUnsubscribe)
       )
       .subscribe((event: NavigationEnd) => {
-        this.store.dispatch(recipesActions.unselectAllRecipes());
+        if(this.selectionMode) {
+          this.store.dispatch(recipesActions.unselectAllRecipes());
+        }
       });
   }
 
@@ -69,6 +71,10 @@ export class TopBarRecipesComponent implements OnInit, OnDestroy {
   }
 
   switchSearchMode() {
+    if(this.searchMode) {
+      this.searchWord = '';
+      this.searchCriteria.emit('')
+    }
     this.searchMode = !this.searchMode;
   }
 
@@ -80,10 +86,21 @@ export class TopBarRecipesComponent implements OnInit, OnDestroy {
     this.store.dispatch(recipesActions.unselectAllRecipes());
   }
 
+  deleteSelected() {
+    this.store.select('recipes').pipe(
+      first(),
+      map(state => state.selected)
+    ).subscribe(ids => {
+      this.store.dispatch(recipesActions.bulkDeleteRecipes({ids}));
+      this.store.dispatch(recipesActions.unselectAllRecipes());
+
+    })
+
+  }
+
   ngOnDestroy(): void {
     this.store.dispatch(recipesActions.unselectAllRecipes());
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
   }
-
 }
