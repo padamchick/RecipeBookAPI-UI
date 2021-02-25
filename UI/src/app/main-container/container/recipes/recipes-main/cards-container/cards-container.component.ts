@@ -45,12 +45,12 @@ export class CardsContainerComponent implements OnInit, OnDestroy {
     combineLatest([
       this.route.params,
       this.store.select('recipes').pipe(takeUntil(this.ngUnsubscribe), map(({recipes}) => recipes))
-    ]).subscribe((data: [Params, Recipe[]]) => {
-      const category = data[0]['category'];
+    ]).subscribe(([params, recipes]: [Params, Recipe[]]) => {
+      const category = params['category'];
       if (category === 'all' || category == null || category === '') {
-        this.recipes = data[1];
+        this.recipes = recipes;
       } else {
-        this.recipes = data[1].filter(recipe => recipe.category.urlSuffix === category);
+        this.recipes = recipes.filter(recipe => recipe.category.urlSuffix === category);
       }
     });
   }

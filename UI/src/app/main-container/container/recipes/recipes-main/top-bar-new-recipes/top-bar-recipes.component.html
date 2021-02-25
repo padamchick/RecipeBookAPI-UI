@@ -1,10 +1,8 @@
   <app-top-bar>
     <div id="searchPanel" *ngIf="searchMode">
       <div id="back" (click)="switchSearchMode()">
-        <a [routerLink]="['../']">
           <mat-icon>keyboard_backspace</mat-icon>
           <h5>BACK</h5>
-        </a>
       </div>
       <mat-form-field appearance="outline" style="width: 100%">
         <input matInput
@@ -25,11 +23,29 @@
         </mat-option>
       </mat-autocomplete>
     </div>
-    <div class="icons" *ngIf="!searchMode">
-<!--      <mat-icon >search</mat-icon>-->
-      <i class="fas fa-search" matTooltip="Search" (click)="switchSearchMode()"></i>
-      <i class="fas fa-plus-circle" matTooltip="Add New Recipe" [routerLink]="['../', 'new']"></i>
+    <div class="selection" *ngIf="selectionMode">
+      <div class="left" *ngIf="!searchMode">
+        <div class="select" (click)="selectAll()">
+          <i class="fas fa-check-square"></i>
+          <h5>SELECT ALL</h5>
+        </div>
+        <div class="select" (click)="unselectAll()">
+          <i class="far fa-square"></i>
+          <h5>UNSELECT ALL</h5>
+        </div>
+      </div>
     </div>
+      <div class="icons" *ngIf="selectionMode">
+        <i class="fas fa-trash-alt" matTooltip="Delete selected"></i>
+      </div>
+
+    <div id="default" *ngIf="!searchMode && !selectionMode">
+      <div class="icons" >
+        <i class="fas fa-search" matTooltip="Search" (click)="switchSearchMode()"></i>
+        <i class="fas fa-plus-circle" matTooltip="Add New Recipe" [routerLink]="['../', 'new']"></i>
+      </div>
+    </div>
+
   </app-top-bar>
 
 

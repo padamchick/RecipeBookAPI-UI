@@ -11,4 +11,9 @@ export const fetchRecipes = createAction('[Recipe] Fetch Recipes');
 export const fetchRecipesSuccess = createAction('[Recipe] Fetch Recipes Success', props<{ recipes: Recipe[] }>())
 export const bulkDeleteIngredients = createAction('[Recipe] Bulk Delete Ingredients', props<{ ids: number[] }>())
 export const bulkDeleteIngredientsSuccess = createAction('[Recipe] Bulk Delete Ingredients Success')
+export const selectRecipe = createAction('[Recipe] Select Recipe', props<{id: number}>())
+export const unselectRecipe = createAction('[Recipe] Unselect Recipe', props<{id: number}>())
+export const selectAllRecipes = createAction('[Recipe] Select All Recipes', props<{category: string}>())
+export const unselectAllRecipes = createAction('[Recipe] Unselect All Recipes')
+
 

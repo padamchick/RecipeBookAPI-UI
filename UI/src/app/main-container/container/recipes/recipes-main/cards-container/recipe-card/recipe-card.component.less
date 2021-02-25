@@ -6,9 +6,15 @@ app-card-template {
   img {
     transition: transform .5s ease;   /* smoother zoom */
   }
-  &:hover img{
+  &:hover {
+    img{
       transform: scale(1.05);
+    }
+    .checkbox-wrapper {
+      display: flex;
+    }
   }
+
 
   i {
     font-size: 30px;
@@ -24,6 +30,31 @@ app-card-template {
   mat-card-subtitle {
     font-size: 14px;
     color: rgba(0, 0, 0, 0.6);
+  }
+
+  .checkbox-wrapper {
+    display: flex;
+    flex-grow: 1;
+
+    ::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+      /*background-color: #002d42 !important;*/
+      background-color: var(--th-accent) !important;
+    }
+
+    ::ng-deep .mat-checkbox-inner-container {
+      height: 20px;
+      width: 20px;
+    }
+    //
+    //::ng-deep .mat-checkbox-background svg {
+    //  padding: 2px;
+    //}
+    //
+    //::ng-deep .mat-checkbox-frame,
+    //::ng-deep .mat-checkbox-background {
+    //  border-radius: 100% !important;
+    //
+    //}
   }
 
   [mat-card-image] {

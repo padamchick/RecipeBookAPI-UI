@@ -8,6 +8,12 @@
     <ng-container subtitle>
       {{_recipe.category.name}}
     </ng-container>
+    <ng-container nextToSubtitle>
+      <div class="checkbox-wrapper" (click)="$event.stopPropagation()">
+        <mat-checkbox (click)="toggleCard(); $event.preventDefault()" [checked]="checked" color="primary"></mat-checkbox>
+      </div>
+    </ng-container>
+
     <ng-container image>
       <div mat-card-image image>
         <img [src]="_recipe.imagePath" class="w-100">

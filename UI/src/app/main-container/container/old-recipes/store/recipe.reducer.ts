@@ -1,51 +1,77 @@
 import {Recipe} from '../old-recipe.model';
 import {Action, createReducer, on} from '@ngrx/store';
-import * as RecipesActions from './recipe.actions';
+import * as recipesActions from './recipe.actions';
 import {updateRecipe} from './recipe.actions';
 
 export interface State {
   recipes: Recipe[];
+  selected: number[];
 }
 
 const initialState: State = {
-  recipes: []
+  recipes: [],
+  selected: []
 };
 
 const _recipeReducer = createReducer(
   initialState,
-  on(
-    RecipesActions.addRecipeSuccess,
+  on(recipesActions.addRecipeSuccess,
     (state, action) => ({
       ...state,
       recipes: [...state.recipes, action.recipe]
-    })
-  ),
+    })),
 
-  on(
-    RecipesActions.updateRecipeSuccess,
+  on(recipesActions.updateRecipeSuccess,
     (state, action) => ({
       ...state,
       recipes: state.recipes.map(
         (recipe) => recipe.id === action.recipe.id ? {...action.recipe} : recipe
       )
-    })
-  ),
+    })),
 
-  on(
-    RecipesActions.deleteRecipeSuccess,
-    (state, action) => ({
+  on(recipesActions.deleteRecipeSuccess,
+    (state, {index}) => ({
       ...state,
-      recipes: state.recipes.filter((recipe) => recipe.id !== action.index)
-    })
-  ),
+      recipes: state.recipes.filter((recipe) => recipe.id !== index)
+    })),
 
-  on(
-    RecipesActions.fetchRecipesSuccess,
-    (state, action) => ({
+  on(recipesActions.fetchRecipesSuccess,
+    (state, {recipes}) => ({
       ...state,
-      recipes: [...action.recipes]
-    })
-  )
+      recipes: [...recipes]
+    })),
+  on(recipesActions.selectRecipe,
+    (state, {id}) => ({
+      ...state,
+      selected: [...state.selected, id]
+    })),
+  on(recipesActions.unselectRecipe,
+    (state, {id}) => ({
+      ...state,
+      selected: state.selected.filter(cardId => cardId !== id)
+    })),
+  on(recipesActions.selectAllRecipes,
+    (state, {category}) => {
+    if(category==='all') {
+      return {
+        ...state,
+        selected: state.recipes.map(recipe => recipe.id)
+      }
+    } else {
+      const filteredRecipes = state.recipes.filter(recipe => recipe.category.urlSuffix === category);
+      return {
+        ...state,
+        selected: filteredRecipes.map(recipe => recipe.id)
+      }
+    }
+
+
+    }),
+  on(recipesActions.unselectAllRecipes,
+    (state) => ({
+      ...state,
+      selected: []
+    })),
 
 );
 
