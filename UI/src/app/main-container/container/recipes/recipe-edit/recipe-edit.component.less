@@ -172,29 +172,49 @@
 @media all and (max-width: 840px) {
   .columns {
     display: flex;
-    flex-direction: column;
+    flex-direction: column  !important;
     .form-left {
-      width: 100%;
-      mar
+      width: calc(100% - 26px)  !important;
+      margin: 0 13px  !important;
       mat-form-field {
-        width: 100%;
+        width: 100%  !important;
       }
     }
     .form-right {
       display: flex;
       flex-direction: column;
-      width: 45%;
-      margin-left: calc(10% - 30px);
+      width: calc(100% - 26px)  !important;
+      margin: 0 13px  !important;
       mat-form-field {
-        width: 100%;
+        width: 100%  !important;
       }
       img {
-        max-width: 100%;
+        max-width: 100%  !important;
         height: auto;
-        //max-height: 300px;
       }
     }
+  }
+  mat-card {
+    width: calc(100% - 26px) !important;
+    margin: 0 13px  !important;
+  }
+  .wrapper {
+    padding: 0 !important;
+  }
+}
 
+@media all and (max-width: 600px) {
+  .mat-column-name {
+    flex: 0 0 50% !important;
+  }
+  .mat-column-amount {
+    flex: 0 0 14% !important;
+  }
+  .mat-column-unit {
+    flex: 0 0 14% !important;
+  }
+  .mat-column-action {
+    flex: 0 0 22% !important;
   }
 }
 
