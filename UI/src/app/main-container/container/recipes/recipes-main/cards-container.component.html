@@ -1,0 +1,22 @@
+<app-top-bar-recipes
+  (searchCriteria)=filter($event)
+  (onDelete)="onDeleteSelected()"
+  [selectionMode]="selectionMode"
+  [category]="category"
+>
+
+</app-top-bar-recipes>
+<ng-scrollbar>
+  <div>
+    <ngx-masonry [options]="masonryOptions">
+      <div ngxMasonryItem class="masonry-item" *ngFor="let recipe of recipes" #masonryItems>
+        <app-recipe-card
+          [recipe]="recipe"
+          [selectionMode]="selectionMode"
+          [category]="category">
+        </app-recipe-card>
+      </div>
+    </ngx-masonry>
+  </div>
+</ng-scrollbar>
+

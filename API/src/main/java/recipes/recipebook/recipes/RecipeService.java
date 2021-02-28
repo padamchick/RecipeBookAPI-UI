@@ -31,7 +31,8 @@ public class RecipeService {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         final Optional<UserDao> user = userRepository.findByUsername(username);
         final RecipeBook recipeBook = user.get().getRecipeBook();
-        Recipe recipe = recipeMapper.toRecipe(dto, this);
+        Recipe recipe = recipeMapper.toRecipe(dto);
+//        Recipe recipe = recipeMapper.toRecipe(dto, this);
 //        Recipe recipe = modelMapper.map(dto, Recipe.class);
         recipe.updateWithReferences();
         recipe.setRecipeBook(recipeBook);
@@ -45,7 +46,7 @@ public class RecipeService {
         final Optional<Recipe> recipeOptional = recipeRepository.findById(dto.getId());
         Recipe recipe = recipeOptional.orElseThrow(() -> new RuntimeException("Recipe not exists"));
         recipe.update(dto);
-        recipe.setCategory(findCategoryByName(dto.getCategory().getName()));
+//        recipe.setCategory(findCategoryByName(dto.getCategory().getName()));
         recipe.updateWithReferences();
         return recipeRepository.save(recipe);
     }

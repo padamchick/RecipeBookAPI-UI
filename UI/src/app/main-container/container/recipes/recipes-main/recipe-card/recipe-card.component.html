@@ -1,0 +1,30 @@
+<a [routerLink]="['/recipes', category, recipe.id]">
+  <app-card-template>
+    <!--  <mat-icon avatar class="material-icons-outlined">{{recipe.category.iconName}}</mat-icon>-->
+    <mat-icon avatar><i [class]="[recipe.category.iconName]"></i></mat-icon>
+    <ng-container title>
+      {{recipe.name}}
+    </ng-container>
+    <ng-container subtitle>
+      {{recipe.category.name}}
+    </ng-container>
+    <ng-container nextToSubtitle>
+      <div class="checkbox-wrapper" (click)="$event.stopPropagation()" [ngStyle]="{'display': selectionMode ? 'flex' : ''}">
+        <mat-checkbox (click)="toggleCard(); $event.preventDefault()" [checked]="checked" color="primary"></mat-checkbox>
+      </div>
+    </ng-container>
+
+    <ng-container image>
+      <div mat-card-image image>
+        <img [src]="recipe.imagePath" class="w-100">
+      </div>
+    </ng-container>
+    <ng-container content>
+      {{recipe.description | truncate:200}}
+    </ng-container>
+    <ng-container footer>
+      Created: {{recipe.creationDate | date: 'dd.MM.yyyy' }}
+    </ng-container>
+  </app-card-template>
+</a>
+

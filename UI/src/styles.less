@@ -27,9 +27,11 @@ body {
   //--th-accent: #029aff;
   //--th-accent-light: #eeeeee;
   --th-accent-dark: #03353e;
+  --th-accent-dark-hovered: #044e5a;
   --th-accent: #0294a5;
   --th-accent-light: #eeeeee;
   --th-accent-danger: #ff3535;
+  --th-accent-danger-hovered: #ea0303;
   --th-disabled: #20222380;
   --th-background: linear-gradient(to bottom, #FFFFFF 192px, #ECE9E6) fixed;
   --text-primary: white;
@@ -80,6 +82,9 @@ body {
 .theme-accent-dark {
   background: var(--th-accent-dark) !important;
   color: var(--text-accent) !important;
+  &:hover {
+    background: var(--th-accent-dark-hovered) !important;
+  }
 }
 
 .theme-accent-dark-reversed {
@@ -90,6 +95,9 @@ body {
 .theme-accent-danger {
   background: var(--th-accent-danger) !important;
   color: var(--text-accent) !important;
+  &:hover {
+    background: var(--th-accent-danger-hovered) !important;
+  }
 }
 
 .theme-accent {

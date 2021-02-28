@@ -1,10 +1,8 @@
-import {Component, ElementRef, EventEmitter, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import * as fromApp from '../../../../../store/app.reducer';
 import * as recipesActions from '../../../old-recipes/store/recipe.actions'
 import {Store} from '@ngrx/store';
-import {combineLatest, Observable} from 'rxjs';
-import {map, filter, startWith, takeUntil, first} from 'rxjs/operators';
-import {Recipe} from '../../../old-recipes/old-recipe.model';
+import {map, filter, takeUntil, first} from 'rxjs/operators';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 
 @Component({
@@ -13,19 +11,22 @@ import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
   styleUrls: ['./top-bar-recipes.component.less']
 })
 export class TopBarRecipesComponent implements OnInit, OnDestroy {
+  @Input() category;
+  @Input() selectionMode: boolean = false;
+
   @Output() searchCriteria = new EventEmitter<string>();
+  @Output('onDelete') onDeleteFn = new EventEmitter();
+
   @ViewChild('input') searchInput: ElementRef;
-  ngUnsubscribe: EventEmitter<any> = new EventEmitter<any>()
 
   searchWord: string;
   recipes;
-  category;
   searchMode: boolean = false;
-  selectionMode: boolean = false;
+
+  ngUnsubscribe: EventEmitter<any> = new EventEmitter<any>()
 
   constructor(private store: Store<fromApp.AppState>,
-              private router: Router,
-              private route: ActivatedRoute) {
+              private router: Router) {
     router.events
       .pipe(
         filter(event => event instanceof NavigationEnd),
@@ -39,16 +40,6 @@ export class TopBarRecipesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    combineLatest([
-      this.store.select('recipes').pipe(
-        map(state => state.selected.length > 0)),
-      this.route.params.pipe(
-        map(params => params['category']))
-    ]).pipe(takeUntil(this.ngUnsubscribe)
-    ).subscribe(([isSelectionMode, category]:[boolean, string]) => {
-      this.selectionMode = isSelectionMode;
-      this.category = category;
-    });
   }
 
   doFilter() {
@@ -87,15 +78,7 @@ export class TopBarRecipesComponent implements OnInit, OnDestroy {
   }
 
   deleteSelected() {
-    this.store.select('recipes').pipe(
-      first(),
-      map(state => state.selected)
-    ).subscribe(ids => {
-      this.store.dispatch(recipesActions.bulkDeleteRecipes({ids}));
-      this.store.dispatch(recipesActions.unselectAllRecipes());
-
-    })
-
+    this.onDeleteFn.emit();
   }
 
   ngOnDestroy(): void {

@@ -1,19 +1,19 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {SecondNavbarNewRecipesComponent} from './second-navbar-new-recipes/second-navbar-new-recipes.component';
-import {RecipesComponent} from './recipes-main/recipes.component';
 import {RecipesResolverService} from './recipes-resolver.service';
 import {RecipeDetailComponent} from './recipe-detail/recipe-detail.component';
 import {RecipeEditComponent} from './recipe-edit/recipe-edit.component';
+import {CardsContainerComponent} from './recipes-main/cards-container.component';
 
 const routes: Routes = [
   {
     path: '', children: [
       {path: '', component: SecondNavbarNewRecipesComponent, outlet: 'second-nav-bar'},
-      {path: '', pathMatch: 'full', redirectTo: '/new-recipes/all'},
+      {path: '', pathMatch: 'full', redirectTo: '/recipes/all'},
       {path: 'new', component: RecipeEditComponent},
       {path: ':category',
-        component: RecipesComponent,
+        component: CardsContainerComponent,
         resolve: [RecipesResolverService]
       },
       {path: ':category/:id',

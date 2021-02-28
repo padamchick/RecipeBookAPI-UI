@@ -1,9 +1,9 @@
 import {Component, Input, OnInit, Output, EventEmitter, OnDestroy} from '@angular/core';
-import {Recipe} from '../../../../old-recipes/old-recipe.model';
+import {Recipe} from '../../../old-recipes/old-recipe.model';
 import {ActivatedRoute, ActivatedRouteSnapshot} from '@angular/router';
 import {Store} from '@ngrx/store';
-import {AppState} from '../../../../../../store/app.reducer';
-import * as recipesActions from '../../../../old-recipes/store/recipe.actions';
+import {AppState} from '../../../../../store/app.reducer';
+import * as recipesActions from '../../../old-recipes/store/recipe.actions';
 import {map, takeUntil} from 'rxjs/operators';
 import {combineLatest} from 'rxjs';
 
@@ -13,16 +13,15 @@ import {combineLatest} from 'rxjs';
   styleUrls: ['./recipe-card.component.less']
 })
 export class RecipeCardComponent implements OnInit, OnDestroy {
-  @Input() set recipe(recipe) {
-    this._recipe = recipe;
-  }
 
-  ngUnsubscribe: EventEmitter<any> = new EventEmitter<any>();
 
-  _recipe: Recipe;
-  category: string;
+
+  @Input() recipe: Recipe;
+  @Input() selectionMode: boolean;
+  @Input() category: string;
   checked;
 
+  ngUnsubscribe: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private route: ActivatedRoute,
               private store: Store<AppState>) {
@@ -32,7 +31,7 @@ export class RecipeCardComponent implements OnInit, OnDestroy {
     combineLatest([
       this.route.params,
       this.store.select('recipes').pipe(
-        map(res => !!res.selected.find(id => id === this._recipe.id)))
+        map(res => !!res.selected.find(id => id === this.recipe.id)))
     ]).pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(([params, checked]: [any, boolean]) => {
         this.category = params['category'];
@@ -41,11 +40,11 @@ export class RecipeCardComponent implements OnInit, OnDestroy {
   }
 
   selectCard() {
-    this.store.dispatch(recipesActions.selectRecipe({id: this._recipe.id}));
+    this.store.dispatch(recipesActions.selectRecipe({id: this.recipe.id}));
   }
 
   unselectCard() {
-    this.store.dispatch(recipesActions.unselectRecipe({id: this._recipe.id}));
+    this.store.dispatch(recipesActions.unselectRecipe({id: this.recipe.id}));
   }
 
   toggleCard() {

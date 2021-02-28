@@ -24,7 +24,7 @@
       </a>
       <!--      SIDENAV New Recipes Link -->
       <a mat-list-item *ngIf="isAuthenticated" routerLinkActive="active"
-         routerLink="/new-recipes" (click)="drawer.toggle()">
+         routerLink="/recipes" (click)="drawer.toggle()">
         <mat-icon class="icon"><i class="fas fa-utensils"></i></mat-icon>
         <span class="nav-caption">New recipes</span>
       </a>
@@ -63,7 +63,7 @@
           </a>
 
           <!--          zakładka New Recipes -->
-          <a mat-button *ngIf="isAuthenticated" routerLinkActive="active" routerLink="/new-recipes">
+          <a mat-button *ngIf="isAuthenticated" routerLinkActive="active" routerLink="/recipes">
             <mat-icon class="icon"><i class="fas fa-utensils"></i></mat-icon>
             <span class="label">New recipes</span>
           </a>

@@ -53,7 +53,7 @@ export class RecipeDetailComponent implements OnInit {
 
     })
     dialogRef.afterClosed().pipe(
-      filter(res=>!!res))
+      filter(res=> !!res))
       .subscribe(res => {
         this.store.dispatch(recipesActions.deleteRecipe({index: this.recipe.id}));
       })

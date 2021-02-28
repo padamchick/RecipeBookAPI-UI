@@ -13,19 +13,19 @@ import recipes.recipebook.ingredients.IngredientMapper;
 
 import java.util.List;
 
-@Mapper(uses = IngredientMapper.class, componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
+@Mapper(uses = {IngredientMapper.class, CategoryMapper.class}, componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public abstract class RecipeMapper {
 
-    @Mappings({
-            @Mapping(ignore = true, target = "category")
-    })
-    protected abstract Recipe toRecipe(RecipeDto dto, @Context RecipeService recipeService);
+//    @Mappings({
+//            @Mapping(ignore = true, target = "category")
+//    })
+    protected abstract Recipe toRecipe(RecipeDto dto);
 
-    @AfterMapping
-    protected void setCategory(RecipeDto from, @MappingTarget Recipe recipe, @Context RecipeService recipeService) {
-        Category category = recipeService.findCategoryByName(from.getCategory().getName());
-        recipe.setCategory(category);
-    }
+//    @AfterMapping
+//    protected void setCategory(RecipeDto from, @MappingTarget Recipe recipe, @Context RecipeService recipeService) {
+//        Category category = recipeService.findCategoryByName(from.getCategory().getName());
+//        recipe.setCategory(category);
+//    }
 
 //    @Mappings({
 //            @Mapping(ignore = true, target = "category")
@@ -41,7 +41,7 @@ public abstract class RecipeMapper {
 //    protected abstract List<RecipeDto> toRecipeDtoList(List<Recipe> recipes);
 }
 
-@Mapper
+@Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 interface CategoryMapper {
     CategoryMapper MAPPER = Mappers.getMapper(CategoryMapper.class);
 
