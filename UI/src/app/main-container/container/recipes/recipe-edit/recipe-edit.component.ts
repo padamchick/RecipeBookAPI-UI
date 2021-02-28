@@ -5,23 +5,25 @@ import {Store} from '@ngrx/store';
 import {AppState} from '../../../../store/app.reducer';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {Recipe} from '../../old-recipes/old-recipe.model';
-import {combineLatest, Subject} from 'rxjs';
+import {combineLatest, Observable, Observer, of, Subject} from 'rxjs';
 import {RecipeService} from '../recipe.service';
 import {Category} from '../models/category.model';
 import {Ingredient} from '../../../../shared/ingredient.model';
 import {MatDialog} from '@angular/material/dialog';
 import {IngredientDialogComponent} from '../../../../shared/dialogs/ingredient-dialog/ingredient-dialog.component';
-import {cloneDeep} from 'lodash';
+import {cloneDeep, isEqual} from 'lodash';
 import * as recipesActions from '../../old-recipes/store/recipe.actions'
 import {Actions, ofType} from '@ngrx/effects';
 import * as RecipesActions from '../../old-recipes/store/recipe.actions';
+import {CanComponentDeactivate} from '../../../../shared/can-deactivate.guard';
+import {ConfirmDialogComponent} from '../../../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-recipe-edit',
   templateUrl: './recipe-edit.component.html',
   styleUrls: ['./recipe-edit.component.less']
 })
-export class RecipeEditComponent implements OnInit, OnDestroy {
+export class RecipeEditComponent implements OnInit, OnDestroy, CanComponentDeactivate {
   id: number;
   recipe: Recipe = new Recipe(null, '', '', '', [], {name: '', iconName: '', urlSuffix: '', sortIndex: null}, null, null, '', null);
   originalRecipe: Recipe;
@@ -39,14 +41,6 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
               private recipeService: RecipeService,
               public dialog: MatDialog,
               private actions$: Actions) {
-    router.events
-      .pipe(
-        filter(event => event instanceof NavigationEnd),
-        takeUntil(this.ngUnsubscribe)
-      )
-      .subscribe((event: NavigationEnd) => {
-        console.log('prev:', event.url);
-      });
   }
 
   ngOnInit(): void {
@@ -147,6 +141,34 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
         this.editMode = false;
         this.router.navigate(['../all', recipe.recipe.id], {relativeTo: this.route});
       });
+    }
+  }
+
+  canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+    if (!this.originalRecipe) {
+      return true;
+    }
+
+    if (isEqual(this.originalRecipe, this.recipe)) {
+      return true;
+    } else {
+      return new Observable((observer: Observer<boolean>) => {
+        const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+          data: {
+            width: 400, title: 'Confirm Exit', button1Label: 'Cancel', button2Label: 'Discard', button2Class: 'theme-accent-dark',
+            message: `Are you sure you want to discard all changes?`
+          },
+          autoFocus: false,
+        })
+        dialogRef.afterClosed()
+          .subscribe(res => {
+            observer.next(res);
+            observer.complete();
+          }, (err) => {
+            observer.next(false);
+            observer.complete();
+          })
+      })
     }
   }
 }

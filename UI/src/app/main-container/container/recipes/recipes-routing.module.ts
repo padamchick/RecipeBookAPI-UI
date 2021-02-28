@@ -5,13 +5,14 @@ import {RecipesResolverService} from './recipes-resolver.service';
 import {RecipeDetailComponent} from './recipe-detail/recipe-detail.component';
 import {RecipeEditComponent} from './recipe-edit/recipe-edit.component';
 import {CardsContainerComponent} from './recipes-main/cards-container.component';
+import {CanDeactivateGuard} from '../../../shared/can-deactivate.guard';
 
 const routes: Routes = [
   {
     path: '', children: [
       {path: '', component: SecondNavbarNewRecipesComponent, outlet: 'second-nav-bar'},
       {path: '', pathMatch: 'full', redirectTo: '/recipes/all'},
-      {path: 'new', component: RecipeEditComponent},
+      {path: 'new', component: RecipeEditComponent, canDeactivate: [CanDeactivateGuard]},
       {path: ':category',
         component: CardsContainerComponent,
         resolve: [RecipesResolverService]
@@ -22,6 +23,7 @@ const routes: Routes = [
       },
       {path: ':category/:id/edit',
         component: RecipeEditComponent,
+        canDeactivate: [CanDeactivateGuard],
         resolve: [RecipesResolverService]
       },
     ]
