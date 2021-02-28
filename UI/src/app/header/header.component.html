@@ -39,14 +39,14 @@
     <mat-toolbar class="theme-accent-dark">
       <mat-toolbar-row>
         <!--          sidenav menu button (tylko jeśli rozmiar okna xs) -->
-        <button mat-icon-button (click)="drawer.toggle()" fxHide.gt-xs>
+        <button mat-icon-button (click)="drawer.toggle()" fxHide.gt-md>
           <mat-icon>menu</mat-icon>
         </button>
         <!--          NAGŁÓWEK RECIPE BOOK -->
         <!--        <a class="toolbar-header" routerLink="/">RECIPE BOOK</a>-->
         <a class="toolbar-header" routerLink="/">RECIPE BOOK</a>
 
-        <div fxFlex fxLayout fxHide.lt-sm>
+        <div fxFlex fxLayout fxHide.lt-md>
           <!--          zakładka Recipes -->
           <a mat-button *ngIf="isAuthenticated" routerLinkActive="active" routerLink="/recipes">
             <!-- <div class="d-flex justify-content-around align-items-center"> -->

@@ -1,10 +1,10 @@
 <app-top-bar-recipe-detail
-(onEdit)="onEdit()"
-(onDelete)="onDelete()"></app-top-bar-recipe-detail>
+  (onEdit)="onEdit()"
+  (onDelete)="onDelete()"></app-top-bar-recipe-detail>
 <ng-scrollbar>
   <div class="wrapper">
     <div class="photo">
-      <img [src]="recipe.imagePath">
+      <img [src]="recipe.imagePath" class="img-fluid">
       <div class="title">
         {{recipe.name | uppercase}}
       </div>
@@ -31,27 +31,27 @@
         <span class="icon-value">{{recipe.ingredients.length}}</span>
       </div>
     </div>
-    <div class="content">
-      <div id="ingredients">
-            <div class="sectionHeader">
-              <i class="fas fa-shopping-basket"></i>
-              <span>INGREDIENTS</span>
-            </div>
-            <div class="ingredientsTable" *ngFor="let ingredient of recipe.ingredients, let i=index">
-              <div class="ingredientsItem" [style.background-color]="i%2 === 1 ? '#f4f4f4':'white'">
-                <i class="fas fa-chevron-right"></i>
-                {{ingredient.name}}: {{ingredient.amount}} {{ingredient.unit}}</div>
-            </div>
-      </div>
+    <div class="content" [ngStyle.lt-md]="{'flex-direction': 'column'}">
 
+      <div id="ingredients">
+        <div class="sectionHeader">
+          <i class="fas fa-shopping-basket"></i>
+          <span>INGREDIENTS</span>
+        </div>
+        <div class="ingredientsTable" *ngFor="let ingredient of recipe.ingredients, let i=index">
+          <div class="ingredientsItem" [style.background-color]="i%2 === 1 ? '#f4f4f4':'white'">
+            <i class="fas fa-chevron-right"></i>
+            {{ingredient.name}}: {{ingredient.amount}} {{ingredient.unit}}</div>
+        </div>
+      </div>
       <div id="description">
         <div class="sectionHeader">
           <i class="fas fa-file-alt"></i>
           <span>DESCRIPTION</span>
         </div>
-          <div class="sectionContent" [innerHTML]="recipe.description" style="white-space: pre-wrap;">
+        <div class="sectionContent" [innerHTML]="recipe.description" style="white-space: pre-wrap;">
 
-          </div>
+        </div>
       </div>
     </div>
 

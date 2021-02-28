@@ -52,7 +52,7 @@
     mat-card {
       width: calc(100% - 30px);
       min-height: 70px;
-      padding: 10px 0 10px 0;
+      padding: 2px 0 2px 0;
       box-shadow: none;
       border: 1px solid #dadada;
       border-radius: 5px;
@@ -60,6 +60,9 @@
       table {
         width: 100%;
         padding: 0 !important;
+        .mat-row:nth-last-child(1) {
+          border-bottom-width: 0px;
+        }
       }
       .mat-column-name {
         flex: 0 0 60%;
@@ -164,6 +167,35 @@
 
 ::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
   color: #000 !important;
+}
+
+@media all and (max-width: 840px) {
+  .columns {
+    display: flex;
+    flex-direction: column;
+    .form-left {
+      width: 100%;
+      mar
+      mat-form-field {
+        width: 100%;
+      }
+    }
+    .form-right {
+      display: flex;
+      flex-direction: column;
+      width: 45%;
+      margin-left: calc(10% - 30px);
+      mat-form-field {
+        width: 100%;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+        //max-height: 300px;
+      }
+    }
+
+  }
 }
 
 

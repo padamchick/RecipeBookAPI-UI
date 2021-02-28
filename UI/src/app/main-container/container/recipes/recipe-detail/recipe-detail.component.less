@@ -1,8 +1,10 @@
 :host {
-  display: flex;
-  flex-direction: column;
+  //display: flex;
+  //flex-direction: column;
   width: 100%;
-  height: 100%;
+  //height: 100%;
+
+
   .wrapper {
     display: flex;
     flex-direction: column;
@@ -11,12 +13,14 @@
 
   .photo {
     position: relative;
+
     img {
-      max-width: 100%;
-      height: auto;
-      //max-height: 450px;
+      display: flex;
+      //max-width: 100%;
+      //height: auto;
       max-height: 500px;
     }
+
     .title {
       position: absolute;
       bottom: 0;
@@ -24,7 +28,7 @@
       width: 100%;
       height: 80px;
       font-family: "YanoneKaffeesatz";
-      background-color: rgba(0,0,0,0.6);
+      background-color: rgba(0, 0, 0, 0.6);
       color: white;
       display: flex;
       align-items: center;
@@ -34,42 +38,52 @@
       user-select: none;
     }
   }
+
   .icons {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
-    margin: 40px 0 40px 0;
+    margin: 40px 0;
     width: 100%;
+
     .icon {
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: 0 50px 0 50px;
+      margin: 0 5vw;
+
       i {
-        color: rgba(0,0,0,0.7);
+        color: rgba(0, 0, 0, 0.7);
+        //min-font-size: 30px;
         font-size: 60px;
-        height: 60px;
-        width: 60px;
+        //max-font-size: 60px;
+
       }
+
       .icon-header {
-        color: rgba(0,0,0,0.7);
+        color: rgba(0, 0, 0, 0.7);
         font-size: 18px;
         font-weight: 600;
       }
+
       .icon-value {
-        color: rgba(0,0,0,0.7);
+        color: rgba(0, 0, 0, 0.7);
         font-size: 16px;
         font-weight: 500;
       }
     }
   }
+
   .content {
     display: flex;
     flex-direction: row;
-    justify-content: start;
-    align-items: start;
+    justify-content: space-around;
+    align-items: flex-start;
     width: 100%;
+    max-width: 100%;
     margin: 0 0 40px 0;
+
     .sectionHeader {
       display: flex;
       flex-direction: row;
@@ -79,23 +93,27 @@
       font-size: 20px;
       letter-spacing: 2px;
       font-weight: 500;
-      color: rgba(0,0,0,0.7);
+      color: rgba(0, 0, 0, 0.7);
       text-align: center;
       padding: 12px;
+
       i {
         font-size: 22px;
         margin-right: 15px;
       }
     }
+
     #ingredients {
       display: flex;
       flex-direction: column;
       width: 30%;
-      margin-left: 5%;
+      //margin-left: 5%;
+
       .ingredientsTable {
         display: flex;
         flex-direction: column;
       }
+
       .ingredientsItem {
         display: flex;
         flex-direction: row;
@@ -104,24 +122,28 @@
         border-left: 1px solid #dadada;
         border-right: 1px solid #dadada;
         padding: 10px 15px 10px 15px;
+
         i {
           margin-right: 10px;
         }
       }
 
     }
+
     #description {
       display: flex;
       flex-direction: column;
       width: 54%;
-      margin-left: 6%;
+      //margin-left: 6%;
+
       .sectionTitle {
         font-size: 20px;
         letter-spacing: 2px;
         font-weight: 500;
-        color: rgba(0,0,0,0.7);
+        color: rgba(0, 0, 0, 0.7);
         text-align: center;
       }
+
       .sectionContent {
         border: 1px solid #dadada;
         padding: 10px 15px 10px 15px;
@@ -132,14 +154,16 @@
   }
 }
 
-@media all and (min-width: 599px){
+@media all and (min-width: 599px) {
 
   .mat-column-id {
     flex: 0 0 20%;
   }
+
   .mat-column-name {
     flex: 0 0 90%;
   }
+
   //.mat-column-amount {
   //  flex: 0 0 20%;
   //}
@@ -148,22 +172,38 @@
   //}
 }
 
-@media all and (max-width: 599px){
+@media only screen and (max-width: 840px) {
 
-  .mat-column-name {
-    flex: 0 0 60%;
+  .content {
+    flex-direction: column !important;
   }
-  .mat-column-amount {
-    flex: 0 0 20%;
+
+  #ingredients {
+    width: calc(100% - 26px) !important;
+    margin: 13px;
   }
-  .mat-column-unit {
-    flex: 0 0 20%;
+
+  #description {
+    width: calc(100% - 26px) !important;
+    margin: 13px;
+  }
+
+}
+
+@media only screen and (max-width: 600px) {
+  .photo {
+    .title {
+      height: 50px !important;
+      font-size: 35px !important;
+    }
+  }
+  .icon {
+    i {
+      font-size: 45px !important;
+    }
   }
 }
 
-//.mat-row:nth-child(even){
-//  background-color: #fafafa;
-//}
 
 
 
