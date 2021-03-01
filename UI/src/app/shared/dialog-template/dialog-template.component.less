@@ -4,40 +4,45 @@
   align-items: center;
   width: 100%;
   position: relative;
-  .close {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    cursor: pointer;
-  }
-  [mat-dialog-title] {
-    text-align: center;
-    width: 100%;
-  }
-  [mat-dialog-content] {
-    margin: 15px 0;
-  }
-  [mat-dialog-actions] {
-    display: flex;
-    justify-content: flex-end;
-    button {
-      margin-left: 10px;
+
+  @media only screen and (max-width: 600px) {
+    .mat-container {
+      width: 100% !important;
     }
-    button:disabled {
-      color: #888888 !important;
+  }
 
-
+  .mat-container {
+    .close {
+      position: absolute;
+      top: 0;
+      right: 0;
+      cursor: pointer;
     }
 
+    [mat-dialog-title] {
+      text-align: center;
+      width: 100%;
+    }
+
+    .mat-dialog-content {
+      margin: 15px 0;
+      padding: 0;
+    }
+
+    [mat-dialog-actions] {
+      display: flex;
+      justify-content: flex-end;
+
+      button {
+        margin-left: 10px;
+      }
+
+      button:disabled {
+        color: #888888 !important;
+      }
+    }
   }
+
 }
 
-//.dialog-buttons {
-//  display: flex;
-//  justify-content: flex-end;
-//  padding-top: 24px;
-//  button {
-//    margin-right: 0.5rem;
-//  }
-//}
 

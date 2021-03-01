@@ -77,7 +77,8 @@ export class RecipeEditComponent implements OnInit, OnDestroy, CanComponentDeact
       data: {
         width: 300, title: 'Edit ingredient', button1Label: 'Cancel', button2Label: 'Submit', button1Class: 'theme-accent-danger',
         name: ingredient.name, amount: ingredient.amount, unit: ingredient.unit
-      }
+      },
+      autoFocus: false
     });
 
     dialogRef.afterClosed().pipe(

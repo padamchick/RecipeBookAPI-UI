@@ -1,8 +1,4 @@
 import {Component, Inject, Input, OnInit, Output, ViewChild, EventEmitter} from '@angular/core';
-import {Ingredient} from '../../ingredient.model';
-import {NgForm} from '@angular/forms';
-import {Dialog} from 'primeng/dialog';
-import {DialogService} from 'primeng/dynamicdialog';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
