@@ -27,7 +27,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<UserDao> user = userRepository.findByUsername(username);
-        final UserDao foundUser = user.orElseThrow(() -> new UsernameNotFoundException("UserDao with username: " + username + " not found."));
+        final UserDao foundUser = user.orElseThrow(() -> new UsernameNotFoundException("BAD_USERNAME"));
         return new User(foundUser.getUsername(), foundUser.getPassword(), mapListToCollection(foundUser.getAuthorities()));
     }
 

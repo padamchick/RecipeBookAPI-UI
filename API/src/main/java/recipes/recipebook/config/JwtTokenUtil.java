@@ -1,9 +1,8 @@
 package recipes.recipebook.config;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -15,8 +14,8 @@ import java.util.function.Function;
 @Component
 public class JwtTokenUtil {
 
-    //    token wazny 10h
-    private static final long JWT_TOKEN_VALIDITY = 10 * 60 * 60;
+    //    token wazny 10 dni
+    private static final long JWT_TOKEN_VALIDITY = 10 * 24 * 60 * 60;
 
     @Value("{jwt.secret}")
     private String secret;
@@ -66,9 +65,17 @@ public class JwtTokenUtil {
     }
 
     //    validate token
-    public Boolean validateToken(String token, UserDetails userDetails) {
-        final String username = getUserNameFromToken(token);
-        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+    public Boolean validateToken(String token) {
+
+        try {
+            getAllClaimsFromToken(token);
+            return true;
+        } catch (SignatureException | MalformedJwtException | UnsupportedJwtException | IllegalArgumentException ex) {
+            throw new BadCredentialsException("INVALID_CREDENTIALS", ex);
+        } catch (ExpiredJwtException ex) {
+            throw new ExpiredJwtException(ex.getHeader(), ex.getClaims(), "TOKEN_EXPIRED", ex);
+        }
+
     }
 }
 
