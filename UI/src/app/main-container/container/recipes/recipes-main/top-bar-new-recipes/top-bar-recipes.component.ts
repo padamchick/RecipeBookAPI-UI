@@ -1,10 +1,10 @@
 import {Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import * as fromApp from '../../../../../store/app.reducer';
-import * as recipesActions from '../../../../../store/store/recipe.actions'
+import * as recipesActions from '../../../../../store/recipe/recipe.actions'
 import {Store} from '@ngrx/store';
 import {map, filter, takeUntil, first} from 'rxjs/operators';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
-import {getRecipes} from '../../../../../store/store/recipe.selectors';
+import {getRecipes} from '../../../../../store/recipe/recipe.selectors';
 
 @Component({
   selector: 'app-top-bar-recipes',

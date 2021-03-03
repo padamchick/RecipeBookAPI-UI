@@ -2,15 +2,17 @@ import {Component, OnInit, OnDestroy, EventEmitter} from '@angular/core';
 
 import {DataStorageService} from '../shared/data-storage.service';
 import {AuthService} from '../auth/auth.service';
-import {Subscription, Observable} from 'rxjs';
+import {Subscription, Observable, combineLatest} from 'rxjs';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {map, shareReplay, takeUntil, tap} from 'rxjs/operators';
 import {OldRecipeService} from '../main-container/container/old-recipes/old-recipe.service';
 import {Store} from '@ngrx/store';
 import {AppState} from '../store/app.reducer';
 import * as authActions from '../store/auth/auth.actions';
+import * as appActions from '../store/app/app.actions';
 import {TranslateService} from '@ngx-translate/core';
 import {getCurrentUser} from '../store/auth/auth.selectors';
+import {getLang} from '../store/app/app.selectors';
 
 @Component({
   selector: 'app-header',
@@ -51,16 +53,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.store.select(getCurrentUser).pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe(user => {
+    console.log("beofre combineLatest")
+    combineLatest([
+      this.store.select(getCurrentUser),
+      this.store.select(getLang)
+    ]).pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(([user, lang]) => {
       if (user) {
         this.isAuthenticated = true;
       } else {
         this.isAuthenticated = false;
       }
+        this.translate.use(lang);
+      this.currentLang = lang;
     });
-    this.translate.use('en')
-    this.currentLang = this.translate.currentLang;
   }
 
 
@@ -75,7 +81,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   onToggle(e) {
     this.switchLang(e.value);
     if(this.isAuthenticated) {
-      this.store.dispatch(authActions.setLang({language: e.value}));
+      this.store.dispatch(appActions.saveLang({lang: e.value}));
     }
   }
 

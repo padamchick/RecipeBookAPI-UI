@@ -4,7 +4,6 @@ import {map, tap} from 'rxjs/operators';
 
 import {Recipe} from '../main-container/container/old-recipes/old-recipe.model';
 import {OldRecipeService} from '../main-container/container/old-recipes/old-recipe.service';
-import {ShoppingListService} from '../main-container/container/shopping-list/shopping-list.service';
 import {Ingredient} from './ingredient.model';
 import {environment} from '../../environments/environment';
 
@@ -13,7 +12,6 @@ export class DataStorageService {
   constructor(
     private http: HttpClient,
     private recipeService: OldRecipeService,
-    private shoppingService: ShoppingListService
   ) {
   }
 
@@ -29,7 +27,7 @@ export class DataStorageService {
       .pipe(
         tap(
           (ingredients: Ingredient[]) => {
-            this.recipeService.addIngredientsToShoppingList(ingredients);
+            // this.recipeService.addIngredientsToShoppingList(ingredients);
           }
         )
       )
@@ -50,7 +48,7 @@ export class DataStorageService {
       .pipe(
         tap(
           () => {
-            this.shoppingService.deleteIngredient(arrayId);
+            // this.shoppingService.deleteIngredient(arrayId);
           }
         )
       )
@@ -64,7 +62,7 @@ export class DataStorageService {
       .post<Ingredient>(`${this.apiUrl}/shopping-list`, ingredient)
       .pipe(
         tap((ingredient: Ingredient) => {
-          this.shoppingService.addIngredient(ingredient);
+          // this.shoppingService.addIngredient(ingredient);
         })
       )
       .subscribe((response) => {
@@ -86,7 +84,7 @@ export class DataStorageService {
           }
         }),
         tap((ingredients) => {
-          this.shoppingService.setIngredients(ingredients);
+          // this.shoppingService.setIngredients(ingredients);
         })
       );
   }

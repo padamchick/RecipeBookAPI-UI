@@ -171,26 +171,7 @@ export class AuthEffects {
       })
     ), {dispatch: false});
 
-  setLang$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(authActions.setLang),
-      switchMap(({language}) => {
-        return this.authService.setLang(language).pipe(
-          map(() => authActions.setLangSuccess())
-        )
-      })
-    ));
-
-  setLangSuccess$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(authActions.setLangSuccess),
-      tap(() => {
-            this.notify.setLangSuccess();
-      })
-    ), {dispatch: false});
-
-
-  constructor(
+    constructor(
     private actions$: Actions,
     private http: HttpClient,
     private authService: AuthService,

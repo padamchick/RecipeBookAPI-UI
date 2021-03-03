@@ -12,12 +12,12 @@ import {Ingredient} from '../../../../shared/ingredient.model';
 import {MatDialog} from '@angular/material/dialog';
 import {IngredientDialogComponent} from '../../../../shared/dialogs/ingredient-dialog/ingredient-dialog.component';
 import {cloneDeep, isEqual} from 'lodash';
-import * as recipesActions from '../../../../store/store/recipe.actions'
+import * as recipesActions from '../../../../store/recipe/recipe.actions'
 import {Actions, ofType} from '@ngrx/effects';
-import * as RecipesActions from '../../../../store/store/recipe.actions';
+import * as RecipesActions from '../../../../store/recipe/recipe.actions';
 import {CanComponentDeactivate} from '../../../../shared/can-deactivate.guard';
 import {ConfirmDialogComponent} from '../../../../shared/dialogs/confirm-dialog/confirm-dialog.component';
-import {getRecipes} from '../../../../store/store/recipe.selectors';
+import {getRecipes} from '../../../../store/recipe/recipe.selectors';
 
 @Component({
   selector: 'app-recipe-edit',

@@ -10,8 +10,8 @@ public class RestExceptionHandler {
 
 
     @ExceptionHandler
-    public ResponseEntity<CustomResponse> handleException(CustomNotFoundException ex) {
-        CustomResponse error = new CustomResponse();
+    public ResponseEntity<ErrorResponse> handleException(NotFoundException ex) {
+        ErrorResponse error = new ErrorResponse();
         error.setStatus(HttpStatus.NOT_FOUND.value());
         error.setMessage(ex.getMessage());
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);

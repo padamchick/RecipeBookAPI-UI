@@ -31,11 +31,6 @@ export class AuthService {
     return this.http.post<AuthResponseData>(`${this.apiUrl}/authenticate`, {username: username, password: password})
   }
 
-  setLang(language: string) {
-    return this.http.patch(`${this.apiUrl}`, {language: language})
-  }
-
-
 
   setLogoutTimer(expirationDuration: number) {
     this.tokenExpirationTimer = setTimeout(() => {

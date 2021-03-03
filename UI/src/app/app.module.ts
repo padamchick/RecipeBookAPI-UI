@@ -13,7 +13,7 @@ import * as fromApp from './store/app.reducer';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import {EffectsModule} from '@ngrx/effects';
-import {RecipeEffects} from './store/store/recipe.effects';
+import {RecipeEffects} from './store/recipe/recipe.effects';
 import {AuthEffects} from './store/auth/auth.effects';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
@@ -22,6 +22,8 @@ import {MainLeftNavbarComponent} from './main-container/main-left-navbar/main-le
 import {RecipesModule} from './main-container/container/recipes/recipes.module';
 import {ProjectContainerComponent} from './main-container/container/project-container.component';
 import { MainContainerComponent } from './main-container/main-container.component';
+import {AppEffects} from './store/app/app.effects';
+import {metaReducers} from './store/auth/auth.reducer';
 
 
 @NgModule({
@@ -41,8 +43,8 @@ import { MainContainerComponent } from './main-container/main-container.componen
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     NgbModule,
-    StoreModule.forRoot(fromApp.appReducer),
-    EffectsModule.forRoot([RecipeEffects, AuthEffects]),
+    StoreModule.forRoot(fromApp.appReducer, { metaReducers }),
+    EffectsModule.forRoot([RecipeEffects, AuthEffects, AppEffects]),
     StoreDevtoolsModule.instrument({logOnly: environment.production}),
     TranslateModule.forRoot({
       loader: {

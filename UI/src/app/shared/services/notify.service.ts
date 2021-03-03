@@ -20,6 +20,9 @@ export class NotifyService {
   public setLangSuccess() {
     this.showSuccessMessage('Language changed successfully')
   }
+  public setLangError() {
+    this.showErrorMessage('Language change error')
+  }
 
 
   private showErrorMessage(message: string = '', title: string = '') {

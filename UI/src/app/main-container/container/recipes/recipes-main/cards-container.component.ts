@@ -7,11 +7,11 @@ import {Store} from '@ngrx/store';
 import * as fromApp from '../../../../store/app.reducer';
 import {ActivatedRoute, Params} from '@angular/router';
 import {first, map, takeUntil, filter, switchMap} from 'rxjs/operators';
-import * as recipesActions from '../../../../store/store/recipe.actions';
+import * as recipesActions from '../../../../store/recipe/recipe.actions';
 import {ConfirmDialogComponent} from '../../../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
-import {State} from '../../../../store/store/recipe.reducer';
-import {getRecipes, getSelectedIds} from '../../../../store/store/recipe.selectors';
+import {RecipeState} from '../../../../store/recipe/recipe.reducer';
+import {getRecipes, getSelectedIds} from '../../../../store/recipe/recipe.selectors';
 
 @Component({
   selector: 'app-cards-container',

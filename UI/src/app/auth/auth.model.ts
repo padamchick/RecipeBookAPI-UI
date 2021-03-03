@@ -25,3 +25,12 @@ export interface AuthResponseData {
   expirationDate: string;
   // authorities: string[];
 }
+
+export interface UserAccount {
+  id: number;
+  username: string;
+  email: string;
+  language: string;
+  firstName: string;
+  lastName: string;
+}

@@ -5,9 +5,9 @@ import {Observable, of} from 'rxjs';
 import {AppState} from '../../../store/app.reducer';
 import {Store} from '@ngrx/store';
 import {first, switchMap} from 'rxjs/operators';
-import * as recipesActions from '../../../store/store/recipe.actions';
+import * as recipesActions from '../../../store/recipe/recipe.actions';
 import {Actions, ofType} from '@ngrx/effects';
-import {getRecipes} from '../../../store/store/recipe.selectors';
+import {getRecipes} from '../../../store/recipe/recipe.selectors';
 
 @Injectable({providedIn: 'root'})
 export class RecipesResolverService implements Resolve<{recipes: Recipe[]}> {

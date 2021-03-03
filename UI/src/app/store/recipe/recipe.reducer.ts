@@ -3,12 +3,12 @@ import {Action, createReducer, on} from '@ngrx/store';
 import * as recipesActions from './recipe.actions';
 import {updateRecipe} from './recipe.actions';
 
-export interface State {
+export interface RecipeState {
   recipes: Recipe[];
   selected: number[];
 }
 
-const initialState: State = {
+const initialState: RecipeState = {
   recipes: [],
   selected: []
 };
@@ -76,6 +76,6 @@ const _recipeReducer = createReducer(
     })),
 );
 
-export function recipeReducer(state: State, action: Action) {
+export function recipeReducer(state: RecipeState, action: Action) {
   return _recipeReducer(state, action);
 }

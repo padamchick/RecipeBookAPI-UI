@@ -6,8 +6,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 import recipes.recipebook.auth.UserRepository;
+import recipes.recipebook.dto.UserDto;
 import recipes.recipebook.entity.Language;
 import recipes.recipebook.entity.UserDao;
+import recipes.recipebook.exceptions.NotFoundException;
 
 import java.lang.reflect.Field;
 import java.util.Map;
@@ -18,7 +20,7 @@ import java.util.Optional;
 public class AccountService {
     private final UserRepository userRepository;
 
-    public ResponseEntity<?> update(Map<String, Object> updates) {
+    public UserDao update(Map<String, Object> updates) {
         String authorizedUsername = SecurityContextHolder.getContext().getAuthentication().getName();
         UserDao user = userRepository.findByUsername(authorizedUsername).orElse(null);
         if(user != null) {
@@ -32,6 +34,12 @@ public class AccountService {
                 }
             });
         }
-        return ResponseEntity.ok(userRepository.save(user));
+        return userRepository.save(user);
+    }
+
+    public UserDao getCurrentUser() {
+        String authorizedUsername = SecurityContextHolder.getContext().getAuthentication().getName();
+        return userRepository.findByUsername(authorizedUsername)
+                .orElseThrow(() -> new NotFoundException("USER_NOT_FOUND"));
     }
 }

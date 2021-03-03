@@ -13,8 +13,9 @@ import recipes.recipebook.ingredients.IngredientMapper;
 
 import java.util.List;
 
-@Mapper(uses = {IngredientMapper.class, CategoryMapper.class}, componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
+@Mapper(uses = {IngredientMapper.class, CategoryMapper.class}, componentModel = "spring")
 public abstract class RecipeMapper {
+
 
 //    @Mappings({
 //            @Mapping(ignore = true, target = "category")

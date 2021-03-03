@@ -1,7 +1,6 @@
 import { Injectable} from '@angular/core';
 import { Recipe } from './old-recipe.model';
 import { Ingredient } from '../../../shared/ingredient.model';
-import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { Subject } from 'rxjs';
 
 @Injectable({providedIn: 'root'})
@@ -10,7 +9,7 @@ export class OldRecipeService {
 
   private recipes: Recipe[] = [];
 
-  constructor(private shoppingListService: ShoppingListService){}
+  constructor(){}
 
   getRecipes() {
     // dzieki .slice() dostajemy kopie tablicy, nie mozemy jej modyfikowac z zewnatrz
@@ -22,9 +21,6 @@ export class OldRecipeService {
     this.recipesChanged.next(this.recipes.slice());
   }
 
-  addIngredientsToShoppingList(ingredients: Ingredient[]) {
-    this.shoppingListService.addIngredients(ingredients);
-  }
 
   addRecipe(recipe: Recipe) {
     this.recipes.push(recipe);

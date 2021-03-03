@@ -1,12 +1,12 @@
-import {Action, createReducer, on} from '@ngrx/store';
+import {Action, ActionReducer, createReducer, INIT, MetaReducer, on} from '@ngrx/store';
 import * as authActions from './auth.actions';
 import {User} from '../../auth/auth.model';
 
-export interface State {
+export interface AuthState {
   user: User;
 }
 
-const initialState: State = {
+const initialState: AuthState = {
   user: null
 };
 
@@ -25,6 +25,17 @@ const _authReducer = createReducer(
     }))
 );
 
-export function authReducer(state: State, action: Action) {
+export function authReducer(state: AuthState, action: Action) {
   return _authReducer(state, action);
 }
+
+export function clearState(reducer: ActionReducer<any>): ActionReducer<any> {
+  return (state, action) => {
+    if ( action != null && action.type === authActions.logOut.type) {
+      return reducer( {}, {type: INIT});
+    }
+    return reducer(state, action);
+  };
+}
+
+export const metaReducers: MetaReducer[] = [clearState]

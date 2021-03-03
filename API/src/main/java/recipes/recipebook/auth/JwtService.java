@@ -30,7 +30,7 @@ public class JwtService {
         this.userService = userService;
     }
 
-    public void authenticate(String username, String password) throws Exception {
+    public void authenticate(String username, String password) {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         } catch (DisabledException e) {
@@ -40,7 +40,7 @@ public class JwtService {
         }
     }
 
-    public JwtResponse createAuthenticationToken(JwtRequest request) throws Exception {
+    public JwtResponse createAuthenticationToken(JwtRequest request) {
 
         authenticate(request.getUsername(), request.getPassword());
 
