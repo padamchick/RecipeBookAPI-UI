@@ -23,12 +23,16 @@ export class AuthService {
               private recipeService: OldRecipeService,
               private store: Store<fromApp.AppState>) {}
 
-  signUp(username: string, password: string) {
-    return this.http.post(`${this.apiUrl}/register`, {username: username, password: password});
+  signUp(username: string, password: string, firstName: string, lastName: string, email: string) {
+    return this.http.post(`${this.apiUrl}/register`, {username, password, firstName, lastName, email});
   }
 
   login(username: string, password: string) {
     return this.http.post<AuthResponseData>(`${this.apiUrl}/authenticate`, {username: username, password: password})
+  }
+
+  setLang(language: string) {
+    return this.http.patch(`${this.apiUrl}`, {language: language})
   }
 
 

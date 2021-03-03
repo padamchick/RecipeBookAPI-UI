@@ -73,6 +73,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   onToggle(e) {
     this.switchLang(e.value);
+    if(this.isAuthenticated) {
+      this.store.dispatch(authActions.setLang({language: e.value}));
+    }
   }
 
   switchLang(lang: string) {

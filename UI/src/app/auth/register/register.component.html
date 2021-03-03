@@ -1,6 +1,9 @@
 <div class="container">
   <div class="title">
-    {{'[SignUp]SignUp' | translate}}
+    Create account
+  </div>
+  <div class="subtitle">
+    in Recipe Book
   </div>
 
   <form #f="ngForm" (ngSubmit)="onSubmit(f)">
@@ -42,6 +45,42 @@
       </button>
       <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>First name</mat-label>
+      <input matInput name="firstName" required #firstName="ngModel" ngModel
+             placeholder="Enter your first name">
+      <mat-error *ngIf="!firstName.valid && firstName.touched"><i class="fas fa-exclamation-circle"></i>
+        First name is required!
+      </mat-error>
+      <button type="button" disabled="disabled" mat-icon-button matPrefix>
+        <mat-icon>badge</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Last name</mat-label>
+      <input matInput name="lastName" required #lastName="ngModel" ngModel
+             placeholder="Enter your last name">
+      <mat-error *ngIf="!lastName.valid && lastName.touched"><i class="fas fa-exclamation-circle"></i>
+        Last name is required!
+      </mat-error>
+      <button type="button" disabled="disabled" mat-icon-button matPrefix>
+        <mat-icon>badge</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput name="email" required #email="ngModel" ngModel
+             placeholder="Enter your email">
+      <mat-error *ngIf="!email.valid && email.touched"><i class="fas fa-exclamation-circle"></i>
+        Email is required!
+      </mat-error>
+      <button type="button" disabled="disabled" mat-icon-button matPrefix>
+        <mat-icon>alternate_email</mat-icon>
       </button>
     </mat-form-field>
 

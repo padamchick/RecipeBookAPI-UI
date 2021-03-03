@@ -28,6 +28,12 @@ public class UserDao {
     @OneToOne(mappedBy = "userDao", cascade = CascadeType.ALL)
     private RecipeBook recipeBook;
 
+    private String firstName;
+    private String lastName;
+    private String email;
+    @Enumerated(EnumType.STRING)
+    private Language language;
+
     @OneToOne(mappedBy = "userDao", cascade = CascadeType.ALL)
     private ShoppingList shoppingList;
 }

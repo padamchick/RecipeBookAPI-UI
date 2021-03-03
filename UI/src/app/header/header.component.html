@@ -39,7 +39,7 @@
     <mat-toolbar class="theme-accent-dark">
       <mat-toolbar-row>
         <!--          sidenav menu button (tylko jeśli rozmiar okna xs) -->
-        <button mat-icon-button (click)="drawer.toggle()" fxHide.gt-md>
+        <button mat-icon-button (click)="drawer.toggle()" fxHide.gt-sm>
           <mat-icon>menu</mat-icon>
         </button>
         <!--          NAGŁÓWEK RECIPE BOOK -->
@@ -83,7 +83,8 @@
               <mat-radio-group fxLayout="column" aria-label="Select an option" (change)="onToggle($event)">
                   <mat-radio-button  *ngFor="let lang of translate.getLangs()"
                                      [value]="lang"
-                                     [checked]="lang === translate.currentLang">
+                                     [checked]="lang === translate.currentLang"
+                                     color="primary">
                     <img [src]="['/assets/images/'+lang+'.png']" />
                     {{ lang | translate | uppercase }}
 

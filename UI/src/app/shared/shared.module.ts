@@ -13,13 +13,11 @@ import { ToastrModule } from 'ngx-toastr';
 import { SecondNavbarLayoutComponent } from '../main-container/second-navbar-layout/second-navbar-layout.component';
 import { CardTemplateComponent } from './card-template/card-template.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
-import {NgxMasonryModule} from 'ngx-masonry';
-import {TopBarComponent} from '../main-container/top-bar/top-bar.component';
-import {NgScrollbarModule} from 'ngx-scrollbar';
-import {DialogTemplateComponent} from './dialog-template/dialog-template.component';
+import { NgxMasonryModule } from 'ngx-masonry';
+import { TopBarComponent } from '../main-container/top-bar/top-bar.component';
+import { NgScrollbarModule } from 'ngx-scrollbar';
+import { DialogTemplateComponent } from './dialog-template/dialog-template.component';
 import { IngredientDialogComponent } from './dialogs/ingredient-dialog/ingredient-dialog.component';
-import {PrimeNgModule} from './primeng/primeng.module';
-import {DialogService} from 'primeng/dynamicdialog';
 import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.component';
 
 
@@ -39,7 +37,6 @@ import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.
   imports: [
     CommonModule,
     MaterialModule,
-    PrimeNgModule,
     FlexLayoutModule,
     LayoutModule,
     FormsModule,
@@ -53,7 +50,6 @@ import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.
     CommonModule,
     FormsModule,
     MaterialModule,
-    PrimeNgModule,
     FlexLayoutModule,
     LayoutModule,
     NgxSpinnerModule,

@@ -30,12 +30,15 @@ export class RegisterComponent{
     if (!form.valid) {
       return;
     }
-
+    console.log('Form', form);
     const username = form.value.username;
     const password = form.value.password;
+    const firstName = form.value.firstName;
+    const lastName = form.value.lastName;
+    const email = form.value.email;
 
     this.spinner.show()
-    this.store.dispatch(authActions.signUp({username: username, password: password}))
+    this.store.dispatch(authActions.signUp({username, password, firstName, lastName, email}))
 
     setTimeout(() => {
       form.reset();

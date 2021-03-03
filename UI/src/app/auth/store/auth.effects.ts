@@ -18,8 +18,8 @@ export class AuthEffects {
   signUp$ = createEffect(() =>
     this.actions$.pipe(
       ofType(authActions.signUp),
-      switchMap(({username, password}) => {
-        return this.authService.signUp(username, password).pipe(
+      switchMap(({username, password, firstName, lastName, email}) => {
+        return this.authService.signUp(username, password, firstName, lastName, email).pipe(
           map(res => authActions.signUpSuccess()),
           catchError(err => of(authActions.signUpFail({error: err})))
         );
@@ -30,9 +30,8 @@ export class AuthEffects {
     this.actions$.pipe(
       ofType(authActions.signUpSuccess),
       tap(() => {
-        console.warn('SIGN UP SUCCEEDED');
-        // TODO
-        // wyswietl toasta
+        this.notify.signUpSuccess()
+        this.router.navigate(['/auth']);
         this.spinner.hide();
       })
     ), {dispatch: false});
@@ -169,6 +168,24 @@ export class AuthEffects {
         this.authService.removeUserDataFromSessionStorage();
         this.router.navigate(['/auth']);
         this.authService.clearLogoutTimer();
+      })
+    ), {dispatch: false});
+
+  setLang$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(authActions.setLang),
+      switchMap(({language}) => {
+        return this.authService.setLang(language).pipe(
+          map(() => authActions.setLangSuccess())
+        )
+      })
+    ));
+
+  setLangSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(authActions.setLangSuccess),
+      tap(() => {
+            this.notify.setLangSuccess();
       })
     ), {dispatch: false});
 

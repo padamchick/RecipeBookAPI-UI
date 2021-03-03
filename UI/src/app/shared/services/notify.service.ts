@@ -11,12 +11,22 @@ export class NotifyService {
   public loginFailError() {
     this.showErrorMessage('Try again', 'Login failed')
   }
+  public signUpSuccess() {
+    this.showSuccessMessage('The account has been registered')
+  }
+  public signUpError() {
+    this.showErrorMessage('Account registration failed')
+  }
+  public setLangSuccess() {
+    this.showSuccessMessage('Language changed successfully')
+  }
+
 
   private showErrorMessage(message: string = '', title: string = '') {
     this.notify.error(message, title, { timeOut: 3000 })
   }
   private showSuccessMessage(message: string = '', title: string = '') {
-    this.notify.success(message, title, { timeOut: 3000 })
+    this.notify.success(message, title, { timeOut: 3000,  })
   }
   private showWarningMessage(message: string = '', title: string = '') {
     this.notify.warning(message, title, { timeOut: 3000 })

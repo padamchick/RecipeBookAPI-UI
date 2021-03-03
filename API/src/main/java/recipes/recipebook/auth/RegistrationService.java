@@ -5,6 +5,7 @@ import org.springframework.data.util.Optionals;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import recipes.recipebook.dto.UserDto;
+import recipes.recipebook.entity.Language;
 import recipes.recipebook.entity.RecipeBook;
 import recipes.recipebook.entity.ShoppingList;
 import recipes.recipebook.entity.UserDao;
@@ -39,6 +40,10 @@ public class RegistrationService {
                 .username(userDto.getUsername())
                 .password(passwordEncoder.encode(userDto.getPassword()))
                 .authorities(Arrays.asList(authorityRepository.findByName("USER")))
+                .language(Language.valueOfLang(userDto.getLanguage()))
+                .email(userDto.getEmail())
+                .firstName(userDto.getFirstName())
+                .lastName(userDto.getLastName())
                 .build();
 
         RecipeBook recipeBook = new RecipeBook();

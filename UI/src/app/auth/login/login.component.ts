@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit, OnDestroy{
     const password = this.form.value.password;
 
     this.spinner.show()
+    // this.spinner.show('login', {bdColor: 'rgba(51,51,51,0.8)', color: '#fff', size: 'large', type: 'ball-scale-multiple'})
     this.store.dispatch(authActions.logIn({username: username, password: password, toRemember: this.rememberMe}))
 
   }
