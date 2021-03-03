@@ -8,8 +8,7 @@ const appRoutes: Routes = [
   { path: '', component: MainContainerComponent, canActivate: [AuthGuard], children: [
       { path: '', redirectTo: '/recipes/all', pathMatch: 'full' },
       { path: 'old-recipes', loadChildren: () => import('./main-container/container/old-recipes/old-recipes.module').then(module => module.OldRecipesModule) },
-      { path: 'recipes', loadChildren: () => import('./main-container/container/recipes/recipes.module').then(m => m.RecipesModule) },
-      { path: 'shopping-list', loadChildren: () => import('./main-container/container/shopping-list/shopping-list.module').then(m => m.ShoppingListModule) },
+      { path: 'recipes', loadChildren: () => import('./main-container/container/recipes/recipes.module').then(m => m.RecipesModule) }
     ]
   },
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) }

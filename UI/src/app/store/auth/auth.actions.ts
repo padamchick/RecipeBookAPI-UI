@@ -1,5 +1,5 @@
 import {createAction, props} from '@ngrx/store';
-import {LoginForm, RegisterForm, User} from '../auth.model';
+import {LoginForm, RegisterForm, User} from '../../auth/auth.model';
 
 export const signUp = createAction('[Auth] Log Up', props<{username: string, password: string, firstName: string, lastName: string, email: string}>());
 export const signUpSuccess = createAction('[Auth] Log Up Success')

@@ -10,7 +10,7 @@ import { AuthService } from "./auth.service";
 import { take, exhaustMap } from "rxjs/operators";
 import {Store} from '@ngrx/store';
 import {AppState} from '../store/app.reducer';
-import * as authActions from './store/auth.actions'
+import * as authActions from '../store/auth/auth.actions'
 
 @Injectable()
 export class AuthInterceptorService implements HttpInterceptor {

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {Store} from '@ngrx/store';
 import {AppState} from './store/app.reducer';
-import * as authActions from './auth/store/auth.actions'
+import * as authActions from './store/auth/auth.actions'
 import {TranslateService} from '@ngx-translate/core';
 
 

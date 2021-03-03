@@ -2,11 +2,11 @@ import {Injectable} from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {HttpClient} from '@angular/common/http';
 import {Store} from '@ngrx/store';
-import * as fromApp from '../../../../store/app.reducer';
+import * as fromApp from '../app.reducer';
 import * as recipesActions from './recipe.actions';
 import {map, mergeMap, switchMap, tap} from 'rxjs/operators';
-import {environment} from '../../../../../environments/environment';
-import {Recipe} from '../old-recipe.model';
+import {environment} from '../../../environments/environment';
+import {Recipe} from '../../main-container/container/old-recipes/old-recipe.model';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 
 @Injectable()

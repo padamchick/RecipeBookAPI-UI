@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
 import {Recipe} from './old-recipe.model';
 import {Store} from '@ngrx/store';
-import * as RecipesActions from './store/recipe.actions';
+import * as RecipesActions from '../../../store/store/recipe.actions';
 import * as fromApp from '../../../store/app.reducer';
 import {of} from 'rxjs';
 import {first, map, switchMap} from 'rxjs/operators';

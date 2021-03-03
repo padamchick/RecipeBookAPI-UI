@@ -1,6 +1,6 @@
 import {Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import * as fromApp from '../../../../../store/app.reducer';
-import * as recipesActions from '../../../old-recipes/store/recipe.actions'
+import * as recipesActions from '../../../../../store/store/recipe.actions'
 import {Store} from '@ngrx/store';
 import {map, filter, takeUntil, first} from 'rxjs/operators';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';

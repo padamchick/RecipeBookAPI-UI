@@ -3,7 +3,7 @@ import {Recipe} from '../../../old-recipes/old-recipe.model';
 import {ActivatedRoute, ActivatedRouteSnapshot} from '@angular/router';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../../../../store/app.reducer';
-import * as recipesActions from '../../../old-recipes/store/recipe.actions';
+import * as recipesActions from '../../../../../store/store/recipe.actions';
 import {map, takeUntil} from 'rxjs/operators';
 import {combineLatest} from 'rxjs';
 

@@ -8,7 +8,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {Ingredient} from '../../../../shared/ingredient.model';
 import {MatDialog} from '@angular/material/dialog';
 import {ConfirmDialogComponent} from '../../../../shared/dialogs/confirm-dialog/confirm-dialog.component';
-import * as recipesActions from '../../old-recipes/store/recipe.actions';
+import * as recipesActions from '../../../../store/store/recipe.actions';
 
 @Component({
   selector: 'app-recipe-detail',

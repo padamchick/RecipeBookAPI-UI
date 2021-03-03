@@ -12,9 +12,9 @@ import {Ingredient} from '../../../../shared/ingredient.model';
 import {MatDialog} from '@angular/material/dialog';
 import {IngredientDialogComponent} from '../../../../shared/dialogs/ingredient-dialog/ingredient-dialog.component';
 import {cloneDeep, isEqual} from 'lodash';
-import * as recipesActions from '../../old-recipes/store/recipe.actions'
+import * as recipesActions from '../../../../store/store/recipe.actions'
 import {Actions, ofType} from '@ngrx/effects';
-import * as RecipesActions from '../../old-recipes/store/recipe.actions';
+import * as RecipesActions from '../../../../store/store/recipe.actions';
 import {CanComponentDeactivate} from '../../../../shared/can-deactivate.guard';
 import {ConfirmDialogComponent} from '../../../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 

@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 import {AuthService} from '../auth.service';
 import {Store} from '@ngrx/store';
 import * as fromApp from '../../store/app.reducer'
-import * as authActions from '../store/auth.actions'
+import * as authActions from '../../store/auth/auth.actions'
 import {NgxSpinnerService} from 'ngx-spinner';
 import {LoginService} from '../../shared/services/login.service';
 import {Subject, Subscription} from 'rxjs';

@@ -5,7 +5,7 @@ import {Observable, of} from 'rxjs';
 import {AppState} from '../../../store/app.reducer';
 import {Store} from '@ngrx/store';
 import {first, switchMap} from 'rxjs/operators';
-import * as recipesActions from '../old-recipes/store/recipe.actions';
+import * as recipesActions from '../../../store/store/recipe.actions';
 import {Actions, ofType} from '@ngrx/effects';
 
 @Injectable({providedIn: 'root'})

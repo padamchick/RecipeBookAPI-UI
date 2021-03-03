@@ -15,7 +15,7 @@ import {IngredientEditModel, IngredientEditComponent} from 'src/app/shared/ingre
 import { filter, map } from 'rxjs/operators';
 import {Store} from '@ngrx/store';
 import * as fromApp from '../../../../store/app.reducer';
-import * as RecipesActions from '../store/recipe.actions';
+import * as RecipesActions from '../../../../store/store/recipe.actions';
 import * as _ from 'lodash';
 import {Actions, ofType} from '@ngrx/effects';
 import {TranslateService} from '@ngx-translate/core';

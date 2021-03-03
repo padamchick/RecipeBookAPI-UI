@@ -7,7 +7,7 @@ import {environment} from 'src/environments/environment';
 import {OldRecipeService} from '../main-container/container/old-recipes/old-recipe.service';
 import {AuthResponseData, User} from './auth.model';
 import * as fromApp from '../store/app.reducer'
-import * as authActions from './store/auth.actions'
+import * as authActions from '../store/auth/auth.actions'
 import {Store} from '@ngrx/store';
 
 

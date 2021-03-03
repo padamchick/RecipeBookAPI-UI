@@ -1,5 +1,5 @@
 import {createAction, props} from '@ngrx/store';
-import {Recipe} from '../old-recipe.model';
+import {Recipe} from '../../main-container/container/old-recipes/old-recipe.model';
 
 export const addRecipe = createAction('[Recipe] Add Recipe', props<{ recipe: Recipe }>())
 export const addRecipeSuccess = createAction('[Recipe] Add Recipe Success', props<{ recipe: Recipe }>());
