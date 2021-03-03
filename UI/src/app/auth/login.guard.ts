@@ -10,6 +10,7 @@ import {map, take} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {Store} from '@ngrx/store';
 import {AppState} from '../store/app.reducer';
+import {getCurrentUser} from '../store/auth/auth.selectors';
 
 @Injectable({providedIn: 'root'})
 export class LoginGuard implements CanActivate {
@@ -21,10 +22,10 @@ export class LoginGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
 
-    return this.store.select('auth').pipe(
+    return this.store.select(getCurrentUser).pipe(
       take(1),
-      map((authState) => {
-        if(authState.user != null) {
+      map((currentUser) => {
+        if(currentUser != null) {
           return this.router.createUrlTree(['./']);
         }
         return true;

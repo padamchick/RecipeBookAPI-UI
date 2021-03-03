@@ -6,6 +6,7 @@ import {AppState} from '../../../../../store/app.reducer';
 import * as recipesActions from '../../../../../store/store/recipe.actions';
 import {map, takeUntil} from 'rxjs/operators';
 import {combineLatest} from 'rxjs';
+import {getSelectedIds} from '../../../../../store/store/recipe.selectors';
 
 @Component({
   selector: 'app-recipe-card',
@@ -30,8 +31,8 @@ export class RecipeCardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     combineLatest([
       this.route.params,
-      this.store.select('recipes').pipe(
-        map(res => !!res.selected.find(id => id === this.recipe.id)))
+      this.store.select(getSelectedIds).pipe(
+        map(selected => !!selected.find(id => id === this.recipe.id)))
     ]).pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(([params, checked]: [any, boolean]) => {
         this.category = params['category'];

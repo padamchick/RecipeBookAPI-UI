@@ -4,6 +4,7 @@ import * as recipesActions from '../../../../../store/store/recipe.actions'
 import {Store} from '@ngrx/store';
 import {map, filter, takeUntil, first} from 'rxjs/operators';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {getRecipes} from '../../../../../store/store/recipe.selectors';
 
 @Component({
   selector: 'app-top-bar-recipes',
@@ -44,9 +45,8 @@ export class TopBarRecipesComponent implements OnInit, OnDestroy {
 
   doFilter() {
     this.searchThis();
-    this.recipes = this.store.select('recipes')
+    this.recipes = this.store.select(getRecipes)
       .pipe(
-        map(state => state.recipes),
         map(recipes => this.filter(recipes)),
       )
   }

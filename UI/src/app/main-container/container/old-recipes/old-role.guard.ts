@@ -11,6 +11,7 @@ import { AuthService } from '../../../auth/auth.service';
 import {Observable} from 'rxjs';
 import {AppState} from '../../../store/app.reducer';
 import {Store} from '@ngrx/store';
+import {getCurrentUser} from '../../../store/auth/auth.selectors';
 
 @Injectable({ providedIn: 'root' })
 export class OldRoleGuard implements CanActivate {
@@ -19,11 +20,11 @@ export class OldRoleGuard implements CanActivate {
               private store: Store<AppState>) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    return this.store.select('auth').pipe(
+    return this.store.select(getCurrentUser).pipe(
       // pobierz wartosc tylko raz i od razu odsubscribuj
       take(1),
-      map((authState) => {
-        if (!!authState.user && authState.user.username !== 'guest') {
+      map((currentUser) => {
+        if (!!currentUser && currentUser.username !== 'guest') {
           return true;
         }
         return this.router.createUrlTree(['../']);

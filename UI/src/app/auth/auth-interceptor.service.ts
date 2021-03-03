@@ -11,6 +11,7 @@ import { take, exhaustMap } from "rxjs/operators";
 import {Store} from '@ngrx/store';
 import {AppState} from '../store/app.reducer';
 import * as authActions from '../store/auth/auth.actions'
+import {getCurrentUser} from '../store/auth/auth.selectors';
 
 @Injectable()
 export class AuthInterceptorService implements HttpInterceptor {
@@ -18,18 +19,18 @@ export class AuthInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<import("@angular/common/http").HttpEvent<any>> {
 
-    return this.store.select('auth').pipe(
+    return this.store.select(getCurrentUser).pipe(
       take(1),
-      exhaustMap((authState) => {
+      exhaustMap((user) => {
 
-        if(!authState.user) {
+        if(!user) {
           return next.handle(req);
         }
 
         const modifiedReq = req.clone({
 
           setHeaders: {
-            Authorization: 'Bearer ' + authState.user.token
+            Authorization: 'Bearer ' + user.token
           }
 
         })

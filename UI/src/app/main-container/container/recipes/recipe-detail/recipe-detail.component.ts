@@ -9,6 +9,7 @@ import {Ingredient} from '../../../../shared/ingredient.model';
 import {MatDialog} from '@angular/material/dialog';
 import {ConfirmDialogComponent} from '../../../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import * as recipesActions from '../../../../store/store/recipe.actions';
+import {getRecipes} from '../../../../store/store/recipe.selectors';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -30,9 +31,9 @@ export class RecipeDetailComponent implements OnInit {
       map(params => +params['id']),
       switchMap(id => {
         this.id = id;
-        return this.store.select('recipes')
+        return this.store.select(getRecipes)
       }),
-      map(state => state.recipes.find(recipe => recipe.id === this.id))
+      map(recipes => recipes.find(recipe => recipe.id === this.id))
     )
       .subscribe(recipe => {
       this.recipe = recipe;

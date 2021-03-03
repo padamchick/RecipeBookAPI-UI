@@ -7,6 +7,7 @@ import {Store} from '@ngrx/store';
 import {first, switchMap} from 'rxjs/operators';
 import * as recipesActions from '../../../store/store/recipe.actions';
 import {Actions, ofType} from '@ngrx/effects';
+import {getRecipes} from '../../../store/store/recipe.selectors';
 
 @Injectable({providedIn: 'root'})
 export class RecipesResolverService implements Resolve<{recipes: Recipe[]}> {
@@ -16,9 +17,9 @@ export class RecipesResolverService implements Resolve<{recipes: Recipe[]}> {
 
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<{ recipes: Recipe[] }> | Promise<{ recipes: Recipe[] }> | { recipes: Recipe[] } {
-    return this.store.select('recipes').pipe(
+    return this.store.select(getRecipes).pipe(
       first(),
-      switchMap(({recipes})=> {
+      switchMap((recipes)=> {
         if (recipes.length === 0) {
           this.store.dispatch(recipesActions.fetchRecipes());
           return this.actions$.pipe(

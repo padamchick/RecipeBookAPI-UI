@@ -17,6 +17,7 @@ import {Actions, ofType} from '@ngrx/effects';
 import * as RecipesActions from '../../../../store/store/recipe.actions';
 import {CanComponentDeactivate} from '../../../../shared/can-deactivate.guard';
 import {ConfirmDialogComponent} from '../../../../shared/dialogs/confirm-dialog/confirm-dialog.component';
+import {getRecipes} from '../../../../store/store/recipe.selectors';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -50,9 +51,9 @@ export class RecipeEditComponent implements OnInit, OnDestroy, CanComponentDeact
         switchMap(id => {
           this.id = id;
           this.editMode = !!id;
-          return this.store.select('recipes');
+          return this.store.select(getRecipes);
         }),
-        map(state => state.recipes.find(recipe => recipe.id === this.id))),
+        map(recipes => recipes.find(recipe => recipe.id === this.id))),
       this.recipeService.getCategories()
     ]).pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(([recipe, categories]: [Recipe, Category[]]) => {

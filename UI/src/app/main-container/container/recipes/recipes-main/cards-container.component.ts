@@ -11,6 +11,7 @@ import * as recipesActions from '../../../../store/store/recipe.actions';
 import {ConfirmDialogComponent} from '../../../../shared/dialogs/confirm-dialog/confirm-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 import {State} from '../../../../store/store/recipe.reducer';
+import {getRecipes, getSelectedIds} from '../../../../store/store/recipe.selectors';
 
 @Component({
   selector: 'app-cards-container',
@@ -52,8 +53,8 @@ export class CardsContainerComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     combineLatest([
       this.route.params,
-      this.store.select('recipes').pipe(map(({recipes}) => recipes)),
-      this.store.select('recipes').pipe(map(state => state.selected))
+      this.store.select(getRecipes),
+      this.store.select(getSelectedIds)
     ]).pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(([params, recipes, selected]: [Params, Recipe[], number[]]) => {
         this.category = params['category'];
@@ -70,7 +71,7 @@ export class CardsContainerComponent implements OnInit, OnDestroy {
   filter(criteriaWord: string) {
     combineLatest([
       this.route.params,
-      this.store.select('recipes').pipe(map(({recipes}) => recipes))
+      this.store.select(getRecipes)
     ]).pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(([params, recipes]: [Params, Recipe[]]) => {
         const category = params['category'];
@@ -93,9 +94,8 @@ export class CardsContainerComponent implements OnInit, OnDestroy {
     });
     dialogRef.afterClosed().pipe(
       filter(res => !!res),
-      switchMap(() => this.store.select('recipes').pipe(
-        first(),
-        map((state: State) => state.selected)
+      switchMap(() => this.store.select(getSelectedIds).pipe(
+        first()
       )))
       .subscribe(ids => {
         this.store.dispatch(recipesActions.bulkDeleteRecipes({ids}));
