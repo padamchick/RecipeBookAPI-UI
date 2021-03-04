@@ -9,22 +9,19 @@ import {CanDeactivateGuard} from '../../../shared/can-deactivate.guard';
 
 const routes: Routes = [
   {
-    path: '', children: [
+    path: '', resolve: [RecipesResolverService], children: [
       {path: '', component: SecondNavbarNewRecipesComponent, outlet: 'second-nav-bar'},
       {path: '', pathMatch: 'full', redirectTo: '/recipes/all'},
       {path: 'new', component: RecipeEditComponent, canDeactivate: [CanDeactivateGuard]},
       {path: ':category',
-        component: CardsContainerComponent,
-        resolve: [RecipesResolverService]
+        component: CardsContainerComponent
       },
       {path: ':category/:id',
-        component: RecipeDetailComponent,
-        resolve: [RecipesResolverService]
+        component: RecipeDetailComponent
       },
       {path: ':category/:id/edit',
         component: RecipeEditComponent,
-        canDeactivate: [CanDeactivateGuard],
-        resolve: [RecipesResolverService]
+        canDeactivate: [CanDeactivateGuard]
       },
     ]
   }
