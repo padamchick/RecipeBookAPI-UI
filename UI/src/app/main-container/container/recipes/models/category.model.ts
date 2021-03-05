@@ -3,4 +3,5 @@ export interface Category {
   iconName: string;
   sortIndex: number;
   urlSuffix: string;
+  id: number;
 }

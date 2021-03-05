@@ -42,7 +42,7 @@
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Category</mat-label>
-            <mat-select [(ngModel)]="recipe.category" name="food">
+            <mat-select [(ngModel)]="recipe.category" name="category"  [compareWith]="compareCategories">
               <mat-option *ngFor="let category of categories" [value]="category">
                 {{category.name}}
               </mat-option>

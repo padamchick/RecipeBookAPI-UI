@@ -16,16 +16,16 @@ const initialState: RecipeState = {
 const _recipeReducer = createReducer(
   initialState,
   on(recipesActions.addRecipeSuccess,
-    (state, action) => ({
+    (state, {recipe}) => ({
       ...state,
-      recipes: [...state.recipes, action.recipe]
+      recipes: [...state.recipes, recipe]
     })),
 
   on(recipesActions.updateRecipeSuccess,
-    (state, action) => ({
+    (state, {recipe}) => ({
       ...state,
       recipes: state.recipes.map(
-        (recipe) => recipe.id === action.recipe.id ? {...action.recipe} : recipe
+        (oldRecipe) => oldRecipe.id === recipe.id ? {...recipe} : oldRecipe
       )
     })),
 

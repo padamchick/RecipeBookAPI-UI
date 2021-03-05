@@ -50,6 +50,13 @@ public class Recipe {
         this.kcal = dto.getKcal();
         this.servings = dto.getServings();
         this.preparationTime = dto.getPreparationTime();
+        this.category = new Category().builder()
+                .id(dto.getCategory().getId())
+                .iconName(dto.getCategory().getIconName())
+                .name(dto.getCategory().getName())
+                .urlSuffix(dto.getCategory().getUrlSuffix())
+                .sortIndex(dto.getCategory().getSortIndex())
+                .build();
     }
 
     public void updateWithReferences() {

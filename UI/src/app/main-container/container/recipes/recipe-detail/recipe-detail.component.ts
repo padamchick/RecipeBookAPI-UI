@@ -27,6 +27,7 @@ export class RecipeDetailComponent implements OnInit {
               public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    console.log("Detail view")
     this.route.params.pipe(
       map(params => +params['id']),
       switchMap(id => {
@@ -38,6 +39,7 @@ export class RecipeDetailComponent implements OnInit {
       .subscribe(recipe => {
       this.recipe = recipe;
     })
+    console.log("Detail view2")
   }
 
   onEdit() {

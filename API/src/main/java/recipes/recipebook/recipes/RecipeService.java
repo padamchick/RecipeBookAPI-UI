@@ -79,10 +79,11 @@ public class RecipeService {
     }
 
     public Set<Category> getCategories() {
-        final String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        final Optional<UserDao> user = userRepository.findByUsername(username);
-        final RecipeBook recipeBook = user.get().getRecipeBook();
-        Set<Category> categories = recipeRepository.findRecipeBookCategories(recipeBook);
+//        final String username = SecurityContextHolder.getContext().getAuthentication().getName();
+//        final Optional<UserDao> user = userRepository.findByUsername(username);
+//        final RecipeBook recipeBook = user.get().getRecipeBook();
+//        Set<Category> categories = recipeRepository.findRecipeBookCategories(recipeBook);
+        Set<Category> categories = recipeRepository.findAllCategories();
         return categories;
     }
 

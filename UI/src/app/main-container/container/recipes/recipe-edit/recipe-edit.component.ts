@@ -26,10 +26,11 @@ import {getRecipes} from '../../../../store/recipe/recipe.selectors';
 })
 export class RecipeEditComponent implements OnInit, OnDestroy, CanComponentDeactivate {
   id: number;
-  recipe: Recipe = new Recipe(null, '', '', '', [], {name: '', iconName: '', urlSuffix: '', sortIndex: null}, null, null, '', null);
+  recipe: Recipe = new Recipe(null, '', '', '', [], {id: null, name: '', iconName: '', urlSuffix: '', sortIndex: null}, null, null, '', null);
   originalRecipe: Recipe;
   categories: Category[] = [];
   editMode: boolean;
+  selected;
 
   displayedColumns: string[] = ['name', 'amount', 'unit', 'action'];
   dataSource: MatTableDataSource<Ingredient> = new MatTableDataSource<Ingredient>();
@@ -57,15 +58,21 @@ export class RecipeEditComponent implements OnInit, OnDestroy, CanComponentDeact
       this.recipeService.getCategories()
     ]).pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(([recipe, categories]: [Recipe, Category[]]) => {
+        this.categories = categories;
         if(this.editMode) {
           this.recipe = cloneDeep(recipe);
           this.originalRecipe = recipe;
+        } else {
+          this.recipe = new Recipe(null, '', '', '', [], this.categories[0], null, null, '', null);
         }
-        this.categories = categories;
+
         this.dataSource = new MatTableDataSource(this.recipe.ingredients);
       });
   }
 
+  compareCategories(o1: Category, o2: Category) {
+    return o1.name === o2.name;
+  }
 
   ngOnDestroy(): void {
     this.ngUnsubscribe.next();
@@ -129,7 +136,8 @@ export class RecipeEditComponent implements OnInit, OnDestroy, CanComponentDeact
       this.store.dispatch(recipesActions.updateRecipe({recipe: this.recipe}))
 
       this.actions$.pipe(
-        ofType(RecipesActions.updateRecipeSuccess)
+        ofType(RecipesActions.updateRecipeSuccess),
+        takeUntil(this.ngUnsubscribe)
       ).subscribe(() => {
         this.editMode = false;
         this.router.navigate(['../'], {relativeTo: this.route});
@@ -138,10 +146,12 @@ export class RecipeEditComponent implements OnInit, OnDestroy, CanComponentDeact
       this.store.dispatch(recipesActions.addRecipe({recipe: this.recipe}));
 
       this.actions$.pipe(
-        ofType(RecipesActions.addRecipeSuccess)
-      ).subscribe((recipe) => {
+        ofType(RecipesActions.addRecipeSuccess),
+        takeUntil(this.ngUnsubscribe)
+      ).subscribe(({recipe}) => {
+        console.log("after dispatch", recipe)
         this.editMode = false;
-        this.router.navigate(['../all', recipe.recipe.id], {relativeTo: this.route});
+        this.router.navigate(['../all', recipe.id], {relativeTo: this.route});
       });
     }
   }
@@ -173,4 +183,13 @@ export class RecipeEditComponent implements OnInit, OnDestroy, CanComponentDeact
       })
     }
   }
+
+  // log(e: any) {
+  //   console.log('Select', e);
+  //   console.log('This recipe.category', this.recipe.category);
+  //   // console.log('selected', this.selected);
+  //   // this.recipe.category = e;
+  //   // console.log('This recipe.category2', this.recipe.category);
+  //
+  // }
 }
