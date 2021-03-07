@@ -18,8 +18,8 @@ export class AuthEffects {
   signUp$ = createEffect(() =>
     this.actions$.pipe(
       ofType(authActions.signUp),
-      switchMap(({username, password, firstName, lastName, email}) => {
-        return this.authService.signUp(username, password, firstName, lastName, email).pipe(
+      switchMap(({username, password, confirmPassword, email}) => {
+        return this.authService.signUp(username, password, confirmPassword, email).pipe(
           map(res => authActions.signUpSuccess()),
           catchError(err => of(authActions.signUpFail({error: err})))
         );
@@ -74,6 +74,7 @@ export class AuthEffects {
       tap(({error}) => {
         this.spinner.hide();
         this.loginService.redirectSubject.next(true);
+        console.log('Error', error)
         if (error && error.error) {
           if (error.error.message === 'INVALID_CREDENTIALS') {
             this.notify.badCredentialsError();

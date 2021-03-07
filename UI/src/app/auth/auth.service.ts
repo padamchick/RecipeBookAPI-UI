@@ -23,8 +23,8 @@ export class AuthService {
               private recipeService: OldRecipeService,
               private store: Store<fromApp.AppState>) {}
 
-  signUp(username: string, password: string, firstName: string, lastName: string, email: string) {
-    return this.http.post(`${this.apiUrl}/register`, {username, password, firstName, lastName, email});
+  signUp(username: string, password: string, confirmPassword: string, email: string) {
+    return this.http.post(`${this.apiUrl}/register`, {username, password, confirmPassword, email});
   }
 
   login(username: string, password: string) {

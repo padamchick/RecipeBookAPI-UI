@@ -62,9 +62,8 @@ public class InitialFixture {
     }
 
     private UserDao registerAndFillWithData(String username, String password, String email, String firstName, String lastName, Language language) {
-        UserDao userDao = userService.registerUser(username, password);
+        UserDao userDao = userService.registerUser(username, password, email);
 
-        userDao.getUserData().setEmail(email);
         userDao.getUserData().setFirstName(firstName);
         userDao.getUserData().setLastName(lastName);
         userDao.getUserData().setLanguage(language);

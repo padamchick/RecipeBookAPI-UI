@@ -24,16 +24,16 @@ public class UserService {
     public long countUsers() { return userRepository.count(); }
 
     @Transactional
-    public UserDao registerUser(String username, String password) {
-        Optional<UserDao> foundUser = userRepository.findByUsername(username);
-        if(!foundUser.isPresent()) {
+    public UserDao registerUser(String username, String password, String email) {
+//        Optional<UserDao> foundUser = userRepository.findByUsername(username);
+//        if(!foundUser.isPresent()) {
             String passwordHash = passwordEncoder.encode(password);
             Authority userAuthority = authorityRepository.findByName("ROLE_USER");
-            UserDao userDao = new UserDao(username, passwordHash, Arrays.asList(userAuthority));
+            UserDao userDao = new UserDao(username, passwordHash, email, Arrays.asList(userAuthority));
             return userRepository.save(userDao);
-        } else {
-            throw new DuplicateUserException("USERNAME_ALREADY_EXISTS");
-        }
+//        } else {
+//            throw new DuplicateUserException("USERNAME_ALREADY_EXISTS");
+//        }
     }
 
     public UserDao deleteUser(Long id) {

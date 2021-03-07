@@ -7,6 +7,8 @@ import recipes.recipebook.auth.dto.RegistrationRequest;
 import recipes.recipebook.dto.JwtRequest;
 import recipes.recipebook.dto.UserDto;
 
+import javax.validation.Valid;
+
 @RestController
 @CrossOrigin
 @RequestMapping("/api")
@@ -28,8 +30,8 @@ public class AuthController {
 
     @ApiOperation(value = "Register new user")
     @PostMapping("/register")
-    public void register(@RequestBody RegistrationRequest request) {
-        userService.registerUser(request.getUsername(), request.getPassword());
+    public void register(@Valid @RequestBody RegistrationRequest request) {
+        userService.registerUser(request.getUsername(), request.getPassword(), request.getEmail());
     }
 
     @ApiOperation(value = "Delete user from database")

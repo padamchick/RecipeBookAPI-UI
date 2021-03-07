@@ -15,6 +15,7 @@ public class UserDao {
     private Long id;
 
     private String username;
+    private String email;
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -32,12 +33,13 @@ public class UserDao {
     @OneToOne(mappedBy = "userDao", cascade = CascadeType.ALL)
     private ShoppingList shoppingList;
 
-    public UserDao(String username, String password, List<Authority> authorities) {
+    public UserDao(String username, String password, String email, List<Authority> authorities) {
         this.username = username;
         this.password = password;
+        this.email = email;
         this.authorities = authorities;
         this.recipeBook = new RecipeBook(this);
-        this.shoppingList = new ShoppingList(this);
+//        this.shoppingList = new ShoppingList(this);
         this.userData = new UserData(this);
     }
 }
