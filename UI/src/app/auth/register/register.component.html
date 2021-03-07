@@ -13,7 +13,7 @@
       <mat-error *ngIf="!username.valid && username.touched"><i class="fas fa-exclamation-circle"></i>
         {{'[SignUp]LoginError' | translate}}
       </mat-error>
-      <mat-error *ngIf="error.includes('USERNAME_ALREADY_TAKEN') && !username.touched"><i class="fas fa-exclamation-circle"></i>
+      <mat-error *ngIf="errors.includes('USERNAME_ALREADY_TAKEN') && !username.touched"><i class="fas fa-exclamation-circle"></i>
         Username already taken
       </mat-error>
       <button type="button" disabled="disabled" mat-icon-button matPrefix>
@@ -28,7 +28,7 @@
       <mat-error *ngIf="!password.valid && password.touched"><i class="fas fa-exclamation-circle"></i>
         {{'[SignUp]PasswordError' | translate}}
       </mat-error>
-      <mat-error *ngIf="error.includes('PASSWORDS_NOT_EQUAL') && !password.touched"><i class="fas fa-exclamation-circle"></i>
+      <mat-error *ngIf="errors.includes('PASSWORDS_NOT_EQUAL') && !password.touched"><i class="fas fa-exclamation-circle"></i>
         Passwords not equal
       </mat-error>
       <button type="button" disabled="disabled" mat-icon-button matPrefix>
@@ -46,7 +46,7 @@
       <mat-error *ngIf="!confirmPassword.valid && confirmPassword.touched"><i class="fas fa-exclamation-circle"></i>
         {{'[SignUp]ConfirmPasswordError' | translate}}
       </mat-error>
-      <mat-error *ngIf="error.includes('PASSWORDS_NOT_EQUAL') && !confirmPassword.touched"><i class="fas fa-exclamation-circle"></i>
+      <mat-error *ngIf="errors.includes('PASSWORDS_NOT_EQUAL') && !confirmPassword.touched"><i class="fas fa-exclamation-circle"></i>
         Passwords not equal
       </mat-error>
       <button type="button" disabled="disabled" mat-icon-button matPrefix>
@@ -88,7 +88,7 @@
       <mat-error *ngIf="!email.valid && email.touched"><i class="fas fa-exclamation-circle"></i>
         Email is required!
       </mat-error>
-      <mat-error *ngIf="error.includes('EMAIL_ALREADY_TAKEN') && !email.touched"><i class="fas fa-exclamation-circle"></i>
+      <mat-error *ngIf="errors.includes('EMAIL_ALREADY_TAKEN') && !email.touched"><i class="fas fa-exclamation-circle"></i>
         Email already taken
       </mat-error>
       <button type="button" disabled="disabled" mat-icon-button matPrefix>
