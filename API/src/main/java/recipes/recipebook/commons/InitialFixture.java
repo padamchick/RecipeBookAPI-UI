@@ -40,24 +40,24 @@ public class InitialFixture {
             recipeService.addCategory("Drink", "icofont-cocktail", 5, "drinks");
             recipeService.addCategory("Liqueur", "icofont-glass", 6, "liqueurs");
 
-            recipeService.saveRecipe(RecipeDto.builder()
-                    .name("Shakshuka")
-                    .imagePath("https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2018/12/Shakshuka-19.jpg")
-                    .description("Chorizo pokroić na 4, podsmażyć. Dodać pomidory, przyprawić. Wbić jajka i smażyć pod przykryciem około 5-7 minut na dużej mocy kuchenki. Podać z pokrojoną fetą i szczypiorkiem.")
-                    .servings(2)
-                    .preparationTime("15min")
-                    .category(recipeService.findCategoryByName("Small Dish"))
-                    .ingredients(Arrays.asList(
-                            new Ingredient("pomidory w puszce", 1.0f, "szt"),
-                            new Ingredient("jajka", 5f, "szt"),
-                            new Ingredient("chleb", 3f, "kromki"),
-                            new Ingredient("chorizo", 4f, "cm"),
-                            new Ingredient("feta", 1f, null),
-                            new Ingredient("szczypiorek", 1f, "łyżka")
-                    ))
-                    .build(), user.getRecipeBook()
-            );
-            
+//            recipeService.saveRecipe(RecipeDto.builder()
+//                    .name("Shakshuka")
+//                    .imagePath("https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2018/12/Shakshuka-19.jpg")
+//                    .description("Chorizo pokroić na 4, podsmażyć. Dodać pomidory, przyprawić. Wbić jajka i smażyć pod przykryciem około 5-7 minut na dużej mocy kuchenki. Podać z pokrojoną fetą i szczypiorkiem.")
+//                    .servings(2)
+//                    .preparationTime("15min")
+//                    .category(recipeService.findCategoryByName("Small Dish"))
+//                    .ingredients(Arrays.asList(
+//                            new Ingredient("pomidory w puszce", 1.0f, "szt"),
+//                            new Ingredient("jajka", 5f, "szt"),
+//                            new Ingredient("chleb", 3f, "kromki"),
+//                            new Ingredient("chorizo", 4f, "cm"),
+//                            new Ingredient("feta", 1f, null),
+//                            new Ingredient("szczypiorek", 1f, "łyżka")
+//                    ))
+//                    .build(), user.getRecipeBook()
+//            );
+
         }
     }
 

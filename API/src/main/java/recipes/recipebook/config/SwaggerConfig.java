@@ -30,7 +30,7 @@ public class SwaggerConfig {
         ApiInfo apiInfo = new ApiInfo(
                 "Recipe Book",
                 "",
-                "1.0",
+                "2.0",
                 "",
                 new Contact("Piotr Adamczyk", null, "piotrek.adamczykk@gmail.com"),
                 "",

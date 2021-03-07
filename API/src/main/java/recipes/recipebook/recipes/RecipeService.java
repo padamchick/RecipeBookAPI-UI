@@ -30,7 +30,6 @@ public class RecipeService {
     private UserRepository userRepository;
     private RecipeMapper recipeMapper;
     private AuthContext authContext;
-//    private ModelMapper modelMapper;
 
     public Recipe saveRecipe(RecipeDto dto) {
         RecipeBook recipeBook = authContext.getCurrentUser().getRecipeBook();
@@ -64,14 +63,8 @@ public class RecipeService {
     }
 
     public List<Recipe> findAll() {
-        final String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        final Optional<UserDao> user = userRepository.findByUsername(username);
-        final RecipeBook recipeBook = user.get().getRecipeBook();
-        final List<Recipe> allByRecipeBook = recipeRepository.findAllByRecipeBook(recipeBook);
-        return allByRecipeBook;
-
-
-//        return recipeRepository.findAll();
+        final RecipeBook recipeBook = authContext.getCurrentUser().getRecipeBook();
+        return recipeRepository.findAllByRecipeBook(recipeBook);
     }
 
     public Recipe delete(Long id) {
@@ -108,6 +101,16 @@ public class RecipeService {
     @Transactional
     public void bulkDeleteRecipes(List<Long> ids) {
         this.recipeRepository.deleteByIdIn(ids);
+    }
+
+    @Transactional
+    public void bulkAddRecipes(List<Recipe> recipes) {
+        UserDao currentUser = authContext.getCurrentUser();
+        recipes.forEach(recipe -> {
+            recipe.setRecipeBook(currentUser.getRecipeBook());
+            recipe.getIngredients().forEach(ingredient -> ingredient.setRecipe(recipe));
+        });
+        this.recipeRepository.saveAll(recipes);
     }
 //
 //    @Override

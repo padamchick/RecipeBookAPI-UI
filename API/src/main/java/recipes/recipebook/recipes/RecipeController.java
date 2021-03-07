@@ -1,6 +1,7 @@
 package recipes.recipebook.recipes;
 
 import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,18 +10,15 @@ import recipes.recipebook.entity.Category;
 import recipes.recipebook.entity.Ingredient;
 import recipes.recipebook.entity.Recipe;
 
+import java.net.URI;
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/api/recipes")
+@RequiredArgsConstructor
 public class RecipeController {
 
     private RecipeService recipeService;
-
-    public RecipeController(RecipeService recipeService) {
-        this.recipeService = recipeService;
-    }
 
     @ApiOperation(value = "Return all recipes")
     @GetMapping("/all")
@@ -72,14 +70,17 @@ public class RecipeController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Return recipe categories")
     @GetMapping("/categories")
     public List<Category> getCategories() {
         return recipeService.getCategories();
     }
 
-//    @GetMapping("/categories")
-//    public List<String> getAllCategories() {
-//        return recipeService.getAllCategories();
-//    }
+    @ApiOperation(value = "Add list of recipes to authenticated user")
+    @PostMapping("/bulkAdd")
+    public ResponseEntity<Recipe> bulkAddRecipes(@RequestBody List<Recipe> recipes) {
+        recipeService.bulkAddRecipes(recipes);
+        return ResponseEntity.created(URI.create("/all")).build();
+    }
 
 }
