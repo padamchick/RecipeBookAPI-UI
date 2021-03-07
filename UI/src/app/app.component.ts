@@ -37,7 +37,9 @@ export class AppComponent implements OnInit, OnDestroy {
       }),
       takeUntil(this.ngUnsubscribe))
       .subscribe(account => {
-        this.store.dispatch(appActions.setLang({lang: account.language}));
+        if(account.userData.language) {
+          this.store.dispatch(appActions.setLang({lang: account.userData.language}));
+        }
       });
   }
 

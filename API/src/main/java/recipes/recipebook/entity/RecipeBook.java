@@ -10,6 +10,7 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor
 public class RecipeBook {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,9 +22,9 @@ public class RecipeBook {
 
     @OneToMany(mappedBy = "recipeBook", cascade = CascadeType.ALL)
     private List<Recipe> recipes;
-//
-//    public RecipeBook() {
-//        recipes = new ArrayList<>();
-//    }
+
+    public RecipeBook(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
 }

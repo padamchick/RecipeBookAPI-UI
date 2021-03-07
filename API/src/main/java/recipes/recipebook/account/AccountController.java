@@ -5,6 +5,7 @@ import lombok.Getter;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import recipes.recipebook.auth.AuthContext;
 import recipes.recipebook.auth.UserRepository;
 import recipes.recipebook.dto.UserDto;
 
@@ -16,11 +17,12 @@ import java.util.Map;
 @AllArgsConstructor
 public class AccountController {
     private AccountService accountService;
+    private AuthContext authContext;
     private UserMapper userMapper;
 
     @GetMapping("/me")
     public ResponseEntity<UserDto> getCurrentUser() {
-        return ResponseEntity.ok(userMapper.toDto(accountService.getCurrentUser()));
+        return ResponseEntity.ok(userMapper.toDto(authContext.getCurrentUser()));
     }
 
     @PatchMapping(consumes = MediaType.APPLICATION_JSON_VALUE)

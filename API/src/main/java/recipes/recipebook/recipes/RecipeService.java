@@ -3,13 +3,16 @@ package recipes.recipebook.recipes;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import recipes.recipebook.auth.AuthContext;
 import recipes.recipebook.dto.RecipeDto;
 import recipes.recipebook.entity.*;
 import recipes.recipebook.auth.UserRepository;
+import recipes.recipebook.exceptions.NotFoundException;
 import recipes.recipebook.ingredients.IngredientRepository;
 
 import java.util.Date;
@@ -22,18 +25,20 @@ import java.util.Set;
 public class RecipeService {
 
     private RecipeRepository recipeRepository;
+    private CategoryRepository categoryRepository;
     private IngredientRepository ingredientRepository;
     private UserRepository userRepository;
     private RecipeMapper recipeMapper;
+    private AuthContext authContext;
 //    private ModelMapper modelMapper;
 
     public Recipe saveRecipe(RecipeDto dto) {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        final Optional<UserDao> user = userRepository.findByUsername(username);
-        final RecipeBook recipeBook = user.get().getRecipeBook();
+        RecipeBook recipeBook = authContext.getCurrentUser().getRecipeBook();
+        return saveRecipe(dto, recipeBook);
+    }
+
+    public Recipe saveRecipe(RecipeDto dto, RecipeBook recipeBook) {
         Recipe recipe = recipeMapper.toRecipe(dto);
-//        Recipe recipe = recipeMapper.toRecipe(dto, this);
-//        Recipe recipe = modelMapper.map(dto, Recipe.class);
         recipe.updateWithReferences();
         recipe.setRecipeBook(recipeBook);
         if(recipe.getCreationDate() == null) {
@@ -44,11 +49,14 @@ public class RecipeService {
 
     public Recipe updateRecipe(RecipeDto dto) {
         final Optional<Recipe> recipeOptional = recipeRepository.findById(dto.getId());
-        Recipe recipe = recipeOptional.orElseThrow(() -> new RuntimeException("Recipe not exists"));
-        recipe.update(dto);
-//        recipe.setCategory(findCategoryByName(dto.getCategory().getName()));
-        recipe.updateWithReferences();
-        return recipeRepository.save(recipe);
+        if(recipeOptional.isPresent()) {
+            Recipe recipe = recipeOptional.get();
+            BeanUtils.copyProperties(dto, recipe, "id", "creationDate");
+            recipe.updateWithReferences();
+            return recipeRepository.save(recipe);
+        } else {
+            throw new NotFoundException("RECIPE_NOT_FOUND");
+        }
     }
 
     public Recipe findById(Long id) {
@@ -78,13 +86,14 @@ public class RecipeService {
         return toDelete;
     }
 
-    public Set<Category> getCategories() {
-//        final String username = SecurityContextHolder.getContext().getAuthentication().getName();
-//        final Optional<UserDao> user = userRepository.findByUsername(username);
-//        final RecipeBook recipeBook = user.get().getRecipeBook();
-//        Set<Category> categories = recipeRepository.findRecipeBookCategories(recipeBook);
-        Set<Category> categories = recipeRepository.findAllCategories();
+    public List<Category> getCategories() {
+        List<Category> categories =  categoryRepository.findAll();
         return categories;
+    }
+
+    public Category addCategory(String name, String iconName, Integer sortName, String urlSuffix) {
+        Category category = new Category(name, iconName, sortName, urlSuffix);
+        return categoryRepository.save(category);
     }
 
     public Category findCategoryByName(String name) {

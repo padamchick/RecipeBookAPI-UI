@@ -1,6 +1,7 @@
 package recipes.recipebook.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,4 +25,9 @@ public class Ingredient {
     @JsonIgnore
     private Recipe recipe;
 
+    public Ingredient(String name, Float amount, String unit) {
+        this.name = name;
+        this.amount = amount;
+        this.unit = unit;
+    }
 }

@@ -3,6 +3,7 @@ package recipes.recipebook.auth;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import recipes.recipebook.auth.dto.RegistrationRequest;
 import recipes.recipebook.dto.JwtRequest;
 import recipes.recipebook.dto.UserDto;
 
@@ -11,29 +12,29 @@ import recipes.recipebook.dto.UserDto;
 @RequestMapping("/api")
 public class AuthController {
 
-    private RegistrationService registrationService;
+    private UserService userService;
     private JwtService jwtService;
 
-    public AuthController(RegistrationService registrationService, JwtService jwtService) {
-        this.registrationService = registrationService;
+    public AuthController(UserService userService, JwtService jwtService) {
+        this.userService = userService;
         this.jwtService = jwtService;
     }
 
     @ApiOperation(value = "Create authentication token")
     @PostMapping("/authenticate")
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) {
         return ResponseEntity.ok(jwtService.createAuthenticationToken(authenticationRequest));
     }
 
     @ApiOperation(value = "Register new user")
     @PostMapping("/register")
-    public void register(@RequestBody UserDto user) {
-        registrationService.registerUser(user);
+    public void register(@RequestBody RegistrationRequest request) {
+        userService.registerUser(request.getUsername(), request.getPassword());
     }
 
     @ApiOperation(value = "Delete user from database")
     @DeleteMapping("/users/{id}")
     public void deleteUser(@PathVariable Long id) {
-        registrationService.deleteUser(id);
+        userService.deleteUser(id);
     }
 }

@@ -9,8 +9,6 @@ import java.util.List;
 @Entity
 @Getter @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,4 +22,11 @@ public class Category {
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Recipe> recipe;
+
+    public Category(String name, String iconName, Integer sortIndex, String urlSuffix) {
+        this.name = name;
+        this.iconName = iconName;
+        this.sortIndex = sortIndex;
+        this.urlSuffix = urlSuffix;
+    }
 }

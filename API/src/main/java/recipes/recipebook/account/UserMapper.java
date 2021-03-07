@@ -4,25 +4,31 @@ import org.mapstruct.*;
 import recipes.recipebook.dto.UserDto;
 import recipes.recipebook.entity.Language;
 import recipes.recipebook.entity.UserDao;
+import recipes.recipebook.entity.UserData;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
+@Mapper(uses = UserMapper.UserDataMapper.class, componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public abstract class UserMapper {
 
-    @Mappings({
-            @Mapping(ignore = true, target = "language"),
-            @Mapping(ignore = true, target = "password")
-    })
     protected abstract UserDto toDto(UserDao from);
 
     @AfterMapping
     protected void setLanguage(UserDao from, @MappingTarget UserDto dto) {
-        if (from.getLanguage() != null) {
-            dto.setLanguage(Language.getLang(from.getLanguage()));
+        if (from.getUserData().getLanguage() != null) {
+            dto.getUserData().setLanguage(Language.getLang(from.getUserData().getLanguage()));
         }
     }
 
     protected abstract List<UserDto> toDtoList(List<UserDao> fromList);
+
+    @Mapper(componentModel = "spring")
+    public static abstract class UserDataMapper {
+        @Mappings({
+                @Mapping(ignore = true, target = "language")
+        })
+        protected abstract UserDto.UserDataDto toDto(UserData from);
+
+    }
 
 }

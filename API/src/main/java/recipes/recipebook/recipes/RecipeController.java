@@ -73,7 +73,7 @@ public class RecipeController {
     }
 
     @GetMapping("/categories")
-    public Set<Category> getCategories() {
+    public List<Category> getCategories() {
         return recipeService.getCategories();
     }
 

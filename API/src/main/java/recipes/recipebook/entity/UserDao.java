@@ -5,11 +5,9 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
-@Builder
 @Entity
 @Getter @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "[user]")
 public class UserDao {
     @Id
@@ -26,14 +24,20 @@ public class UserDao {
     private List<Authority> authorities;
 
     @OneToOne(mappedBy = "userDao", cascade = CascadeType.ALL)
-    private RecipeBook recipeBook;
+    private UserData userData;
 
-    private String firstName;
-    private String lastName;
-    private String email;
-    @Enumerated(EnumType.STRING)
-    private Language language;
+    @OneToOne(mappedBy = "userDao", cascade = CascadeType.ALL)
+    private RecipeBook recipeBook;
 
     @OneToOne(mappedBy = "userDao", cascade = CascadeType.ALL)
     private ShoppingList shoppingList;
+
+    public UserDao(String username, String password, List<Authority> authorities) {
+        this.username = username;
+        this.password = password;
+        this.authorities = authorities;
+        this.recipeBook = new RecipeBook(this);
+        this.shoppingList = new ShoppingList(this);
+        this.userData = new UserData(this);
+    }
 }

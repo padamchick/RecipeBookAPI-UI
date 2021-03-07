@@ -6,25 +6,26 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Getter @Setter
 @NoArgsConstructor
-public class ShoppingList {
-
+public class UserData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne
-    @JoinColumn(name = "fk_user_id")
+    @JsonIgnore
     private UserDao userDao;
 
-    @OneToMany(mappedBy = "shoppingList", cascade = CascadeType.ALL)
-    private List<ShoppingListItem> shoppingListItems;
+    private String firstName;
+    private String lastName;
+    private String email;
+    @Enumerated(EnumType.STRING)
+    private Language language;
 
-    public ShoppingList(UserDao userDao) {
+    public UserData(UserDao userDao) {
         this.userDao = userDao;
     }
 }

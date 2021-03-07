@@ -29,6 +29,10 @@ export interface AuthResponseData {
 export interface UserAccount {
   id: number;
   username: string;
+  userData: UserData;
+}
+
+export interface UserData {
   email: string;
   language: string;
   firstName: string;
