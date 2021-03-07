@@ -11,7 +11,8 @@ const appRoutes: Routes = [
       { path: 'recipes', loadChildren: () => import('./main-container/container/recipes/recipes.module').then(m => m.RecipesModule) }
     ]
   },
-  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) }
+  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+  { path: '**', redirectTo: 'auth', pathMatch: 'full' }
 ];
 
 @NgModule({
