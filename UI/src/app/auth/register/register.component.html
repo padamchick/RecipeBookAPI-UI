@@ -13,6 +13,9 @@
       <mat-error *ngIf="!username.valid && username.touched"><i class="fas fa-exclamation-circle"></i>
         {{'[SignUp]LoginError' | translate}}
       </mat-error>
+      <mat-error *ngIf="error && !username.touched"><i class="fas fa-exclamation-circle"></i>
+        {{ error }}
+      </mat-error>
       <button type="button" disabled="disabled" mat-icon-button matPrefix>
         <mat-icon>account_box</mat-icon>
       </button>
@@ -35,7 +38,7 @@
 
     <mat-form-field appearance="outline">
       <mat-label>{{'[SignUp]ConfirmPassword' | translate}}</mat-label>
-      <input matInput name="confirmPassword" [type]="hide ? 'password' : 'text'" required #confirmPassword="ngModel" ngModel
+      <input matInput name="confirmPassword" [type]="hide ? 'password' : 'text'"  #confirmPassword="ngModel" ngModel
              placeholder="{{'[SignUp]ConfirmPasswordPlaceholder' | translate}}">
       <mat-error *ngIf="!confirmPassword.valid && confirmPassword.touched"><i class="fas fa-exclamation-circle"></i>
         {{'[SignUp]ConfirmPasswordError' | translate}}
@@ -50,7 +53,7 @@
 
     <mat-form-field appearance="outline">
       <mat-label>First name</mat-label>
-      <input matInput name="firstName" required #firstName="ngModel" ngModel
+      <input matInput name="firstName"  #firstName="ngModel" ngModel
              placeholder="Enter your first name">
       <mat-error *ngIf="!firstName.valid && firstName.touched"><i class="fas fa-exclamation-circle"></i>
         First name is required!
@@ -62,7 +65,7 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Last name</mat-label>
-      <input matInput name="lastName" required #lastName="ngModel" ngModel
+      <input matInput name="lastName"  #lastName="ngModel" ngModel
              placeholder="Enter your last name">
       <mat-error *ngIf="!lastName.valid && lastName.touched"><i class="fas fa-exclamation-circle"></i>
         Last name is required!
@@ -74,7 +77,7 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Email</mat-label>
-      <input matInput name="email" required #email="ngModel" ngModel
+      <input matInput name="email"  #email="ngModel" ngModel
              placeholder="Enter your email">
       <mat-error *ngIf="!email.valid && email.touched"><i class="fas fa-exclamation-circle"></i>
         Email is required!

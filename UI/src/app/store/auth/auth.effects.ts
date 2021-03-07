@@ -39,8 +39,9 @@ export class AuthEffects {
   signUpFail$ = createEffect(() =>
     this.actions$.pipe(
       ofType(authActions.signUpFail),
-      tap(() => {
-        console.warn('SIGN UP FAILED');
+      tap(({error}) => {
+        this.spinner.hide();
+        this.notify.signUpError();
         // TODO
         // wyswietl toasta
         // zatrzymaj ladowanie
