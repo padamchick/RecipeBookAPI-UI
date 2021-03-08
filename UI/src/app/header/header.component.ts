@@ -13,6 +13,8 @@ import * as appActions from '../store/app/app.actions';
 import {TranslateService} from '@ngx-translate/core';
 import {getCurrentUser} from '../store/auth/auth.selectors';
 import {getLang} from '../store/app/app.selectors';
+import {RecipeService} from '../main-container/container/recipes/recipe.service';
+import {Category} from '../main-container/container/recipes/models/category.model';
 
 @Component({
   selector: 'app-header',
@@ -23,18 +25,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private userSub: Subscription;
   isAuthenticated = false;
   currentLang: string;
-  ngUnsubscribe = new EventEmitter()
+  categories: Category[] = [];
+  panelOpenState = false;
 
-
-  // routes = [
-  //   {name: 'Authentication', route: '/auth', needAuthentication: false},
-  //   {name: 'Recipes', route: '/recipes', needAuthentication: true},
-  //   {
-  //     name: 'Shopping List',
-  //     route: '/shopping-list',
-  //     needAuthentication: true,
-  //   },
-  // ];
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(
@@ -42,13 +35,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
       shareReplay()
     );
 
+  ngUnsubscribe = new EventEmitter();
+
   constructor(
     private dataStorageService: DataStorageService,
     private authService: AuthService,
     private breakpointObserver: BreakpointObserver,
-    public recipeService: OldRecipeService,
+    public recipeService: RecipeService,
     private store: Store<AppState>,
-    public translate: TranslateService,
+    public translate: TranslateService
   ) {
   }
 
@@ -56,9 +51,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     console.log("beofre combineLatest")
     combineLatest([
       this.store.select(getCurrentUser),
-      this.store.select(getLang)
+      this.store.select(getLang),
+      this.recipeService.getCategories()
     ]).pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe(([user, lang]) => {
+      .subscribe(([user, lang, categories]) => {
       if (user) {
         this.isAuthenticated = true;
       } else {
@@ -66,6 +62,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       }
         this.translate.use(lang);
       this.currentLang = lang;
+      this.categories = categories;
     });
   }
 
