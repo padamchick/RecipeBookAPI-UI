@@ -18,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class RecipeController {
 
-    private RecipeService recipeService;
+    private final RecipeService recipeService;
 
     @ApiOperation(value = "Return all recipes")
     @GetMapping("/all")
