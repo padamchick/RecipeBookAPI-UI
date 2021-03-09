@@ -794,11 +794,11 @@
             }
         ],
         "category": {
-            "id": 3,
-            "name": "Soup",
-            "iconName": "icofont-soup-bowl",
-            "sortIndex": 3,
-            "urlSuffix": "soups"
+            "id": 2,
+            "name": "Small Dish",
+            "iconName": "icofont-fast-food",
+            "sortIndex": 2,
+            "urlSuffix": "small-dishes"
         }
     },
     {

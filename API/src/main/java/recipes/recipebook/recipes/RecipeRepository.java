@@ -29,10 +29,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
             "WHERE c.name = :categoryName")
     Category findCategoryByName(@Param("categoryName") String name);
 
-    @Modifying
-    @Query("DELETE FROM Recipe r " +
-            "WHERE r.id in :ids")
-    void deleteByIdIn(@Param("ids") List<Long> ids);
+    void deleteByIdIn(List<Long> ids);
 
 
 }

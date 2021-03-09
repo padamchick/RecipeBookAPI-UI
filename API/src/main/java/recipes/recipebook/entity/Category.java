@@ -19,7 +19,7 @@ public class Category {
     private Integer sortIndex;
     private String urlSuffix;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "category", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.DETACH, CascadeType.REFRESH})
     @JsonIgnore
     private List<Recipe> recipe;
 
