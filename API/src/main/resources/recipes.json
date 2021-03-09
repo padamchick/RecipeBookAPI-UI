@@ -1,0 +1,987 @@
+[
+    {
+        "id": 1,
+        "name": "Shakshuka",
+        "description": "Chorizo pokroić na 4, podsmażyć. Dodać pomidory, przyprawić. Wbić jajka i smażyć pod przykryciem około 5-7 minut na dużej mocy kuchenki. Podać z pokrojoną fetą i szczypiorkiem.",
+        "imagePath": "https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2018/12/Shakshuka-19.jpg",
+        "servings": 2,
+        "kcal": null,
+        "preparationTime": "15min",
+        "creationDate": "2021-02-22T19:05:10.000+00:00",
+        "ingredients": [
+            {
+                "id": 1,
+                "name": "pomidory w puszce",
+                "amount": 1.0,
+                "unit": "szt"
+            },
+            {
+                "id": 2,
+                "name": "jajka",
+                "amount": 5.0,
+                "unit": "szt"
+            },
+            {
+                "id": 3,
+                "name": "chleb",
+                "amount": 3.0,
+                "unit": "kromki"
+            },
+            {
+                "id": 4,
+                "name": "chorizo",
+                "amount": 4.0,
+                "unit": "cm"
+            },
+            {
+                "id": 5,
+                "name": "feta",
+                "amount": 1.0,
+                "unit": null
+            },
+            {
+                "id": 6,
+                "name": "szczypiorek",
+                "amount": 1.0,
+                "unit": "łyżka"
+            }
+        ],
+        "category": {
+            "id": 2,
+            "name": "Small Dish",
+            "iconName": "icofont-fast-food",
+            "sortIndex": 2,
+            "urlSuffix": "small-dishes"
+        }
+    },
+    {
+        "id": 2,
+        "name": "Big Tuna",
+        "description": "Tuńczyka odsączyć. Ugotowane jajka i cebulę pokroić w drobną kostkę. Wszystko wymieszać, doprawić solą i pieprzem do smaku. Podawać na podpieczonej bagietce lub grzance z kiełkami.",
+        "imagePath": "https://dinnerthendessert.com/wp-content/uploads/2019/01/Tuna-Salad.jpg",
+        "servings": 8,
+        "kcal": null,
+        "preparationTime": "15min",
+        "creationDate": "2021-02-22T19:05:10.000+00:00",
+        "ingredients": [
+            {
+                "id": 7,
+                "name": "tuńczyk",
+                "amount": 150.0,
+                "unit": "g"
+            },
+            {
+                "id": 8,
+                "name": "cebula",
+                "amount": 50.0,
+                "unit": "g"
+            },
+            {
+                "id": 9,
+                "name": "jajka",
+                "amount": 3.0,
+                "unit": "szt"
+            },
+            {
+                "id": 10,
+                "name": "ketchup",
+                "amount": 2.0,
+                "unit": "łyżeczki"
+            },
+            {
+                "id": 11,
+                "name": "musztarda",
+                "amount": 2.0,
+                "unit": "łyżeczki"
+            },
+            {
+                "id": 12,
+                "name": "majonez",
+                "amount": 1.0,
+                "unit": "łyżeczki"
+            },
+            {
+                "id": 13,
+                "name": "kiełki rzodkiewki",
+                "amount": 1.0,
+                "unit": "garść"
+            }
+        ],
+        "category": {
+            "id": 2,
+            "name": "Small Dish",
+            "iconName": "icofont-fast-food",
+            "sortIndex": 2,
+            "urlSuffix": "small-dishes"
+        }
+    },
+    {
+        "id": 3,
+        "name": "Kurczak Curry",
+        "description": "Kurczaka pokroić w paski, cebulę w piórka. Wymieszać z czosnkiem, vegetą i wstawić do lodówki na 3h. Z pozostałych składników zrobić sos. Cały sos wymieszać z mięskiem z lodówki. Włożyć do naczynia żaroodpornego. Piec 90 minut w 180 stopniach C. Od czasu do czasu przemieszać, a ostatnie pół godziny piec bez przykrywki.",
+        "imagePath": "https://s3.przepisy.pl/przepisy3ii/img/variants/767x0/curry-z-kurczaka.jpg",
+        "servings": 5,
+        "kcal": null,
+        "preparationTime": "5h",
+        "creationDate": "2021-02-22T19:05:10.000+00:00",
+        "ingredients": [
+            {
+                "id": 14,
+                "name": "pierś z kurczaka",
+                "amount": 1.0,
+                "unit": "kg"
+            },
+            {
+                "id": 15,
+                "name": "cebula",
+                "amount": 2.0,
+                "unit": "szt"
+            },
+            {
+                "id": 16,
+                "name": "czosnek",
+                "amount": 2.0,
+                "unit": "szt"
+            },
+            {
+                "id": 17,
+                "name": "vegeta",
+                "amount": 2.0,
+                "unit": "łyżki"
+            },
+            {
+                "id": 18,
+                "name": "rodzynki",
+                "amount": 1.0,
+                "unit": "szklanka"
+            },
+            {
+                "id": 19,
+                "name": "ketchup pikantny",
+                "amount": 1.0,
+                "unit": "szklana"
+            },
+            {
+                "id": 20,
+                "name": "miód",
+                "amount": 0.5,
+                "unit": "szklanki"
+            },
+            {
+                "id": 21,
+                "name": "olej",
+                "amount": 0.5,
+                "unit": "szklanki"
+            },
+            {
+                "id": 22,
+                "name": "curry",
+                "amount": 3.0,
+                "unit": "łyżki"
+            },
+            {
+                "id": 23,
+                "name": "sos sojowy",
+                "amount": 4.0,
+                "unit": "łyżki"
+            }
+        ],
+        "category": {
+            "id": 1,
+            "name": "Main Dish",
+            "iconName": "icofont-culinary",
+            "sortIndex": 1,
+            "urlSuffix": "main-dishes"
+        }
+    },
+    {
+        "id": 4,
+        "name": "Pasztet soczewicowy z żurawiną",
+        "description": "Cebulę pokroić w kostkę, na patelni rozgrzać olej i dodać cebulę razem z liściem laurowym zielem angielskim oraz goździkami. Smażyć na niedużym ogniu do czasu, aż cebula się zeszkli, wtedy wyjąć przyprawy i wyrzucić.\nCebulę dodać do ugotowanej soczewicy razem z kaszą jaglaną, olejem, sosem sojowym, szczyptą soli i resztą przypraw. Zmiksować przy pomocy ręcznego blendera na gładką masę, spróbować i doprawić do smaku większą ilością soli, jeśli jest taka potrzeba. Dodać żurawinę i wmieszać ją łyżką w masę.\nPiekarnik rozgrzać do 180 stopni. Masę przełożyć do foremki (keksówka 20x11cm) wyłożonej papierem do pieczenia, wyrównać i piec przez 40 – 45 minut. Piec do momentu aż będzie miał złotą skorupkę, pasztet po upieczeniu jest płynny, należy studzić przez całą noc w foremce, a rano wyjąć pasztet z formy i podawać.",
+        "imagePath": "https://static.gotujmy.pl/ZDJECIE_PRZEPISU_ETAP/pasztet-z-zurawina-387035.jpg",
+        "servings": null,
+        "kcal": null,
+        "preparationTime": "1h",
+        "creationDate": "2021-02-22T19:05:10.000+00:00",
+        "ingredients": [
+            {
+                "id": 24,
+                "name": "cebula",
+                "amount": 2.0,
+                "unit": "szt"
+            },
+            {
+                "id": 25,
+                "name": "liście laurowe",
+                "amount": 2.0,
+                "unit": "szt"
+            },
+            {
+                "id": 26,
+                "name": "ziele angielskie",
+                "amount": 2.0,
+                "unit": "ziarna"
+            },
+            {
+                "id": 27,
+                "name": "goździki",
+                "amount": 2.0,
+                "unit": "szt"
+            },
+            {
+                "id": 28,
+                "name": "olej",
+                "amount": 100.0,
+                "unit": "ml"
+            },
+            {
+                "id": 29,
+                "name": "soczewica (brązowa lub zielona) ",
+                "amount": 200.0,
+                "unit": "g"
+            },
+            {
+                "id": 30,
+                "name": "kasza jaglana",
+                "amount": 100.0,
+                "unit": "g"
+            },
+            {
+                "id": 31,
+                "name": "sos sojowy",
+                "amount": 2.0,
+                "unit": "łyzki"
+            },
+            {
+                "id": 32,
+                "name": "majeranek ",
+                "amount": 0.7,
+                "unit": "łyżeczka"
+            },
+            {
+                "id": 33,
+                "name": "cząbr ",
+                "amount": 0.5,
+                "unit": "łyżeczka"
+            },
+            {
+                "id": 34,
+                "name": "lubczyk ",
+                "amount": 0.3,
+                "unit": "łyżeczka"
+            },
+            {
+                "id": 35,
+                "name": "gałka muszkatołowa",
+                "amount": 1.0,
+                "unit": "szczypta"
+            },
+            {
+                "id": 36,
+                "name": "sól",
+                "amount": 1.0,
+                "unit": "do smaku"
+            },
+            {
+                "id": 37,
+                "name": "pieprz czarny",
+                "amount": 1.0,
+                "unit": "do smaku"
+            },
+            {
+                "id": 38,
+                "name": "suszona żurawina",
+                "amount": 4.0,
+                "unit": "łyżki"
+            }
+        ],
+        "category": {
+            "id": 2,
+            "name": "Small Dish",
+            "iconName": "icofont-fast-food",
+            "sortIndex": 2,
+            "urlSuffix": "small-dishes"
+        }
+    },
+    {
+        "id": 5,
+        "name": "Ciasto marchewkowe",
+        "description": "Mąkę przesiewamy z proszkiem i sodą. Orzechy prażymy na suchej patelni. Jajka miksujemy z solą na białą masę. Następnie na niskich obrotach miksujemy i dodajemy mąkę, olej, cukier i wanilię. Marchewkę, daktyle i orzechy mieszamy z 1 łyżeczką mąki. Dodajemy do ciasta i delikatnie mieszamy.\nPieczemy w blaszce 10x20 cm około 50-55 minut w 175 stopniach C do suchego patyczka.",
+        "imagePath": "https://static.smaker.pl/photos/a/0/1/a01ad418f17b38f5646f498bff68877d_362117_582af6e47e565_wm.jpg",
+        "servings": null,
+        "kcal": null,
+        "preparationTime": "1h",
+        "creationDate": "2021-02-22T19:05:10.000+00:00",
+        "ingredients": [
+            {
+                "id": 39,
+                "name": "cukier ",
+                "amount": 0.2,
+                "unit": "szklanki"
+            },
+            {
+                "id": 40,
+                "name": "mąka tortowa",
+                "amount": 1.0,
+                "unit": "szklanka"
+            },
+            {
+                "id": 41,
+                "name": "proszek do pieczenia ",
+                "amount": 0.5,
+                "unit": "łyżeczki"
+            },
+            {
+                "id": 42,
+                "name": "soda oczyszczona ",
+                "amount": 0.5,
+                "unit": "łyżeczki"
+            },
+            {
+                "id": 43,
+                "name": "jajka",
+                "amount": 2.0,
+                "unit": "szt"
+            },
+            {
+                "id": 44,
+                "name": "ekstrakt z wanilii",
+                "amount": 1.0,
+                "unit": "łyżeczka"
+            },
+            {
+                "id": 45,
+                "name": "olej rzepakowy ",
+                "amount": 0.5,
+                "unit": "szklanki"
+            },
+            {
+                "id": 46,
+                "name": "marchewka tarta",
+                "amount": 1.0,
+                "unit": "szklanka"
+            },
+            {
+                "id": 47,
+                "name": "daktyle pokrojone",
+                "amount": 1.0,
+                "unit": "szklanka"
+            },
+            {
+                "id": 48,
+                "name": "orzechy włoskie pokrojone ",
+                "amount": 0.5,
+                "unit": "szklanki"
+            },
+            {
+                "id": 49,
+                "name": "sól",
+                "amount": 1.0,
+                "unit": "szczypta"
+            }
+        ],
+        "category": {
+            "id": 4,
+            "name": "Dessert",
+            "iconName": "icofont-cup-cake",
+            "sortIndex": 4,
+            "urlSuffix": "desserts"
+        }
+    },
+    {
+        "id": 6,
+        "name": "Soczysta pierś z indyka",
+        "description": "Cebulę pokroić w drobną kostkę, dodać składniki marynaty, wymieszać. Natrzeć mięso i zostawić w naczyniu do pieczenia (na dno którego wlać łyżkę oleju) na całą noc.\nPieczenie: najpierw przykryte mięso pieczemy w 180 stopniach C bez termoobiegu, około 40 minut do zarumienienia. Następnie odkrywamy i polewamy sosem. Pieczemy dalej odkryte około 30 minut.\nUpieczone mięso wyjąć z piekarnika, przykryć i zostawić na około 10 minut. Podawać pokrojone z sosem z pieczenia.",
+        "imagePath": "https://static.smaker.pl/photos/a/1/9/a1953f96295237c0ce6d9c8e08910084_289369_527fe60936379_wm.jpg",
+        "servings": null,
+        "kcal": null,
+        "preparationTime": "2h",
+        "creationDate": "2021-02-22T19:05:10.000+00:00",
+        "ingredients": [
+            {
+                "id": 50,
+                "name": "oliwa z oliwek",
+                "amount": 1.0,
+                "unit": "łyżka"
+            },
+            {
+                "id": 51,
+                "name": "ocet balsamiczny (ciemny)",
+                "amount": 1.0,
+                "unit": "łyżka"
+            },
+            {
+                "id": 52,
+                "name": "słodka papryka czerwona",
+                "amount": 1.0,
+                "unit": "łyżeczka"
+            },
+            {
+                "id": 53,
+                "name": "pieprz ziołowy",
+                "amount": 1.0,
+                "unit": "łyżeczka"
+            },
+            {
+                "id": 54,
+                "name": "sól",
+                "amount": 1.0,
+                "unit": "łyżeczka"
+            },
+            {
+                "id": 55,
+                "name": "musztarda ",
+                "amount": 1.0,
+                "unit": "łyżeczka"
+            },
+            {
+                "id": 56,
+                "name": "majonez",
+                "amount": 2.0,
+                "unit": "łyżeczki"
+            },
+            {
+                "id": 57,
+                "name": "cebula (nieduża)",
+                "amount": 1.0,
+                "unit": "szt"
+            },
+            {
+                "id": 58,
+                "name": "czosnek",
+                "amount": 2.0,
+                "unit": "ząbki"
+            },
+            {
+                "id": 59,
+                "name": "olej (na dno naczynia do pieczenia)",
+                "amount": 1.0,
+                "unit": "łyżka"
+            },
+            {
+                "id": 60,
+                "name": "pierś z indyka",
+                "amount": 80.0,
+                "unit": "dkg"
+            }
+        ],
+        "category": {
+            "id": 1,
+            "name": "Main Dish",
+            "iconName": "icofont-culinary",
+            "sortIndex": 1,
+            "urlSuffix": "main-dishes"
+        }
+    },
+    {
+        "id": 7,
+        "name": "Ciastka owsiane",
+        "description": "Masło wyjąć z lodówki około godzinę przed rozpoczęciem pracy.\nMasło przełożyć do miski, dodać cukier i ucierać mikserem 2-3 minuty. Następnie dodawać po jednym jajku, po każdym dodaniu wymieszać mikserem do połączenia składników.\nMąkę wymieszać z sodą i solą. Do maślanej masy dodać mąkę, ekstrakt waniliowy i wymieszać mikserem na niskich obrotach.\nDo ciasta dodać płatki owsiane, wiórki, rodzynki (lub pokrojone daktyle, suszone owoce, żurawinę) posiekane orzechy, wymieszać łyżką lub rękoma.\nZ ciasta uformować kuleczki i rozgnieść je na płasko na blaszce wyłożonej papierem do pieczenia.\nPiec 15-17 minut w 170 stopniach z termoobiegiem.",
+        "imagePath": "https://d3iamf8ydd24h9.cloudfront.net/pictures/articles/2018/02/38319-v-900x556.jpg",
+        "servings": null,
+        "kcal": null,
+        "preparationTime": "1h",
+        "creationDate": "2021-02-22T19:05:10.000+00:00",
+        "ingredients": [
+            {
+                "id": 61,
+                "name": "Masło",
+                "amount": 200.0,
+                "unit": "g"
+            },
+            {
+                "id": 62,
+                "name": "Cukier brązowy",
+                "amount": 180.0,
+                "unit": "g"
+            },
+            {
+                "id": 63,
+                "name": "Jajka",
+                "amount": 2.0,
+                "unit": "szt"
+            },
+            {
+                "id": 64,
+                "name": "ekstrakt waniliowy",
+                "amount": 2.0,
+                "unit": "łyżeczki"
+            },
+            {
+                "id": 65,
+                "name": "Orzechy włoskie",
+                "amount": 70.0,
+                "unit": "g"
+            },
+            {
+                "id": 66,
+                "name": "wiórki kokosowe",
+                "amount": 100.0,
+                "unit": "g"
+            },
+            {
+                "id": 67,
+                "name": "mąka pszenna",
+                "amount": 300.0,
+                "unit": "g"
+            },
+            {
+                "id": 68,
+                "name": "soda",
+                "amount": 1.0,
+                "unit": "łyżeczka"
+            },
+            {
+                "id": 69,
+                "name": "sól",
+                "amount": 1.0,
+                "unit": "szczypta"
+            },
+            {
+                "id": 70,
+                "name": "płatki owsiane",
+                "amount": 210.0,
+                "unit": "g"
+            },
+            {
+                "id": 71,
+                "name": "rodzynki",
+                "amount": 130.0,
+                "unit": "g"
+            }
+        ],
+        "category": {
+            "id": 4,
+            "name": "Dessert",
+            "iconName": "icofont-cup-cake",
+            "sortIndex": 4,
+            "urlSuffix": "desserts"
+        }
+    },
+    {
+        "id": 8,
+        "name": "Kurczak po meksykańsku",
+        "description": "1. Wstawiamy ryż do gotowania\n2. Kurczaka kroimy w kostkę, przekładamy do osobnej miski, zalewamy olejem, dodajemy jedną łyżkę papryki słodkiej i jedną łyżeczkę papryki ostrej, dokładnie mieszamy. Odkładamy na bok\n3. Czerwoną cebulę kroimy w drobną kostkę, odkładamy osobno\n4. Ząbki czosnku, miażdżymy i szatkujemy, odkładamy osobno\n5. Paprykę kroimy w kostkę, odkładamy osobno\n6. Odsączamy kukurydzę i fasolę i odmierzamy połowę\n7. Dobrze nagrzać patelnię, wrzucamy kurczaka, smażymy, na koniec dodajemy soli i pieprzu dla smaku, przekładamy do osobnej miski\n8. Na tę samą patelnię wlewamy oliwę oraz wrzucamy cebulę do zeszklenia\n9. Następnie dorzucamy czosnek na max minutę\n10. Dorzucam na moment kumin\n11. Wrzucamy kolorowe papryki i smażymy dwie minuty\n12. Dosypujemy łyżkę papryki słodkiej, łyżeczkę papryki ostrej i wlewamy przecier pomidorowy\n13. Redukujemy ok. 7 minut, mieszamy od czasu do czasu\n14. Dwie minuty przed końcem wrzucamy kukurydzę i fasolę\n15. Po tym czasie wrzucamy ryż i dokładnie mieszamy\n16. Dorzucamy kurczaka i dzielimy na 4 porcję\n17. Po wierzchu posypać pietruszką/kolendrą\n1 porcja: 862 kcal (B: 45g, W: 74g, T: 40g (w tym nienasycone 38g))",
+        "imagePath": "https://cdn.katalogsmakow.pl/2018/10/15/0x600/kurczak-po-meksykansku.741420.jpg",
+        "servings": 4,
+        "kcal": 862,
+        "preparationTime": "45min",
+        "creationDate": "2021-02-22T19:05:10.000+00:00",
+        "ingredients": [
+            {
+                "id": 72,
+                "name": "pierś z kurczaka",
+                "amount": 600.0,
+                "unit": "g"
+            },
+            {
+                "id": 73,
+                "name": "puszka czerwonej fasoli",
+                "amount": 0.5,
+                "unit": "puszki"
+            },
+            {
+                "id": 74,
+                "name": "puszka kukurydzy",
+                "amount": 0.5,
+                "unit": "puszki"
+            },
+            {
+                "id": 75,
+                "name": "przecier pomidorowy",
+                "amount": 500.0,
+                "unit": "g"
+            },
+            {
+                "id": 76,
+                "name": "czerwona cebula",
+                "amount": 100.0,
+                "unit": "g"
+            },
+            {
+                "id": 77,
+                "name": "ryż paraboiled",
+                "amount": 3.0,
+                "unit": "torebki"
+            },
+            {
+                "id": 78,
+                "name": "słodka papryka (przyprawa)",
+                "amount": 2.0,
+                "unit": "łyżki"
+            },
+            {
+                "id": 79,
+                "name": "ostra papryka (przyprawa)",
+                "amount": 2.0,
+                "unit": "łyżeczki"
+            },
+            {
+                "id": 80,
+                "name": "kumin (przyprawa)",
+                "amount": 1.5,
+                "unit": "łyżki"
+            },
+            {
+                "id": 81,
+                "name": "papryka (różne rodzaje)",
+                "amount": 350.0,
+                "unit": "g"
+            },
+            {
+                "id": 82,
+                "name": "czosnek",
+                "amount": 3.0,
+                "unit": "ząbki"
+            },
+            {
+                "id": 83,
+                "name": "olej",
+                "amount": 40.0,
+                "unit": "ml"
+            },
+            {
+                "id": 84,
+                "name": "oliwa",
+                "amount": 40.0,
+                "unit": "ml"
+            }
+        ],
+        "category": {
+            "id": 1,
+            "name": "Main Dish",
+            "iconName": "icofont-culinary",
+            "sortIndex": 1,
+            "urlSuffix": "main-dishes"
+        }
+    },
+    {
+        "id": 9,
+        "name": "Chowder kukurydziany",
+        "description": "Przygotowanie:\nKażdą kolbę kukurydzy oskrobać z nasion przy pomocy ostrego noża, suszone pomidory posiekać w kostkę, kalafiora pokroić na bardzo małe różyczki, a pora w talarki. Na dnie dużego garnka rozgrzać kilka łyżek oleju z suszonych pomidorów, dodać tam pokrojone warzywa razem ze wszystkimi przyprawami poza gałką. Dusić na oleju przez 10 minut co jakiś czas mieszając.\nW międzyczasie posiekać szczypior razem z cebulkami. Do podduszonych warzyw wlać mleko i gotować na małym ogniu przez około 15 – 20 minut do czasu, aż kalafior będzie miękki.\nJeśli gotowa zupa jest za gęsta, wlać bulion w całości lub tylko część. Doprawić szczyptą świeżo startej gałki, dodać sól i czarny pieprz do smaku, wsypać ¾ posiekanego szczypioru i dokładnie zamieszać. Podawać z łyżką świeżego szczypioru i ulubionym pieczywem.\nPorady:\n\nBulion można też (i naprawdę warto) ugotować samemu na kolbach kukurydzy, dzięki temu zupa ma dużo więcej smaku i różnych, kukurydzianych aromatów.",
+        "imagePath": "https://www.jadlonomia.com/wp-content/uploads/2014/07/MG_85571-592x460.jpg",
+        "servings": 5,
+        "kcal": null,
+        "preparationTime": "1,5h",
+        "creationDate": "2021-02-22T19:05:10.000+00:00",
+        "ingredients": [
+            {
+                "id": 85,
+                "name": "kolby kukurydzy",
+                "amount": 2.0,
+                "unit": "szt"
+            },
+            {
+                "id": 86,
+                "name": "mały kalafior",
+                "amount": 0.5,
+                "unit": "szt"
+            },
+            {
+                "id": 87,
+                "name": "młody por",
+                "amount": 1.0,
+                "unit": "szt"
+            },
+            {
+                "id": 88,
+                "name": "suszone pomidory z oleju",
+                "amount": 5.0,
+                "unit": "szt"
+            },
+            {
+                "id": 89,
+                "name": "liść laurowy",
+                "amount": 2.0,
+                "unit": "szt"
+            },
+            {
+                "id": 90,
+                "name": "ziele angielskie",
+                "amount": 1.0,
+                "unit": "szt"
+            },
+            {
+                "id": 91,
+                "name": "chili",
+                "amount": 0.25,
+                "unit": "łyżeczki"
+            },
+            {
+                "id": 92,
+                "name": "wędzona papryka",
+                "amount": 0.25,
+                "unit": "łyżeczki"
+            },
+            {
+                "id": 93,
+                "name": "olej z pomidorów",
+                "amount": 3.0,
+                "unit": "łyżki"
+            },
+            {
+                "id": 94,
+                "name": "szczypiorek z cebulkami",
+                "amount": 1.0,
+                "unit": "pęczek"
+            },
+            {
+                "id": 95,
+                "name": "mleko roślinne niesłodzone",
+                "amount": 1.0,
+                "unit": "litr"
+            },
+            {
+                "id": 96,
+                "name": "bulion warzywny",
+                "amount": 1.0,
+                "unit": "szklanka"
+            },
+            {
+                "id": 97,
+                "name": "gałka muszkatałowa",
+                "amount": 1.0,
+                "unit": "spora szczypta"
+            },
+            {
+                "id": 98,
+                "name": "sól",
+                "amount": 1.0,
+                "unit": "szczypta"
+            },
+            {
+                "id": 99,
+                "name": "czarny pieprz",
+                "amount": 1.0,
+                "unit": "szczypta"
+            }
+        ],
+        "category": {
+            "id": 3,
+            "name": "Soup",
+            "iconName": "icofont-soup-bowl",
+            "sortIndex": 3,
+            "urlSuffix": "soups"
+        }
+    },
+    {
+        "id": 10,
+        "name": "Naleśniki owsiane",
+        "description": "Składniki wymieszać. Z podanej ilości wyjdzie około 4 szt małych naleśników.",
+        "imagePath": "https://4.bp.blogspot.com/-nP0vlmdvWvU/WrS3xZxo9rI/AAAAAAAALsI/YzSyp2rEcmArysxpJIPMITeRY2hqJad8wCLcBGAs/s1600/DSC_0102.JPG",
+        "servings": 4,
+        "kcal": null,
+        "preparationTime": "15min",
+        "creationDate": "2021-02-22T19:05:10.000+00:00",
+        "ingredients": [
+            {
+                "id": 100,
+                "name": "mąka owsiana",
+                "amount": 50.0,
+                "unit": "g"
+            },
+            {
+                "id": 101,
+                "name": "jajko",
+                "amount": 1.0,
+                "unit": "szt"
+            },
+            {
+                "id": 102,
+                "name": "mleko",
+                "amount": 100.0,
+                "unit": "ml"
+            }
+        ],
+        "category": {
+            "id": 3,
+            "name": "Soup",
+            "iconName": "icofont-soup-bowl",
+            "sortIndex": 3,
+            "urlSuffix": "soups"
+        }
+    },
+    {
+        "id": 11,
+        "name": "Wiśniówka",
+        "description": "1.\tWiśnie umyj i usuń z nich pestki.\n2.\tSpirytus wymieszaj z wodą, aby uzyskać alkohol o mocy ok. 70%\n3.\tWiśnie przełóż do słoja i zalej je spirytusem, a następnie odstaw w ciemne i raczej ciepłe miejsce na ok. 6 tygodni. Co kilka dni wstrząśnij słojem, aby zamieszać jego zawartością.\n4.\tPo 6 tygodniach zlej nalew (płyn) ze słoja do butelki i zasyp pozostałe w słoju owoce cukrem.\n5.\tPrzez kolejne dni cukier będzie się rozpuszczał w owocach, tworząc syrop – czyli drugą część naszej nalewki. Warto co jakiś czas potrząsnąć zawartością słoja z owocami i cukrem. Kiedy cały cukier się rozpuści, połącz powstały z niego syrop z uzyskanym wcześniej nalewem.\n6.\tRozlej nalewkę do butelek i odstaw na minimum miesiąc. Po tym czasie możesz zlać klarowną część płynu do osobnych butelek – nalewki bez osadu i zanieczyszczeń są najbardziej cenione. Mi oczywiście smakują w każdej postaci i nie przeszkadza mi odrobina osadu na dnie butelki)\n7.\tNalewka z wiśni pełne walory uzyskuje po ok. roku leżakowania, jednak degustować można ją już po kilku tygodniach.\n",
+        "imagePath": "https://1.bp.blogspot.com/-L740jQDG8Hc/VOW9mL3gKpI/AAAAAAAAER8/qTR4jFASnx8/s1600/wisniowa.jpg",
+        "servings": null,
+        "kcal": null,
+        "preparationTime": "3 miesiące",
+        "creationDate": "2021-02-22T19:05:10.000+00:00",
+        "ingredients": [
+            {
+                "id": 103,
+                "name": "dojrzałe wiśnie",
+                "amount": 1.0,
+                "unit": "kg"
+            },
+            {
+                "id": 104,
+                "name": "spirytus 95%",
+                "amount": 500.0,
+                "unit": "ml"
+            },
+            {
+                "id": 105,
+                "name": "przegotowana woda",
+                "amount": 200.0,
+                "unit": "ml"
+            },
+            {
+                "id": 106,
+                "name": "cukier",
+                "amount": 0.5,
+                "unit": "kg"
+            }
+        ],
+        "category": {
+            "id": 6,
+            "name": "Liqueur",
+            "iconName": "icofont-glass",
+            "sortIndex": 6,
+            "urlSuffix": "liqueurs"
+        }
+    },
+    {
+        "id": 12,
+        "name": "Whisky Sour",
+        "description": "1. Składniki wlać w podanych proporcjach do shakera\n2. Wymieszać w shakerze i rozlać do szklanek",
+        "imagePath": "https://www.ballantines.com/wp-content/uploads/2020/09/ballantines-finest-whisky-sour-drink.jpg",
+        "servings": 1,
+        "kcal": null,
+        "preparationTime": "5min",
+        "creationDate": "2021-02-22T19:05:10.000+00:00",
+        "ingredients": [
+            {
+                "id": 107,
+                "name": "whisky",
+                "amount": 40.0,
+                "unit": "ml"
+            },
+            {
+                "id": 108,
+                "name": "sok z cytryny",
+                "amount": 20.0,
+                "unit": "ml"
+            },
+            {
+                "id": 109,
+                "name": "syrop cukrowy",
+                "amount": 10.0,
+                "unit": "ml"
+            },
+            {
+                "id": 110,
+                "name": "lód",
+                "amount": 2.0,
+                "unit": "kostki"
+            }
+        ],
+        "category": {
+            "id": 5,
+            "name": "Drink",
+            "iconName": "icofont-cocktail",
+            "sortIndex": 5,
+            "urlSuffix": "drinks"
+        }
+    },
+    {
+        "id": 13,
+        "name": "Wołowina Stir Fry",
+        "description": "1. Przygotować marynatę do mięsa (2 łyżki ciemnego sosu sojowego i 2 łyżki białego wina)\n2. Wołowinę pokroić w cienkie plastry, mieszamy z marynatą i odstawiamy na bok\n3. Cebulę kroimy w dosyć duże kawałki, podobnie paprykę i fasolę szparagową\n4. Czosnek i imbir obieramy i szatkujemy, chili i dymkę kroimy w cienkie plasterki\n5. Przygotować sos: 50ml wody, 2 łyżki jasnego sosu sojowego, 1 łyżka ciemnego sosu\n6. Makaron wrzucamy do gorącej i osolonej wody, gotujemy zgodnie z czasem na opakowaniu\n7. Nagrzewamy woka bardzo mocno, aż zacznie dymić, wlewamy ok. 20ml oleju, ręką wrzucamy mięso, aby nie wlać na patelnię marynaty, przesmażamy 1,5-2 minuty, odkładamy na bok\n8. Wlewamy 20ml oleju i wsypujemy imbir, czosnek, chili i dymkę, podsmażyć kilkanaście-kilkadziesiąt sekund\n9. Wrzucamy fasolę szparagową, przesmażamy 1-1,5min\n10. Wrzucamy paprykę, przesmażamy 1-1,5min\n11. Wrzucamy cebulę, przesmażamy 1-1,5min\n12. Wlewamy sos, gotujemy 1min\n13. Wrzucamy nudle\n14. Dorzucamy mięso i mieszamy wszystko\n15. Przełożyć na talerz, ozdobić zieloną cebulką i sezamem\n789 kcal (B: 42g, W: 59g, T: 43g (w tym roślinne: 38g))",
+        "imagePath": "https://i.ytimg.com/vi/OgfbU2BEk2E/maxresdefault.jpg",
+        "servings": 1,
+        "kcal": 789,
+        "preparationTime": "45min",
+        "creationDate": "2021-02-22T19:05:10.000+00:00",
+        "ingredients": [
+            {
+                "id": 111,
+                "name": "wołowina",
+                "amount": 150.0,
+                "unit": "g"
+            },
+            {
+                "id": 112,
+                "name": "papryka",
+                "amount": 0.5,
+                "unit": "szt"
+            },
+            {
+                "id": 113,
+                "name": "cebula",
+                "amount": 80.0,
+                "unit": "g"
+            },
+            {
+                "id": 114,
+                "name": "fasola szparagowa",
+                "amount": null,
+                "unit": "\"\""
+            },
+            {
+                "id": 115,
+                "name": "dymka",
+                "amount": 1.0,
+                "unit": "szt"
+            },
+            {
+                "id": 116,
+                "name": "papryczka chili",
+                "amount": 1.0,
+                "unit": "szt"
+            },
+            {
+                "id": 117,
+                "name": "czosnek",
+                "amount": 2.0,
+                "unit": "ząbki"
+            },
+            {
+                "id": 118,
+                "name": "imbir",
+                "amount": null,
+                "unit": "kawałek"
+            },
+            {
+                "id": 119,
+                "name": "białe wino półwytrawne",
+                "amount": 2.0,
+                "unit": "łyżki"
+            },
+            {
+                "id": 120,
+                "name": "jasny sos sojowy",
+                "amount": 2.0,
+                "unit": "łyżki"
+            },
+            {
+                "id": 121,
+                "name": "ciemny sos sojowy",
+                "amount": 3.0,
+                "unit": "łyżki"
+            },
+            {
+                "id": 122,
+                "name": "olej",
+                "amount": 40.0,
+                "unit": "ml"
+            },
+            {
+                "id": 123,
+                "name": "makaron nudle",
+                "amount": 70.0,
+                "unit": "g"
+            }
+        ],
+        "category": {
+            "id": 1,
+            "name": "Main Dish",
+            "iconName": "icofont-culinary",
+            "sortIndex": 1,
+            "urlSuffix": "main-dishes"
+        }
+    }
+]
