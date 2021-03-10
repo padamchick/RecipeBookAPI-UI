@@ -1,10 +1,37 @@
 <nav class="top">
-<!--<a routerLink="/old-recipes" routerLinkActive="active" #tooltip="matTooltip" matTooltip="Recipes" matTooltipPosition="after">-->
-<!--  <mat-icon class="icon"-->
+    <!--<a routerLink="/old-recipes" routerLinkActive="active" #tooltip="matTooltip" matTooltip="Recipes" matTooltipPosition="after">-->
+    <!--  <mat-icon class="icon"-->
 
-<!--  >menu_book</mat-icon>-->
-<!--</a>-->
-  <a routerLink="/recipes" routerLinkActive="active" #tooltip="matTooltip" matTooltip="Recipes" matTooltipPosition="right">
-    <mat-icon class="icon"><i class="fas fa-utensils"></i></mat-icon>
-  </a>
+    <!--  >menu_book</mat-icon>-->
+    <!--</a>-->
+    <a routerLink="/recipes" routerLinkActive="active" #tooltip="matTooltip" matTooltip="Recipes"
+       matTooltipPosition="right">
+        <mat-icon class="icon"><i class="fas fa-utensils"></i></mat-icon>
+    </a>
+</nav>
+<nav *appVar="isNavbarVisible$ | async as secondNavbarVisible" class="bottom">
+    <div>
+        <img (click)="hideNavbar()"
+             [class.disabled]="!secondNavbarVisible"
+             src="assets/images/nosheets.svg"
+             alt="no-sheets-icon"
+             matTooltip="Hide Navbar"
+             matTooltipPosition="right">
+    </div>
+    <div>
+        <img (click)="showNavbar()"
+             [class.disabled]="secondNavbarVisible"
+             src="assets/images/leftsheet.svg"
+             alt="left=sheet-icon"
+             matTooltip="Show Navbar"
+             matTooltipPosition="right">
+    </div>
+    <a>
+        <mat-icon
+            #tooltip="matTooltip"
+            matTooltip="Settings"
+            matTooltipPosition="right"
+            aria-tooltip="Settings button">settings
+        </mat-icon>
+    </a>
 </nav>

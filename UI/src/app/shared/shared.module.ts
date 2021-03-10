@@ -19,6 +19,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 import { DialogTemplateComponent } from './dialog-template/dialog-template.component';
 import { IngredientDialogComponent } from './dialogs/ingredient-dialog/ingredient-dialog.component';
 import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.component';
+import { VarDirective } from './directives/var.directive';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.
     TruncatePipe,
     DialogTemplateComponent,
     IngredientDialogComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    VarDirective
   ],
   imports: [
     CommonModule,
@@ -63,7 +65,8 @@ import { ConfirmDialogComponent } from './dialogs/confirm-dialog/confirm-dialog.
     NgScrollbarModule,
     DialogTemplateComponent,
     IngredientDialogComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    VarDirective
   ],
 })
 export class SharedModule {}

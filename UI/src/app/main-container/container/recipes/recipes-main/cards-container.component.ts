@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Recipe} from '../../old-recipes/old-recipe.model';
 import {NgxMasonryAnimations, NgxMasonryOptions} from 'ngx-masonry';
 import {animate, style} from '@angular/animations';
-import {combineLatest, Subject} from 'rxjs';
+import {BehaviorSubject, combineLatest, Observable, Subject} from 'rxjs';
 import {Store} from '@ngrx/store';
 import * as fromApp from '../../../../store/app.reducer';
 import {ActivatedRoute, Params} from '@angular/router';
@@ -12,6 +12,8 @@ import {ConfirmDialogComponent} from '../../../../shared/dialogs/confirm-dialog/
 import {MatDialog} from '@angular/material/dialog';
 import {RecipeState} from '../../../../store/recipe/recipe.reducer';
 import {getRecipes, getSelectedIds} from '../../../../store/recipe/recipe.selectors';
+import {isNavbarVisible} from "../../../../store/app/app.selectors";
+import {LayoutService} from "../../../../shared/services/layout.service";
 
 @Component({
   selector: 'app-cards-container',
@@ -24,6 +26,7 @@ export class CardsContainerComponent implements OnInit, OnDestroy {
   selectionMode: boolean = false;
   selected: number[];
   category: string;
+  refreshMasonry$ = new BehaviorSubject(false);
 
   animations: NgxMasonryAnimations = {
     show: [
@@ -47,14 +50,15 @@ export class CardsContainerComponent implements OnInit, OnDestroy {
 
   constructor(private store: Store<fromApp.AppState>,
               private route: ActivatedRoute,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private layoutService: LayoutService) {
   }
 
   ngOnInit(): void {
     combineLatest([
       this.route.params,
       this.store.select(getRecipes),
-      this.store.select(getSelectedIds)
+      this.store.select(getSelectedIds),
     ]).pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(([params, recipes, selected]: [Params, Recipe[], number[]]) => {
         this.category = params['category'];
@@ -66,6 +70,14 @@ export class CardsContainerComponent implements OnInit, OnDestroy {
         this.selected = selected;
         this.selectionMode = selected.length > 0;
       });
+
+    this.layoutService.layoutChange$.pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe(() => this.refreshMasonry())
+
+  }
+
+  refreshMasonry() {
+    this.refreshMasonry$.next(!this.refreshMasonry$.value);
   }
 
   filter(criteriaWord: string) {

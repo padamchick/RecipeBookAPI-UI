@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Store} from "@ngrx/store";
+import {AppState} from "../../store/app.reducer";
+import {isNavbarVisible} from "../../store/app/app.selectors";
 
 @Component({
   selector: 'app-container',
@@ -7,12 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectContainerComponent implements OnInit {
 
-  secondNavBarVisible = true;
+  secondNavBarVisible$;
   topBarVisible = true;
 
-  constructor() { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
+    this.secondNavBarVisible$ = this.store.select(isNavbarVisible);
   }
 
 }

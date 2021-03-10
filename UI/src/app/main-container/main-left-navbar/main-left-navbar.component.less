@@ -18,8 +18,8 @@ nav {
   mat-icon {
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
-    color: rgba(0,0,0,0.6);
-    //cursor: pointer;
+    color: rgba(0,0,0,0.7);
+    cursor: pointer;
 
     &:first-child {
       padding-top: 1.2rem;
@@ -30,5 +30,35 @@ nav {
 .active {
   & i, & mat-icon {
     color: @accent;
+  }
+}
+
+nav.bottom {
+  img {
+    cursor: pointer;
+    margin: 12px 0 12px 0;
+    height: 28px;
+    width: 28px;
+    opacity: 75%;
+
+    &:hover {
+      opacity: 100%;
+    }
+  }
+
+  div.disabled img, img.disabled {
+    opacity: 0.1;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .mat-icon {
+    height: 28px;
+    width: 28px;
+    padding-bottom: 2.75rem;
+  }
+
+  .material-icons {
+    font-size: 28px;
   }
 }

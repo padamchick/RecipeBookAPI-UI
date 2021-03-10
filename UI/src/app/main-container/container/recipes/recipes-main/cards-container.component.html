@@ -8,7 +8,7 @@
 </app-top-bar-recipes>
 <ng-scrollbar>
   <div>
-    <ngx-masonry [options]="masonryOptions" fxHide.lt-sm>
+    <ngx-masonry [options]="masonryOptions" [updateLayout]="refreshMasonry$ | async" fxHide.lt-sm>
       <div ngxMasonryItem class="masonry-item" *ngFor="let recipe of recipes" #masonryItems>
         <app-recipe-card
           [recipe]="recipe"

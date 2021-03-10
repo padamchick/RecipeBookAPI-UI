@@ -1,4 +1,4 @@
-<div [style.display]="secondNavBarVisible ? 'flex' : 'none'" fxHide.lt-md>
+<div [style.display]="(secondNavBarVisible$ | async) ? 'flex' : 'none'" fxHide.lt-md>
   <router-outlet name="second-nav-bar"></router-outlet>
 </div>
 
