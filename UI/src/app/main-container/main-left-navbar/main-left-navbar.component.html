@@ -4,9 +4,17 @@
 
     <!--  >menu_book</mat-icon>-->
     <!--</a>-->
+    <a routerLink="/home" routerLinkActive="active" #tooltip="matTooltip" matTooltip="Home"
+       matTooltipPosition="right">
+        <mat-icon class="icon"><i class="fas fa-home"></i></mat-icon>
+    </a>
     <a routerLink="/recipes" routerLinkActive="active" #tooltip="matTooltip" matTooltip="Recipes"
        matTooltipPosition="right">
         <mat-icon class="icon"><i class="fas fa-utensils"></i></mat-icon>
+    </a>
+    <a routerLink="/users" routerLinkActive="active" #tooltip="matTooltip" matTooltip="Users"
+       matTooltipPosition="right">
+        <mat-icon class="icon"><i class="fas fa-users"></i></mat-icon>
     </a>
 </nav>
 <nav *appVar="isNavbarVisible$ | async as secondNavbarVisible" class="bottom">
@@ -14,17 +22,13 @@
         <img (click)="hideNavbar()"
              [class.disabled]="!secondNavbarVisible"
              src="assets/images/nosheets.svg"
-             alt="no-sheets-icon"
-             matTooltip="Hide Navbar"
-             matTooltipPosition="right">
+             alt="no-sheets-icon">
     </div>
     <div>
         <img (click)="showNavbar()"
              [class.disabled]="secondNavbarVisible"
              src="assets/images/leftsheet.svg"
-             alt="left=sheet-icon"
-             matTooltip="Show Navbar"
-             matTooltipPosition="right">
+             alt="left=sheet-icon">
     </div>
     <a>
         <mat-icon

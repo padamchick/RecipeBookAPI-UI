@@ -1,134 +1,149 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" [ngClass]="{hidden: !(isHandset$ | async)}"
-               [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
-    <mat-toolbar class="theme-accent-dark">Menu</mat-toolbar>
-    <mat-nav-list>
-      <!--      SIDENAV Login Link -->
-      <a mat-list-item *ngIf="!isAuthenticated" routerLinkActive="active" routerLink="/auth" (click)="drawer.toggle()">
-        <mat-icon>lock</mat-icon>
-        <span class="nav-caption">Login</span>
-
-      </a>
-      <!--      SIDENAV Recipes Link -->
-      <mat-expansion-panel (opened)="panelOpenState = true"
-                           (closed)="panelOpenState = false">
-        <mat-expansion-panel-header>
-          <div mat-list-item *ngIf="isAuthenticated">
-            <mat-icon class="icon"><i class="fas fa-utensils"></i></mat-icon>
-            <span class="nav-caption">Recipes</span>
-          </div>
-        </mat-expansion-panel-header>
-        <div>
-          <div class="expansion-panel-content">
-            <a [routerLink]="['/recipes/all']" routerLinkActive="active" (click)="drawer.toggle()">
-              <mat-list-item>
-                <i class="icofont-read-book"></i>
-                All
-              </mat-list-item>
-            </a>
-          </div>
-        </div>
-
-
-        <div *ngFor="let category of categories">
-          <div class="expansion-panel-content">
-            <a [routerLink]="['/recipes', category.urlSuffix]" routerLinkActive="active" (click)="drawer.toggle()">
-              <mat-list-item>
-                <!--            <mat-icon matListIcon>{{category.iconName}}</mat-icon>-->
-                <i [class]="category.iconName"></i>
-                {{category.name}}
-              </mat-list-item>
+    <mat-sidenav #drawer class="sidenav" [ngClass]="{hidden: !(isHandset$ | async)}"
+                 [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+        <mat-toolbar class="theme-accent-dark">Menu</mat-toolbar>
+        <mat-nav-list>
+            <!--      SIDENAV Login Link -->
+            <a mat-list-item *ngIf="!isAuthenticated" routerLinkActive="active" routerLink="/auth"
+               (click)="drawer.toggle()">
+                <mat-icon class="icon">login</mat-icon>
+                <span class="nav-caption">Login</span>
 
             </a>
-          </div>
+          <!--      SIDENAV Login Link -->
+          <a mat-list-item *ngIf="!isAuthenticated" routerLinkActive="active" routerLink="/auth/register"
+             (click)="drawer.toggle()">
+            <mat-icon class="icon">app_registration</mat-icon>
+            <span class="nav-caption">Registration</span>
 
-        </div>
-
-      </mat-expansion-panel>
-      <!--      <a mat-list-item *ngIf="isAuthenticated" routerLinkActive="active"-->
-      <!--         routerLink="/recipes" (click)="drawer.toggle()">-->
-      <!--        <mat-icon class="icon"><i class="fas fa-utensils"></i></mat-icon>-->
-      <!--        <span class="nav-caption">Recipes</span>-->
-      <!--      </a>-->
-      <!--      SIDENAV Logout Link -->
-      <a mat-list-item *ngIf="isAuthenticated" (click)="onLogout(); drawer.toggle()">
-        <mat-icon class="icon">input</mat-icon>
-        <span class="nav-caption">{{'[Toolbar]Logout' | translate}}</span>
-      </a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar class="theme-accent-dark">
-      <mat-toolbar-row>
-        <!--          sidenav menu button (tylko jeśli rozmiar okna xs) -->
-        <button mat-icon-button (click)="drawer.toggle()" fxHide.gt-sm>
-          <mat-icon>menu</mat-icon>
-        </button>
-        <!--          NAGŁÓWEK RECIPE BOOK -->
-        <!--        <a class="toolbar-header" routerLink="/">RECIPE BOOK</a>-->
-        <a class="toolbar-header" routerLink="/">RECIPE BOOK</a>
-
-        <div fxFlex fxLayout fxHide.lt-md>
-          <!--          &lt;!&ndash;          zakładka Recipes &ndash;&gt;-->
-          <!--          <a mat-button *ngIf="isAuthenticated" routerLinkActive="active" routerLink="/recipes">-->
-          <!--            &lt;!&ndash; <div class="d-flex justify-content-around align-items-center"> &ndash;&gt;-->
-          <!--            <mat-icon class="icon">menu_book</mat-icon>-->
-          <!--            <span class="label">{{'[Toolbar]Recipes' | translate}}</span>-->
-          <!--            &lt;!&ndash; </div> &ndash;&gt;-->
-          <!--          </a>-->
-
-
-          <!--          &lt;!&ndash;          zakładka Shopping List &ndash;&gt;-->
-          <!--          <a mat-button *ngIf="isAuthenticated && false" routerLinkActive="active" routerLink="/shopping-list">-->
-          <!--            <mat-icon class="icon">shopping_cart</mat-icon>-->
-          <!--            <span class="label">Shopping List</span>-->
-          <!--          </a>-->
-
-          <!--          &lt;!&ndash;          zakładka New Recipes &ndash;&gt;-->
-          <!--          <a mat-button *ngIf="isAuthenticated" routerLinkActive="active" routerLink="/recipes">-->
-          <!--            <mat-icon class="icon"><i class="fas fa-utensils"></i></mat-icon>-->
-          <!--            <span class="label">New recipes</span>-->
-          <!--          </a>-->
-
-
-          <span class="spacer"></span>
-
-          <!--          zmiana języka -->
-
-          <a mat-button
-             matTooltip="{{'[Toolbar]LanguagesTooltip' | translate}}"
-             [matMenuTriggerFor]="languageMenu">
-            <mat-icon class="icon">language</mat-icon>
-            <span class="label">Language</span>
           </a>
-          <mat-menu #languageMenu="matMenu" xPosition="before" yPosition="below">
-            <div class="menu" fxLayout="column" (click)="$event.stopPropagation()">
-              <mat-radio-group fxLayout="column" aria-label="Select an option" (change)="onToggle($event)">
-                <mat-radio-button *ngFor="let lang of translate.getLangs()"
-                                  [value]="lang"
-                                  [checked]="lang === translate.currentLang"
-                                  color="primary">
-                  <img [src]="['/assets/images/'+lang+'.png']"/>
-                  {{ lang | translate | uppercase }}
+            <!--      SIDENAV Recipes Link -->
+            <mat-expansion-panel *ngIf="isAuthenticated"
+                                 (opened)="panelOpenState = true"
+                                 (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <div mat-list-item *ngIf="isAuthenticated">
+                        <mat-icon class="icon"><i class="fas fa-utensils"></i></mat-icon>
+                        <span class="nav-caption">Recipes</span>
+                    </div>
+                </mat-expansion-panel-header>
+                <div>
+                    <div class="expansion-panel-content">
+                        <a [routerLink]="['/recipes/all']" routerLinkActive="active" (click)="drawer.toggle()">
+                            <mat-list-item>
+                                <i class="icofont-read-book"></i>
+                                All
+                            </mat-list-item>
+                        </a>
+                    </div>
+                </div>
 
-                </mat-radio-button>
-              </mat-radio-group>
-            </div>
-          </mat-menu>
+
+                <div *ngFor="let category of categories">
+                    <div class="expansion-panel-content">
+                        <a [routerLink]="['/recipes', category.urlSuffix]" routerLinkActive="active"
+                           (click)="drawer.toggle()">
+                            <mat-list-item>
+                                <!--            <mat-icon matListIcon>{{category.iconName}}</mat-icon>-->
+                                <i [class]="category.iconName"></i>
+                                {{category.name}}
+                            </mat-list-item>
+
+                        </a>
+                    </div>
+
+                </div>
+
+            </mat-expansion-panel>
+            <!--      <a mat-list-item *ngIf="isAuthenticated" routerLinkActive="active"-->
+            <!--         routerLink="/recipes" (click)="drawer.toggle()">-->
+            <!--        <mat-icon class="icon"><i class="fas fa-utensils"></i></mat-icon>-->
+            <!--        <span class="nav-caption">Recipes</span>-->
+            <!--      </a>-->
+            <!--      SIDENAV Logout Link -->
+            <a mat-list-item *ngIf="isAuthenticated" (click)="onLogout(); drawer.toggle()">
+                <mat-icon class="icon">logout</mat-icon>
+                <span class="nav-caption">{{'[Toolbar]Logout' | translate}}</span>
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar class="theme-accent-dark">
+            <mat-toolbar-row>
+                <div fxLayout="row" fxLayoutAlign="center center">
 
 
-          <!--          zakładka Logout -->
-          <a mat-button *ngIf="isAuthenticated" (click)="onLogout()">
-            <mat-icon class="icon">input</mat-icon>
-            <span class="label">{{'[Toolbar]Logout' | translate}}</span>
-          </a>
+                <!--          sidenav menu button (tylko jeśli rozmiar okna xs) -->
+                    <a id="menu-toggle-button" (click)="drawer.toggle()" fxHide.gt-sm >
+                        <mat-icon class="icon" style="font-size: 40px; height: 40px; width: 40px">menu</mat-icon>
+                    </a>
+<!--                    <mat-icon style="font-size: 40px; height: 40px; width: 40px"  >menu</mat-icon>-->
+                <!--          NAGŁÓWEK RECIPE BOOK -->
+                <!--        <a class="toolbar-header" routerLink="/">RECIPE BOOK</a>-->
+              <a class="toolbar-header" routerLink="/"><span class="title ml-2">RECIPE BOOK</span></a>
+                </div>
+                <div fxFlex fxLayout fxHide.lt-md>
+                    <!--          &lt;!&ndash;          zakładka Recipes &ndash;&gt;-->
+                    <!--          <a mat-button *ngIf="isAuthenticated" routerLinkActive="active" routerLink="/recipes">-->
+                    <!--            &lt;!&ndash; <div class="d-flex justify-content-around align-items-center"> &ndash;&gt;-->
+                    <!--            <mat-icon class="icon">menu_book</mat-icon>-->
+                    <!--            <span class="label">{{'[Toolbar]Recipes' | translate}}</span>-->
+                    <!--            &lt;!&ndash; </div> &ndash;&gt;-->
+                    <!--          </a>-->
 
-        </div>
-      </mat-toolbar-row>
-    </mat-toolbar>
-    <!--          tutaj wchodzi router-outlet -->
-    <ng-content></ng-content>
 
-  </mat-sidenav-content>
+                    <!--          &lt;!&ndash;          zakładka Shopping List &ndash;&gt;-->
+                    <!--          <a mat-button *ngIf="isAuthenticated && false" routerLinkActive="active" routerLink="/shopping-list">-->
+                    <!--            <mat-icon class="icon">shopping_cart</mat-icon>-->
+                    <!--            <span class="label">Shopping List</span>-->
+                    <!--          </a>-->
+
+                    <!--          &lt;!&ndash;          zakładka New Recipes &ndash;&gt;-->
+                    <!--          <a mat-button *ngIf="isAuthenticated" routerLinkActive="active" routerLink="/recipes">-->
+                    <!--            <mat-icon class="icon"><i class="fas fa-utensils"></i></mat-icon>-->
+                    <!--            <span class="label">New recipes</span>-->
+                    <!--          </a>-->
+
+
+                    <span class="spacer"></span>
+
+                    <!--          zmiana języka -->
+
+                    <a mat-button
+                       matTooltip="{{'[Toolbar]LanguagesTooltip' | translate}}"
+                       [matMenuTriggerFor]="languageMenu">
+                        <mat-icon class="icon">language</mat-icon>
+                        <span class="label">Language</span>
+                    </a>
+                    <mat-menu #languageMenu="matMenu" xPosition="before" yPosition="below">
+                        <div class="menu" fxLayout="column" (click)="$event.stopPropagation()">
+                            <mat-radio-group fxLayout="column" aria-label="Select an option"
+                                             (change)="onToggle($event)">
+                                <mat-radio-button *ngFor="let lang of translate.getLangs()"
+                                                  [value]="lang"
+                                                  [checked]="lang === translate.currentLang"
+                                                  color="primary">
+                                    <img [src]="['/assets/images/'+lang+'.png']"/>
+                                    {{ lang | translate | uppercase }}
+
+                                </mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                    </mat-menu>
+
+
+                    <!--          zakładka Logout -->
+                    <a mat-button *ngIf="isAuthenticated" (click)="onLogout()">
+                        <mat-icon class="icon">logout</mat-icon>
+                        <span class="label">{{'[Toolbar]Logout' | translate}}</span>
+                    </a>
+
+                </div>
+            </mat-toolbar-row>
+        </mat-toolbar>
+        <!--          tutaj wchodzi router-outlet -->
+        <ng-content></ng-content>
+
+    </mat-sidenav-content>
 </mat-sidenav-container>
 

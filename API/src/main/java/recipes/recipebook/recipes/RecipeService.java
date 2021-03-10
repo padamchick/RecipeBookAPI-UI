@@ -1,24 +1,19 @@
 package recipes.recipebook.recipes;
 
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import recipes.recipebook.auth.AuthContext;
 import recipes.recipebook.dto.RecipeDto;
 import recipes.recipebook.entity.*;
 import recipes.recipebook.auth.UserRepository;
-import recipes.recipebook.exceptions.NotFoundException;
+import recipes.recipebook.exceptions.EntityNotFoundException;
 import recipes.recipebook.ingredients.IngredientRepository;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @AllArgsConstructor
 @Service
@@ -54,7 +49,7 @@ public class RecipeService {
             recipe.updateWithReferences();
             return recipeRepository.save(recipe);
         } else {
-            throw new NotFoundException("RECIPE_NOT_FOUND");
+            throw new EntityNotFoundException("RECIPE_NOT_FOUND");
         }
     }
 

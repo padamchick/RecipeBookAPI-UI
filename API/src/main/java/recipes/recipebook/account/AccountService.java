@@ -1,21 +1,18 @@
 package recipes.recipebook.account;
 
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 import recipes.recipebook.auth.AuthContext;
 import recipes.recipebook.auth.UserRepository;
-import recipes.recipebook.dto.UserDto;
 import recipes.recipebook.entity.Language;
 import recipes.recipebook.entity.UserDao;
 import recipes.recipebook.entity.UserData;
-import recipes.recipebook.exceptions.NotFoundException;
+import recipes.recipebook.exceptions.EntityNotFoundException;
 
 import java.lang.reflect.Field;
 import java.util.Map;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -42,6 +39,6 @@ public class AccountService {
     public UserDao getCurrentUser() {
         String authorizedUsername = SecurityContextHolder.getContext().getAuthentication().getName();
         return userRepository.findByUsername(authorizedUsername)
-                .orElseThrow(() -> new NotFoundException("USER_NOT_FOUND"));
+                .orElseThrow(() -> new EntityNotFoundException("USER_NOT_FOUND"));
     }
 }
