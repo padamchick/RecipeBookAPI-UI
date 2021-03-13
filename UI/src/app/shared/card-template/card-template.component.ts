@@ -7,6 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class CardTemplateComponent {
   @Input() displayHeader = true;
-  @Input() width = 304;
+  @Input() width = 340;
 
 }
